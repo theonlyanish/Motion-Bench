@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reveal & Layout — Animation Playground</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,opsz,wght@0,10..48,100..1000&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="layout.css">
+  <link rel="stylesheet" href="transitions.css">
+</head>
+<body class="is-loaded">
+  <div class="transition-overlay"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <nav class="nav-bar">
+    <a href="index.html" class="nav-btn" aria-label="Typography">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+      </svg>
+    </a>
+    <a href="scroll.html" class="nav-btn" aria-label="Scroll Animations">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+        <polyline points="10 9 9 9 8 9"/>
+      </svg>
+    </a>
+    <a href="gallery.html" class="nav-btn" aria-label="Gallery Effects">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+        <circle cx="8.5" cy="8.5" r="1.5"/>
+        <polyline points="21 15 16 10 5 21"/>
+      </svg>
+    </a>
+    <a href="cursor.html" class="nav-btn" aria-label="Cursor Effects">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
+        <path d="M13 13l6 6"/>
+      </svg>
+    </a>
+  </nav>
+
+  <header class="layout-header">
+    <h1>Reveal & <span class="highlight">Layout</span></h1>
+    <p class="tagline">UI Patterns · Transitions · Modals · Layout Motion</p>
+  </header>
+
+  <main class="layout-main">
+    
+    <!-- 1. Modal Scale -->
+    <section class="layout-block" id="modalBlock">
+      <button class="trigger-btn" id="modalBtn">Open Modal</button>
+      <div class="block-info">
+        <h2>Modal Scale</h2>
+        <p>iOS-style spring scale</p>
+      </div>
+    </section>
+
+    <!-- 2. Accordion -->
+    <section class="layout-block">
+      <div class="accordion">
+        <div class="acc-item">
+          <div class="acc-header">Accordion Item 1</div>
+          <div class="acc-content">
+            <p>Content expands smoothly with height animation.</p>
+          </div>
+        </div>
+        <div class="acc-item">
+          <div class="acc-header">Accordion Item 2</div>
+          <div class="acc-content">
+            <p>More details revealed here.</p>
+          </div>
+        </div>
+      </div>
+      <div class="block-info">
+        <h2>Accordion</h2>
+        <p>Smooth height expansion</p>
+      </div>
+    </section>
+
+    <!-- 3. Tabs Fade -->
+    <section class="layout-block">
+      <div class="tabs-container">
+        <div class="tabs-nav">
+          <button class="tab-btn active" data-tab="1">Tab 1</button>
+          <button class="tab-btn" data-tab="2">Tab 2</button>
+          <div class="tab-indicator"></div>
+        </div>
+        <div class="tabs-content">
+          <div class="tab-pane active" data-tab="1">Content 1</div>
+          <div class="tab-pane" data-tab="2">Content 2</div>
+        </div>
+      </div>
+      <div class="block-info">
+        <h2>Tabs Fade</h2>
+        <p>Crossfade with sliding indicator</p>
+      </div>
+    </section>
+
+    <!-- 4. Card Flip -->
+    <section class="layout-block">
+      <div class="flip-card">
+        <div class="flip-inner">
+          <div class="flip-front">Front</div>
+          <div class="flip-back">Back</div>
+        </div>
+      </div>
+      <div class="block-info">
+        <h2>Card Flip</h2>
+        <p>3D rotation on click/hover</p>
+      </div>
+    </section>
+
+    <!-- 5. Off-canvas Menu -->
+    <section class="layout-block">
+      <button class="trigger-btn" id="menuBtn">Open Menu</button>
+      <div class="block-info">
+        <h2>Off-canvas</h2>
+        <p>Slide-in side panel</p>
+      </div>
+    </section>
+
+    <!-- 6. Toast Notification -->
+    <section class="layout-block">
+      <button class="trigger-btn" id="toastBtn">Show Toast</button>
+      <div class="block-info">
+        <h2>Toast</h2>
+        <p>Notification slide-in</p>
+      </div>
+    </section>
+
+    <!-- 7. Grid/List Switch -->
+    <section class="layout-block">
+      <div class="view-controls">
+        <button class="view-btn active" id="gridBtn">Grid</button>
+        <button class="view-btn" id="listBtn">List</button>
+      </div>
+      <div class="layout-grid" id="layoutContainer">
+        <div class="l-item"></div>
+        <div class="l-item"></div>
+        <div class="l-item"></div>
+        <div class="l-item"></div>
+      </div>
+      <div class="block-info">
+        <h2>Grid to List</h2>
+        <p>FLIP layout transition</p>
+      </div>
+    </section>
+
+    <!-- 8. Expandable Card -->
+    <section class="layout-block">
+      <div class="expand-card">
+        <div class="ec-header">
+          <h3>Expand Me</h3>
+          <span class="ec-icon">+</span>
+        </div>
+        <div class="ec-content">
+          <p>Additional details revealed with a shared layout transition feel.</p>
+        </div>
+      </div>
+      <div class="block-info">
+        <h2>Expandable Card</h2>
+        <p>Layout expansion</p>
+      </div>
+    </section>
+
+    <!-- 9. Staggered Load -->
+    <section class="layout-block">
+      <button class="trigger-btn" id="staggerBtn">Reload List</button>
+      <ul class="stagger-list-ui" id="staggerList">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+      </ul>
+      <div class="block-info">
+        <h2>Stagger Load</h2>
+        <p>Sequential item entry</p>
+      </div>
+    </section>
+
+    <!-- 10. Dropdown Menu -->
+    <section class="layout-block">
+      <div class="dropdown">
+        <button class="trigger-btn" id="dropBtn">Options</button>
+        <div class="dropdown-menu">
+          <a href="#">Edit</a>
+          <a href="#">Duplicate</a>
+          <a href="#">Delete</a>
+        </div>
+      </div>
+      <div class="block-info">
+        <h2>Dropdown</h2>
+        <p>Scale/fade from origin</p>
+      </div>
+    </section>
+
+    <!-- 11. Content Placeholder -->
+    <section class="layout-block">
+      <div class="skeleton-card" id="skeletonCard">
+        <div class="sk-img"></div>
+        <div class="sk-line w-80"></div>
+        <div class="sk-line w-60"></div>
+      </div>
+      <div class="block-info">
+        <h2>Skeleton Load</h2>
+        <p>Shimmer loading state</p>
+      </div>
+    </section>
+
+    <!-- 12. Floating Action Button -->
+    <section class="layout-block">
+      <div class="fab-container">
+        <button class="fab-main">+</button>
+        <div class="fab-actions">
+          <button class="fab-mini">A</button>
+          <button class="fab-mini">B</button>
+        </div>
+      </div>
+      <div class="block-info">
+        <h2>FAB Expand</h2>
+        <p>Floating button reveal</p>
+      </div>
+    </section>
+
+    <!-- 13. Carousel Snap -->
+    <section class="layout-block">
+      <div class="carousel-snap">
+        <div class="c-item">1</div>
+        <div class="c-item">2</div>
+        <div class="c-item">3</div>
+        <div class="c-item">4</div>
+      </div>
+      <div class="block-info">
+        <h2>Carousel Snap</h2>
+        <p>Horizontal snap scrolling</p>
+      </div>
+    </section>
+
+    <!-- 14. Progress Steps -->
+    <section class="layout-block">
+      <div class="stepper">
+        <div class="step active">1</div>
+        <div class="step-line"></div>
+        <div class="step">2</div>
+        <div class="step-line"></div>
+        <div class="step">3</div>
+      </div>
+      <div class="block-info">
+        <h2>Stepper</h2>
+        <p>Progress flow animation</p>
+      </div>
+    </section>
+
+    <!-- 15. Switch Toggle -->
+    <section class="layout-block">
+      <label class="switch">
+        <input type="checkbox">
+        <span class="slider round"></span>
+      </label>
+      <div class="block-info">
+        <h2>Toggle Switch</h2>
+        <p>Smooth state transition</p>
+      </div>
+    </section>
+
+    <!-- 16. Input Float -->
+    <section class="layout-block">
+      <div class="input-group">
+        <input type="text" id="floatInput" placeholder=" ">
+        <label for="floatInput">Email Address</label>
+        <div class="input-border"></div>
+      </div>
+      <div class="block-info">
+        <h2>Floating Label</h2>
+        <p>Input focus interaction</p>
+      </div>
+    </section>
+
+    <!-- 17. Search Expand -->
+    <section class="layout-block">
+      <div class="search-box">
+        <button class="search-btn">🔍</button>
+        <input type="text" class="search-input" placeholder="Search...">
+      </div>
+      <div class="block-info">
+        <h2>Search Expand</h2>
+        <p>Width expansion on focus</p>
+      </div>
+    </section>
+
+    <!-- 18. Delete Wipe -->
+    <section class="layout-block">
+      <div class="delete-item" id="deleteItem">
+        <span>Swipe to Delete</span>
+        <button class="delete-btn">×</button>
+      </div>
+      <button class="reset-btn" id="resetDelete" style="display:none">Reset</button>
+      <div class="block-info">
+        <h2>Delete Wipe</h2>
+        <p>Collapse animation</p>
+      </div>
+    </section>
+
+    <!-- 19. Tooltip -->
+    <section class="layout-block">
+      <button class="trigger-btn tooltip-trigger" data-tooltip="Detailed Information">Hover Me</button>
+      <div class="block-info">
+        <h2>Tooltip</h2>
+        <p>Scale/fade hint</p>
+      </div>
+    </section>
+
+    <!-- 20. Count Badge -->
+    <section class="layout-block">
+      <div class="badge-container">
+        <span>Cart</span>
+        <span class="badge" id="cartBadge">0</span>
+      </div>
+      <button class="add-btn" id="addBtn">+1</button>
+      <div class="block-info">
+        <h2>Notification Badge</h2>
+        <p>Scale bounce on update</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Global Elements -->
+  <div class="modal-backdrop" id="modalBackdrop">
+    <div class="modal-content">
+      <h2>Modal Title</h2>
+      <p>This is a modal window with a smooth scale and backdrop blur animation.</p>
+      <button class="close-modal">Close</button>
+    </div>
+  </div>
+
+  <div class="side-panel" id="sidePanel">
+    <button class="close-panel">×</button>
+    <h2>Menu</h2>
+    <ul>
+      <li>Home</li>
+      <li>About</li>
+      <li>Contact</li>
+    </ul>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+
+  <footer class="layout-footer">
+    <p>20 Layout & Reveal Animations · Pure JS & CSS</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+  <script src="transitions.js"></script>
+  <script src="layout.js"></script>
+</body>
+</html>
