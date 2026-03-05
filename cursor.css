@@ -1,0 +1,295 @@
+/* ========================================
+   Cursor & Pointer Page
+   ======================================== */
+
+:root {
+  --bg-dark: #0a0a0f;
+  --bg-panel: #12121a;
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --text-primary: #f0f0f5;
+  --text-muted: #6b6b80;
+  --accent: #7c5cff;
+  --accent-glow: rgba(124, 92, 255, 0.35);
+  --font-display: 'Instrument Sans', system-ui, sans-serif;
+  --radius: 12px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(124, 92, 255, 0.08) 0%, transparent 50%), var(--bg-dark);
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  overflow-x: hidden;
+  /* Hide default cursor globally or per section? 
+     We'll hide it globally for this page as we have a custom one */
+  cursor: none; 
+}
+
+/* Custom Global Cursor */
+.custom-cursor {
+  position: fixed;
+  top: 0; left: 0;
+  width: 10px; height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, background 0.3s, transform 0.1s;
+}
+
+.cursor-follower {
+  position: fixed;
+  top: 0; left: 0;
+  width: 40px; height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, background 0.3s, border-color 0.3s, transform 0.15s ease-out;
+}
+
+/* Nav */
+.nav-bar {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  display: flex;
+  gap: 0.75rem;
+  z-index: 1000;
+}
+
+.nav-btn {
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-muted);
+  background: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  transition: color 0.2s, border-color 0.2s, transform 0.2s;
+  cursor: none; /* Keep custom cursor visible */
+}
+
+.nav-btn:hover {
+  color: var(--accent);
+  border-color: rgba(124, 92, 255, 0.4);
+  transform: scale(1.05);
+}
+
+.nav-btn svg { width: 22px; height: 22px; }
+
+/* Header */
+.cursor-header {
+  padding: clamp(2rem, 5vw, 4rem) 1.5rem 2rem;
+  text-align: center;
+}
+
+.cursor-header h1 {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.25rem;
+}
+
+.cursor-header .highlight {
+  background: linear-gradient(135deg, var(--accent), #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tagline { color: var(--text-muted); font-size: 0.95rem; margin: 0; }
+
+/* Main Grid */
+.cursor-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.cursor-block {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.block-info {
+  padding: 1rem;
+  border-top: 1px solid var(--border-subtle);
+  background: rgba(0,0,0,0.2);
+}
+
+.block-info h2 { font-size: 1rem; margin: 0 0 0.25rem; color: var(--text-primary); }
+.block-info p { font-size: 0.8rem; margin: 0; color: var(--text-muted); }
+
+/* Areas */
+.magnetic-area, .blend-area, .mask-area, .trail-area, .scale-area, 
+.text-cursor-area, .spotlight-area, .sticky-area, .glitch-area,
+.arrow-area, .img-trail-area, .zoom-area, .emoji-area, .ripple-area,
+.elastic-line-area, .noise-area, .video-cursor-area, .perspective-area,
+.dot-grid-area, .progress-area {
+  height: 200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  /* Specific styling for areas */
+}
+
+/* 1. Magnetic */
+.magnetic-btn {
+  padding: 0.8rem 1.5rem;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: none;
+  transition: transform 0.1s;
+}
+
+/* 2. Blend */
+.blend-area { background: #fff; color: #000; }
+
+/* 3. Mask */
+.mask-area { background: #000; }
+.mask-bg {
+  position: absolute; width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  color: #333; font-size: 1.5rem; font-weight: 700;
+}
+.mask-front {
+  position: absolute; width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent); font-size: 1.5rem; font-weight: 700;
+  clip-path: circle(0% at 50% 50%); /* Updated by JS */
+  background: #111;
+}
+
+/* 5. Scale */
+.scale-target {
+  padding: 1rem 2rem;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 8px;
+}
+
+/* 7. Spotlight */
+.spotlight-area { background: #000; }
+.spotlight-content { z-index: 1; color: #222; font-weight: 700; font-size: 1.5rem; }
+.spotlight-layer {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle 60px at var(--x, 50%) var(--y, 50%), transparent 0%, #000 100%);
+  pointer-events: none; z-index: 2;
+}
+
+/* 8. Sticky */
+.sticky-item {
+  width: 100px; height: 100px;
+  background: #333;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 12px;
+}
+
+/* 11. Image Trail */
+.trail-img {
+  position: fixed;
+  width: 80px; height: 60px;
+  object-fit: cover;
+  pointer-events: none;
+  z-index: 9000;
+  opacity: 0;
+  border-radius: 4px;
+}
+
+/* 12. Zoom Lens */
+.zoom-area img { width: 100%; height: 100%; object-fit: cover; }
+.zoom-lens {
+  position: absolute;
+  width: 100px; height: 100px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background-image: url('https://picsum.photos/id/50/300/200');
+  background-size: 300% 200%; /* Magnified */
+  pointer-events: none;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0);
+  transition: opacity 0.2s, transform 0.2s;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* 15. Elastic Line */
+.elastic-svg { pointer-events: none; }
+
+/* 17. Video Cursor */
+.video-cursor-area video {
+  position: absolute;
+  width: 100px; height: 100px; /* Hidden initially or used as source */
+  opacity: 0; pointer-events: none;
+}
+.video-float {
+  position: fixed;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 9999;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.3s;
+  border: 2px solid var(--accent);
+}
+.video-float video {
+  width: 100%; height: 100%; object-fit: cover;
+}
+
+/* 18. Perspective */
+.tilt-plane {
+  width: 100px; height: 100px;
+  background: linear-gradient(135deg, var(--accent), #f0f);
+  border-radius: 12px;
+}
+.perspective-area { perspective: 600px; }
+
+/* 19. Dot Grid */
+.dot-grid-area {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(8, 1fr);
+  width: 100%; height: 100%;
+}
+.grid-dot {
+  width: 4px; height: 4px;
+  background: #555;
+  border-radius: 50%;
+  margin: auto;
+  transition: transform 0.2s ease-out;
+}
+
+/* Footer */
+.cursor-footer {
+  text-align: center;
+  padding: 3rem 1.5rem;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  body { cursor: auto; }
+  .custom-cursor, .cursor-follower { display: none; }
+  .nav-btn, .magnetic-btn { cursor: pointer; }
+}
