@@ -1,0 +1,470 @@
+/* ========================================
+   Gallery Effects Page
+   ======================================== */
+
+:root {
+  --bg-dark: #0a0a0f;
+  --bg-panel: #12121a;
+  --border-subtle: rgba(255, 255, 255, 0.06);
+  --text-primary: #f0f0f5;
+  --text-muted: #6b6b80;
+  --accent: #7c5cff;
+  --accent-glow: rgba(124, 92, 255, 0.35);
+  --font-display: 'Instrument Sans', system-ui, sans-serif;
+  --radius: 12px;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(124, 92, 255, 0.08) 0%, transparent 50%), var(--bg-dark);
+  color: var(--text-primary);
+  font-family: var(--font-display);
+  overflow-x: hidden;
+}
+
+/* Nav */
+.nav-bar {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  display: flex;
+  gap: 0.75rem;
+  z-index: 1000;
+}
+
+.nav-btn {
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  background: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  transition: color 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.nav-btn:hover {
+  color: var(--accent);
+  border-color: rgba(124, 92, 255, 0.4);
+  transform: scale(1.05);
+}
+
+.nav-btn svg { width: 22px; height: 22px; }
+
+/* Header */
+.gallery-header {
+  padding: clamp(2rem, 5vw, 4rem) 1.5rem 2rem;
+  text-align: center;
+}
+
+.gallery-header h1 {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  margin: 0 0 0.25rem;
+}
+
+.gallery-header .highlight {
+  background: linear-gradient(135deg, var(--accent), #a78bfa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tagline { color: var(--text-muted); font-size: 0.95rem; margin: 0; }
+
+/* Main Grid */
+.gallery-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.effect-block {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.effect-block:hover {
+  border-color: rgba(124, 92, 255, 0.2);
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4/3;
+  overflow: hidden;
+  background: #000;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.effect-info {
+  padding: 1rem;
+}
+
+.effect-info h2 {
+  font-size: 1rem;
+  margin: 0 0 0.25rem;
+  color: var(--text-primary);
+}
+
+.effect-info p {
+  font-size: 0.8rem;
+  margin: 0;
+  color: var(--text-muted);
+}
+
+/* ─── Effects ────────────────────────────────────────────────────────── */
+
+/* 1. Zoom Hover */
+.zoom-hover img { transition: transform 0.6s var(--ease-out); }
+.zoom-hover:hover img { transform: scale(1.1); }
+
+/* 2. Grayscale to Color */
+.gray-color img { filter: grayscale(100%); transition: filter 0.5s ease; }
+.gray-color:hover img { filter: grayscale(0%); }
+
+/* 3. Curtain Reveal */
+.curtain-reveal .curtain {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: var(--bg-dark);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s var(--ease-out);
+  pointer-events: none;
+  opacity: 0.8;
+}
+.curtain-reveal:hover .curtain { transform: scaleY(1); }
+
+/* 4. Caption Slide Up */
+.caption-slide .caption-overlay {
+  position: absolute; bottom: 0; left: 0; width: 100%;
+  padding: 1.5rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  transform: translateY(100%);
+  transition: transform 0.4s var(--ease-out);
+}
+.caption-slide:hover .caption-overlay { transform: translateY(0); }
+.caption-slide h3 { margin: 0; font-size: 1.1rem; }
+.caption-slide p { margin: 0.25rem 0 0; font-size: 0.85rem; color: #ccc; }
+
+/* 5. 3D Tilt Card */
+.tilt-card { perspective: 1000px; }
+.tilt-inner {
+  width: 100%; height: 100%;
+  transition: transform 0.1s ease-out;
+  transform-style: preserve-3d;
+}
+.tilt-inner img { width: 100%; height: 100%; object-fit: cover; }
+
+/* 6. Blur Reveal */
+.blur-reveal img { filter: blur(8px); transition: filter 0.5s ease; transform: scale(1.05); }
+.blur-reveal:hover img { filter: blur(0); }
+
+/* 7. Clip Path Shape */
+.clip-shape img {
+  clip-path: circle(40% at 50% 50%);
+  transition: clip-path 0.6s var(--ease-out), transform 0.6s var(--ease-out);
+}
+.clip-shape:hover img {
+  clip-path: circle(75% at 50% 50%);
+  transform: scale(1.05);
+}
+
+/* 8. Glitch Image */
+.glitch-img { position: relative; }
+.glitch-layer {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: url('https://picsum.photos/id/48/800/600') no-repeat center/cover;
+  opacity: 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+.glitch-img:hover .layer-1 {
+  opacity: 0.5;
+  animation: glitch-anim-1 0.3s infinite linear alternate-reverse;
+  filter: hue-rotate(90deg);
+}
+.glitch-img:hover .layer-2 {
+  opacity: 0.5;
+  animation: glitch-anim-2 0.3s infinite linear alternate-reverse;
+  filter: hue-rotate(-90deg);
+}
+@keyframes glitch-anim-1 { 0% { transform: translate(-2px, 2px); } 100% { transform: translate(2px, -2px); } }
+@keyframes glitch-anim-2 { 0% { transform: translate(2px, -2px); } 100% { transform: translate(-2px, 2px); } }
+
+/* 9. Parallax Scroll */
+.parallax-container img {
+  height: 120%;
+  transform: translateY(0);
+  will-change: transform;
+}
+
+/* 10. Magnetic Cursor */
+.magnetic-wrap { cursor: none; }
+.magnetic-cursor {
+  position: fixed;
+  top: 0; left: 0;
+  width: 60px; height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s var(--ease-out);
+  z-index: 10;
+}
+.magnetic-wrap:hover .magnetic-cursor { transform: translate(-50%, -50%) scale(1); }
+
+/* 11. Slice Reveal */
+.slice-reveal { position: relative; }
+.slice {
+  position: absolute; top: 0; left: 0; height: 100%; width: 33.33%;
+  background: var(--bg-dark);
+  transition: transform 0.6s var(--ease-out);
+  z-index: 2;
+}
+.s1 { left: 0; transform-origin: top; }
+.s2 { left: 33.33%; transform-origin: bottom; transition-delay: 0.1s; }
+.s3 { left: 66.66%; transform-origin: top; transition-delay: 0.2s; }
+.slice-reveal:hover .slice { transform: scaleY(0); }
+
+/* 12. Ink Spread */
+.ink-spread { position: relative; }
+.ink-mask {
+  position: absolute; bottom: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  transition: transform 0.8s var(--ease-out);
+  transform: scaleY(1);
+  transform-origin: bottom;
+  fill: var(--bg-dark);
+}
+.ink-spread:hover .ink-mask { transform: scaleY(0); }
+
+/* 13. Perspective Rotate */
+.perspective-rotate { perspective: 800px; }
+.perspective-rotate img {
+  transition: transform 0.6s var(--ease-out);
+  transform-origin: center center;
+}
+.perspective-rotate:hover img { transform: rotateX(10deg) rotateY(-10deg) scale(0.95); }
+
+/* 14. Inner Border Draw */
+.border-draw .border-box {
+  position: absolute; top: 1rem; left: 1rem; right: 1rem; bottom: 1rem;
+  border: 1px solid rgba(255,255,255,0.8);
+  transform: scale(0.9);
+  opacity: 0;
+  transition: all 0.5s var(--ease-out);
+}
+.border-draw:hover .border-box { transform: scale(1); opacity: 1; }
+.border-draw img { transition: transform 0.5s var(--ease-out); }
+.border-draw:hover img { transform: scale(1.05); }
+
+/* 15. Duotone Hover */
+.duotone-hover { background: #f00; }
+.duotone-hover img {
+  mix-blend-mode: luminosity;
+  transition: mix-blend-mode 0.4s, filter 0.4s;
+  filter: contrast(1.2);
+}
+.duotone-hover:hover img { mix-blend-mode: normal; filter: none; }
+
+/* 16. Center Reveal */
+.center-reveal .center-mask {
+  position: absolute; top: 50%; left: 50%; width: 150%; height: 150%;
+  background: radial-gradient(circle, transparent 30%, var(--bg-dark) 31%);
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 0.7s var(--ease-out);
+  pointer-events: none;
+}
+.center-reveal:hover .center-mask { transform: translate(-50%, -50%) scale(3); }
+
+/* 17. Pixelate */
+.pixelate img {
+  image-rendering: pixelated;
+  filter: contrast(1.2) blur(4px);
+  transition: filter 0.4s ease;
+}
+.pixelate:hover img { filter: contrast(1) blur(0); }
+
+/* 18. Slide Behind */
+.slide-behind { display: flex; align-items: center; justify-content: center; background: var(--accent); }
+.img-front {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  transition: transform 0.5s var(--ease-out);
+  z-index: 2;
+}
+.img-back {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1;
+}
+.img-back h3 { font-size: 2rem; color: #fff; margin: 0; }
+.slide-behind:hover .img-front { transform: translateX(60px) translateY(-40px) scale(0.8); }
+
+/* 19. Flash Overlay */
+.flash-overlay .flash {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease-out;
+}
+.flash-overlay:hover .flash { opacity: 0.4; animation: flash-anim 0.4s forwards; }
+@keyframes flash-anim { 0% { opacity: 0.6; } 100% { opacity: 0; } }
+
+/* 20. Pan on Hover */
+.pan-hover img {
+  width: 120%; height: 120%;
+  object-fit: cover;
+  transition: transform 4s ease-in-out;
+}
+.pan-hover:hover img { transform: translate(-10%, -10%); }
+
+/* 21. Distortion */
+.distort-filter:hover img {
+  filter: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg"><filter id="distort"><feTurbulence type="fractalNoise" baseFrequency="0.05" numOctaves="2" /><feDisplacementMap in="SourceGraphic" scale="20" /></filter></svg>#distort');
+}
+
+/* 22. Fold Reveal */
+.fold-reveal { perspective: 1000px; }
+.fold-cover {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: var(--bg-dark);
+  transform-origin: top;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0.9;
+}
+.fold-reveal:hover .fold-cover { transform: rotateX(-100deg); opacity: 0; }
+
+/* 23. Circular Swap */
+.circle-swap .c-img-2 {
+  position: absolute; top: 0; left: 0;
+  clip-path: circle(0% at 50% 50%);
+  transition: clip-path 0.7s var(--ease-out);
+  z-index: 2;
+}
+.circle-swap:hover .c-img-2 { clip-path: circle(100% at 50% 50%); }
+
+/* 24. Directional Overlay */
+.dir-overlay { overflow: hidden; }
+.dir-content {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(124, 92, 255, 0.8);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1.5rem; font-weight: 600;
+  transform: translate(0, 100%); /* Default, updated by JS */
+  transition: transform 0.4s ease;
+}
+/* JS sets transform based on entry direction */
+
+/* 25. Block Glitch */
+.glitch-blocks {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
+}
+.g-block {
+  background: #fff;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+.block-glitch:hover .g-block {
+  opacity: 0.2;
+  animation: block-flicker 0.2s infinite steps(2);
+}
+.g-block:nth-child(1) { animation-delay: 0s; }
+.g-block:nth-child(2) { animation-delay: 0.05s; }
+.g-block:nth-child(3) { animation-delay: 0.1s; }
+.g-block:nth-child(4) { animation-delay: 0.15s; }
+@keyframes block-flicker { 0% { opacity: 0; } 50% { opacity: 0.3; } 100% { opacity: 0; } }
+
+/* 26. Halftone */
+.halftone::after {
+  content: '';
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  background: radial-gradient(circle, #000 2px, transparent 2.5px);
+  background-size: 8px 8px;
+  opacity: 0;
+  transition: opacity 0.4s;
+  mix-blend-mode: overlay;
+}
+.halftone:hover::after { opacity: 0.4; }
+
+/* 27. Expanding Card */
+.expanding-card img { transition: transform 0.6s var(--ease-out); }
+.expanding-card .card-info {
+  position: absolute; bottom: 0; left: 0; width: 100%;
+  padding: 1rem;
+  background: var(--bg-panel);
+  transform: translateY(100%);
+  transition: transform 0.5s var(--ease-out);
+}
+.expanding-card:hover img { transform: translateY(-20px) scale(0.9); }
+.expanding-card:hover .card-info { transform: translateY(0); }
+
+/* 28. Mirror Split */
+.mirror-split { position: relative; }
+.mirror-half {
+  position: absolute; top: 0; width: 50%; height: 100%; overflow: hidden;
+  transition: transform 0.6s var(--ease-out);
+}
+.mirror-half img { position: absolute; width: 200%; height: 100%; object-fit: cover; }
+.m-left { left: 0; }
+.m-left img { left: 0; }
+.m-right { right: 0; }
+.m-right img { left: -100%; }
+.mirror-split:hover .m-left { transform: translateX(-10px); }
+.mirror-split:hover .m-right { transform: translateX(10px); }
+
+/* 29. Video Hover */
+.video-hover img { transition: opacity 0.3s; }
+.video-hover:hover img { opacity: 0; }
+.video-container video {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+/* 30. Ripple Effect */
+.ripple-effect:hover img {
+  filter: url('#ripple-filter');
+}
+#ripple-filter feDisplacementMap {
+  transition: scale 0.5s;
+}
+.ripple-effect:hover #ripple-filter feDisplacementMap {
+  scale: 20; /* Doesn't animate in CSS directly in all browsers, mostly static switch or JS needed */
+}
+
+/* Footer */
+.gallery-footer {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 2rem 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}

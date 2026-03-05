@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery Effects — Animation Playground</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,opsz,wght@0,10..48,100..1000&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="gallery.css">
+  <link rel="stylesheet" href="transitions.css">
+</head>
+<body class="is-loaded">
+  <div class="transition-overlay"></div>
+  <nav class="nav-bar">
+    <a href="index.html" class="nav-btn" aria-label="Typography">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+      </svg>
+    </a>
+    <a href="scroll.html" class="nav-btn" aria-label="Scroll Animations">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+        <polyline points="14 2 14 8 20 8"/>
+        <line x1="16" y1="13" x2="8" y2="13"/>
+        <line x1="16" y1="17" x2="8" y2="17"/>
+        <polyline points="10 9 9 9 8 9"/>
+      </svg>
+    </a>
+    <a href="cursor.html" class="nav-btn" aria-label="Cursor Effects">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
+        <path d="M13 13l6 6"/>
+      </svg>
+    </a>
+    <a href="layout.html" class="nav-btn" aria-label="Layout Animations">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+        <line x1="3" y1="9" x2="21" y2="9"/>
+        <line x1="9" y1="21" x2="9" y2="9"/>
+      </svg>
+    </a>
+  </nav>
+
+  <header class="gallery-header">
+    <h1>Gallery<span class="highlight">Effects</span></h1>
+    <p class="tagline">Hover, Click, Reveal — 20 Image Interaction Patterns</p>
+  </header>
+
+  <main class="gallery-main">
+    
+    <!-- 1. Zoom Hover -->
+    <section class="effect-block">
+      <div class="image-wrapper zoom-hover">
+        <img src="https://picsum.photos/id/10/800/600" alt="Nature">
+      </div>
+      <div class="effect-info">
+        <h2>Zoom Hover</h2>
+        <p>Simple scale on hover</p>
+      </div>
+    </section>
+
+    <!-- 2. Grayscale to Color -->
+    <section class="effect-block">
+      <div class="image-wrapper gray-color">
+        <img src="https://picsum.photos/id/12/800/600" alt="Beach">
+      </div>
+      <div class="effect-info">
+        <h2>Grayscale → Color</h2>
+        <p>Fade in color on interaction</p>
+      </div>
+    </section>
+
+    <!-- 3. Curtain Reveal -->
+    <section class="effect-block">
+      <div class="image-wrapper curtain-reveal">
+        <img src="https://picsum.photos/id/15/800/600" alt="Waterfall">
+        <div class="curtain"></div>
+      </div>
+      <div class="effect-info">
+        <h2>Curtain Reveal</h2>
+        <p>Overlay slides away</p>
+      </div>
+    </section>
+
+    <!-- 4. Caption Slide Up -->
+    <section class="effect-block">
+      <div class="image-wrapper caption-slide">
+        <img src="https://picsum.photos/id/16/800/600" alt="Ocean">
+        <div class="caption-overlay">
+          <h3>Ocean View</h3>
+          <p>A serene view of the water</p>
+        </div>
+      </div>
+      <div class="effect-info">
+        <h2>Caption Slide Up</h2>
+        <p>Details appear from bottom</p>
+      </div>
+    </section>
+
+    <!-- 5. 3D Tilt Card -->
+    <section class="effect-block">
+      <div class="image-wrapper tilt-card" data-effect="tilt">
+        <div class="tilt-inner">
+          <img src="https://picsum.photos/id/28/800/600" alt="Forest">
+        </div>
+      </div>
+      <div class="effect-info">
+        <h2>3D Tilt</h2>
+        <p>Mouse-driven perspective tilt</p>
+      </div>
+    </section>
+
+    <!-- 6. Blur Reveal -->
+    <section class="effect-block">
+      <div class="image-wrapper blur-reveal">
+        <img src="https://picsum.photos/id/29/800/600" alt="Mountain">
+      </div>
+      <div class="effect-info">
+        <h2>Blur Reveal</h2>
+        <p>Starts blurred, sharpens on hover</p>
+      </div>
+    </section>
+
+    <!-- 7. Clip Path Shape -->
+    <section class="effect-block">
+      <div class="image-wrapper clip-shape">
+        <img src="https://picsum.photos/id/40/800/600" alt="Cat">
+      </div>
+      <div class="effect-info">
+        <h2>Clip Path Morph</h2>
+        <p>Circle to rounded rectangle</p>
+      </div>
+    </section>
+
+    <!-- 8. Glitch Image -->
+    <section class="effect-block">
+      <div class="image-wrapper glitch-img" data-effect="glitch">
+        <div class="glitch-layer layer-1"></div>
+        <div class="glitch-layer layer-2"></div>
+        <img src="https://picsum.photos/id/48/800/600" alt="Architecture">
+      </div>
+      <div class="effect-info">
+        <h2>Glitch Image</h2>
+        <p>RGB split on hover</p>
+      </div>
+    </section>
+
+    <!-- 9. Parallax Scroll (Container) -->
+    <section class="effect-block">
+      <div class="image-wrapper parallax-container" data-effect="parallax">
+        <img src="https://picsum.photos/id/54/800/900" alt="Tall Building" class="parallax-img">
+      </div>
+      <div class="effect-info">
+        <h2>Parallax Scroll</h2>
+        <p>Image moves slower than scroll</p>
+      </div>
+    </section>
+
+    <!-- 10. Magnetic Cursor -->
+    <section class="effect-block">
+      <div class="image-wrapper magnetic-wrap" data-effect="magnetic">
+        <img src="https://picsum.photos/id/57/800/600" alt="Castle">
+        <div class="magnetic-cursor">View</div>
+      </div>
+      <div class="effect-info">
+        <h2>Magnetic Cursor</h2>
+        <p>Custom cursor sticks to image</p>
+      </div>
+    </section>
+
+    <!-- 11. Slice Reveal -->
+    <section class="effect-block">
+      <div class="image-wrapper slice-reveal">
+        <img src="https://picsum.photos/id/60/800/600" alt="Computer">
+        <div class="slice s1"></div>
+        <div class="slice s2"></div>
+        <div class="slice s3"></div>
+      </div>
+      <div class="effect-info">
+        <h2>Slice Reveal</h2>
+        <p>Image split into sliding strips</p>
+      </div>
+    </section>
+
+    <!-- 12. Ink Spread (SVG Mask) -->
+    <section class="effect-block">
+      <div class="image-wrapper ink-spread">
+        <img src="https://picsum.photos/id/65/800/600" alt="Girl">
+        <svg class="ink-mask" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <path d="M0 0 H100 V100 H0 Z" fill="#fff" />
+        </svg>
+      </div>
+      <div class="effect-info">
+        <h2>Ink Spread</h2>
+        <p>SVG path morph reveal</p>
+      </div>
+    </section>
+
+    <!-- 13. Perspective Rotate -->
+    <section class="effect-block">
+      <div class="image-wrapper perspective-rotate">
+        <img src="https://picsum.photos/id/75/800/600" alt="Plant">
+      </div>
+      <div class="effect-info">
+        <h2>Perspective Rotate</h2>
+        <p>Rotates in 3D space on hover</p>
+      </div>
+    </section>
+
+    <!-- 14. Inner Border Draw -->
+    <section class="effect-block">
+      <div class="image-wrapper border-draw">
+        <img src="https://picsum.photos/id/88/800/600" alt="Road">
+        <div class="border-box"></div>
+      </div>
+      <div class="effect-info">
+        <h2>Border Draw</h2>
+        <p>Line traces inside edge</p>
+      </div>
+    </section>
+
+    <!-- 15. Duotone Hover -->
+    <section class="effect-block">
+      <div class="image-wrapper duotone-hover">
+        <img src="https://picsum.photos/id/96/800/600" alt="Tools">
+      </div>
+      <div class="effect-info">
+        <h2>Duotone Gradient</h2>
+        <p>Mix-blend-mode overlay</p>
+      </div>
+    </section>
+
+    <!-- 16. Reveal from Center -->
+    <section class="effect-block">
+      <div class="image-wrapper center-reveal">
+        <img src="https://picsum.photos/id/102/800/600" alt="Raspberries">
+        <div class="center-mask"></div>
+      </div>
+      <div class="effect-info">
+        <h2>Center Reveal</h2>
+        <p>Circular mask expands</p>
+      </div>
+    </section>
+
+    <!-- 17. Pixelate (Canvas/CSS) -->
+    <section class="effect-block">
+      <div class="image-wrapper pixelate">
+        <img src="https://picsum.photos/id/106/800/600" alt="Flower">
+      </div>
+      <div class="effect-info">
+        <h2>Pixelate</h2>
+        <p>Steps down resolution (CSS filter)</p>
+      </div>
+    </section>
+
+    <!-- 18. Slide Behind -->
+    <section class="effect-block">
+      <div class="image-wrapper slide-behind">
+        <div class="img-front">
+          <img src="https://picsum.photos/id/111/800/600" alt="Car">
+        </div>
+        <div class="img-back">
+          <h3>Vintage</h3>
+        </div>
+      </div>
+      <div class="effect-info">
+        <h2>Slide Behind</h2>
+        <p>Image slides to reveal text behind</p>
+      </div>
+    </section>
+
+    <!-- 19. Flash Overlay -->
+    <section class="effect-block">
+      <div class="image-wrapper flash-overlay">
+        <img src="https://picsum.photos/id/120/800/600" alt="Shoes">
+        <div class="flash"></div>
+      </div>
+      <div class="effect-info">
+        <h2>Flash Overlay</h2>
+        <p>Bright flash transition</p>
+      </div>
+    </section>
+
+    <!-- 20. Pan on Hover -->
+    <section class="effect-block">
+      <div class="image-wrapper pan-hover">
+        <img src="https://picsum.photos/id/128/1000/800" alt="City" class="pan-img">
+      </div>
+      <div class="effect-info">
+        <h2>Pan on Hover</h2>
+        <p>Large image pans within frame</p>
+      </div>
+    </section>
+
+    <!-- 21. Image Distortion (Filter) -->
+    <section class="effect-block">
+      <div class="image-wrapper distort-filter">
+        <img src="https://picsum.photos/id/133/800/600" alt="Distort">
+      </div>
+      <div class="effect-info">
+        <h2>Turbulence Distort</h2>
+        <p>SVG Turbulence filter on hover</p>
+      </div>
+    </section>
+
+    <!-- 22. Fold Reveal -->
+    <section class="effect-block">
+      <div class="image-wrapper fold-reveal">
+        <img src="https://picsum.photos/id/145/800/600" alt="Fold">
+        <div class="fold-cover"></div>
+      </div>
+      <div class="effect-info">
+        <h2>Fold Reveal</h2>
+        <p>Unfolds from top like paper</p>
+      </div>
+    </section>
+
+    <!-- 23. Circular Swap -->
+    <section class="effect-block">
+      <div class="image-wrapper circle-swap">
+        <img src="https://picsum.photos/id/152/800/600" alt="Swap 1" class="c-img-1">
+        <img src="https://picsum.photos/id/158/800/600" alt="Swap 2" class="c-img-2">
+      </div>
+      <div class="effect-info">
+        <h2>Circular Swap</h2>
+        <p>Clip-path circle expands new image</p>
+      </div>
+    </section>
+
+    <!-- 24. Directional Overlay -->
+    <section class="effect-block">
+      <div class="image-wrapper dir-overlay" data-effect="dirOverlay">
+        <img src="https://picsum.photos/id/160/800/600" alt="Direction">
+        <div class="dir-content"><span>Hello</span></div>
+      </div>
+      <div class="effect-info">
+        <h2>Directional Overlay</h2>
+        <p>Overlay follows mouse entry direction</p>
+      </div>
+    </section>
+
+    <!-- 25. Block Glitch -->
+    <section class="effect-block">
+      <div class="image-wrapper block-glitch">
+        <img src="https://picsum.photos/id/164/800/600" alt="Block">
+        <div class="glitch-blocks">
+          <div class="g-block" style="--i:1"></div>
+          <div class="g-block" style="--i:2"></div>
+          <div class="g-block" style="--i:3"></div>
+          <div class="g-block" style="--i:4"></div>
+        </div>
+      </div>
+      <div class="effect-info">
+        <h2>Block Glitch</h2>
+        <p>Mosaic reveal/glitch effect</p>
+      </div>
+    </section>
+
+    <!-- 26. Color Halftone -->
+    <section class="effect-block">
+      <div class="image-wrapper halftone">
+        <img src="https://picsum.photos/id/177/800/600" alt="Halftone">
+      </div>
+      <div class="effect-info">
+        <h2>Halftone Pattern</h2>
+        <p>Dot pattern overlay on hover</p>
+      </div>
+    </section>
+
+    <!-- 27. Expanding Card -->
+    <section class="effect-block">
+      <div class="image-wrapper expanding-card">
+        <img src="https://picsum.photos/id/180/800/600" alt="Expand">
+        <div class="card-info">
+          <h3>Title</h3>
+          <p>Description goes here</p>
+        </div>
+      </div>
+      <div class="effect-info">
+        <h2>Expanding Card</h2>
+        <p>Content expands and pushes image</p>
+      </div>
+    </section>
+
+    <!-- 28. Mirror Split -->
+    <section class="effect-block">
+      <div class="image-wrapper mirror-split">
+        <div class="mirror-half m-left">
+          <img src="https://picsum.photos/id/193/800/600" alt="Mirror">
+        </div>
+        <div class="mirror-half m-right">
+          <img src="https://picsum.photos/id/193/800/600" alt="Mirror">
+        </div>
+      </div>
+      <div class="effect-info">
+        <h2>Mirror Split</h2>
+        <p>Splits and slides apart</p>
+      </div>
+    </section>
+
+    <!-- 29. Video Hover -->
+    <section class="effect-block">
+      <div class="image-wrapper video-hover" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4">
+        <img src="https://picsum.photos/id/200/800/600" alt="Video Placeholder">
+        <div class="video-container"></div>
+      </div>
+      <div class="effect-info">
+        <h2>Video Hover</h2>
+        <p>Plays video on hover (replaces image)</p>
+      </div>
+    </section>
+
+    <!-- 30. Ripple Displacement (Filter) -->
+    <section class="effect-block">
+      <div class="image-wrapper ripple-effect">
+        <img src="https://picsum.photos/id/211/800/600" alt="Ripple">
+        <svg width="0" height="0">
+          <filter id="ripple-filter">
+            <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="2" result="turbulence"/>
+            <feDisplacementMap in2="turbulence" in="SourceGraphic" scale="0" xChannelSelector="R" yChannelSelector="G"/>
+          </filter>
+        </svg>
+      </div>
+      <div class="effect-info">
+        <h2>Ripple</h2>
+        <p>Water ripple distortion (SVG filter)</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="gallery-footer">
+    <p>30 Image Interactions · Pure CSS & JS</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+  <script src="transitions.js"></script>
+  <script src="gallery.js"></script>
+</body>
+</html>
