@@ -43,3 +43,66 @@
     document.addEventListener('DOMContentLoaded', apply);
   }
 })();
+
+/**
+ * Touch → mouse bridge.
+ * On touch devices, translate finger gestures into the mouse events the
+ * effects already listen for (mousemove / mouseenter / mouseleave), targeting
+ * whatever element is under the finger. This lets pointer-driven effects
+ * (magnetic, repel, blur, 3D tilt, colour chase, shadow chase, spotlight, and
+ * most gallery/cursor hover effects) respond to touch with no per-effect code.
+ * Effects that need a truly fine pointer are additionally flagged desktop-only
+ * in CSS; this just makes the rest usable.
+ */
+(function () {
+  'use strict';
+  if (!(window.A11Y && window.A11Y.touch)) return;
+
+  var overEl = null;
+
+  function synth(type, x, y, bubbles) {
+    var el = document.elementFromPoint(x, y);
+    if (!el) return null;
+    try {
+      el.dispatchEvent(new MouseEvent(type, {
+        clientX: x, clientY: y, bubbles: bubbles !== false, cancelable: true, view: window
+      }));
+    } catch (e) { /* older engines: ignore */ }
+    return el;
+  }
+
+  function enterLeave(x, y) {
+    var el = document.elementFromPoint(x, y);
+    if (el === overEl) return;
+    if (overEl) {
+      overEl.dispatchEvent(new MouseEvent('mouseout', { clientX: x, clientY: y, bubbles: true, view: window }));
+      overEl.dispatchEvent(new MouseEvent('mouseleave', { clientX: x, clientY: y, bubbles: false, view: window }));
+    }
+    if (el) {
+      el.dispatchEvent(new MouseEvent('mouseover', { clientX: x, clientY: y, bubbles: true, view: window }));
+      el.dispatchEvent(new MouseEvent('mouseenter', { clientX: x, clientY: y, bubbles: false, view: window }));
+    }
+    overEl = el;
+  }
+
+  document.addEventListener('touchstart', function (e) {
+    var t = e.touches[0]; if (!t) return;
+    enterLeave(t.clientX, t.clientY);
+    synth('mousemove', t.clientX, t.clientY);
+  }, { passive: true });
+
+  document.addEventListener('touchmove', function (e) {
+    var t = e.touches[0]; if (!t) return;
+    enterLeave(t.clientX, t.clientY);
+    synth('mousemove', t.clientX, t.clientY);
+  }, { passive: true });
+
+  document.addEventListener('touchend', function (e) {
+    var t = e.changedTouches[0];
+    if (overEl && t) {
+      overEl.dispatchEvent(new MouseEvent('mouseout', { clientX: t.clientX, clientY: t.clientY, bubbles: true, view: window }));
+      overEl.dispatchEvent(new MouseEvent('mouseleave', { clientX: t.clientX, clientY: t.clientY, bubbles: false, view: window }));
+    }
+    overEl = null;
+  }, { passive: true });
+})();

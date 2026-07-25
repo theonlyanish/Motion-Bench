@@ -91,3 +91,31 @@ body.is-loaded {
   .transition-overlay { transition-duration: 0.001ms !important; }
   .fx-highlight { animation: none !important; }
 }
+
+/* ── Touch devices ──────────────────────────────────────────
+   Hide the JS custom cursors (they can't track a finger sensibly)
+   and restore the native cursor for hybrid touch+mouse devices. */
+html.is-touch .cursor-glow,
+html.is-touch #mainCursor,
+html.is-touch #cursorFollower {
+  display: none !important;
+}
+html.is-touch body { cursor: auto !important; }
+
+/* "Desktop only" note — shown only on touch, above a pointer-only page/effect */
+.desktop-note {
+  display: none;
+  align-items: center;
+  gap: 0.55rem;
+  width: min(900px, calc(100% - 2rem));
+  margin: 0 auto 1.5rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.08));
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-secondary, #b5b5bd);
+  font-size: 0.82rem;
+  line-height: 1.4;
+}
+.desktop-note svg { flex-shrink: 0; color: var(--text-muted, #7c7c86); }
+html.is-touch .desktop-note { display: flex; }
