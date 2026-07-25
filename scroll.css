@@ -129,6 +129,12 @@ body {
 
 .scroll-block-tall { min-height: 60vh; }
 
+/* During a replay reset, snap everything back instantly (no reverse animation) */
+.scroll-block.replay-reset,
+.scroll-block.replay-reset * {
+  transition: none !important;
+}
+
 .scroll-content {
   text-align: center;
   max-width: 100%;
@@ -379,6 +385,27 @@ body {
 /* 30. Color Morph */
 [data-anim="colorMorph"] { transition: background 1s; border-radius: var(--radius); }
 [data-anim="colorMorph"].in-view { background: rgba(124, 92, 255, 0.1); }
+
+/* 31. Velocity Skew — transform driven by scroll speed in JS */
+.velocity-text { will-change: transform; }
+
+/* 32. Text Fill Scrub — background-position driven by scroll progress */
+.fill-scrub-text {
+  background: linear-gradient(90deg, var(--accent) 50%, rgba(255,255,255,0.15) 50%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  max-width: 480px;
+  margin: 0 auto !important;
+}
+
+/* 33. Zoom Through — scale driven by scroll progress */
+.zoom-through-text {
+  will-change: transform, opacity;
+  transform-origin: center center;
+}
 
 /* Footer */
 .scroll-footer {

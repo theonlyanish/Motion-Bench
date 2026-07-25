@@ -9,10 +9,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,opsz,wght@0,10..48,100..1000&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="scroll.css">
   <link rel="stylesheet" href="transitions.css">
+  <link rel="stylesheet" href="code-panel.css">
 </head>
 <body class="is-loaded">
   <div class="transition-overlay"></div>
   <nav class="nav-bar">
+    <a href="home.html" class="nav-btn" aria-label="Home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="7" height="7" rx="1"/>
+        <rect x="14" y="3" width="7" height="7" rx="1"/>
+        <rect x="3" y="14" width="7" height="7" rx="1"/>
+        <rect x="14" y="14" width="7" height="7" rx="1"/>
+      </svg>
+    </a>
     <a href="index.html" class="nav-btn" aria-label="Typography">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
@@ -42,7 +51,7 @@
 
   <header class="scroll-header">
     <h1>Scroll<span class="highlight">Animations</span></h1>
-    <p class="tagline">Scroll down — 20 triggered effects</p>
+    <p class="tagline">Scroll down — 30+ triggered effects</p>
   </header>
 
   <main class="scroll-main">
@@ -100,7 +109,7 @@
     <section class="scroll-block" data-anim="stagger">
       <div class="scroll-content">
         <span class="anim-label">Staggered Letters</span>
-        <h2 class="stagger-text"><span class="s-char">S</span><span class="s-char">t</span><span class="s-char">a</span><span class="s-char">g</span><span class="s-char">g</span><span class="s-char">e</span><span class="s-char">r</span></span>
+        <h2 class="stagger-text"><span class="s-char">S</span><span class="s-char">t</span><span class="s-char">a</span><span class="s-char">g</span><span class="s-char">g</span><span class="s-char">e</span><span class="s-char">r</span>
       </div>
     </section>
 
@@ -292,15 +301,42 @@
       </div>
     </section>
 
+    <!-- 31. Velocity Skew -->
+    <section class="scroll-block" data-anim="velocitySkew">
+      <div class="scroll-content">
+        <span class="anim-label">Velocity Skew</span>
+        <h2 class="velocity-text">Scroll Fast!</h2>
+      </div>
+    </section>
+
+    <!-- 32. Text Fill Scrub -->
+    <section class="scroll-block scroll-block-tall" data-anim="textFillScrub">
+      <div class="scroll-content">
+        <span class="anim-label">Text Fill Scrub</span>
+        <h2 class="fill-scrub-text">Filled by your scroll position, not by time</h2>
+      </div>
+    </section>
+
+    <!-- 33. Zoom Through -->
+    <section class="scroll-block scroll-block-tall" data-anim="zoomThrough">
+      <div class="scroll-content">
+        <span class="anim-label">Zoom Through</span>
+        <h2 class="zoom-through-text">Closer</h2>
+      </div>
+    </section>
+
     <div class="scroll-spacer scroll-spacer-bottom"></div>
   </main>
 
   <footer class="scroll-footer">
-    <p>30 scroll-triggered animations · Intersection Observer</p>
+    <p>33 scroll-triggered animations · Intersection Observer + scroll-scrubbed effects</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
   <script src="transitions.js"></script>
   <script src="scroll.js"></script>
+  <script src="snippets/scroll.js"></script>
+  <script src="code-panel.js"></script>
+  <script src="deep-link.js"></script>
 </body>
 </html>
