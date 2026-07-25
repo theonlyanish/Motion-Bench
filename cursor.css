@@ -139,7 +139,7 @@ body {
 .text-cursor-area, .spotlight-area, .sticky-area, .glitch-area,
 .arrow-area, .img-trail-area, .zoom-area, .emoji-area, .ripple-area,
 .elastic-line-area, .noise-area, .video-cursor-area, .perspective-area,
-.dot-grid-area, .progress-area {
+.dot-grid-area, .progress-area, .sparks-area, .rope-area {
   height: 200px;
   position: relative;
   display: flex;
@@ -278,6 +278,20 @@ body {
   margin: auto;
   transition: transform 0.2s ease-out;
 }
+
+/* 21. Particle Sparks */
+.sparks-canvas {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+}
+.sparks-area h2 { color: #333; }
+
+/* 22. Rope Trail */
+.rope-svg {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+}
+.rope-area h2 { color: #333; }
 
 /* Footer */
 .cursor-footer {

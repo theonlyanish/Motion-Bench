@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,opsz,wght@0,10..48,100..1000&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="cursor.css">
   <link rel="stylesheet" href="transitions.css">
+  <link rel="stylesheet" href="code-panel.css">
 </head>
 <body class="is-loaded">
   <div class="transition-overlay"></div>
@@ -18,6 +19,14 @@
   <div class="cursor-follower" id="cursorFollower"></div>
 
   <nav class="nav-bar">
+    <a href="home.html" class="nav-btn" aria-label="Home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="7" height="7" rx="1"/>
+        <rect x="14" y="3" width="7" height="7" rx="1"/>
+        <rect x="3" y="14" width="7" height="7" rx="1"/>
+        <rect x="14" y="14" width="7" height="7" rx="1"/>
+      </svg>
+    </a>
     <a href="index.html" class="nav-btn" aria-label="Typography">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
@@ -56,7 +65,7 @@
   <main class="cursor-main">
     
     <!-- 1. Magnetic Button -->
-    <section class="cursor-block">
+    <section class="cursor-block" data-fx="magnetic">
       <div class="magnetic-area" data-cursor="magnetic">
         <button class="magnetic-btn">Magnetic</button>
       </div>
@@ -67,7 +76,7 @@
     </section>
 
     <!-- 2. Blend Mode Cursor -->
-    <section class="cursor-block">
+    <section class="cursor-block" data-fx="blend">
       <div class="blend-area" data-cursor="blend">
         <h2>Difference</h2>
       </div>
@@ -78,7 +87,7 @@
     </section>
 
     <!-- 3. Text Reveal Mask -->
-    <section class="cursor-block">
+    <section class="cursor-block" data-fx="mask">
       <div class="mask-area" data-cursor="mask">
         <div class="mask-bg">HOVER TO REVEAL</div>
         <div class="mask-front">HOVER TO REVEAL</div>
@@ -90,7 +99,7 @@
     </section>
 
     <!-- 4. Cursor Trail -->
-    <section class="cursor-block">
+    <section class="cursor-block" data-fx="trail">
       <div class="trail-area" data-cursor="trail">
         <span>Move Fast</span>
       </div>
@@ -101,7 +110,7 @@
     </section>
 
     <!-- 5. Scale on Hover -->
-    <section class="cursor-block">
+    <section class="cursor-block" data-fx="scale">
       <div class="scale-area" data-cursor="scale">
         <div class="scale-target">Target</div>
       </div>
@@ -112,7 +121,7 @@
     </section>
 
     <!-- 6. Text Cursor -->
-    <section class="cursor-block">
+    <section class="cursor-block" data-fx="text">
       <div class="text-cursor-area" data-cursor="text" data-cursor-text="VIEW">
         <img src="https://picsum.photos/id/20/300/200" alt="Example">
       </div>
@@ -123,7 +132,7 @@
     </section>
 
     <!-- 7. Spotlight -->
-    <section class="cursor-block">
+    <section class="cursor-block" data-fx="spotlight">
       <div class="spotlight-area" data-cursor="none">
         <div class="spotlight-layer"></div>
         <div class="spotlight-content">Spotlight</div>
@@ -135,7 +144,7 @@
     </section>
 
     <!-- 8. Sticky Element -->
-    <section class="cursor-block">
+    <section class="cursor-block" data-fx="sticky">
       <div class="sticky-area" data-cursor="sticky">
         <div class="sticky-item">Stick</div>
       </div>
@@ -146,7 +155,7 @@
     </section>
 
     <!-- 9. Glitch Cursor -->
-    <section class="cursor-block">
+    <section class="cursor-block" data-fx="glitch">
       <div class="glitch-area" data-cursor="glitch">
         <h2>Glitch Zone</h2>
       </div>
@@ -157,7 +166,7 @@
     </section>
 
     <!-- 10. Arrow Direction -->
-    <section class="cursor-block">
+    <section class="cursor-block" data-fx="arrow">
       <div class="arrow-area" data-cursor="arrow">
         <h2>Direction</h2>
       </div>
@@ -168,7 +177,7 @@
     </section>
 
     <!-- 11. Image Trail -->
-    <section class="cursor-block">
+    <section class="cursor-block" data-fx="imgTrail">
       <div class="img-trail-area" data-cursor="img-trail">
         <h2>Image Trail</h2>
       </div>
@@ -179,7 +188,7 @@
     </section>
 
     <!-- 12. Zoom Lens -->
-    <section class="cursor-block">
+    <section class="cursor-block" data-fx="zoom">
       <div class="zoom-area" data-cursor="zoom">
         <img src="https://picsum.photos/id/50/300/200" alt="Zoom">
         <div class="zoom-lens"></div>
@@ -191,7 +200,7 @@
     </section>
 
     <!-- 13. Emoji Cursor -->
-    <section class="cursor-block">
+    <section class="cursor-block" data-fx="emoji">
       <div class="emoji-area" data-cursor="emoji" data-emoji="✨">
         <h2>Sparkle</h2>
       </div>
@@ -202,7 +211,7 @@
     </section>
 
     <!-- 14. Ripple Click -->
-    <section class="cursor-block">
+    <section class="cursor-block" data-fx="ripple">
       <div class="ripple-area" data-cursor="ripple">
         <h2>Click Me</h2>
       </div>
@@ -213,7 +222,7 @@
     </section>
 
     <!-- 15. Elastic Line -->
-    <section class="cursor-block">
+    <section class="cursor-block" data-fx="elasticLine">
       <div class="elastic-line-area" data-cursor="elastic-line">
         <svg class="elastic-svg" width="100%" height="100%">
           <path d="M0 100 Q 150 100 300 100" stroke="white" fill="none" stroke-width="2"/>
@@ -226,7 +235,7 @@
     </section>
 
     <!-- 16. Noise Grain -->
-    <section class="cursor-block">
+    <section class="cursor-block" data-fx="noise">
       <div class="noise-area" data-cursor="noise">
         <h2>Noise</h2>
       </div>
@@ -237,7 +246,7 @@
     </section>
 
     <!-- 17. Video Reveal -->
-    <section class="cursor-block">
+    <section class="cursor-block" data-fx="video">
       <div class="video-cursor-area" data-cursor="video">
         <h2>Video Hover</h2>
         <video src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4" loop muted playsinline></video>
@@ -249,7 +258,7 @@
     </section>
 
     <!-- 18. Perspective Tilt -->
-    <section class="cursor-block">
+    <section class="cursor-block" data-fx="perspective">
       <div class="perspective-area" data-cursor="perspective">
         <div class="tilt-plane"></div>
       </div>
@@ -260,7 +269,7 @@
     </section>
 
     <!-- 19. Dot Grid Repel -->
-    <section class="cursor-block">
+    <section class="cursor-block" data-fx="dotGrid">
       <div class="dot-grid-area" data-cursor="dot-grid">
         <!-- Dots generated by JS -->
       </div>
@@ -271,7 +280,7 @@
     </section>
 
     <!-- 20. Circle Progress -->
-    <section class="cursor-block">
+    <section class="cursor-block" data-fx="progress">
       <div class="progress-area" data-cursor="progress">
         <h2>Hold Click</h2>
       </div>
@@ -281,14 +290,41 @@
       </div>
     </section>
 
+    <!-- 21. Particle Sparks -->
+    <section class="cursor-block" data-fx="sparks">
+      <div class="sparks-area" data-cursor="sparks">
+        <h2>Sparks</h2>
+        <canvas class="sparks-canvas"></canvas>
+      </div>
+      <div class="block-info">
+        <h2>Particle Sparks</h2>
+        <p>Canvas particles burst from cursor</p>
+      </div>
+    </section>
+
+    <!-- 22. Rope Trail -->
+    <section class="cursor-block" data-fx="rope">
+      <div class="rope-area" data-cursor="rope">
+        <h2>Rope</h2>
+        <svg class="rope-svg"><polyline fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" points=""/></svg>
+      </div>
+      <div class="block-info">
+        <h2>Rope Trail</h2>
+        <p>Elastic rope of segments chases cursor</p>
+      </div>
+    </section>
+
   </main>
 
   <footer class="cursor-footer">
-    <p>20 Custom Cursor Interactions · Pure JS & CSS</p>
+    <p>22 Custom Cursor Interactions · Pure JS & CSS</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
   <script src="transitions.js"></script>
   <script src="cursor.js"></script>
+  <script src="snippets/cursor.js"></script>
+  <script src="code-panel.js"></script>
+  <script src="deep-link.js"></script>
 </body>
 </html>

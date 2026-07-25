@@ -22,15 +22,23 @@
     // Default follower movement (lerp handled in loop)
   });
 
+  // Glitch offsets (applied inside the RAF loop so they aren't overwritten)
+  let glitchActive = false;
+  let glitchOX = 0, glitchOY = 0;
+
   // Animation Loop for Smooth Follower
   function tick() {
     posX += (mouseX - posX) * 0.2;
     posY += (mouseY - posY) * 0.2;
-    
+
     followerX += (mouseX - followerX) * 0.1;
     followerY += (mouseY - followerY) * 0.1;
 
-    follower.style.transform = `translate(${followerX}px, ${followerY}px) translate(-50%, -50%)`;
+    if (glitchActive) {
+      follower.style.transform = `translate(${followerX + glitchOX}px, ${followerY + glitchOY}px) translate(-50%, -50%) skew(${glitchOX}deg)`;
+    } else {
+      follower.style.transform = `translate(${followerX}px, ${followerY}px) translate(-50%, -50%)`;
+    }
 
     requestAnimationFrame(tick);
   }
@@ -235,16 +243,17 @@
   if (glitchArea) {
     let glitchInterval;
     glitchArea.addEventListener('mouseenter', () => {
+      glitchActive = true;
       glitchInterval = setInterval(() => {
-        const ox = (Math.random() - 0.5) * 20;
-        const oy = (Math.random() - 0.5) * 20;
-        follower.style.transform = `translate(${followerX + ox}px, ${followerY + oy}px) translate(-50%, -50%) skew(${ox}deg)`;
-        cursor.style.transform = `translate(${mouseX - ox}px, ${mouseY - oy}px) translate(-50%, -50%)`;
+        glitchOX = (Math.random() - 0.5) * 20;
+        glitchOY = (Math.random() - 0.5) * 20;
+        cursor.style.transform = `translate(${mouseX - glitchOX}px, ${mouseY - glitchOY}px) translate(-50%, -50%)`;
       }, 50);
     });
     glitchArea.addEventListener('mouseleave', () => {
       clearInterval(glitchInterval);
-      follower.style.transform = `translate(${followerX}px, ${followerY}px) translate(-50%, -50%)`;
+      glitchActive = false;
+      glitchOX = 0; glitchOY = 0;
       cursor.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
     });
   }
@@ -253,6 +262,21 @@
   const arrowArea = document.querySelector('.arrow-area');
   if (arrowArea) {
     let lastX = 0, lastY = 0;
+    let arrowAngle = 0;      // smoothed angle actually rendered
+    let targetAngle = 0;     // latest raw movement angle
+    let arrowRafOn = false;
+
+    function tickArrow() {
+      const arrow = document.getElementById('cursorArrow');
+      if (!arrow) { arrowRafOn = false; return; }
+      // Rotate along the shortest path so diagonals don't spin the long way round
+      let diff = targetAngle - arrowAngle;
+      diff = ((diff + 180) % 360 + 360) % 360 - 180;
+      arrowAngle += diff * 0.25;
+      arrow.style.transform = `translate(-50%, -50%) rotate(${arrowAngle}deg)`;
+      requestAnimationFrame(tickArrow);
+    }
+
     arrowArea.addEventListener('mouseenter', () => {
       cursor.style.opacity = '0';
       follower.style.width = '0';
@@ -270,18 +294,27 @@
       arrow.style.zIndex = '9999';
       arrow.style.transformOrigin = 'center';
       document.body.appendChild(arrow);
+      lastX = mouseX;
+      lastY = mouseY;
+      arrowAngle = targetAngle;
+      if (!arrowRafOn) {
+        arrowRafOn = true;
+        requestAnimationFrame(tickArrow);
+      }
     });
     arrowArea.addEventListener('mousemove', (e) => {
       const arrow = document.getElementById('cursorArrow');
       if (arrow) {
         const dx = e.clientX - lastX;
         const dy = e.clientY - lastY;
-        const angle = Math.atan2(dy, dx) * 180 / Math.PI + 90;
+        // Ignore sub-pixel jitters — they produce wildly noisy angles on diagonals
+        if (Math.sqrt(dx * dx + dy * dy) > 3) {
+          targetAngle = Math.atan2(dy, dx) * 180 / Math.PI + 90;
+          lastX = e.clientX;
+          lastY = e.clientY;
+        }
         arrow.style.left = e.clientX + 'px';
         arrow.style.top = e.clientY + 'px';
-        arrow.style.transform = `translate(-50%, -50%) rotate(${angle}deg)`;
-        lastX = e.clientX;
-        lastY = e.clientY;
       }
     });
     arrowArea.addEventListener('mouseleave', () => {
@@ -332,8 +365,8 @@
       const rect = zoomArea.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      zoomLens.style.left = e.clientX + 'px';
-      zoomLens.style.top = e.clientY + 'px';
+      zoomLens.style.left = x + 'px';
+      zoomLens.style.top = y + 'px';
       
       const bgX = (x / rect.width) * 100;
       const bgY = (y / rect.height) * 100;
@@ -419,6 +452,53 @@
     elasticArea.addEventListener('mouseleave', () => {
       // Bounce back animation could be complex, just reset for now
       elasticPath.setAttribute('d', `M0 100 Q ${elasticArea.offsetWidth/2} 100 ${elasticArea.offsetWidth} 100`);
+    });
+  }
+
+  // 16. Noise Aura (was previously unimplemented)
+  const noiseArea = document.querySelector('.noise-area');
+  if (noiseArea) {
+    const nCanvas = document.createElement('canvas');
+    nCanvas.width = 120; nCanvas.height = 120;
+    nCanvas.style.cssText = 'position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);opacity:0;transition:opacity 0.2s;border-radius:50%;';
+    document.body.appendChild(nCanvas);
+    const nCtx = nCanvas.getContext('2d');
+    let noiseOn = false;
+
+    function drawNoise() {
+      const imgData = nCtx.createImageData(120, 120);
+      const d = imgData.data;
+      for (let i = 0; i < d.length; i += 4) {
+        const px = (i / 4) % 120 - 60;
+        const py = Math.floor(i / 4 / 120) - 60;
+        const dist = Math.sqrt(px * px + py * py);
+        if (dist > 60) continue; // circular mask
+        const v = Math.random() * 255;
+        const alpha = Math.max(0, 1 - dist / 60) * 180;
+        d[i] = v; d[i + 1] = v; d[i + 2] = v;
+        d[i + 3] = Math.random() > 0.6 ? alpha : 0;
+      }
+      nCtx.clearRect(0, 0, 120, 120);
+      nCtx.putImageData(imgData, 0, 0);
+      if (noiseOn) requestAnimationFrame(drawNoise);
+    }
+
+    noiseArea.addEventListener('mousemove', (e) => {
+      nCanvas.style.left = e.clientX + 'px';
+      nCanvas.style.top = e.clientY + 'px';
+    });
+    noiseArea.addEventListener('mouseenter', () => {
+      noiseOn = true;
+      nCanvas.style.opacity = '1';
+      cursor.style.opacity = '0';
+      follower.style.opacity = '0';
+      drawNoise();
+    });
+    noiseArea.addEventListener('mouseleave', () => {
+      noiseOn = false;
+      nCanvas.style.opacity = '0';
+      cursor.style.opacity = '1';
+      follower.style.opacity = '1';
     });
   }
 
@@ -566,6 +646,92 @@
       canvas.style.opacity = '0';
       isHolding = false;
     });
+  }
+
+  // 21. Particle Sparks
+  const sparksArea = document.querySelector('.sparks-area');
+  const sparksCanvas = document.querySelector('.sparks-canvas');
+  if (sparksArea && sparksCanvas) {
+    const sctx = sparksCanvas.getContext('2d');
+    let particles = [];
+
+    function resizeSparks() {
+      sparksCanvas.width = sparksArea.clientWidth;
+      sparksCanvas.height = sparksArea.clientHeight;
+    }
+    resizeSparks();
+    window.addEventListener('resize', resizeSparks);
+
+    sparksArea.addEventListener('mousemove', (e) => {
+      const rect = sparksArea.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      for (let i = 0; i < 3; i++) {
+        particles.push({
+          x, y,
+          vx: (Math.random() - 0.5) * 4,
+          vy: (Math.random() - 0.5) * 4 - 1,
+          life: 1,
+          size: 1 + Math.random() * 2.5,
+          hue: 255 + Math.random() * 40 // purple range
+        });
+      }
+    });
+
+    function tickSparks() {
+      sctx.clearRect(0, 0, sparksCanvas.width, sparksCanvas.height);
+      particles = particles.filter(p => p.life > 0);
+      particles.forEach(p => {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.vy += 0.05; // slight gravity
+        p.life -= 0.02;
+        if (p.life <= 0) return; // negative radius would throw and kill the loop
+        sctx.globalAlpha = p.life;
+        sctx.fillStyle = `hsl(${p.hue}, 90%, 70%)`;
+        sctx.beginPath();
+        sctx.arc(p.x, p.y, Math.max(0, p.size * p.life), 0, Math.PI * 2);
+        sctx.fill();
+      });
+      sctx.globalAlpha = 1;
+      requestAnimationFrame(tickSparks);
+    }
+    requestAnimationFrame(tickSparks);
+  }
+
+  // 22. Rope Trail — chain of segments, each chasing the previous
+  const ropeArea = document.querySelector('.rope-area');
+  const ropeLine = document.querySelector('.rope-svg polyline');
+  if (ropeArea && ropeLine) {
+    const SEGMENTS = 18;
+    const pts = Array.from({ length: SEGMENTS }, () => ({ x: 0, y: 0 }));
+    let ropeX = 0, ropeY = 0, inside = false;
+
+    ropeArea.addEventListener('mousemove', (e) => {
+      const rect = ropeArea.getBoundingClientRect();
+      ropeX = e.clientX - rect.left;
+      ropeY = e.clientY - rect.top;
+      if (!inside) {
+        // Snap the whole rope to entry point to avoid a whip from (0,0)
+        pts.forEach(p => { p.x = ropeX; p.y = ropeY; });
+        inside = true;
+      }
+    });
+    ropeArea.addEventListener('mouseleave', () => { inside = false; });
+
+    function tickRope() {
+      // Head is pinned to the cursor, each segment chases the one before it,
+      // so the rope always trails behind instead of drifting ahead
+      pts[0].x = ropeX;
+      pts[0].y = ropeY;
+      for (let i = 1; i < SEGMENTS; i++) {
+        pts[i].x += (pts[i - 1].x - pts[i].x) * 0.35;
+        pts[i].y += (pts[i - 1].y - pts[i].y) * 0.35;
+      }
+      ropeLine.setAttribute('points', pts.map(p => `${p.x},${p.y}`).join(' '));
+      requestAnimationFrame(tickRope);
+    }
+    requestAnimationFrame(tickRope);
   }
 
 })();
