@@ -46,7 +46,10 @@ body {
   mix-blend-mode: difference;
   z-index: 9999;
   transform: translate(-50%, -50%);
-  transition: width 0.3s, height 0.3s, background 0.3s, transform 0.1s;
+  /* No transform transition: the dot must sit exactly on the real pointer,
+     otherwise trail/rope effects (which use raw event coords) render ahead of it */
+  transition: width 0.3s, height 0.3s, background 0.3s;
+  will-change: transform;
 }
 
 .cursor-follower {
@@ -58,7 +61,10 @@ body {
   pointer-events: none;
   z-index: 9998;
   transform: translate(-50%, -50%);
-  transition: width 0.3s, height 0.3s, background 0.3s, border-color 0.3s, transform 0.15s ease-out;
+  /* Smoothing comes from the RAF lerp only — a transform transition on top of it
+     double-filters the motion and drags the ring far behind the pointer */
+  transition: width 0.3s, height 0.3s, background 0.3s, border-color 0.3s;
+  will-change: transform;
 }
 
 /* Nav */

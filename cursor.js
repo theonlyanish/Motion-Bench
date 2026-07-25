@@ -11,28 +11,45 @@
   let posX = 0, posY = 0;
   let followerX = 0, followerY = 0;
 
-  // Global Mouse Move
+  let primed = false;
+  // Dot scale + per-effect offset, applied by the RAF loop (which owns the transform)
+  let cursorScale = 1;
+  let cursorOX = 0, cursorOY = 0;
+
+  // Global Mouse Move — only record coords here; all writes happen in the RAF loop
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
-
-    // Main cursor (instant)
-    cursor.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
-    
-    // Default follower movement (lerp handled in loop)
+    if (!primed) {
+      // First move: snap both cursors to the pointer instead of easing in from (0,0)
+      posX = followerX = mouseX;
+      posY = followerY = mouseY;
+      primed = true;
+    }
   });
 
   // Glitch offsets (applied inside the RAF loop so they aren't overwritten)
   let glitchActive = false;
   let glitchOX = 0, glitchOY = 0;
 
-  // Animation Loop for Smooth Follower
-  function tick() {
-    posX += (mouseX - posX) * 0.2;
-    posY += (mouseY - posY) * 0.2;
+  // Frame-rate independent smoothing: alpha = 1 - e^(-dt/tau).
+  // tau is the lag in ms — the follower ring is the only element allowed to lag.
+  const FOLLOWER_TAU = 70;
+  let lastT = 0;
 
-    followerX += (mouseX - followerX) * 0.1;
-    followerY += (mouseY - followerY) * 0.1;
+  function tick(now) {
+    const dt = lastT ? Math.min(now - lastT, 64) : 16.7;
+    lastT = now;
+
+    // Dot is pinned to the true pointer so trail/rope heads line up with it exactly
+    posX = mouseX + cursorOX;
+    posY = mouseY + cursorOY;
+    cursor.style.transform =
+      `translate(${posX}px, ${posY}px) translate(-50%, -50%) scale(${cursorScale})`;
+
+    const a = 1 - Math.exp(-dt / FOLLOWER_TAU);
+    followerX += (mouseX - followerX) * a;
+    followerY += (mouseY - followerY) * a;
 
     if (glitchActive) {
       follower.style.transform = `translate(${followerX + glitchOX}px, ${followerY + glitchOY}px) translate(-50%, -50%) skew(${glitchOX}deg)`;
@@ -42,7 +59,7 @@
 
     requestAnimationFrame(tick);
   }
-  tick();
+  requestAnimationFrame(tick);
 
   // 1. Magnetic Button
   const magArea = document.querySelector('.magnetic-area');
@@ -119,10 +136,12 @@
       dot.style.zIndex = '9997';
       document.body.appendChild(dot);
       
-      // Animate out
+      // Animate out. The translate(-50%,-50%) must live in the keyframes — a base
+      // transform would be replaced by the animation, leaving each dot offset by
+      // half its size (down-right of the pointer) for its whole life.
       dot.animate([
-        { transform: 'scale(1)', opacity: 1 },
-        { transform: 'scale(0)', opacity: 0 }
+        { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+        { transform: 'translate(-50%, -50%) scale(0)', opacity: 0 }
       ], {
         duration: 800,
         easing: 'ease-out'
@@ -135,14 +154,14 @@
   const scaleTarget = document.querySelector('.scale-target');
   if (scaleTarget) {
     scaleTarget.addEventListener('mouseenter', () => {
-      cursor.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%) scale(0)`;
+      cursorScale = 0;
       follower.style.background = 'rgba(124, 92, 255, 0.2)';
       follower.style.width = '80px';
       follower.style.height = '80px';
       follower.style.borderColor = 'var(--accent)';
     });
     scaleTarget.addEventListener('mouseleave', () => {
-      cursor.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%) scale(1)`;
+      cursorScale = 1;
       follower.style.background = 'transparent';
       follower.style.width = '40px';
       follower.style.height = '40px';
@@ -247,14 +266,16 @@
       glitchInterval = setInterval(() => {
         glitchOX = (Math.random() - 0.5) * 20;
         glitchOY = (Math.random() - 0.5) * 20;
-        cursor.style.transform = `translate(${mouseX - glitchOX}px, ${mouseY - glitchOY}px) translate(-50%, -50%)`;
+        // Dot jitters opposite the ring; the RAF loop applies it
+        cursorOX = -glitchOX;
+        cursorOY = -glitchOY;
       }, 50);
     });
     glitchArea.addEventListener('mouseleave', () => {
       clearInterval(glitchInterval);
       glitchActive = false;
       glitchOX = 0; glitchOY = 0;
-      cursor.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
+      cursorOX = 0; cursorOY = 0;
     });
   }
 
@@ -719,16 +740,25 @@
     });
     ropeArea.addEventListener('mouseleave', () => { inside = false; });
 
-    function tickRope() {
+    // Per-segment lag in ms. Frame-rate independent, so the rope has the same
+    // length and slack at 60Hz and 144Hz instead of snapping tight on fast displays.
+    const SEG_TAU = 38;
+    let ropeLast = 0;
+
+    function tickRope(now) {
+      const dt = ropeLast ? Math.min(now - ropeLast, 64) : 16.7;
+      ropeLast = now;
+      const a = 1 - Math.exp(-dt / SEG_TAU);
+
       // Head is pinned to the cursor, each segment chases the one before it,
       // so the rope always trails behind instead of drifting ahead
       pts[0].x = ropeX;
       pts[0].y = ropeY;
       for (let i = 1; i < SEGMENTS; i++) {
-        pts[i].x += (pts[i - 1].x - pts[i].x) * 0.35;
-        pts[i].y += (pts[i - 1].y - pts[i].y) * 0.35;
+        pts[i].x += (pts[i - 1].x - pts[i].x) * a;
+        pts[i].y += (pts[i - 1].y - pts[i].y) * a;
       }
-      ropeLine.setAttribute('points', pts.map(p => `${p.x},${p.y}`).join(' '));
+      ropeLine.setAttribute('points', pts.map(p => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(' '));
       requestAnimationFrame(tickRope);
     }
     requestAnimationFrame(tickRope);
