@@ -311,7 +311,8 @@
 
         const durS = 2.4 + Math.random() * 0.8;
         const w0 = (Math.random() < 0.5 ? -1 : 1) * (720 + Math.random() * 1440); // deg/s
-        const flutter0 = (Math.random() < 0.5 ? -1 : 1) * (540 + Math.random() * 720);
+        // ~2-6 edge-on flips over the piece's life; faster than this strobes
+        const flutter0 = (Math.random() < 0.5 ? -1 : 1) * (300 + Math.random() * 500);
         const flutterPhase = Math.random() * Math.PI * 2;
 
         const frames = [];
