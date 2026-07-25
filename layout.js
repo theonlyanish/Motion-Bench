@@ -268,34 +268,76 @@
   });
 
   // 21. Confetti Burst
+  //
+  // Projectile motion with linear air drag, integrated into explicit keyframes and
+  // played back with easing:'linear' — so the sampled physics *is* the motion.
+  // (A single cubic-bezier can't express "decelerate horizontally while accelerating
+  // downward"; an ease-out curve front-loads everything and the burst reads as a blink.)
+  //
+  //   dv/dt = g - k*v   ->   v(t) = (v0 - g/k)e^(-kt) + g/k
+  //   x(t) = (v0x/k)(1 - e^(-kt))
+  //   y(t) = ((v0y - g/k)/k)(1 - e^(-kt)) + (g/k)t
+  //
   const confettiBtn = document.getElementById('confettiBtn');
   if (confettiBtn) {
     const colors = ['#7c5cff', '#a78bfa', '#ff006e', '#00f5d4', '#ffd60a'];
+
+    const G = 1600;      // px/s^2 — effective gravity
+    const K = 2.2;       // 1/s   — drag; terminal fall speed = G/K ≈ 727 px/s
+    const K_ROT = 1.2;   // 1/s   — rotational drag
+    const VT = G / K;
+    const STEPS = 26;    // keyframes sampled per piece
+
     confettiBtn.addEventListener('click', () => {
+      if (window.A11Y && window.A11Y.reduced) return;
+
       const rect = confettiBtn.getBoundingClientRect();
       const cx = rect.left + rect.width / 2;
       const cy = rect.top + rect.height / 2;
-      for (let i = 0; i < 40; i++) {
+
+      for (let i = 0; i < 60; i++) {
         const piece = document.createElement('div');
         piece.className = 'confetti-piece';
         piece.style.left = cx + 'px';
         piece.style.top = cy + 'px';
-        piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.background = colors[i % colors.length];
         document.body.appendChild(piece);
 
-        const angle = Math.random() * Math.PI * 2;
-        const velocity = 150 + Math.random() * 250;
-        const tx = Math.cos(angle) * velocity;
-        const ty = Math.sin(angle) * velocity - 150; // bias upward
-        const rot = (Math.random() - 0.5) * 720;
+        // Launch in an upward cone: theta = -PI/2 + s, so v0y is always negative.
+        const s = (Math.random() * 2 - 1) * 0.95;
+        const v0 = 700 + Math.random() * 600;
+        const v0x = v0 * Math.sin(s);
+        const v0y = -v0 * Math.cos(s);
 
-        piece.animate([
-          { transform: 'translate(0,0) rotate(0deg)', opacity: 1 },
-          { transform: `translate(${tx * 0.6}px, ${ty * 0.6}px) rotate(${rot * 0.6}deg)`, opacity: 1, offset: 0.4 },
-          { transform: `translate(${tx}px, ${ty + 400}px) rotate(${rot}deg)`, opacity: 0 } // gravity pulls down
-        ], {
-          duration: 1200 + Math.random() * 600,
-          easing: 'cubic-bezier(0.16, 1, 0.3, 1)'
+        const durS = 2.4 + Math.random() * 0.8;
+        const w0 = (Math.random() < 0.5 ? -1 : 1) * (720 + Math.random() * 1440); // deg/s
+        const flutter0 = (Math.random() < 0.5 ? -1 : 1) * (540 + Math.random() * 720);
+        const flutterPhase = Math.random() * Math.PI * 2;
+
+        const frames = [];
+        for (let n = 0; n < STEPS; n++) {
+          const p = n / (STEPS - 1);
+          const t = p * durS;
+          const decay = 1 - Math.exp(-K * t);
+
+          const x = (v0x / K) * decay;
+          const y = ((v0y - VT) / K) * decay + VT * t;
+
+          const rot = (w0 / K_ROT) * (1 - Math.exp(-K_ROT * t));
+          // Edge-on flip, so pieces flash thin like real paper
+          const flip = flutter0 * t + Math.sin(t * 6 + flutterPhase) * 30;
+
+          frames.push({
+            offset: p,
+            transform: `translate3d(${x.toFixed(1)}px, ${y.toFixed(1)}px, 0) ` +
+                       `rotate(${rot.toFixed(1)}deg) rotateY(${flip.toFixed(1)}deg)`,
+            opacity: p < 0.7 ? 1 : Math.max(0, 1 - (p - 0.7) / 0.3)
+          });
+        }
+
+        piece.animate(frames, {
+          duration: durS * 1000,
+          easing: 'linear'   // the physics is already baked into the offsets
         }).onfinish = () => piece.remove();
       }
     });
