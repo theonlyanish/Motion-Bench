@@ -9,10 +9,19 @@
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,opsz,wght@0,10..48,100..1000&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="gallery.css">
   <link rel="stylesheet" href="transitions.css">
+  <link rel="stylesheet" href="code-panel.css">
 </head>
 <body class="is-loaded">
   <div class="transition-overlay"></div>
   <nav class="nav-bar">
+    <a href="home.html" class="nav-btn" aria-label="Home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="7" height="7" rx="1"/>
+        <rect x="14" y="3" width="7" height="7" rx="1"/>
+        <rect x="3" y="14" width="7" height="7" rx="1"/>
+        <rect x="14" y="14" width="7" height="7" rx="1"/>
+      </svg>
+    </a>
     <a href="index.html" class="nav-btn" aria-label="Typography">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
@@ -44,13 +53,13 @@
 
   <header class="gallery-header">
     <h1>Gallery<span class="highlight">Effects</span></h1>
-    <p class="tagline">Hover, Click, Reveal — 20 Image Interaction Patterns</p>
+    <p class="tagline">Hover, Click, Reveal — 30+ Image Interaction Patterns</p>
   </header>
 
   <main class="gallery-main">
     
     <!-- 1. Zoom Hover -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="zoomHover">
       <div class="image-wrapper zoom-hover">
         <img src="https://picsum.photos/id/10/800/600" alt="Nature">
       </div>
@@ -61,7 +70,7 @@
     </section>
 
     <!-- 2. Grayscale to Color -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="grayColor">
       <div class="image-wrapper gray-color">
         <img src="https://picsum.photos/id/12/800/600" alt="Beach">
       </div>
@@ -72,7 +81,7 @@
     </section>
 
     <!-- 3. Curtain Reveal -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="curtainReveal">
       <div class="image-wrapper curtain-reveal">
         <img src="https://picsum.photos/id/15/800/600" alt="Waterfall">
         <div class="curtain"></div>
@@ -84,7 +93,7 @@
     </section>
 
     <!-- 4. Caption Slide Up -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="captionSlide">
       <div class="image-wrapper caption-slide">
         <img src="https://picsum.photos/id/16/800/600" alt="Ocean">
         <div class="caption-overlay">
@@ -99,7 +108,7 @@
     </section>
 
     <!-- 5. 3D Tilt Card -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="tilt3d">
       <div class="image-wrapper tilt-card" data-effect="tilt">
         <div class="tilt-inner">
           <img src="https://picsum.photos/id/28/800/600" alt="Forest">
@@ -112,7 +121,7 @@
     </section>
 
     <!-- 6. Blur Reveal -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="blurReveal">
       <div class="image-wrapper blur-reveal">
         <img src="https://picsum.photos/id/29/800/600" alt="Mountain">
       </div>
@@ -123,7 +132,7 @@
     </section>
 
     <!-- 7. Clip Path Shape -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="clipMorph">
       <div class="image-wrapper clip-shape">
         <img src="https://picsum.photos/id/40/800/600" alt="Cat">
       </div>
@@ -134,7 +143,7 @@
     </section>
 
     <!-- 8. Glitch Image -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="glitchImage">
       <div class="image-wrapper glitch-img" data-effect="glitch">
         <div class="glitch-layer layer-1"></div>
         <div class="glitch-layer layer-2"></div>
@@ -147,7 +156,7 @@
     </section>
 
     <!-- 9. Parallax Scroll (Container) -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="parallaxScroll">
       <div class="image-wrapper parallax-container" data-effect="parallax">
         <img src="https://picsum.photos/id/54/800/900" alt="Tall Building" class="parallax-img">
       </div>
@@ -158,7 +167,7 @@
     </section>
 
     <!-- 10. Magnetic Cursor -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="magneticCursor">
       <div class="image-wrapper magnetic-wrap" data-effect="magnetic">
         <img src="https://picsum.photos/id/57/800/600" alt="Castle">
         <div class="magnetic-cursor">View</div>
@@ -170,7 +179,7 @@
     </section>
 
     <!-- 11. Slice Reveal -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="sliceReveal">
       <div class="image-wrapper slice-reveal">
         <img src="https://picsum.photos/id/60/800/600" alt="Computer">
         <div class="slice s1"></div>
@@ -184,7 +193,7 @@
     </section>
 
     <!-- 12. Ink Spread (SVG Mask) -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="inkSpread">
       <div class="image-wrapper ink-spread">
         <img src="https://picsum.photos/id/65/800/600" alt="Girl">
         <svg class="ink-mask" viewBox="0 0 100 100" preserveAspectRatio="none">
@@ -198,7 +207,7 @@
     </section>
 
     <!-- 13. Perspective Rotate -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="perspectiveRotate">
       <div class="image-wrapper perspective-rotate">
         <img src="https://picsum.photos/id/75/800/600" alt="Plant">
       </div>
@@ -209,7 +218,7 @@
     </section>
 
     <!-- 14. Inner Border Draw -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="borderDraw">
       <div class="image-wrapper border-draw">
         <img src="https://picsum.photos/id/88/800/600" alt="Road">
         <div class="border-box"></div>
@@ -221,7 +230,7 @@
     </section>
 
     <!-- 15. Duotone Hover -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="duotone">
       <div class="image-wrapper duotone-hover">
         <img src="https://picsum.photos/id/96/800/600" alt="Tools">
       </div>
@@ -232,7 +241,7 @@
     </section>
 
     <!-- 16. Reveal from Center -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="centerReveal">
       <div class="image-wrapper center-reveal">
         <img src="https://picsum.photos/id/102/800/600" alt="Raspberries">
         <div class="center-mask"></div>
@@ -244,7 +253,7 @@
     </section>
 
     <!-- 17. Pixelate (Canvas/CSS) -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="pixelate">
       <div class="image-wrapper pixelate">
         <img src="https://picsum.photos/id/106/800/600" alt="Flower">
       </div>
@@ -255,7 +264,7 @@
     </section>
 
     <!-- 18. Slide Behind -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="slideBehind">
       <div class="image-wrapper slide-behind">
         <div class="img-front">
           <img src="https://picsum.photos/id/111/800/600" alt="Car">
@@ -271,7 +280,7 @@
     </section>
 
     <!-- 19. Flash Overlay -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="flashOverlay">
       <div class="image-wrapper flash-overlay">
         <img src="https://picsum.photos/id/120/800/600" alt="Shoes">
         <div class="flash"></div>
@@ -283,7 +292,7 @@
     </section>
 
     <!-- 20. Pan on Hover -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="panHover">
       <div class="image-wrapper pan-hover">
         <img src="https://picsum.photos/id/128/1000/800" alt="City" class="pan-img">
       </div>
@@ -294,7 +303,7 @@
     </section>
 
     <!-- 21. Image Distortion (Filter) -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="turbulence">
       <div class="image-wrapper distort-filter">
         <img src="https://picsum.photos/id/133/800/600" alt="Distort">
       </div>
@@ -305,7 +314,7 @@
     </section>
 
     <!-- 22. Fold Reveal -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="foldReveal">
       <div class="image-wrapper fold-reveal">
         <img src="https://picsum.photos/id/145/800/600" alt="Fold">
         <div class="fold-cover"></div>
@@ -317,7 +326,7 @@
     </section>
 
     <!-- 23. Circular Swap -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="circleSwap">
       <div class="image-wrapper circle-swap">
         <img src="https://picsum.photos/id/152/800/600" alt="Swap 1" class="c-img-1">
         <img src="https://picsum.photos/id/158/800/600" alt="Swap 2" class="c-img-2">
@@ -329,7 +338,7 @@
     </section>
 
     <!-- 24. Directional Overlay -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="dirOverlay">
       <div class="image-wrapper dir-overlay" data-effect="dirOverlay">
         <img src="https://picsum.photos/id/160/800/600" alt="Direction">
         <div class="dir-content"><span>Hello</span></div>
@@ -341,7 +350,7 @@
     </section>
 
     <!-- 25. Block Glitch -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="blockGlitch">
       <div class="image-wrapper block-glitch">
         <img src="https://picsum.photos/id/164/800/600" alt="Block">
         <div class="glitch-blocks">
@@ -358,7 +367,7 @@
     </section>
 
     <!-- 26. Color Halftone -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="halftone">
       <div class="image-wrapper halftone">
         <img src="https://picsum.photos/id/177/800/600" alt="Halftone">
       </div>
@@ -369,7 +378,7 @@
     </section>
 
     <!-- 27. Expanding Card -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="expandCard">
       <div class="image-wrapper expanding-card">
         <img src="https://picsum.photos/id/180/800/600" alt="Expand">
         <div class="card-info">
@@ -384,7 +393,7 @@
     </section>
 
     <!-- 28. Mirror Split -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="mirrorSplit">
       <div class="image-wrapper mirror-split">
         <div class="mirror-half m-left">
           <img src="https://picsum.photos/id/193/800/600" alt="Mirror">
@@ -400,7 +409,7 @@
     </section>
 
     <!-- 29. Video Hover -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="videoHover">
       <div class="image-wrapper video-hover" data-video="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4">
         <img src="https://picsum.photos/id/200/800/600" alt="Video Placeholder">
         <div class="video-container"></div>
@@ -412,7 +421,7 @@
     </section>
 
     <!-- 30. Ripple Displacement (Filter) -->
-    <section class="effect-block">
+    <section class="effect-block" data-fx="ripple">
       <div class="image-wrapper ripple-effect">
         <img src="https://picsum.photos/id/211/800/600" alt="Ripple">
         <svg width="0" height="0">
@@ -428,14 +437,58 @@
       </div>
     </section>
 
+    <!-- 31. CRT Scanlines -->
+    <section class="effect-block" data-fx="crtScanlines">
+      <div class="image-wrapper crt-effect">
+        <img src="https://picsum.photos/id/219/800/600" alt="CRT">
+        <div class="crt-scanlines"></div>
+        <div class="crt-sweep"></div>
+      </div>
+      <div class="effect-info">
+        <h2>CRT Scanlines</h2>
+        <p>Retro monitor effect with rolling sweep</p>
+      </div>
+    </section>
+
+    <!-- 32. Chromatic Aberration -->
+    <section class="effect-block" data-fx="chromaSplit">
+      <div class="image-wrapper chroma-split">
+        <img src="https://picsum.photos/id/225/800/600" alt="Chroma" class="chroma-base">
+        <img src="https://picsum.photos/id/225/800/600" alt="" aria-hidden="true" class="chroma-r">
+        <img src="https://picsum.photos/id/225/800/600" alt="" aria-hidden="true" class="chroma-b">
+      </div>
+      <div class="effect-info">
+        <h2>Chromatic Aberration</h2>
+        <p>RGB channels split apart on hover</p>
+      </div>
+    </section>
+
+    <!-- 33. Before / After Slider -->
+    <section class="effect-block" data-fx="compareSlider">
+      <div class="image-wrapper compare-slider" id="compareSlider">
+        <img src="https://picsum.photos/id/230/800/600" alt="After">
+        <div class="compare-before">
+          <img src="https://picsum.photos/id/230/800/600" alt="Before">
+        </div>
+        <div class="compare-handle"></div>
+      </div>
+      <div class="effect-info">
+        <h2>Before / After</h2>
+        <p>Drag to compare (grayscale vs color)</p>
+      </div>
+    </section>
+
   </main>
 
   <footer class="gallery-footer">
-    <p>30 Image Interactions · Pure CSS & JS</p>
+    <p>33 Image Interactions · Pure CSS & JS</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
   <script src="transitions.js"></script>
   <script src="gallery.js"></script>
+  <script src="snippets/gallery.js"></script>
+  <script src="code-panel.js"></script>
+  <script src="deep-link.js"></script>
 </body>
 </html>

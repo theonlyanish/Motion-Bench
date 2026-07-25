@@ -7,7 +7,7 @@
 
   // 1. 3D Tilt Card
   const tiltCard = document.querySelector('.tilt-card');
-  const tiltInner = tiltCard.querySelector('.tilt-inner');
+  const tiltInner = tiltCard && tiltCard.querySelector('.tilt-inner');
 
   if (tiltCard && tiltInner) {
     tiltCard.addEventListener('mousemove', (e) => {
@@ -65,7 +65,7 @@
 
   // 4. Glitch Image
   const glitchImg = document.querySelector('.glitch-img');
-  const layers = glitchImg.querySelectorAll('.glitch-layer');
+  const layers = glitchImg ? glitchImg.querySelectorAll('.glitch-layer') : [];
 
   if (glitchImg && layers.length) {
     glitchImg.addEventListener('mousemove', (e) => {
@@ -89,7 +89,7 @@
 
   // 5. Slice Reveal
   const sliceReveal = document.querySelector('.slice-reveal');
-  const slices = sliceReveal.querySelectorAll('.slice');
+  const slices = sliceReveal ? sliceReveal.querySelectorAll('.slice') : [];
 
   if (sliceReveal && slices.length) {
     sliceReveal.addEventListener('mouseenter', () => {
@@ -122,7 +122,7 @@
 
   // 7. Perspective Rotate
   const perspectiveRotate = document.querySelector('.perspective-rotate');
-  const perspectiveImg = perspectiveRotate.querySelector('img');
+  const perspectiveImg = perspectiveRotate && perspectiveRotate.querySelector('img');
 
   if (perspectiveRotate && perspectiveImg) {
     perspectiveRotate.addEventListener('mousemove', (e) => {
@@ -289,6 +289,36 @@
       requestAnimationFrame(tickRipple);
     }
     requestAnimationFrame(tickRipple);
+  }
+
+  // 33. Before / After Comparison Slider
+  const compareSlider = document.getElementById('compareSlider');
+  if (compareSlider) {
+    let dragging = false;
+
+    function setSplit(clientX) {
+      const rect = compareSlider.getBoundingClientRect();
+      const pct = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
+      compareSlider.style.setProperty('--split', pct + '%');
+    }
+
+    // Stop the browser's native image drag from hijacking the gesture
+    compareSlider.querySelectorAll('img').forEach((img) => {
+      img.draggable = false;
+    });
+    compareSlider.addEventListener('dragstart', (e) => e.preventDefault());
+
+    compareSlider.addEventListener('pointerdown', (e) => {
+      e.preventDefault();
+      dragging = true;
+      compareSlider.setPointerCapture(e.pointerId);
+      setSplit(e.clientX);
+    });
+    compareSlider.addEventListener('pointermove', (e) => {
+      if (dragging) setSplit(e.clientX);
+    });
+    compareSlider.addEventListener('pointerup', () => { dragging = false; });
+    compareSlider.addEventListener('pointercancel', () => { dragging = false; });
   }
 
 })();
