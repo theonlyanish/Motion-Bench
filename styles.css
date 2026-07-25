@@ -753,12 +753,14 @@ body.show-cursor-glow .cursor-glow {
   stroke-width: 1.5;
 }
 .stroke-text.drawing {
-  animation: stroke-draw 3s var(--ease-out-expo) forwards;
+  /* Near-linear pen speed — ease-out-expo drew ~90% of the outline in the first
+     third and then crawled, which reads as a glitch rather than handwriting */
+  animation: stroke-draw 2.6s cubic-bezier(0.4, 0, 0.5, 1) forwards;
 }
 @keyframes stroke-draw {
-  0% { stroke-dashoffset: var(--dash, 600); fill: transparent; }
-  70% { fill: transparent; }
-  100% { stroke-dashoffset: 0; fill: var(--text-primary); }
+  0%   { stroke-dashoffset: var(--dash-from, 3300); fill: transparent; }
+  84%  { fill: transparent; }
+  100% { stroke-dashoffset: var(--dash-to, 1020); fill: var(--text-primary); }
 }
 
 /* 33. Gravity Drop */

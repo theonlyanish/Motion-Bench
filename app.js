@@ -150,14 +150,23 @@
     const pathCurve = document.getElementById('pathCurve');
     const pathEl = document.getElementById('textPath');
     const pathCurveVal = document.getElementById('pathCurveVal');
-    const width = 600;
-    const height = 100;
-    const curve = +pathCurve.value;
 
+    // viewBox is 0 0 700 200 at 1:1 scale, .path-text is 2rem (32px).
+    // Glyph ink runs from baseline-capHeight to baseline+descender
+    // (~0.7em up, ~0.2em down), so its visual centre sits 0.25em *above* the
+    // baseline. To centre the ink on y=100 the mean baseline must be 100 + 8.
+    const BASELINE = 108;
+    const MAX_AMP = 60;
+
+    // For a quadratic Bezier the mean y over t is (y0 + y1 + y2)/3. Pinning that
+    // mean (rather than the endpoints) keeps the text optically centred at every
+    // curve value: raising the control point by `amp` drops the ends by amp/2.
+    //   mean = (2*(B + amp/2) + (B - amp))/3 = B
     function buildPath(curveVal) {
-      const cpy = height * 0.5 - (curveVal / 100) * 60;
-      const d = `M 50 ${height} Q ${width / 2} ${cpy} 650 ${height}`;
-      pathEl.setAttribute('d', d);
+      const amp = (curveVal / 100) * MAX_AMP;
+      const cpY = BASELINE - amp;
+      const endY = BASELINE + amp / 2;
+      pathEl.setAttribute('d', `M 50 ${endY} Q 350 ${cpY} 650 ${endY}`);
     }
 
     function update() {
@@ -794,14 +803,39 @@
     const replayBtn = document.getElementById('strokeReplay');
     if (!textEl) return;
 
+    // SVG <text> has no getTotalLength(), so the glyph outline perimeter has to be
+    // estimated. getComputedTextLength() is the *advance width* — not the outline —
+    // and the old `* 2.5` fell well short of it. When stroke-dasharray is shorter
+    // than the real outline the pattern REPEATS, so a second dash starts partway
+    // through and leaves a visible seam mid-glyph (this is what showed up on the
+    // R and the A, whose counters put the wrap point inside the letter).
+    //
+    // Model each glyph as its bbox perimeter 2(w + h) times ~1.6 for the inner
+    // counters that most letters carry:  actual ~= 3.2 * (W + N*h)
+    function measure() {
+      const W = textEl.getComputedTextLength();          // total advance width
+      const h = textEl.getBBox().height;                 // ink height
+      const N = (textEl.textContent.replace(/\s/g, '') || ' ').length;
+      const unit = W + N * h;
+
+      // `bound` must exceed the true perimeter so the pattern can never repeat.
+      // `draw`  must also exceed it (an undershoot would leave letters unfinished),
+      // but only slightly, so the reveal spans almost the whole duration.
+      return { bound: Math.ceil(5.5 * unit), draw: Math.ceil(3.8 * unit) };
+    }
+
     function play() {
       textEl.classList.remove('drawing');
-      // Measure total outline length; fall back to a safe constant
-      let len = 600;
-      try { len = Math.ceil(textEl.getComputedTextLength() * 2.5); } catch (e) {}
-      textEl.style.strokeDasharray = len;
-      textEl.style.strokeDashoffset = len;
-      textEl.style.setProperty('--dash', len);
+
+      let bound = 3300, draw = 2280; // fallbacks if measurement throws
+      try { ({ bound, draw } = measure()); } catch (e) {}
+
+      textEl.style.strokeDasharray = bound;
+      // Reveal by walking the offset from `bound` down to `bound - draw` — never to
+      // 0, which would idle for ~40% of the duration after the outline is complete.
+      textEl.style.setProperty('--dash-from', bound);
+      textEl.style.setProperty('--dash-to', bound - draw);
+      textEl.style.strokeDashoffset = bound;
       void textEl.getBoundingClientRect();
       textEl.classList.add('drawing');
     }

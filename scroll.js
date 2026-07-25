@@ -114,8 +114,19 @@
     });
   }
 
+  // Scrub-driven effects: their state is a pure function of scroll position, not a
+  // timeline with a start and an end. There is nothing to replay — a Replay button
+  // would be overwritten by the next animation frame — so they don't get one.
+  const SCRUB_ANIMS = new Set([
+    'parallax',      // offset mapped from scroll progress
+    'velocitySkew',  // skew mapped from scroll velocity
+    'textFillScrub', // background-position mapped from scroll progress
+    'zoomThrough'    // scale/opacity mapped from scroll progress
+  ]);
+
   // Add replay buttons
   blocks.forEach((block) => {
+    if (SCRUB_ANIMS.has(block.dataset.anim)) return;
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'replay-btn';
@@ -125,81 +136,75 @@
     block.appendChild(btn);
   });
 
-  // Parallax: scroll progress (RAF loop for Lenis compatibility)
-  function updateParallax() {
-    if (!parallaxBlock || !parallaxInner) return;
-    
-    // Use RAF loop instead of scroll event for smoother sync with Lenis
-    function tick() {
+  // ── Scrub effects ───────────────────────────────────────────────────────
+  // All four share one RAF loop. Previously each ran its own, so every frame did
+  // four separate getBoundingClientRect() calls — four forced layout reflows.
+
+  const velocityText = document.querySelector('.velocity-text');
+  const fillScrub = document.querySelector('.fill-scrub-text');
+  const fillBlock = document.querySelector('[data-anim="textFillScrub"]');
+  const zoomText = document.querySelector('.zoom-through-text');
+  const zoomBlock = document.querySelector('[data-anim="zoomThrough"]');
+
+  const clamp01 = (v) => (v < 0 ? 0 : v > 1 ? 1 : v);
+
+  // Fraction of the way through the window-crossing span:
+  // 0 when the element's top touches the bottom of the viewport,
+  // 1 when its bottom clears the top of the viewport.
+  function crossProgress(rect, vh) {
+    return clamp01((vh - rect.top) / (vh + rect.height));
+  }
+
+  let lastScrollY = window.scrollY;
+  let skew = 0;
+
+  function tickScrub() {
+    const vh = window.innerHeight;
+
+    // Parallax. Note: `in-view` is owned by the IntersectionObserver — the old
+    // loop re-added it every frame, which silently undid replayBlock()'s reset.
+    if (parallaxBlock && parallaxInner) {
       const rect = parallaxBlock.getBoundingClientRect();
-      const blockHeight = parallaxBlock.offsetHeight;
-      const viewHeight = window.innerHeight;
-      const inView = rect.top < viewHeight && rect.bottom > 0;
-      
-      if (inView) {
-        parallaxBlock.classList.add('in-view');
+      if (rect.top < vh && rect.bottom > 0) {
         parallaxInner.classList.add('parallax-active');
-        // Map scroll position to offset
-        const progress = (viewHeight - rect.top) / (viewHeight + blockHeight);
-        // Clamp progress between 0 and 1 roughly
-        const offset = (progress - 0.5) * 100; // Increased range for visibility
-        parallaxInner.style.setProperty('--parallax-offset', `${offset}px`);
+        const offset = (crossProgress(rect, vh) - 0.5) * 100;
+        parallaxInner.style.setProperty('--parallax-offset', `${offset.toFixed(2)}px`);
       } else {
         parallaxInner.classList.remove('parallax-active');
       }
-      requestAnimationFrame(tick);
     }
-    requestAnimationFrame(tick);
-  }
 
-  updateParallax();
-
-  // 31. Velocity Skew — skew amount follows scroll speed
-  const velocityText = document.querySelector('.velocity-text');
-  if (velocityText) {
-    let lastScrollY = window.scrollY;
-    let skew = 0;
-    function tickVelocity() {
+    // 31. Velocity Skew — skew follows scroll speed, springs back to 0
+    if (velocityText) {
       const y = window.scrollY;
       const velocity = y - lastScrollY;
       lastScrollY = y;
       const target = Math.max(-20, Math.min(20, velocity * 0.8));
-      skew += (target - skew) * 0.12; // spring back toward 0
-      velocityText.style.transform = `skewY(${skew}deg) scaleY(${1 + Math.abs(skew) * 0.01})`;
-      requestAnimationFrame(tickVelocity);
+      skew += (target - skew) * 0.12;
+      velocityText.style.transform =
+        `skewY(${skew.toFixed(2)}deg) scaleY(${(1 + Math.abs(skew) * 0.01).toFixed(3)})`;
     }
-    requestAnimationFrame(tickVelocity);
-  }
 
-  // 32. Text Fill Scrub — fill tied to scroll progress through the section
-  const fillScrub = document.querySelector('.fill-scrub-text');
-  const fillBlock = document.querySelector('[data-anim="textFillScrub"]');
-  if (fillScrub && fillBlock) {
-    function tickFill() {
+    // 32. Text Fill Scrub
+    if (fillScrub && fillBlock) {
       const rect = fillBlock.getBoundingClientRect();
-      const vh = window.innerHeight;
-      // 0 when section enters at bottom, 1 when its center passes viewport center
-      const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height * 0.5) * 1.4));
-      fillScrub.style.backgroundPosition = `${100 - progress * 100}% 0`;
-      requestAnimationFrame(tickFill);
+      const progress = clamp01((vh - rect.top) / (vh + rect.height * 0.5) * 1.4);
+      fillScrub.style.backgroundPosition = `${(100 - progress * 100).toFixed(2)}% 0`;
     }
-    requestAnimationFrame(tickFill);
+
+    // 33. Zoom Through
+    if (zoomText && zoomBlock) {
+      const rect = zoomBlock.getBoundingClientRect();
+      const progress = crossProgress(rect, vh);
+      const scale = 0.6 + progress * 1.4;
+      zoomText.style.transform = `scale(${scale.toFixed(3)})`;
+      zoomText.style.opacity = progress < 0.75 ? 1 : Math.max(0, 1 - (progress - 0.75) * 4);
+    }
+
+    requestAnimationFrame(tickScrub);
   }
 
-  // 33. Zoom Through — scale + fade tied to scroll progress
-  const zoomText = document.querySelector('.zoom-through-text');
-  const zoomBlock = document.querySelector('[data-anim="zoomThrough"]');
-  if (zoomText && zoomBlock) {
-    function tickZoom() {
-      const rect = zoomBlock.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
-      const scale = 0.6 + progress * 1.4;         // grows as you scroll through
-      const opacity = progress < 0.75 ? 1 : Math.max(0, 1 - (progress - 0.75) * 4);
-      zoomText.style.transform = `scale(${scale})`;
-      zoomText.style.opacity = opacity;
-      requestAnimationFrame(tickZoom);
-    }
-    requestAnimationFrame(tickZoom);
+  if (parallaxBlock || velocityText || fillScrub || zoomText) {
+    requestAnimationFrame(tickScrub);
   }
 })();
