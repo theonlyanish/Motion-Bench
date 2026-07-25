@@ -6,6 +6,10 @@
 (function () {
   'use strict';
 
+  // Reduced-motion: true when the user asked for less motion.
+  // Used to skip continuous autoplay loops and jump entrances to their end state.
+  function reduced() { return !!(window.A11Y && window.A11Y.reduced); }
+
   let mouseX = 0, mouseY = 0;
   let magTargets = {};
   let magCurrent = {};
@@ -86,7 +90,7 @@
     update();
 
     function animateWave() {
-      if (waveAuto.checked) {
+      if (waveAuto.checked && !reduced()) {
         phaseAcc += 2;
         wavePhase.value = Math.round(phaseAcc % 360);
         update();
@@ -120,6 +124,9 @@
     jitterSlider.addEventListener('input', updateOutputs);
     speedSlider.addEventListener('input', updateOutputs);
     updateOutputs();
+
+    // Reduced motion: leave characters at rest (no continuous jitter)
+    if (reduced()) return;
 
     function tick() {
       const amount = +jitterSlider.value;
@@ -316,6 +323,15 @@
     offsetVal.textContent = offsetSlider.value;
     rgbVal.textContent = rgbSlider.value;
 
+    // Reduced motion: show the clean, un-split headline (no auto glitch loop)
+    if (reduced()) {
+      glitchR.style.transform = 'translate(0, 0)';
+      glitchG.style.transform = 'translate(0, 0)';
+      glitchR.style.opacity = '0';
+      glitchG.style.opacity = '0';
+      return;
+    }
+
     let frame = 0;
     function tick() {
       const offset = +offsetSlider.value;
@@ -361,6 +377,9 @@
     speedSlider.addEventListener('input', () => { speedVal.textContent = speedSlider.value; });
     ampVal.textContent = ampSlider.value;
     speedVal.textContent = speedSlider.value;
+
+    // Reduced motion: leave characters at their natural scale
+    if (reduced()) return;
 
     let phase = 0;
     function tick() {
@@ -587,7 +606,8 @@
     }
 
     replayBtn.addEventListener('click', play);
-    play();
+    // Reduced motion: skip the auto-scramble; the text already reads its final value
+    if (!reduced()) play();
   }
 
   // ─── Shadow Chase ─────────────────────────────────────────────────────
@@ -629,6 +649,9 @@
     speedSlider.addEventListener('input', () => { speedVal.textContent = speedSlider.value; });
     speedVal.textContent = speedSlider.value;
 
+    // Reduced motion: hold a steady scale (no breathing pulse)
+    if (reduced()) return;
+
     let phase = 0;
     function tick() {
       phase += +speedSlider.value * 0.008;
@@ -647,6 +670,9 @@
 
     speedSlider.addEventListener('input', () => { speedVal.textContent = speedSlider.value; });
     speedVal.textContent = speedSlider.value;
+
+    // Reduced motion: park the gradient in a pleasant static position
+    if (reduced()) { headline.style.backgroundPosition = '50% 50%'; return; }
 
     let offset = 0;
     function tick() {
@@ -743,6 +769,12 @@
     speedSlider.addEventListener('input', () => { speedVal.textContent = speedSlider.value; });
     speedVal.textContent = speedSlider.value;
 
+    // Reduced motion: set a single uniform weight (no travelling wave)
+    if (reduced()) {
+      chars.forEach((el) => { el.style.fontVariationSettings = "'wght' 500"; });
+      return;
+    }
+
     let phase = 0;
     function tick() {
       phase += +speedSlider.value * 0.015;
@@ -774,12 +806,24 @@
       textEl.classList.add('drawing');
     }
 
+    // Reduced motion: show the finished, filled text without the drawing animation
+    function playOrStatic() {
+      if (reduced()) {
+        textEl.classList.remove('drawing');
+        textEl.style.strokeDasharray = 'none';
+        textEl.style.strokeDashoffset = '0';
+        textEl.style.fill = 'var(--text-primary)';
+        return;
+      }
+      play();
+    }
+
     if (replayBtn) replayBtn.addEventListener('click', play);
     // Fonts must be loaded before measuring
     if (document.fonts && document.fonts.ready) {
-      document.fonts.ready.then(play);
+      document.fonts.ready.then(playOrStatic);
     } else {
-      play();
+      playOrStatic();
     }
   }
 

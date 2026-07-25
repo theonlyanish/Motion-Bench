@@ -74,3 +74,20 @@ body.is-loaded {
 .layout-block.fx-highlight {
   border-color: rgba(124, 92, 255, 0.6) !important;
 }
+
+/* ── Reduced motion ─────────────────────────────────────────
+   Loaded on every page. Collapses looping keyframes and long
+   transitions to near-instant. JS-driven autoplay loops are
+   additionally guarded in a11y.js / the per-page scripts. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+  }
+  html { scroll-behavior: auto !important; }
+  body { transition: none !important; }
+  .transition-overlay { transition-duration: 0.001ms !important; }
+  .fx-highlight { animation: none !important; }
+}

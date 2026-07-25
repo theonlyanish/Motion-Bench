@@ -5,6 +5,8 @@
 (function () {
   'use strict';
 
+  function reduced() { return !!(window.A11Y && window.A11Y.reduced); }
+
   const blocks = document.querySelectorAll('.scroll-block');
   const parallaxBlock = document.querySelector('[data-anim="parallax"]');
   const parallaxInner = document.querySelector('.parallax-inner');
@@ -48,6 +50,8 @@
     if (!target) return;
     clearBlockInterval(block);
     const text = 'Typewriter Reveal';
+    // Reduced motion: reveal the whole line at once
+    if (reduced()) { target.textContent = text; return; }
     target.textContent = '';
     let i = 0;
     const interval = setInterval(() => {
@@ -73,6 +77,8 @@
     if (!target) return;
     clearBlockInterval(block);
     const end = +target.dataset.target;
+    // Reduced motion: show the final number immediately (no count-up)
+    if (reduced()) { target.textContent = end; return; }
     let current = 0;
     const interval = setInterval(() => {
       current += Math.ceil(end / 40);

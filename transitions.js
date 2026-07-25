@@ -6,8 +6,10 @@
 (function () {
   'use strict';
 
-  // 1. Lenis Smooth Scroll
-  if (typeof Lenis !== 'undefined') {
+  var reducedMotion = !!(window.A11Y && window.A11Y.reduced);
+
+  // 1. Lenis Smooth Scroll — skip entirely under reduced motion (native scroll)
+  if (typeof Lenis !== 'undefined' && !reducedMotion) {
     const lenis = new Lenis({
       lerp: 0.08,
       wheelMultiplier: 1.1,
@@ -50,6 +52,12 @@
       ) return;
 
       e.preventDefault();
+
+      // Reduced motion: skip the wipe, navigate immediately
+      if (reducedMotion) {
+        window.location.href = href;
+        return;
+      }
 
       // Trigger exit animation
       overlay.style.transformOrigin = 'bottom';
