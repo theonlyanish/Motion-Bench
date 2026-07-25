@@ -107,7 +107,9 @@
     const seeds = Array.from({ length: numChars }, () => Math.random() * 1000);
 
     function noise1D(x) {
-      return Math.sin(x * 12.9898) * 43758.5453 % 1;
+      // fract() of a sine hash — must be wrapped to 0..1 (raw % 1 can be negative)
+      const v = Math.sin(x * 12.9898) * 43758.5453;
+      return v - Math.floor(v);
     }
 
     function updateOutputs() {
@@ -517,6 +519,21 @@
       });
     }, { threshold: 0.1 });
     observer.observe(section);
+
+    const replayBtn = document.getElementById('scrollViewReplay');
+    if (replayBtn) {
+      replayBtn.addEventListener('click', () => {
+        charEls.forEach((el) => {
+          el.style.transition = 'none';
+          el.classList.remove('in-view');
+        });
+        void headline.offsetWidth;
+        charEls.forEach((el, i) => {
+          el.style.transition = `opacity 0.6s ${i * 0.06}s ${ease}, transform 0.6s ${i * 0.06}s ${ease}`;
+          el.classList.add('in-view');
+        });
+      });
+    }
   }
 
   // ─── Hover Pop (Framer: whileHover) ───────────────────────────────────
@@ -710,6 +727,131 @@
     });
   }
 
+  // ─── Weight Wave (variable font 'wght' animated per character) ───────
+  function initWeightWave() {
+    const headline = document.getElementById('weightWaveHeadline');
+    const speedSlider = document.getElementById('weightWaveSpeed');
+    const speedVal = document.getElementById('weightWaveSpeedVal');
+    if (!headline || !speedSlider) return;
+
+    const text = 'Heavy Light';
+    headline.innerHTML = text.split('').map((c, i) =>
+      `<span class="weight-wave-char" data-i="${i}">${c === ' ' ? '&nbsp;' : c}</span>`
+    ).join('');
+    const chars = headline.querySelectorAll('.weight-wave-char');
+
+    speedSlider.addEventListener('input', () => { speedVal.textContent = speedSlider.value; });
+    speedVal.textContent = speedSlider.value;
+
+    let phase = 0;
+    function tick() {
+      phase += +speedSlider.value * 0.015;
+      chars.forEach((el, i) => {
+        // Wave of weight 100..900 travelling through the word
+        const w = 500 + Math.sin(phase - i * 0.6) * 400;
+        el.style.fontVariationSettings = `'wght' ${Math.round(w)}`;
+      });
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  // ─── Stroke Draw (SVG text stroke-dasharray self-drawing) ────────────
+  function initStrokeDraw() {
+    const textEl = document.getElementById('strokeText');
+    const replayBtn = document.getElementById('strokeReplay');
+    if (!textEl) return;
+
+    function play() {
+      textEl.classList.remove('drawing');
+      // Measure total outline length; fall back to a safe constant
+      let len = 600;
+      try { len = Math.ceil(textEl.getComputedTextLength() * 2.5); } catch (e) {}
+      textEl.style.strokeDasharray = len;
+      textEl.style.strokeDashoffset = len;
+      textEl.style.setProperty('--dash', len);
+      void textEl.getBoundingClientRect();
+      textEl.classList.add('drawing');
+    }
+
+    if (replayBtn) replayBtn.addEventListener('click', play);
+    // Fonts must be loaded before measuring
+    if (document.fonts && document.fonts.ready) {
+      document.fonts.ready.then(play);
+    } else {
+      play();
+    }
+  }
+
+  // ─── Gravity Drop (per-letter gravity + floor bounce physics) ────────
+  function initGravityDrop() {
+    const headline = document.getElementById('gravityHeadline');
+    const wrapper = document.getElementById('gravityWrapper');
+    if (!headline || !wrapper) return;
+
+    const text = 'Timber!';
+    headline.innerHTML = text.split('').map((c, i) =>
+      `<span class="gravity-char" data-i="${i}">${c}</span>`
+    ).join('');
+    const chars = headline.querySelectorAll('.gravity-char');
+
+    let dropped = false;
+    let bodies = [];
+    let rafId = null;
+
+    function drop() {
+      const wrapRect = wrapper.getBoundingClientRect();
+      bodies = Array.from(chars).map((el) => {
+        const r = el.getBoundingClientRect();
+        return {
+          el,
+          y: 0,
+          vy: -(2 + Math.random() * 3),           // small upward pop first
+          rot: 0,
+          vr: (Math.random() - 0.5) * 10,
+          floor: wrapRect.bottom - r.bottom,      // distance to wrapper floor
+          delay: Math.random() * 15,               // frames before falling
+          bounces: 0
+        };
+      });
+
+      function tick() {
+        let alive = false;
+        bodies.forEach((b) => {
+          if (b.delay > 0) { b.delay--; alive = true; return; }
+          b.vy += 0.9;                             // gravity
+          b.y += b.vy;
+          b.rot += b.vr;
+          if (b.y >= b.floor) {
+            b.y = b.floor;
+            b.vy *= -0.45;                         // restitution
+            b.vr *= 0.6;
+            b.bounces++;
+            if (Math.abs(b.vy) < 1 || b.bounces > 4) { b.vy = 0; b.vr = 0; }
+          }
+          if (b.vy !== 0 || b.y < b.floor) alive = true;
+          b.el.style.transform = `translateY(${b.y}px) rotate(${b.rot}deg)`;
+        });
+        if (alive) rafId = requestAnimationFrame(tick);
+      }
+      rafId = requestAnimationFrame(tick);
+    }
+
+    function reset() {
+      if (rafId) cancelAnimationFrame(rafId);
+      chars.forEach((el) => {
+        el.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+        el.style.transform = 'translateY(0) rotate(0deg)';
+        setTimeout(() => { el.style.transition = ''; }, 500);
+      });
+    }
+
+    wrapper.addEventListener('click', () => {
+      dropped = !dropped;
+      if (dropped) drop(); else reset();
+    });
+  }
+
   // ─── Init ───────────────────────────────────────────────────────────
   function init() {
     initVariableFonts();
@@ -734,6 +876,9 @@
     initGradientSweep();
     initSpotlight();
     initCodeDecode();
+    initWeightWave();
+    initStrokeDraw();
+    initGravityDrop();
     initCursorGlow();
   }
 
