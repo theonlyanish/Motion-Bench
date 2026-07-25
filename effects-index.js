@@ -7,7 +7,7 @@ window.EFFECTS_INDEX = [
     "id": "variable",
     "name": "Variable Font Axes",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "",
     "tags": [
       "variable",
@@ -20,7 +20,7 @@ window.EFFECTS_INDEX = [
     "id": "wave",
     "name": "Wave Distort",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "",
     "tags": [
       "wave",
@@ -32,7 +32,7 @@ window.EFFECTS_INDEX = [
     "id": "jitter",
     "name": "Noise Jitter",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "",
     "tags": [
       "noise",
@@ -44,7 +44,7 @@ window.EFFECTS_INDEX = [
     "id": "path",
     "name": "Text on Path",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "",
     "tags": [
       "text",
@@ -57,7 +57,7 @@ window.EFFECTS_INDEX = [
     "id": "magnetic",
     "name": "Magnetic Letters",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Move cursor near letters — they'll magnetically attract",
     "tags": [
       "magnetic",
@@ -69,7 +69,7 @@ window.EFFECTS_INDEX = [
     "id": "repulsion",
     "name": "Cursor Repulsion",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Letters repel from your cursor",
     "tags": [
       "cursor",
@@ -81,7 +81,7 @@ window.EFFECTS_INDEX = [
     "id": "tilt3d",
     "name": "3D Tilt",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Move cursor — text tilts toward you in 3D",
     "tags": [
       "3d",
@@ -94,7 +94,7 @@ window.EFFECTS_INDEX = [
     "id": "glitch",
     "name": "Glitch",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "",
     "tags": [
       "glitch",
@@ -105,7 +105,7 @@ window.EFFECTS_INDEX = [
     "id": "scaleWave",
     "name": "Scale Wave",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "",
     "tags": [
       "scale",
@@ -117,7 +117,7 @@ window.EFFECTS_INDEX = [
     "id": "blurDistance",
     "name": "Blur on Distance",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Letters sharpen near cursor, blur when far",
     "tags": [
       "blur",
@@ -130,7 +130,7 @@ window.EFFECTS_INDEX = [
     "id": "colorChase",
     "name": "Color Chase",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Gradient follows your cursor",
     "tags": [
       "color",
@@ -142,7 +142,7 @@ window.EFFECTS_INDEX = [
     "id": "stagger",
     "name": "Staggered Reveal",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Letters animate in with stagger — like Framer's staggerChildren",
     "tags": [
       "staggered",
@@ -155,7 +155,7 @@ window.EFFECTS_INDEX = [
     "id": "spring",
     "name": "Spring Letters",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Hover letters — they bounce with spring physics",
     "tags": [
       "spring",
@@ -167,7 +167,7 @@ window.EFFECTS_INDEX = [
     "id": "scrollView",
     "name": "Scroll Into View",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Scroll down — text animates when it enters viewport",
     "tags": [
       "scroll",
@@ -180,7 +180,7 @@ window.EFFECTS_INDEX = [
     "id": "hoverPop",
     "name": "Hover Pop",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Hover — smooth scale + lift, like whileHover",
     "tags": [
       "hover",
@@ -192,7 +192,7 @@ window.EFFECTS_INDEX = [
     "id": "scramble",
     "name": "Scramble Reveal",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Letters scramble then settle — like a terminal",
     "tags": [
       "scramble",
@@ -204,7 +204,7 @@ window.EFFECTS_INDEX = [
     "id": "shadowChase",
     "name": "Shadow Chase",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Drop shadow stretches toward your cursor",
     "tags": [
       "shadow",
@@ -216,7 +216,7 @@ window.EFFECTS_INDEX = [
     "id": "letterFlip",
     "name": "Letter Flip",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Hover — letters flip in 3D",
     "tags": [
       "letter",
@@ -228,7 +228,7 @@ window.EFFECTS_INDEX = [
     "id": "breathing",
     "name": "Breathing",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Gentle pulse — meditative scale",
     "tags": [
       "breathing",
@@ -239,7 +239,7 @@ window.EFFECTS_INDEX = [
     "id": "gradientSweep",
     "name": "Gradient Sweep",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Animated gradient flows across the text",
     "tags": [
       "gradient",
@@ -251,7 +251,7 @@ window.EFFECTS_INDEX = [
     "id": "spotlight",
     "name": "Spotlight Reveal",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Hover to reveal text like a flashlight",
     "tags": [
       "spotlight",
@@ -263,7 +263,7 @@ window.EFFECTS_INDEX = [
     "id": "gooey",
     "name": "Gooey Text",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Letters merge and separate like goo",
     "tags": [
       "gooey",
@@ -275,7 +275,7 @@ window.EFFECTS_INDEX = [
     "id": "marquee",
     "name": "Infinite Marquee",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Continuous scrolling text loop",
     "tags": [
       "infinite",
@@ -287,7 +287,7 @@ window.EFFECTS_INDEX = [
     "id": "elastic",
     "name": "Elastic Bounce",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Hover letters for elastic scale effect",
     "tags": [
       "elastic",
@@ -299,7 +299,7 @@ window.EFFECTS_INDEX = [
     "id": "liquid",
     "name": "Liquid Fill",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Text fills up like liquid on hover",
     "tags": [
       "liquid",
@@ -311,7 +311,7 @@ window.EFFECTS_INDEX = [
     "id": "neon",
     "name": "Neon Flicker",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Realistic neon sign flicker animation",
     "tags": [
       "neon",
@@ -323,7 +323,7 @@ window.EFFECTS_INDEX = [
     "id": "mirror",
     "name": "Mirror Reflection",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Text with a fading floor reflection",
     "tags": [
       "mirror",
@@ -335,7 +335,7 @@ window.EFFECTS_INDEX = [
     "id": "variableAxis",
     "name": "Variable Axis Hover",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Weight and Width change dynamically",
     "tags": [
       "variable",
@@ -348,7 +348,7 @@ window.EFFECTS_INDEX = [
     "id": "codeDecode",
     "name": "Code Decode",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Binary decode effect on hover",
     "tags": [
       "code",
@@ -360,7 +360,7 @@ window.EFFECTS_INDEX = [
     "id": "splitHover",
     "name": "Split Hover",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Text splits and reveals alternate version",
     "tags": [
       "split",
@@ -372,7 +372,7 @@ window.EFFECTS_INDEX = [
     "id": "weightWave",
     "name": "Weight Wave",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "A wave of font-weight travels through the letters — rare variable-font trick",
     "tags": [
       "weight",
@@ -384,7 +384,7 @@ window.EFFECTS_INDEX = [
     "id": "strokeDraw",
     "name": "Stroke Draw",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Text outline draws itself like handwriting (SVG stroke-dasharray)",
     "tags": [
       "stroke",
@@ -396,7 +396,7 @@ window.EFFECTS_INDEX = [
     "id": "gravityDrop",
     "name": "Gravity Drop",
     "cat": "typography",
-    "page": "index.html",
+    "page": "typography.html",
     "desc": "Click — letters fall with gravity and bounce. Click again to reset",
     "tags": [
       "gravity",

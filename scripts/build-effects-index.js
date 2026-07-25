@@ -10,7 +10,7 @@ function tagsFrom(name, id, cat) {
 }
 
 function parseTypography() {
-  const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  const html = fs.readFileSync(path.join(root, 'typography.html'), 'utf8');
   const sections = html.split(/<section class="panel[^"]*" data-panel="/).slice(1);
   return sections.map(function (chunk) {
     const id = chunk.match(/^([^"]+)"/)[1];
@@ -20,7 +20,7 @@ function parseTypography() {
       id: id,
       name: nameMatch ? nameMatch[1].trim() : id,
       desc: hintMatch ? hintMatch[1].trim() : '',
-      page: 'index.html',
+      page: 'typography.html',
       cat: 'typography'
     };
   });

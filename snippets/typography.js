@@ -1,5 +1,5 @@
 /**
- * Standalone code snippets for the Typography page (index.html).
+ * Standalone code snippets for the Typography page (typography.html).
  * Each entry is keyed by the section's data-panel attribute and holds
  * self-contained, copy-paste-ready html / css / js strings.
  * Rendered by code-panel.js.

@@ -3,23 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Typography Playground — Interactive Experiments</title>
+  <title>Animation Playground — 144 Copy-Paste Effects</title>
+  <meta name="description" content="A searchable library of 144 copy-paste animation effects — typography, scroll, gallery, cursor, and layout. Pure HTML, CSS, and JavaScript.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%230d0d0f'/%3E%3Ctext x='50' y='72' font-size='60' text-anchor='middle' fill='%23f3f3f5' font-family='Segoe UI, Arial, sans-serif' font-weight='600'%3EA%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Roboto+Flex:opsz,slnt,wdth,wght@8..144,-10..0,25..151,100..1000&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="home.css">
   <link rel="stylesheet" href="transitions.css">
-  <link rel="stylesheet" href="code-panel.css">
 </head>
 <body class="is-loaded">
   <div class="transition-overlay"></div>
-  <nav class="nav-bar">
-    <a href="home.html" class="nav-btn" aria-label="Home">
+
+  <nav class="nav-bar" aria-label="Site navigation">
+    <a href="index.html" class="nav-btn is-active" aria-label="Home" aria-current="page">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <rect x="3" y="3" width="7" height="7" rx="1"/>
         <rect x="14" y="3" width="7" height="7" rx="1"/>
         <rect x="3" y="14" width="7" height="7" rx="1"/>
         <rect x="14" y="14" width="7" height="7" rx="1"/>
+      </svg>
+    </a>
+    <a href="typography.html" class="nav-btn" aria-label="Typography">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
       </svg>
     </a>
     <a href="scroll.html" class="nav-btn" aria-label="Scroll Animations">
@@ -28,7 +35,6 @@
         <polyline points="14 2 14 8 20 8"/>
         <line x1="16" y1="13" x2="8" y2="13"/>
         <line x1="16" y1="17" x2="8" y2="17"/>
-        <polyline points="10 9 9 9 8 9"/>
       </svg>
     </a>
     <a href="gallery.html" class="nav-btn" aria-label="Gallery Effects">
@@ -52,488 +58,41 @@
       </svg>
     </a>
   </nav>
-  <div class="cursor-glow" id="cursorGlow"></div>
 
-  <header class="site-header">
-    <h1>Typography<span class="highlight">Playground</span></h1>
-    <p class="tagline">Drag sliders · Move cursor · Morph the text</p>
+  <header class="home-header wrap">
+    <h1>Animation<span class="highlight">Playground</span></h1>
+    <p class="home-tagline"><em>144</em> copy-paste effects for typography, scroll, gallery, cursor, and layout. Pure HTML, CSS, and JavaScript — every one with copyable code.</p>
   </header>
 
-  <main class="playground">
-    <!-- Section 1: Variable Font Axes -->
-    <section class="panel" data-panel="variable">
-      <h2 class="panel-title">Variable Font Axes</h2>
-      <div class="controls">
-        <label>
-          <span>Weight</span>
-          <input type="range" id="weight" min="100" max="1000" value="400" class="slider">
-          <output id="weightVal">400</output>
-        </label>
-        <label>
-          <span>Width</span>
-          <input type="range" id="width" min="25" max="151" value="100" class="slider">
-          <output id="widthVal">100</output>
-        </label>
-        <label>
-          <span>Slant</span>
-          <input type="range" id="slant" min="-10" max="0" value="0" class="slider">
-          <output id="slantVal">0</output>
-        </label>
-      </div>
-      <div class="headline-wrapper">
-        <p class="headline variable-headline" id="variableHeadline">Morph Me</p>
-      </div>
-    </section>
-
-    <!-- Section 2: Wave Distort -->
-    <section class="panel" data-panel="wave">
-      <h2 class="panel-title">Wave Distort</h2>
-      <div class="controls">
-        <label>
-          <span>Amplitude</span>
-          <input type="range" id="waveAmp" min="0" max="60" value="20" class="slider">
-          <output id="waveAmpVal">20</output>
-        </label>
-        <label>
-          <span>Frequency</span>
-          <input type="range" id="waveFreq" min="1" max="15" value="5" class="slider">
-          <output id="waveFreqVal">5</output>
-        </label>
-        <label>
-          <span>Phase</span>
-          <input type="range" id="wavePhase" min="0" max="360" value="0" class="slider">
-          <output id="wavePhaseVal">0</output>
-        </label>
-        <label class="checkbox-label">
-          <input type="checkbox" id="waveAuto" class="checkbox">
-          <span>Auto</span>
-        </label>
-      </div>
-      <div class="headline-wrapper wave-wrapper">
-        <p class="headline wave-headline" id="waveHeadline"></p>
-      </div>
-    </section>
-
-    <!-- Section 3: Noise Jitter -->
-    <section class="panel" data-panel="jitter">
-      <h2 class="panel-title">Noise Jitter</h2>
-      <div class="controls">
-        <label>
-          <span>Jitter</span>
-          <input type="range" id="jitter" min="0" max="20" value="5" class="slider">
-          <output id="jitterVal">5</output>
-        </label>
-        <label>
-          <span>Speed</span>
-          <input type="range" id="jitterSpeed" min="1" max="15" value="6" class="slider">
-          <output id="jitterSpeedVal">6</output>
-        </label>
-      </div>
-      <div class="headline-wrapper jitter-wrapper">
-        <p class="headline jitter-headline" id="jitterHeadline">
-          <span class="jitter-char" data-char="N">N</span><span class="jitter-char" data-char="o">o</span><span class="jitter-char" data-char="i">i</span><span class="jitter-char" data-char="s">s</span><span class="jitter-char" data-char="e">e</span><span class="jitter-char" data-char=" "> </span><span class="jitter-char" data-char="J">J</span><span class="jitter-char" data-char="i">i</span><span class="jitter-char" data-char="t">t</span><span class="jitter-char" data-char="t">t</span><span class="jitter-char" data-char="e">e</span><span class="jitter-char" data-char="r">r</span>
-        </p>
-      </div>
-    </section>
-
-    <!-- Section 4: Text on Path -->
-    <section class="panel" data-panel="path">
-      <h2 class="panel-title">Text on Path</h2>
-      <div class="controls">
-        <label>
-          <span>Path Curve</span>
-          <input type="range" id="pathCurve" min="-100" max="100" value="40" class="slider">
-          <output id="pathCurveVal">40</output>
-        </label>
-      </div>
-      <div class="headline-wrapper path-wrapper">
-        <svg class="path-svg" viewBox="0 0 700 200" preserveAspectRatio="xMidYMid meet">
-          <path id="textPath" d="M 50 120 Q 350 84 650 120" fill="none" stroke="none"/>
-          <text class="path-text" text-anchor="middle">
-            <textPath href="#textPath" id="pathTextPath" startOffset="50%">Text follows the path</textPath>
-          </text>
+  <div class="home-toolbar">
+    <div class="toolbar-inner wrap">
+      <div class="search-wrap">
+        <svg class="search-icon" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
         </svg>
+        <input type="search" id="searchInput" class="search-input" placeholder="Search 144 effects" autocomplete="off" spellcheck="false">
+        <span class="search-kbd">/</span>
       </div>
-    </section>
+      <div class="toolbar-row">
+        <div class="filter-bar" id="filterBar"></div>
+        <p class="results-meta" id="resultsMeta"></p>
+      </div>
+    </div>
+  </div>
 
-    <!-- Section 5: Magnetic Letters -->
-    <section class="panel" data-panel="magnetic">
-      <h2 class="panel-title">Magnetic Letters</h2>
-      <p class="panel-hint">Move cursor near letters — they'll magnetically attract</p>
-      <div class="headline-wrapper magnetic-wrapper">
-        <p class="headline magnetic-headline" id="magneticHeadline">
-          <span class="mag-char" data-i="0">M</span><span class="mag-char" data-i="1">a</span><span class="mag-char" data-i="2">g</span><span class="mag-char" data-i="3">n</span><span class="mag-char" data-i="4">e</span><span class="mag-char" data-i="5">t</span><span class="mag-char" data-i="6">i</span><span class="mag-char" data-i="7">c</span>
-        </p>
-      </div>
-    </section>
+  <main class="fx-index wrap" id="fxGrid" aria-live="polite"></main>
 
-    <!-- Section 6: Cursor Repulsion -->
-    <section class="panel" data-panel="repulsion">
-      <h2 class="panel-title">Cursor Repulsion</h2>
-      <p class="panel-hint">Letters repel from your cursor</p>
-      <div class="controls">
-        <label>
-          <span>Strength</span>
-          <input type="range" id="repelStrength" min="50" max="300" value="120" class="slider">
-          <output id="repelStrengthVal">120</output>
-        </label>
-      </div>
-      <div class="headline-wrapper repel-wrapper">
-        <p class="headline repel-headline" id="repelHeadline">
-          <span class="repel-char" data-i="0">R</span><span class="repel-char" data-i="1">e</span><span class="repel-char" data-i="2">p</span><span class="repel-char" data-i="3">e</span><span class="repel-char" data-i="4">l</span><span class="repel-char" data-i="5"> </span><span class="repel-char" data-i="6">M</span><span class="repel-char" data-i="7">e</span>
-        </p>
-      </div>
-    </section>
-
-    <!-- Section 7: 3D Tilt -->
-    <section class="panel" data-panel="tilt3d">
-      <h2 class="panel-title">3D Tilt</h2>
-      <p class="panel-hint">Move cursor — text tilts toward you in 3D</p>
-      <div class="headline-wrapper tilt3d-wrapper">
-        <p class="headline tilt3d-headline" id="tilt3dHeadline">Tilt Me</p>
-      </div>
-    </section>
-
-    <!-- Section 8: Glitch -->
-    <section class="panel" data-panel="glitch">
-      <h2 class="panel-title">Glitch</h2>
-      <div class="controls">
-        <label>
-          <span>Offset</span>
-          <input type="range" id="glitchOffset" min="0" max="12" value="4" class="slider">
-          <output id="glitchOffsetVal">4</output>
-        </label>
-        <label>
-          <span>RGB Split</span>
-          <input type="range" id="glitchRGB" min="0" max="8" value="2" class="slider">
-          <output id="glitchRGBVal">2</output>
-        </label>
-        <label class="checkbox-label">
-          <input type="checkbox" id="glitchAuto" class="checkbox" checked>
-          <span>Auto</span>
-        </label>
-      </div>
-      <div class="headline-wrapper glitch-wrapper">
-        <p class="headline glitch-headline" id="glitchHeadline">
-          <span class="glitch-text glitch-main">Glitch Effect</span>
-          <span class="glitch-text glitch-r" aria-hidden="true">Glitch Effect</span>
-          <span class="glitch-text glitch-g" aria-hidden="true">Glitch Effect</span>
-        </p>
-      </div>
-    </section>
-
-    <!-- Section 9: Scale Wave -->
-    <section class="panel" data-panel="scaleWave">
-      <h2 class="panel-title">Scale Wave</h2>
-      <div class="controls">
-        <label>
-          <span>Amplitude</span>
-          <input type="range" id="scaleAmp" min="0" max="50" value="25" class="slider">
-          <output id="scaleAmpVal">25</output>
-        </label>
-        <label>
-          <span>Speed</span>
-          <input type="range" id="scaleSpeed" min="1" max="12" value="5" class="slider">
-          <output id="scaleSpeedVal">5</output>
-        </label>
-      </div>
-      <div class="headline-wrapper scale-wave-wrapper">
-        <p class="headline scale-wave-headline" id="scaleWaveHeadline"></p>
-      </div>
-    </section>
-
-    <!-- Section 10: Blur on Distance -->
-    <section class="panel" data-panel="blurDistance">
-      <h2 class="panel-title">Blur on Distance</h2>
-      <p class="panel-hint">Letters sharpen near cursor, blur when far</p>
-      <div class="headline-wrapper blur-distance-wrapper">
-        <p class="headline blur-distance-headline" id="blurDistanceHeadline">
-          <span class="blur-char" data-i="0">S</span><span class="blur-char" data-i="1">h</span><span class="blur-char" data-i="2">a</span><span class="blur-char" data-i="3">r</span><span class="blur-char" data-i="4">p</span><span class="blur-char" data-i="5"> </span><span class="blur-char" data-i="6">H</span><span class="blur-char" data-i="7">e</span><span class="blur-char" data-i="8">r</span><span class="blur-char" data-i="9">e</span>
-        </p>
-      </div>
-    </section>
-
-    <!-- Section 11: Color Chase -->
-    <section class="panel" data-panel="colorChase">
-      <h2 class="panel-title">Color Chase</h2>
-      <p class="panel-hint">Gradient follows your cursor</p>
-      <div class="headline-wrapper color-chase-wrapper">
-        <p class="headline color-chase-headline" id="colorChaseHeadline">Chase the Light</p>
-      </div>
-    </section>
-
-    <!-- Section 12: Staggered Reveal -->
-    <section class="panel" data-panel="stagger">
-      <h2 class="panel-title">Staggered Reveal</h2>
-      <p class="panel-hint">Letters animate in with stagger — like Framer's staggerChildren</p>
-      <div class="controls">
-        <label>
-          <span>Delay</span>
-          <input type="range" id="staggerDelay" min="20" max="120" value="50" class="slider">
-          <output id="staggerDelayVal">50</output>
-        </label>
-        <button type="button" class="btn-replay" id="staggerReplay">Replay</button>
-      </div>
-      <div class="headline-wrapper stagger-wrapper">
-        <p class="headline stagger-headline" id="staggerHeadline"></p>
-      </div>
-    </section>
-
-    <!-- Section 13: Spring Letters -->
-    <section class="panel" data-panel="spring">
-      <h2 class="panel-title">Spring Letters</h2>
-      <p class="panel-hint">Hover letters — they bounce with spring physics</p>
-      <div class="headline-wrapper spring-wrapper">
-        <p class="headline spring-headline" id="springHeadline"></p>
-      </div>
-    </section>
-
-    <!-- Section 14: Scroll Into View -->
-    <section class="panel panel-scroll-trigger" data-panel="scrollView">
-      <h2 class="panel-title">Scroll Into View</h2>
-      <p class="panel-hint">Scroll down — text animates when it enters viewport</p>
-      <div class="controls">
-        <button type="button" class="btn-replay" id="scrollViewReplay">Replay</button>
-      </div>
-      <div class="headline-wrapper scroll-view-wrapper">
-        <p class="headline scroll-view-headline" id="scrollViewHeadline"></p>
-      </div>
-    </section>
-
-    <!-- Section 15: Hover Pop -->
-    <section class="panel" data-panel="hoverPop">
-      <h2 class="panel-title">Hover Pop</h2>
-      <p class="panel-hint">Hover — smooth scale + lift, like whileHover</p>
-      <div class="headline-wrapper hover-pop-wrapper">
-        <p class="headline hover-pop-headline" id="hoverPopHeadline"></p>
-      </div>
-    </section>
-
-    <!-- Section 16: Scramble Reveal -->
-    <section class="panel" data-panel="scramble">
-      <h2 class="panel-title">Scramble Reveal</h2>
-      <p class="panel-hint">Letters scramble then settle — like a terminal</p>
-      <div class="controls">
-        <label>
-          <span>Speed</span>
-          <input type="range" id="scrambleSpeed" min="20" max="100" value="50" class="slider">
-          <output id="scrambleSpeedVal">50</output>
-        </label>
-        <button type="button" class="btn-replay" id="scrambleReplay">Replay</button>
-      </div>
-      <div class="headline-wrapper scramble-wrapper">
-        <p class="headline scramble-headline" id="scrambleHeadline"></p>
-      </div>
-    </section>
-
-    <!-- Section 17: Shadow Chase -->
-    <section class="panel" data-panel="shadowChase">
-      <h2 class="panel-title">Shadow Chase</h2>
-      <p class="panel-hint">Drop shadow stretches toward your cursor</p>
-      <div class="headline-wrapper shadow-chase-wrapper">
-        <p class="headline shadow-chase-headline" id="shadowChaseHeadline">Shadow</p>
-      </div>
-    </section>
-
-    <!-- Section 18: Letter Flip -->
-    <section class="panel" data-panel="letterFlip">
-      <h2 class="panel-title">Letter Flip</h2>
-      <p class="panel-hint">Hover — letters flip in 3D</p>
-      <div class="headline-wrapper letter-flip-wrapper">
-        <p class="headline letter-flip-headline" id="letterFlipHeadline"></p>
-      </div>
-    </section>
-
-    <!-- Section 19: Breathing -->
-    <section class="panel" data-panel="breathing">
-      <h2 class="panel-title">Breathing</h2>
-      <p class="panel-hint">Gentle pulse — meditative scale</p>
-      <div class="controls">
-        <label>
-          <span>Speed</span>
-          <input type="range" id="breathSpeed" min="1" max="8" value="3" class="slider">
-          <output id="breathSpeedVal">3</output>
-        </label>
-      </div>
-      <div class="headline-wrapper breathing-wrapper">
-        <p class="headline breathing-headline" id="breathingHeadline">Breathe</p>
-      </div>
-    </section>
-
-    <!-- Section 20: Gradient Sweep -->
-    <section class="panel" data-panel="gradientSweep">
-      <h2 class="panel-title">Gradient Sweep</h2>
-      <p class="panel-hint">Animated gradient flows across the text</p>
-      <div class="controls">
-        <label>
-          <span>Speed</span>
-          <input type="range" id="sweepSpeed" min="1" max="10" value="4" class="slider">
-          <output id="sweepSpeedVal">4</output>
-        </label>
-      </div>
-      <div class="headline-wrapper gradient-sweep-wrapper">
-        <p class="headline gradient-sweep-headline" id="gradientSweepHeadline">Sweep</p>
-      </div>
-    </section>
-
-    <!-- Section 21: Spotlight Reveal -->
-    <section class="panel" data-panel="spotlight">
-      <h2 class="panel-title">Spotlight Reveal</h2>
-      <p class="panel-hint">Hover to reveal text like a flashlight</p>
-      <div class="headline-wrapper spotlight-wrapper" id="spotlightWrapper">
-        <h2 class="headline spotlight-text">Hidden in Shadows</h2>
-        <div class="spotlight-mask" id="spotlightMask"></div>
-      </div>
-    </section>
-
-    <!-- Section 22: Gooey Text -->
-    <section class="panel" data-panel="gooey">
-      <h2 class="panel-title">Gooey Text</h2>
-      <p class="panel-hint">Letters merge and separate like goo</p>
-      <svg width="0" height="0">
-        <filter id="gooey-filter">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -8" result="goo" />
-          <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
-        </filter>
-      </svg>
-      <div class="headline-wrapper gooey-wrapper">
-        <h2 class="headline gooey-text"><span class="gooey-char">G</span><span class="gooey-char">o</span><span class="gooey-char">o</span><span class="gooey-char">e</span><span class="gooey-char">y</span></h2>
-      </div>
-    </section>
-
-    <!-- Section 23: Infinite Marquee -->
-    <section class="panel" data-panel="marquee">
-      <h2 class="panel-title">Infinite Marquee</h2>
-      <p class="panel-hint">Continuous scrolling text loop</p>
-      <div class="headline-wrapper marquee-wrapper">
-        <div class="marquee-inner">
-          <span>SCROLLING TEXT LOOP &bull; SCROLLING TEXT LOOP &bull; </span><span aria-hidden="true">SCROLLING TEXT LOOP &bull; SCROLLING TEXT LOOP &bull; </span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 24: Elastic Bounce -->
-    <section class="panel" data-panel="elastic">
-      <h2 class="panel-title">Elastic Bounce</h2>
-      <p class="panel-hint">Hover letters for elastic scale effect</p>
-      <div class="headline-wrapper elastic-wrapper">
-        <h2 class="headline elastic-text">
-          <span class="elastic-char">B</span><span class="elastic-char">o</span><span class="elastic-char">u</span><span class="elastic-char">n</span><span class="elastic-char">c</span><span class="elastic-char">e</span>
-        </h2>
-      </div>
-    </section>
-
-    <!-- Section 25: Liquid Fill -->
-    <section class="panel" data-panel="liquid">
-      <h2 class="panel-title">Liquid Fill</h2>
-      <p class="panel-hint">Text fills up like liquid on hover</p>
-      <div class="headline-wrapper liquid-wrapper">
-        <h2 class="headline liquid-text">Liquid Fill</h2>
-      </div>
-    </section>
-
-    <!-- Section 26: Neon Flicker -->
-    <section class="panel" data-panel="neon">
-      <h2 class="panel-title">Neon Flicker</h2>
-      <p class="panel-hint">Realistic neon sign flicker animation</p>
-      <div class="headline-wrapper neon-wrapper">
-        <h2 class="headline neon-text flicker">OPEN 24/7</h2>
-      </div>
-    </section>
-
-    <!-- Section 27: Mirror Reflection -->
-    <section class="panel" data-panel="mirror">
-      <h2 class="panel-title">Mirror Reflection</h2>
-      <p class="panel-hint">Text with a fading floor reflection</p>
-      <div class="headline-wrapper mirror-wrapper">
-        <h2 class="headline mirror-text">Reflection</h2>
-        <h2 class="headline mirror-reflection">Reflection</h2>
-      </div>
-    </section>
-
-    <!-- Section 28: Variable Axis Interaction -->
-    <section class="panel" data-panel="variableAxis">
-      <h2 class="panel-title">Variable Axis Hover</h2>
-      <p class="panel-hint">Weight and Width change dynamically</p>
-      <div class="headline-wrapper variable-axis-wrapper">
-        <h2 class="headline variable-axis-text">Variable</h2>
-      </div>
-    </section>
-
-    <!-- Section 29: Code Type Decode -->
-    <section class="panel" data-panel="codeDecode">
-      <h2 class="panel-title">Code Decode</h2>
-      <p class="panel-hint">Binary decode effect on hover</p>
-      <div class="headline-wrapper code-wrapper">
-        <h2 class="headline code-text" data-value="System Ready">01010101</h2>
-      </div>
-    </section>
-
-    <!-- Section 30: Split Hover -->
-    <section class="panel" data-panel="splitHover">
-      <h2 class="panel-title">Split Hover</h2>
-      <p class="panel-hint">Text splits and reveals alternate version</p>
-      <div class="headline-wrapper split-hover-wrapper">
-        <div class="headline split-hover-inner">
-          <span class="split-top">Menu</span>
-          <span class="split-bottom">Open</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 31: Weight Wave -->
-    <section class="panel" data-panel="weightWave">
-      <h2 class="panel-title">Weight Wave</h2>
-      <p class="panel-hint">A wave of font-weight travels through the letters — rare variable-font trick</p>
-      <div class="controls">
-        <label>
-          <span>Speed</span>
-          <input type="range" id="weightWaveSpeed" min="1" max="10" value="4" class="slider">
-          <output id="weightWaveSpeedVal">4</output>
-        </label>
-      </div>
-      <div class="headline-wrapper weight-wave-wrapper">
-        <p class="headline weight-wave-headline" id="weightWaveHeadline"></p>
-      </div>
-    </section>
-
-    <!-- Section 32: Stroke Draw -->
-    <section class="panel" data-panel="strokeDraw">
-      <h2 class="panel-title">Stroke Draw</h2>
-      <p class="panel-hint">Text outline draws itself like handwriting (SVG stroke-dasharray)</p>
-      <div class="controls">
-        <button type="button" class="btn-replay" id="strokeReplay">Replay</button>
-      </div>
-      <div class="headline-wrapper stroke-draw-wrapper">
-        <svg class="stroke-svg" viewBox="0 0 700 120" preserveAspectRatio="xMidYMid meet">
-          <text x="350" y="85" text-anchor="middle" class="stroke-text" id="strokeText">Draw Me</text>
-        </svg>
-      </div>
-    </section>
-
-    <!-- Section 33: Gravity Drop -->
-    <section class="panel" data-panel="gravityDrop">
-      <h2 class="panel-title">Gravity Drop</h2>
-      <p class="panel-hint">Click — letters fall with gravity and bounce. Click again to reset</p>
-      <div class="headline-wrapper gravity-wrapper" id="gravityWrapper">
-        <p class="headline gravity-headline" id="gravityHeadline"></p>
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="site-footer">
-    <p>No backend · Pure frontend · 33 Advanced Effects</p>
-    <p class="site-credit">Typography Playground by <a href="https://anishkapse.com/" target="_blank" rel="noopener noreferrer">Anish Kapse</a></p>
+  <footer class="home-footer">
+    <div class="wrap">
+      <p>Pure HTML · CSS · JavaScript — every effect includes copyable standalone code</p>
+      <p class="home-credit">Animation Playground by <a href="https://anishkapse.com/" target="_blank" rel="noopener noreferrer">Anish Kapse</a></p>
+    </div>
   </footer>
 
   <script src="a11y.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
   <script src="transitions.js"></script>
-  <script src="app.js"></script>
-  <script src="snippets/typography.js"></script>
-  <script src="code-panel.js"></script>
-  <script src="deep-link.js"></script>
+  <script src="effects-index.js"></script>
+  <script src="home.js"></script>
 </body>
 </html>
