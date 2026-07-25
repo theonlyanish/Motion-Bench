@@ -6,13 +6,22 @@
   <title>Typography Playground — Interactive Experiments</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,opsz,wght@0,10..48,100..1000;1,10..48,100..1000&family=Roboto+Flex:opsz,slnt,wdth,wght@8..144,-12..0,25..151,100..1000&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,opsz,wght@0,10..48,100..1000;1,10..48,100..1000&family=Roboto+Flex:opsz,slnt,wdth,wght@8..144,-10..0,25..151,100..1000&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="transitions.css">
+  <link rel="stylesheet" href="code-panel.css">
 </head>
 <body class="is-loaded">
   <div class="transition-overlay"></div>
   <nav class="nav-bar">
+    <a href="home.html" class="nav-btn" aria-label="Home">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="7" height="7" rx="1"/>
+        <rect x="14" y="3" width="7" height="7" rx="1"/>
+        <rect x="3" y="14" width="7" height="7" rx="1"/>
+        <rect x="14" y="14" width="7" height="7" rx="1"/>
+      </svg>
+    </a>
     <a href="scroll.html" class="nav-btn" aria-label="Scroll Animations">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
@@ -67,7 +76,7 @@
         </label>
         <label>
           <span>Slant</span>
-          <input type="range" id="slant" min="-12" max="0" value="0" class="slider">
+          <input type="range" id="slant" min="-10" max="0" value="0" class="slider">
           <output id="slantVal">0</output>
         </label>
       </div>
@@ -283,6 +292,9 @@
     <section class="panel panel-scroll-trigger" data-panel="scrollView">
       <h2 class="panel-title">Scroll Into View</h2>
       <p class="panel-hint">Scroll down — text animates when it enters viewport</p>
+      <div class="controls">
+        <button type="button" class="btn-replay" id="scrollViewReplay">Replay</button>
+      </div>
       <div class="headline-wrapper scroll-view-wrapper">
         <p class="headline scroll-view-headline" id="scrollViewHeadline"></p>
       </div>
@@ -380,13 +392,13 @@
       <p class="panel-hint">Letters merge and separate like goo</p>
       <svg width="0" height="0">
         <filter id="gooey-filter">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 25 -10" result="goo" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -8" result="goo" />
           <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
         </filter>
       </svg>
       <div class="headline-wrapper gooey-wrapper">
-        <h2 class="headline gooey-text">Gooey</h2>
+        <h2 class="headline gooey-text"><span class="gooey-char">G</span><span class="gooey-char">o</span><span class="gooey-char">o</span><span class="gooey-char">e</span><span class="gooey-char">y</span></h2>
       </div>
     </section>
 
@@ -396,7 +408,7 @@
       <p class="panel-hint">Continuous scrolling text loop</p>
       <div class="headline-wrapper marquee-wrapper">
         <div class="marquee-inner">
-          <span>SCROLLING TEXT LOOP &bull; SCROLLING TEXT LOOP &bull; SCROLLING TEXT LOOP &bull; </span>
+          <span>SCROLLING TEXT LOOP &bull; SCROLLING TEXT LOOP &bull; </span><span aria-hidden="true">SCROLLING TEXT LOOP &bull; SCROLLING TEXT LOOP &bull; </span>
         </div>
       </div>
     </section>
@@ -470,14 +482,56 @@
       </div>
     </section>
 
+    <!-- Section 31: Weight Wave -->
+    <section class="panel" data-panel="weightWave">
+      <h2 class="panel-title">Weight Wave</h2>
+      <p class="panel-hint">A wave of font-weight travels through the letters — rare variable-font trick</p>
+      <div class="controls">
+        <label>
+          <span>Speed</span>
+          <input type="range" id="weightWaveSpeed" min="1" max="10" value="4" class="slider">
+          <output id="weightWaveSpeedVal">4</output>
+        </label>
+      </div>
+      <div class="headline-wrapper weight-wave-wrapper">
+        <p class="headline weight-wave-headline" id="weightWaveHeadline"></p>
+      </div>
+    </section>
+
+    <!-- Section 32: Stroke Draw -->
+    <section class="panel" data-panel="strokeDraw">
+      <h2 class="panel-title">Stroke Draw</h2>
+      <p class="panel-hint">Text outline draws itself like handwriting (SVG stroke-dasharray)</p>
+      <div class="controls">
+        <button type="button" class="btn-replay" id="strokeReplay">Replay</button>
+      </div>
+      <div class="headline-wrapper stroke-draw-wrapper">
+        <svg class="stroke-svg" viewBox="0 0 700 120" preserveAspectRatio="xMidYMid meet">
+          <text x="350" y="85" text-anchor="middle" class="stroke-text" id="strokeText">Draw Me</text>
+        </svg>
+      </div>
+    </section>
+
+    <!-- Section 33: Gravity Drop -->
+    <section class="panel" data-panel="gravityDrop">
+      <h2 class="panel-title">Gravity Drop</h2>
+      <p class="panel-hint">Click — letters fall with gravity and bounce. Click again to reset</p>
+      <div class="headline-wrapper gravity-wrapper" id="gravityWrapper">
+        <p class="headline gravity-headline" id="gravityHeadline"></p>
+      </div>
+    </section>
+
   </main>
 
   <footer class="site-footer">
-    <p>No backend · Pure frontend · 30 Advanced Effects</p>
+    <p>No backend · Pure frontend · 33 Advanced Effects</p>
   </footer>
 
   <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
   <script src="transitions.js"></script>
   <script src="app.js"></script>
+  <script src="snippets/typography.js"></script>
+  <script src="code-panel.js"></script>
+  <script src="deep-link.js"></script>
 </body>
 </html>

@@ -55,3 +55,22 @@ body {
 body.is-loaded {
   opacity: 1;
 }
+
+/* Deep-link highlight when arriving from the index (#effectId) */
+.fx-highlight {
+  animation: fx-highlight-pulse 2s ease-out;
+}
+
+@keyframes fx-highlight-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(124, 92, 255, 0.5); }
+  30% { box-shadow: 0 0 0 6px rgba(124, 92, 255, 0.25); }
+  100% { box-shadow: 0 0 0 0 rgba(124, 92, 255, 0); }
+}
+
+.panel.fx-highlight,
+.scroll-block.fx-highlight,
+.effect-block.fx-highlight,
+.cursor-block.fx-highlight,
+.layout-block.fx-highlight {
+  border-color: rgba(124, 92, 255, 0.6) !important;
+}
