@@ -775,7 +775,8 @@ document.addEventListener('click', function () {
   position: relative;
   width: 50px;
   height: 50px;
-  /* Leave headroom above for the mini buttons to rise into */
+  /* Bottom-anchor the FAB so the expanded stack has room to grow upward. In a
+     flex container use justify-content: flex-end on the parent instead. */
   margin-top: 120px;
 }
 
@@ -793,16 +794,19 @@ document.addEventListener('click', function () {
   transition: transform 0.3s;
 }
 
+/* Actions stack directly above the button (bottom: 100%) instead of being pushed
+   there by a fixed translateY(-100px). The old travel put the top mini button
+   ~188px above the container, which overflowed a 240px demo box and clipped it.
+   Stack height now: 2*40 + 8 gap + 8 offset + 50 button = 146px. */
 .fab-actions {
   position: absolute;
-  bottom: 0;
+  bottom: calc(100% + 0.5rem);
   left: 0;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   gap: 0.5rem;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 1;
 }
 
@@ -813,23 +817,29 @@ document.addEventListener('click', function () {
   background: #444;
   border: none;
   color: #fff;
+  cursor: pointer;
   opacity: 0;
-  transform: scale(0);
-  transition: all 0.3s;
+  transform: translateY(12px) scale(0.4);
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Hovering the container: + rotates into x, minis pop upward */
-.fab-container:hover .fab-main {
+/* Hovering (or tabbing into) the container: + rotates into x, minis pop upward */
+.fab-container:hover .fab-main,
+.fab-container:focus-within .fab-main {
   transform: rotate(45deg);
 }
 
-.fab-container:hover .fab-actions {
-  transform: translateY(-100px);
+.fab-container:hover .fab-mini,
+.fab-container:focus-within .fab-mini {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
-.fab-container:hover .fab-mini {
-  opacity: 1;
-  transform: scale(1);
+/* Nearest button leads, so the stack unfurls upward */
+.fab-container:hover .fab-mini:nth-child(2),
+.fab-container:focus-within .fab-mini:nth-child(2) {
+  transition-delay: 0.06s;
 }`
   },
 
@@ -851,6 +861,33 @@ document.addEventListener('click', function () {
   scroll-snap-type: x mandatory; /* native CSS snapping */
   cursor: grab;
   user-select: none;
+  /* Windows/Chrome renders a white native scrollbar here otherwise */
+  scrollbar-width: thin;
+  scrollbar-color: #7c5cff rgba(255, 255, 255, 0.08);
+}
+
+.carousel-snap::-webkit-scrollbar {
+  height: 6px;
+}
+
+.carousel-snap::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+}
+
+.carousel-snap::-webkit-scrollbar-thumb {
+  background: #7c5cff;
+  border-radius: 3px;
+}
+
+.carousel-snap::-webkit-scrollbar-thumb:hover {
+  background: #a78bfa;
+}
+
+.carousel-snap::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
 }
 
 .carousel-snap.dragging {
@@ -1126,12 +1163,15 @@ input:checked + .slider:before {
   <button class="search-btn">&#128269;</button>
   <input type="text" class="search-input" placeholder="Search...">
 </div>`,
-    css: `.search-box {
+    css: `/* Collapsed width must equal padding + button, so the icon lands dead centre.
+   An unshrinkable margin on the input would still take part in the flex line and
+   push the button off-centre inside the 40px pill. */
+.search-box {
   display: flex;
   align-items: center;
   background: #222;
   border-radius: 20px;
-  padding: 0.25rem;
+  padding: 4px;
   width: 40px; /* collapsed: just the icon */
   transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
@@ -1143,20 +1183,31 @@ input:checked + .slider:before {
 }
 
 .search-btn {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
-  font-size: 1.2rem;
+  border-radius: 50%;
+  font-size: 1rem;
+  line-height: 1;
   cursor: pointer;
-  min-width: 30px;
 }
 
 .search-input {
+  /* flex-basis 0 + min-width 0 lets it collapse fully; padding replaces the margin
+     so nothing unshrinkable is left in the line when collapsed */
+  flex: 1 1 0;
+  min-width: 0;
   background: transparent;
   border: none;
   color: #fff;
   outline: none;
-  width: 100%;
-  margin-left: 0.5rem;
+  padding: 0 0.5rem;
   opacity: 0;
   transition: opacity 0.2s;
 }
@@ -1292,14 +1343,25 @@ resetDelete.addEventListener('click', function () {
 }
 
 .badge {
+  /* em units so the offsets track the label's font-size, keeping the badge clear
+     of the cap height instead of overlapping the final glyph */
   position: absolute;
-  top: -5px;
-  right: -10px;
+  top: -0.6em;
+  right: -1.15em;
   background: #7c5cff;
   color: #fff;
   font-size: 0.7rem;
-  padding: 2px 6px;
-  border-radius: 10px;
+  font-weight: 600;
+  line-height: 1;
+  min-width: 1.25rem;
+  padding: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  /* Ring reads as a floating badge lifted off the label */
+  box-shadow: 0 0 0 2px #16161a;
+  transform-origin: center;
 }
 
 .badge.bump {
@@ -1351,12 +1413,32 @@ addBtn.addEventListener('click', function () {
   position: fixed;
   width: 8px;
   height: 12px;
+  /* Centre on the launch point via margin, not transform — the WAAPI keyframes
+     own \`transform\` and would replace any base value set here */
+  margin: -6px 0 0 -4px;
+  border-radius: 1px;
   pointer-events: none;
   z-index: 5000;
+  will-change: transform, opacity;
 }`,
-    js: `var confettiBtn = document.getElementById('confettiBtn');
+    js: `// Projectile motion with linear air drag, integrated into explicit keyframes and
+// played back with easing:'linear' — so the sampled physics *is* the motion.
+// (A single cubic-bezier can't express "decelerate horizontally while accelerating
+// downward"; an ease-out curve front-loads everything and the burst reads as a blink.)
+//
+//   dv/dt = g - k*v   ->   v(t) = (v0 - g/k)e^(-kt) + g/k
+//   x(t) = (v0x/k)(1 - e^(-kt))
+//   y(t) = ((v0y - g/k)/k)(1 - e^(-kt)) + (g/k)t
+//
+var confettiBtn = document.getElementById('confettiBtn');
 var COLORS = ['#7c5cff', '#a78bfa', '#ff006e', '#00f5d4', '#ffd60a'];
-var COUNT = 40;
+var COUNT = 60;
+
+var G = 1600;      // px/s^2 — effective gravity
+var K = 2.2;       // 1/s   — drag; terminal fall speed = G/K ~ 727 px/s
+var K_ROT = 1.2;   // 1/s   — rotational drag
+var VT = G / K;
+var STEPS = 26;    // keyframes sampled per piece
 
 confettiBtn.addEventListener('click', function () {
   var rect = confettiBtn.getBoundingClientRect();
@@ -1368,24 +1450,45 @@ confettiBtn.addEventListener('click', function () {
     piece.className = 'confetti-piece';
     piece.style.left = cx + 'px';
     piece.style.top = cy + 'px';
-    piece.style.background = COLORS[Math.floor(Math.random() * COLORS.length)];
+    piece.style.background = COLORS[i % COLORS.length];
     document.body.appendChild(piece);
 
-    // Random launch direction / speed, biased upward
-    var angle = Math.random() * Math.PI * 2;
-    var velocity = 150 + Math.random() * 250;
-    var tx = Math.cos(angle) * velocity;
-    var ty = Math.sin(angle) * velocity - 150;
-    var rot = (Math.random() - 0.5) * 720;
+    // Launch in an upward cone: theta = -PI/2 + s, so v0y is always negative.
+    var s = (Math.random() * 2 - 1) * 0.95;
+    var v0 = 700 + Math.random() * 600;
+    var v0x = v0 * Math.sin(s);
+    var v0y = -v0 * Math.cos(s);
 
-    // Web Animations API: mid-keyframe at 40% then gravity pulls down
-    piece.animate([
-      { transform: 'translate(0,0) rotate(0deg)', opacity: 1 },
-      { transform: 'translate(' + (tx * 0.6) + 'px, ' + (ty * 0.6) + 'px) rotate(' + (rot * 0.6) + 'deg)', opacity: 1, offset: 0.4 },
-      { transform: 'translate(' + tx + 'px, ' + (ty + 400) + 'px) rotate(' + rot + 'deg)', opacity: 0 }
-    ], {
-      duration: 1200 + Math.random() * 600,
-      easing: 'cubic-bezier(0.16, 1, 0.3, 1)'
+    var durS = 2.4 + Math.random() * 0.8;
+    var w0 = (Math.random() < 0.5 ? -1 : 1) * (720 + Math.random() * 1440); // deg/s
+    // ~2-6 edge-on flips over the piece's life; faster than this strobes
+    var flutter0 = (Math.random() < 0.5 ? -1 : 1) * (300 + Math.random() * 500);
+    var flutterPhase = Math.random() * Math.PI * 2;
+
+    var frames = [];
+    for (var n = 0; n < STEPS; n++) {
+      var p = n / (STEPS - 1);
+      var t = p * durS;
+      var decay = 1 - Math.exp(-K * t);
+
+      var x = (v0x / K) * decay;
+      var y = ((v0y - VT) / K) * decay + VT * t;
+
+      var rot = (w0 / K_ROT) * (1 - Math.exp(-K_ROT * t));
+      // Edge-on flip, so pieces flash thin like real paper
+      var flip = flutter0 * t + Math.sin(t * 6 + flutterPhase) * 30;
+
+      frames.push({
+        offset: p,
+        transform: 'translate3d(' + x.toFixed(1) + 'px, ' + y.toFixed(1) + 'px, 0) ' +
+                   'rotate(' + rot.toFixed(1) + 'deg) rotateY(' + flip.toFixed(1) + 'deg)',
+        opacity: p < 0.7 ? 1 : Math.max(0, 1 - (p - 0.7) / 0.3)
+      });
+    }
+
+    piece.animate(frames, {
+      duration: durS * 1000,
+      easing: 'linear'   // the physics is already baked into the offsets
     }).onfinish = function () { this.effect.target.remove(); };
   }
 });`

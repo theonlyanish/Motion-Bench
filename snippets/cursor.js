@@ -225,9 +225,12 @@ area.addEventListener('mousemove', function (e) {
   dot.style.top = (e.clientY - rect.top) + 'px';
   area.appendChild(dot);
 
+  // Animate out. The translate(-50%,-50%) must live in the keyframes — a base
+  // transform would be replaced by the animation, leaving each dot offset by
+  // half its size (down-right of the pointer) for its whole life.
   dot.animate([
-    { transform: 'scale(1)', opacity: 1 },
-    { transform: 'scale(0)', opacity: 0 }
+    { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+    { transform: 'translate(-50%, -50%) scale(0)', opacity: 0 }
   ], { duration: LIFE, easing: 'ease-out' }).onfinish = function () {
     dot.remove();
   };
@@ -1348,7 +1351,9 @@ requestAnimationFrame(tick);`
     js: `var area = document.getElementById('ropeArea');
 var line = document.querySelector('#ropeSvg polyline');
 var SEGMENTS = 18;
-var FOLLOW = 0.35; // how hard each segment chases the previous one
+// Per-segment lag in ms. Frame-rate independent, so the rope has the same length
+// and slack at 60Hz and 144Hz instead of snapping tight on fast displays.
+var SEG_TAU = 38;
 
 var pts = [];
 for (var i = 0; i < SEGMENTS; i++) pts.push({ x: 0, y: 0 });
@@ -1366,17 +1371,23 @@ area.addEventListener('mousemove', function (e) {
 });
 area.addEventListener('mouseleave', function () { inside = false; });
 
-function tick() {
+var ropeLast = 0;
+
+function tick(now) {
+  var dt = ropeLast ? Math.min(now - ropeLast, 64) : 16.7;
+  ropeLast = now;
+  var a = 1 - Math.exp(-dt / SEG_TAU);
+
   // Head is pinned to the cursor; each segment chases the one before it,
   // so the rope always trails behind instead of drifting ahead
   pts[0].x = ropeX;
   pts[0].y = ropeY;
   for (var i = 1; i < SEGMENTS; i++) {
-    pts[i].x += (pts[i - 1].x - pts[i].x) * FOLLOW;
-    pts[i].y += (pts[i - 1].y - pts[i].y) * FOLLOW;
+    pts[i].x += (pts[i - 1].x - pts[i].x) * a;
+    pts[i].y += (pts[i - 1].y - pts[i].y) * a;
   }
   line.setAttribute('points', pts.map(function (p) {
-    return p.x + ',' + p.y;
+    return p.x.toFixed(1) + ',' + p.y.toFixed(1);
   }).join(' '));
   requestAnimationFrame(tick);
 }

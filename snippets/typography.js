@@ -110,9 +110,11 @@ requestAnimationFrame(tick);`
   // ── 4. Text on Path ───────────────────────────────────
   path: {
     html: `<svg viewBox="0 0 700 200" width="100%">
-  <path id="textPath" d="M 50 100 Q 350 40 650 100" fill="none" stroke="none"/>
-  <text class="path-text">
-    <textPath href="#textPath">Text follows the path</textPath>
+  <path id="textPath" d="M 50 120 Q 350 84 650 120" fill="none" stroke="none"/>
+  <!-- text-anchor="middle" + startOffset="50%" centres the run on the curve;
+       left-aligned at 0% it hangs off the start of the path -->
+  <text class="path-text" text-anchor="middle">
+    <textPath href="#textPath" startOffset="50%">Text follows the path</textPath>
   </text>
 </svg>`,
     css: `.path-text {
@@ -120,14 +122,37 @@ requestAnimationFrame(tick);`
   font-weight: 600;
   fill: #f0f0f5;
 }`,
-    js: `// Optional: animate the curve by rewriting the path's control point
-var pathEl = document.getElementById('textPath');
-var phase = 0;
+    js: `var pathEl = document.getElementById('textPath');
 
+// viewBox is 0 0 700 200 at 1:1 scale, .path-text is 2rem (32px).
+// Glyph ink runs from baseline-capHeight to baseline+descender, so the ink's
+// centre sits above the baseline — measured at 11.3px for this face/size.
+var BASELINE = 111.3;
+var MAX_AMP = 60;
+// On a curved path the glyphs rotate with the tangent, which inflates the ink
+// box upward in proportion to the arc depth. Measured at 0.146px per unit amp.
+var TILT_COMP = 0.146;
+
+// For a quadratic Bezier the mean y over t is (y0 + y1 + y2)/3. Pinning that
+// mean (rather than the endpoints) is what keeps the text vertically centred at
+// every curve value: raising the control point by \`amp\` drops the two ends by
+// amp/2, leaving the mean unchanged.
+//   mean = (2*(m + amp/2) + (m - amp))/3 = m
+function buildPath(curveVal) {
+  var amp = (curveVal / 100) * MAX_AMP;
+  var mean = BASELINE + TILT_COMP * amp;
+  var cpY = (mean - amp).toFixed(1);
+  var endY = (mean + amp / 2).toFixed(1);
+  pathEl.setAttribute('d', 'M 50 ' + endY + ' Q 350 ' + cpY + ' 650 ' + endY);
+}
+
+buildPath(40); // curveVal runs -100..100
+
+// Optional: animate the curve by sweeping curveVal
+var phase = 0;
 function tick() {
   phase += 0.02;
-  var cpy = 100 - Math.sin(phase) * 60; // control point sways up and down
-  pathEl.setAttribute('d', 'M 50 100 Q 350 ' + cpy + ' 650 100');
+  buildPath(Math.sin(phase) * 100);
   requestAnimationFrame(tick);
 }
 requestAnimationFrame(tick);`
@@ -1107,23 +1132,54 @@ requestAnimationFrame(tick);`
 }
 
 .stroke-text.drawing {
-  animation: stroke-draw 3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  /* Near-linear pen speed — ease-out-expo drew ~90% of the outline in the first
+     third and then crawled, which reads as a glitch rather than handwriting */
+  animation: stroke-draw 2.6s cubic-bezier(0.4, 0, 0.5, 1) forwards;
 }
 
 @keyframes stroke-draw {
-  0% { stroke-dashoffset: var(--dash, 600); fill: transparent; }
-  70% { fill: transparent; }
-  100% { stroke-dashoffset: 0; fill: #f0f0f5; }
+  0% { stroke-dashoffset: var(--dash-from, 3300); fill: transparent; }
+  84% { fill: transparent; }
+  100% { stroke-dashoffset: var(--dash-to, 1020); fill: #f0f0f5; }
 }`,
     js: `var textEl = document.getElementById('strokeText');
 
+// SVG <text> has no getTotalLength(), so the glyph outline perimeter has to be
+// estimated. getComputedTextLength() is the *advance width* — not the outline —
+// so a small multiplier falls well short of it. When stroke-dasharray is shorter
+// than the real outline the pattern REPEATS, so a second dash starts partway
+// through and leaves a visible seam mid-glyph.
+//
+// Model each glyph as its bbox perimeter 2(w + h) times ~1.6 for the inner
+// counters that most letters carry:  actual ~= 3.2 * (W + N*h)
+function measure() {
+  var W = textEl.getComputedTextLength();   // total advance width
+  var h = textEl.getBBox().height;          // ink height
+  var N = (textEl.textContent.replace(/\\s/g, '') || ' ').length;
+  var unit = W + N * h;
+
+  // \`bound\` must exceed the true perimeter so the pattern can never repeat.
+  // \`draw\`  must also exceed it (an undershoot would leave letters unfinished),
+  // but only slightly, so the reveal spans almost the whole duration.
+  return { bound: Math.ceil(5.5 * unit), draw: Math.ceil(3.8 * unit) };
+}
+
 function play() {
   textEl.classList.remove('drawing');
-  var len = 600;
-  try { len = Math.ceil(textEl.getComputedTextLength() * 2.5); } catch (e) {}
-  textEl.style.strokeDasharray = len;
-  textEl.style.strokeDashoffset = len;
-  textEl.style.setProperty('--dash', len);
+
+  var bound = 3300, draw = 2280; // fallbacks if measurement throws
+  try {
+    var m = measure();
+    bound = m.bound;
+    draw = m.draw;
+  } catch (e) {}
+
+  textEl.style.strokeDasharray = bound;
+  // Reveal by walking the offset from \`bound\` down to \`bound - draw\` — never to
+  // 0, which would idle for ~40% of the duration after the outline is complete.
+  textEl.style.setProperty('--dash-from', bound);
+  textEl.style.setProperty('--dash-to', bound - draw);
+  textEl.style.strokeDashoffset = bound;
   void textEl.getBoundingClientRect(); // force reflow so the animation restarts
   textEl.classList.add('drawing');
 }

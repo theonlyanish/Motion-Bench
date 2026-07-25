@@ -152,20 +152,24 @@
     const pathCurveVal = document.getElementById('pathCurveVal');
 
     // viewBox is 0 0 700 200 at 1:1 scale, .path-text is 2rem (32px).
-    // Glyph ink runs from baseline-capHeight to baseline+descender
-    // (~0.7em up, ~0.2em down), so its visual centre sits 0.25em *above* the
-    // baseline. To centre the ink on y=100 the mean baseline must be 100 + 8.
-    const BASELINE = 108;
+    // Glyph ink runs from baseline-capHeight to baseline+descender, so the ink's
+    // centre sits above the baseline — measured at 11.3px for this face/size.
+    const BASELINE = 111.3;
     const MAX_AMP = 60;
+    // On a curved path the glyphs rotate with the tangent, which inflates the ink
+    // box upward in proportion to the arc depth. Measured at 0.146px per unit amp.
+    const TILT_COMP = 0.146;
 
     // For a quadratic Bezier the mean y over t is (y0 + y1 + y2)/3. Pinning that
-    // mean (rather than the endpoints) keeps the text optically centred at every
-    // curve value: raising the control point by `amp` drops the ends by amp/2.
-    //   mean = (2*(B + amp/2) + (B - amp))/3 = B
+    // mean (rather than the endpoints, which the old code did) is what keeps the
+    // text centred at every curve value: raising the control point by `amp` drops
+    // the two ends by amp/2, leaving the mean unchanged.
+    //   mean = (2*(m + amp/2) + (m - amp))/3 = m
     function buildPath(curveVal) {
       const amp = (curveVal / 100) * MAX_AMP;
-      const cpY = BASELINE - amp;
-      const endY = BASELINE + amp / 2;
+      const mean = BASELINE + TILT_COMP * amp;
+      const cpY = (mean - amp).toFixed(1);
+      const endY = (mean + amp / 2).toFixed(1);
       pathEl.setAttribute('d', `M 50 ${endY} Q 350 ${cpY} 650 ${endY}`);
     }
 
