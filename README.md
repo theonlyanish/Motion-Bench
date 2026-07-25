@@ -19,7 +19,7 @@ npx serve .              # Node
 python -m http.server 8000   # Python
 ```
 
-Open **`http://localhost:8000/home.html`** and you're in. (Opening `home.html` straight from disk works too, but a local server loads the fonts and scripts more cleanly.)
+Open **`http://localhost:8000/`** and you're in. (Opening `index.html` straight from disk works too, but a local server loads the fonts and scripts more cleanly.)
 
 The home page is a searchable, filterable index — hit `/` to jump to search, type a few letters, and every matching effect surfaces instantly. Click any row to land right on that effect, then pop open **View code** to copy it.
 
@@ -27,7 +27,7 @@ The home page is a searchable, filterable index — hit `/` to jump to search, t
 
 | Category   | Effects | Page            |
 |------------|:-------:|-----------------|
-| Typography |   33    | `index.html`    |
+| Typography |   33    | `typography.html` |
 | Scroll     |   33    | `scroll.html`   |
 | Gallery    |   33    | `gallery.html`  |
 | Cursor     |   22    | `cursor.html`   |
@@ -39,7 +39,7 @@ Everything from magnetic letters and variable-font waves to scroll-scrubbed reve
 
 This is meant to be forked and extended. Adding your own effect is deliberately low-ceremony:
 
-1. Drop a new `<section>` into the relevant page (e.g. `index.html`) following the pattern of the effects already there.
+1. Drop a new `<section>` into the relevant page (e.g. `typography.html`) following the pattern of the effects already there.
 2. Add its behavior to that page's script and any styles to its CSS.
 3. Add a copyable snippet in `snippets/` so **View code** has something to show.
 4. Re-sync the searchable index:
@@ -53,9 +53,9 @@ That's it — your effect shows up in search and filters on the home page. Build
 ## How it's laid out
 
 ```
-home.html / home.css / home.js   The searchable index
+index.html / home.css / home.js  The searchable home page
 effects-index.js                 Canonical list of every effect (generated)
-index.html                       Typography effects
+typography.html                  Typography effects
 scroll.html                      Scroll effects
 gallery.html                     Gallery effects
 cursor.html                      Cursor effects
