@@ -139,7 +139,11 @@
       var snippet = registry[key];
       if (!snippet) return;
       var panel = buildPanel(snippet);
-      if (panel) section.appendChild(panel);
+      if (!panel) return;
+      // If the page built a shared controls row (scroll.js does), mount into it so
+      // the toggle sits alongside the other controls instead of on its own line.
+      var mount = section.querySelector('.block-actions') || section;
+      mount.appendChild(panel);
     });
   }
 

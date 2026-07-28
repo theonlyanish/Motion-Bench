@@ -157,14 +157,18 @@
 /* typography.html panels: flows naturally after headline */
 
 /* scroll.html: blocks are centered flex rows — let the panel wrap below */
-.scroll-block {
-  flex-wrap: wrap;
+/* Inside a .block-actions row the panel is not a box of its own — `display: contents`
+   promotes its toggle and view into the row, so the toggle can sit beside Replay
+   while the view still wraps onto its own full-width line below. */
+.block-actions .code-panel {
+  display: contents;
 }
 
-.scroll-block .code-panel {
+.block-actions .code-view {
   flex: 1 1 100%;
   max-width: 700px;
-  margin: 1.5rem auto 0;
+  margin: 0.35rem auto 0;
+  text-align: left;
 }
 
 /* gallery / cursor / layout cards: panel sits at the card bottom */
