@@ -328,10 +328,15 @@ new IntersectionObserver(function (entries) {
 
   // ── 10. Parallax ──────────────────────────────────────
   parallax: {
-    html: `<!-- Make the section tall so there is room to scrub through it -->
+    html: `<!-- Make the section tall so there is room to scrub through it.
+     The bordered stage is the frame of reference — parallax is differential
+     motion, so without something STATIC to measure against, and without layers
+     moving at different rates, a lone drifting element reads as nothing. -->
 <section class="parallax-section">
-  <div class="parallax-inner">
-    <h2>Parallax</h2>
+  <div class="parallax-stage">
+    <div class="px-layer px-rules" aria-hidden="true"></div>
+    <span class="px-layer px-label">Parallax</span>
+    <h2 class="px-layer px-title">Parallax</h2>
   </div>
 </section>`,
     css: `.parallax-section {
@@ -341,18 +346,75 @@ new IntersectionObserver(function (entries) {
   justify-content: center;
 }
 
-.parallax-inner {
-  will-change: transform;
-  transition: transform 0.1s ease-out; /* smooths out scroll steps */
+.parallax-stage {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  height: 240px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  background: #16161a;
+  overflow: hidden;          /* layers clip against the fixed edge */
+  display: grid;
+  place-items: center;
 }
 
-.parallax-inner h2 {
+/* One offset, scaled per layer. Higher --depth lags further behind the scroll and
+   so reads as more distant. Keep every depth the same sign: mixing signs makes
+   layers travel toward each other and cross over, which breaks the illusion and
+   collides the text. Each layer also needs (depth * RANGE/2) of clearance from the
+   stage edge, or it clips out of the frame at the extremes of the sweep. */
+.px-layer {
+  transform: translateY(calc(var(--parallax-offset, 0px) * var(--depth, 0)));
+  will-change: transform;
+}
+
+/* Back — ruled hairlines give the eye something to read the other layers against */
+.px-rules {
+  --depth: 1;
+  position: absolute;
+  left: 0; right: 0;
+  top: -140px; bottom: -140px;   /* overshoot so it never runs out while travelling */
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.08) 0 1px,
+    transparent 1px 34px
+  );
+}
+
+/* Mid — the only in-flow child, so place-items centres it */
+.px-title {
+  --depth: 0.5;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  text-align: center;
   font-size: 2.5rem;
+  font-weight: 600;
   color: #f0f0f5;
+}
+
+/* Front — pinned near the top rather than sitting directly above the title:
+   adjacent lines can't hold different depths without colliding, since the gap
+   between them is only a few px to spend. */
+.px-label {
+  --depth: 0.15;
+  position: absolute;
+  top: 1.75rem; left: 0; right: 0;
+  z-index: 2;
+  text-align: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #6fb2d6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .px-layer { transform: none !important; }
 }`,
     js: `var section = document.querySelector('.parallax-section');
-var inner = document.querySelector('.parallax-inner');
-var RANGE = 100; // total px the inner content travels while scrolling through
+var stage = document.querySelector('.parallax-stage');
+var RANGE = 180; // px travelled by a depth-1 layer across the crossing
 
 function tick() {
   var rect = section.getBoundingClientRect();
@@ -360,8 +422,10 @@ function tick() {
   if (rect.top < vh && rect.bottom > 0) {
     // 0 when the section enters at the bottom, 1 when it leaves at the top
     var progress = (vh - rect.top) / (vh + rect.height);
+    progress = Math.max(0, Math.min(1, progress));
     var offset = (progress - 0.5) * RANGE;
-    inner.style.transform = 'translateY(' + offset + 'px)';
+    // Write once; CSS multiplies it by each layer's --depth
+    stage.style.setProperty('--parallax-offset', offset.toFixed(2) + 'px');
   }
   requestAnimationFrame(tick);
 }

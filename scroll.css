@@ -19,7 +19,16 @@
   --font-variable: 'Roboto Flex', system-ui, sans-serif;
   --radius: 12px;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  /* Reveal curve. This was also (0.16, 1, 0.3, 1) — an *expo* out, which finishes
+     90% of its travel in the first third of the duration. That made a 0.6s reveal
+     read as roughly 200ms with a long invisible tail. easeOutQuad spreads the
+     motion across the duration (90% at 68%) while still starting promptly. */
+  --ease-out: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  /* Reveal durations — tune these four to taste. */
+  --dur-quick: 0.8s;    /* per-item staggers */
+  --dur: 1s;            /* standard reveals */
+  --dur-slow: 1.3s;     /* long-travel reveals */
+  --dur-ambient: 1.6s;  /* gradient / colour drifts */
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
@@ -103,44 +112,94 @@ body {
   padding: 0 1.5rem 4rem;
 }
 
+/* Lead-in. 40vh pushed the first effect's centre to ~0.79 of the viewport, so the
+   page opened on the header and empty space. 14vh puts it just below centre —
+   visible on load, with the header still above it and room to scroll. */
 .scroll-spacer {
-  height: 40vh;
-  min-height: 200px;
+  height: 14vh;
+  min-height: 80px;
 }
 
-.scroll-spacer-bottom { height: 20vh; }
+/* Trailing runway for the last block, which is a scroll-scrubbed effect and needs
+   room to finish. Together with the footer and margins this must leave >= 15vh below
+   the block — see ZOOM_SPAN in scroll.js. Don't shrink either without checking the
+   other, or Zoom Through silently stops completing on tall viewports. */
+.scroll-spacer-bottom { height: 10vh; min-height: 48px; }
 
 .scroll-block {
   min-height: 35vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-bottom: 4rem;
   position: relative;
 }
 
+/* Single centred controls row: Replay + the code toggle sit side by side, and the
+   expanded code view wraps onto its own full-width line beneath them. */
+.block-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  margin-top: 1.75rem;
+}
+
 .replay-btn {
-  position: absolute;
-  bottom: -1.5rem;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 0.4rem 0.9rem;
-  font-size: 0.8rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.85rem;
+  font-family: inherit;
+  font-size: 0.78rem;
   font-weight: 600;
+  letter-spacing: 0.02em;
   color: var(--text-primary);
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid var(--border-strong);
   border-radius: 8px;
   cursor: pointer;
-  transition: background 0.2s, transform 0.15s;
+  transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.12s ease-out;
+}
+
+.replay-btn svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
 }
 
 .replay-btn:hover {
   background: rgba(255, 255, 255, 0.09);
-  transform: translateX(-50%) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Press feedback belongs on :active — it's a state, and it has a transition on the
+   base rule so it eases both on press and on release. */
+.replay-btn:active {
+  transform: scale(0.96);
+}
+
+/* The icon spin does NOT: it's a one-shot response to a click. As an :active
+   transition it only advanced while the button was held, then snapped back on
+   release (the transition was declared inside :active, so nothing animated the
+   return). A keyframe animation always runs to completion. */
+.replay-btn.spinning svg {
+  animation: replay-spin 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes replay-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
 }
 
 .scroll-block-tall { min-height: 60vh; }
+
+/* Sticky Stack's cards are all position:absolute, so the actions row is the only
+   in-flow child — without this it would centre itself right on top of the cards. */
+.sticky-stack-wrapper .block-actions { margin-top: auto; }
 
 /* During a replay reset, snap everything back instantly (no reverse animation) */
 .scroll-block.replay-reset,
@@ -170,53 +229,50 @@ body {
 }
 
 /* ─── Animation states (initial) ────────────────────────────────────── */
-[data-anim="fade"] .scroll-content { opacity: 0; transition: opacity 0.7s var(--ease-out); }
-[data-anim="slideUp"] .scroll-content { opacity: 0; transform: translateY(60px); transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out); }
-[data-anim="slideLeft"] .scroll-content { opacity: 0; transform: translateX(80px); transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out); }
-[data-anim="slideRight"] .scroll-content { opacity: 0; transform: translateX(-80px); transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out); }
-[data-anim="scaleUp"] .scroll-content { opacity: 0; transform: scale(0.7); transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out); }
-[data-anim="rotateIn"] .scroll-content { opacity: 0; transform: rotate(-12deg) scale(0.9); transition: opacity 0.6s var(--ease-out), transform 0.7s var(--ease-out); }
-[data-anim="blurSharp"] .blur-content { opacity: 0.6; filter: blur(12px); transition: opacity 0.7s var(--ease-out), filter 0.7s var(--ease-out); }
-[data-anim="skewIn"] .scroll-content { opacity: 0; transform: skewX(-15deg); transition: opacity 0.6s var(--ease-out), transform 0.6s var(--ease-out); }
-[data-anim="clipReveal"] .clip-content { clip-path: inset(0 100% 0 0); transition: clip-path 0.8s var(--ease-out); }
-[data-anim="flip3d"] .flip-content { transform: perspective(600px) rotateY(-90deg); opacity: 0; transition: transform 0.7s var(--ease-out), opacity 0.5s; }
-[data-anim="bounceIn"] .scroll-content { opacity: 0; transform: translateY(80px) scale(0.8); transition: opacity 0.5s, transform 0.8s var(--ease-bounce); }
-[data-anim="underlineGrow"] .underline-text { background-size: 0% 2px; transition: background-size 0.8s var(--ease-out); }
-[data-anim="letterSpacing"] .letter-spacing-text { letter-spacing: 0.5em; opacity: 0; transition: letter-spacing 0.8s var(--ease-out), opacity 0.6s; }
-[data-anim="slideFade"] .scroll-content { opacity: 0; transform: translateX(-50px); transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out); }
-[data-anim="scaleRotate"] .scroll-content { opacity: 0; transform: scale(0.5) rotate(-20deg); transition: opacity 0.6s var(--ease-out), transform 0.7s var(--ease-out); }
-[data-anim="gradientShift"] .gradient-text { background-position: 100% 50%; transition: background-position 1s var(--ease-out); }
+[data-anim="fade"] .scroll-content { opacity: 0; transition: opacity var(--dur) var(--ease-out); }
+[data-anim="slideUp"] .scroll-content { opacity: 0; transform: translateY(60px); transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out); }
+[data-anim="slideLeft"] .scroll-content { opacity: 0; transform: translateX(80px); transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out); }
+[data-anim="slideRight"] .scroll-content { opacity: 0; transform: translateX(-80px); transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out); }
+[data-anim="scaleUp"] .scroll-content { opacity: 0; transform: scale(0.7); transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out); }
+[data-anim="rotateIn"] .scroll-content { opacity: 0; transform: rotate(-12deg) scale(0.9); transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out); }
+[data-anim="blurSharp"] .blur-content { opacity: 0.6; filter: blur(12px); transition: opacity var(--dur) var(--ease-out), filter var(--dur) var(--ease-out); }
+[data-anim="skewIn"] .scroll-content { opacity: 0; transform: skewX(-15deg); transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out); }
+[data-anim="clipReveal"] .clip-content { clip-path: inset(0 100% 0 0); transition: clip-path var(--dur-slow) var(--ease-out); }
+[data-anim="flip3d"] .flip-content { transform: perspective(600px) rotateY(-90deg); opacity: 0; transition: transform var(--dur) var(--ease-out), opacity var(--dur-quick); }
+[data-anim="bounceIn"] .scroll-content { opacity: 0; transform: translateY(80px) scale(0.8); transition: opacity var(--dur-quick), transform var(--dur-slow) var(--ease-bounce); }
+[data-anim="underlineGrow"] .underline-text { background-size: 0% 2px; transition: background-size var(--dur-slow) var(--ease-out); }
+[data-anim="letterSpacing"] .letter-spacing-text { letter-spacing: 0.5em; opacity: 0; transition: letter-spacing var(--dur-slow) var(--ease-out), opacity var(--dur); }
+[data-anim="slideFade"] .scroll-content { opacity: 0; transform: translateX(-50px); transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out); }
+[data-anim="scaleRotate"] .scroll-content { opacity: 0; transform: scale(0.5) rotate(-20deg); transition: opacity var(--dur) var(--ease-out), transform var(--dur) var(--ease-out); }
+[data-anim="gradientShift"] .gradient-text { background-position: 100% 50%; transition: background-position var(--dur-ambient) var(--ease-out); }
 
 /* Stagger */
 [data-anim="stagger"] .s-char {
   display: inline-block;
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.4s var(--ease-out), transform 0.4s var(--ease-out);
+  transition: opacity var(--dur-quick) var(--ease-out), transform var(--dur-quick) var(--ease-out);
 }
 
 [data-anim="stagger"] .s-char { transition-delay: 0ms; }
 [data-anim="stagger"] .s-char:nth-child(1) { transition-delay: 0ms; }
-[data-anim="stagger"] .s-char:nth-child(2) { transition-delay: 50ms; }
-[data-anim="stagger"] .s-char:nth-child(3) { transition-delay: 100ms; }
-[data-anim="stagger"] .s-char:nth-child(4) { transition-delay: 150ms; }
-[data-anim="stagger"] .s-char:nth-child(5) { transition-delay: 200ms; }
-[data-anim="stagger"] .s-char:nth-child(6) { transition-delay: 250ms; }
-[data-anim="stagger"] .s-char:nth-child(7) { transition-delay: 300ms; }
+[data-anim="stagger"] .s-char:nth-child(2) { transition-delay: 80ms; }
+[data-anim="stagger"] .s-char:nth-child(3) { transition-delay: 160ms; }
+[data-anim="stagger"] .s-char:nth-child(4) { transition-delay: 240ms; }
+[data-anim="stagger"] .s-char:nth-child(5) { transition-delay: 320ms; }
+[data-anim="stagger"] .s-char:nth-child(6) { transition-delay: 400ms; }
+[data-anim="stagger"] .s-char:nth-child(7) { transition-delay: 480ms; }
 
 /* Split */
 .split-content h2 { margin: 0; }
 
 .split-left, .split-right {
   display: inline-block;
-  transition: transform 0.7s var(--ease-out);
+  transition: transform var(--dur) var(--ease-out);
 }
 
 [data-anim="splitConverge"] .split-left { transform: translateX(-80px); }
 [data-anim="splitConverge"] .split-right { transform: translateX(80px); }
-
-/* Parallax */
-.parallax-inner { will-change: transform; }
 
 /* Underline */
 .underline-text {
@@ -262,12 +318,85 @@ body {
 [data-anim].in-view .split-right { transform: translateX(0); }
 [data-anim].in-view .s-char { opacity: 1; transform: translateY(0); }
 
-/* Parallax: driven by scroll progress */
-.parallax-inner {
-  transition: transform 0.1s ease-out;
+/* ── Parallax ───────────────────────────────────────────────────────────────
+   Parallax is *differential* motion, so it needs two things this demo previously
+   lacked: something STATIC to measure against, and layers travelling at different
+   rates. A single element drifting 50px against an empty background reads as
+   nothing at all — there was no frame of reference.
+
+   JS writes one --parallax-offset onto the stage; each layer scales it by its own
+   --depth. Higher depth = lags further behind the scroll = reads as more distant.
+
+   All depths are positive on purpose. Mixing signs makes layers travel toward each
+   other and cross over, which both breaks the depth illusion and collides the text;
+   with same-sign depths their stacking order is preserved for the whole sweep.
+   Each layer also needs (depth * RANGE/2) of clearance from the stage edge or it
+   clips — the label at depth 0.15 moves 13.5px, well inside its 28px inset. */
+.parallax-stage {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  height: 240px;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  background: var(--bg-panel);
+  overflow: hidden;
+  display: grid;
+  place-items: center;
 }
 
-.parallax-inner.parallax-active { transform: translateY(var(--parallax-offset, 0)); }
+.px-layer {
+  transform: translateY(calc(var(--parallax-offset, 0px) * var(--depth, 0)));
+  will-change: transform;
+}
+
+/* Back — ruled hairlines. Horizontal rules make vertical travel unmistakable,
+   and they're what the eye actually reads the other layers against. Inset beyond
+   the stage on both sides so the layer never runs out while it travels. */
+.px-rules {
+  --depth: 1;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -140px;
+  bottom: -140px;
+  background: repeating-linear-gradient(
+    to bottom,
+    var(--border-subtle) 0 1px,
+    transparent 1px 34px
+  );
+}
+
+/* Mid — the heading, lagging about half as much as the rules behind it.
+   The only in-flow child, so the stage's place-items centres it. */
+.px-title {
+  --depth: 0.5;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  text-align: center;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+/* Front — barely lags, so it reads as closest to the viewer. Pinned near the top
+   rather than sitting directly above the title: adjacent lines can't hold different
+   depths without colliding, since the gap between them is only a few px to spend. */
+.px-label {
+  --depth: 0.15;
+  position: absolute;
+  top: 1.75rem;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  margin: 0;
+  text-align: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .px-layer { transform: none !important; }
+}
 
 /* 21. Sticky Stack */
 .sticky-stack-wrapper {
@@ -282,7 +411,7 @@ body {
   border: 1px solid var(--border-subtle);
   border-radius: 8px;
   display: flex; align-items: center; justify-content: center;
-  transition: transform 0.8s var(--ease-out), opacity 0.8s;
+  transition: transform var(--dur-slow) var(--ease-out), opacity var(--dur-slow);
   opacity: 0;
   transform: translateY(100px) scale(0.8);
 }
@@ -291,8 +420,8 @@ body {
 .card-3 { z-index: 3; background: #444; }
 
 [data-anim="stickyStack"].in-view .card-1 { opacity: 1; transform: translateY(-40px) scale(0.9); }
-[data-anim="stickyStack"].in-view .card-2 { opacity: 1; transform: translateY(-20px) scale(0.95); transition-delay: 0.1s; }
-[data-anim="stickyStack"].in-view .card-3 { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.2s; }
+[data-anim="stickyStack"].in-view .card-2 { opacity: 1; transform: translateY(-20px) scale(0.95); transition-delay: 0.16s; }
+[data-anim="stickyStack"].in-view .card-3 { opacity: 1; transform: translateY(0) scale(1); transition-delay: 0.32s; }
 
 /* 22. Horizontal Scroll (Simulated) */
 .horizontal-scroll-wrapper { overflow: hidden; }
@@ -300,7 +429,7 @@ body {
   display: flex; gap: 1rem;
   transform: translateX(100px);
   opacity: 0;
-  transition: transform 1s var(--ease-out), opacity 1s;
+  transition: transform var(--dur-ambient) var(--ease-out), opacity var(--dur-ambient);
 }
 .h-item {
   width: 120px; height: 120px;
@@ -325,7 +454,7 @@ body {
   position: absolute; top: 0; left: 0; width: 100%; height: 100%;
   background: var(--accent);
   transform: translateX(0);
-  transition: transform 0.8s var(--ease-out);
+  transition: transform var(--dur-slow) var(--ease-out);
 }
 [data-anim="imgReveal"].in-view .img-reveal-curtain { transform: translateX(100%); }
 
@@ -335,7 +464,7 @@ body {
   background-repeat: no-repeat;
   background-size: 0% 100%;
   background-position: 0 0;
-  transition: background-size 0.8s 0.2s var(--ease-out);
+  transition: background-size var(--dur-slow) 0.3s var(--ease-out);
   padding: 0 4px;
 }
 [data-anim="textHighlight"].in-view .marker { background-size: 100% 100%; }
@@ -351,12 +480,12 @@ body {
   border: 1px solid var(--border-subtle);
   opacity: 0;
   transform: rotateX(45deg) translateY(50px);
-  transition: transform 0.8s var(--ease-out), opacity 0.8s;
+  transition: transform var(--dur-slow) var(--ease-out), opacity var(--dur-slow);
 }
 [data-anim="perspectiveGrid"].in-view .grid-item { opacity: 1; transform: rotateX(0) translateY(0); }
-[data-anim="perspectiveGrid"].in-view .grid-item:nth-child(2) { transition-delay: 0.1s; }
-[data-anim="perspectiveGrid"].in-view .grid-item:nth-child(3) { transition-delay: 0.2s; }
-[data-anim="perspectiveGrid"].in-view .grid-item:nth-child(4) { transition-delay: 0.3s; }
+[data-anim="perspectiveGrid"].in-view .grid-item:nth-child(2) { transition-delay: 0.16s; }
+[data-anim="perspectiveGrid"].in-view .grid-item:nth-child(3) { transition-delay: 0.32s; }
+[data-anim="perspectiveGrid"].in-view .grid-item:nth-child(4) { transition-delay: 0.48s; }
 
 /* 27. Circle Expand */
 .circle-expand {
@@ -365,7 +494,7 @@ body {
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   transform: scale(0);
-  transition: transform 0.8s var(--ease-bounce);
+  transition: transform var(--dur-slow) var(--ease-bounce);
 }
 [data-anim="circleExpand"].in-view .circle-expand { transform: scale(1); }
 
@@ -376,13 +505,13 @@ body {
   border-bottom: 1px solid var(--border-subtle);
   opacity: 0;
   transform: translateX(-20px);
-  transition: opacity 0.5s, transform 0.5s;
+  transition: opacity var(--dur-quick) var(--ease-out), transform var(--dur-quick) var(--ease-out);
 }
 [data-anim="staggerList"].in-view li { opacity: 1; transform: translateX(0); }
 [data-anim="staggerList"].in-view li:nth-child(1) { transition-delay: 0ms; }
-[data-anim="staggerList"].in-view li:nth-child(2) { transition-delay: 100ms; }
-[data-anim="staggerList"].in-view li:nth-child(3) { transition-delay: 200ms; }
-[data-anim="staggerList"].in-view li:nth-child(4) { transition-delay: 300ms; }
+[data-anim="staggerList"].in-view li:nth-child(2) { transition-delay: 160ms; }
+[data-anim="staggerList"].in-view li:nth-child(3) { transition-delay: 320ms; }
+[data-anim="staggerList"].in-view li:nth-child(4) { transition-delay: 480ms; }
 
 /* 29. Video Play */
 .video-placeholder {
@@ -391,12 +520,12 @@ body {
   color: #fff;
   display: flex; align-items: center; justify-content: center;
   border: 1px solid #333;
-  transition: border-color 0.5s;
+  transition: border-color var(--dur-quick) var(--ease-out), color var(--dur-quick) var(--ease-out);
 }
 [data-anim="videoScroll"].in-view .video-placeholder { border-color: var(--accent); color: var(--accent); }
 
 /* 30. Color Morph */
-[data-anim="colorMorph"] { transition: background 1s; border-radius: var(--radius); }
+[data-anim="colorMorph"] { transition: background var(--dur-ambient); border-radius: var(--radius); }
 [data-anim="colorMorph"].in-view { background: rgba(124, 92, 255, 0.1); }
 
 /* 31. Velocity Skew — transform driven by scroll speed in JS */

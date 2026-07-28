@@ -9,7 +9,7 @@
 
   const blocks = document.querySelectorAll('.scroll-block');
   const parallaxBlock = document.querySelector('[data-anim="parallax"]');
-  const parallaxInner = document.querySelector('.parallax-inner');
+  const parallaxStage = document.querySelector('.parallax-stage');
   const twChars = document.querySelector('.tw-chars');
 
   const observerOptions = {
@@ -124,16 +124,41 @@
     'zoomThrough'    // scale/opacity mapped from scroll progress
   ]);
 
-  // Add replay buttons
+  const REPLAY_ICON =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" ' +
+    'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+    '<path d="M21 12a9 9 0 1 1-3.2-6.9"/><path d="M21 3v5h-5"/></svg>';
+
+  // Every block gets one centred actions row. code-panel.js mounts its panel here
+  // too (it looks for .block-actions first), so Replay and View code share a single
+  // row instead of each being positioned independently.
   blocks.forEach((block) => {
+    const actions = document.createElement('div');
+    actions.className = 'block-actions';
+    block.appendChild(actions);
+
     if (SCRUB_ANIMS.has(block.dataset.anim)) return;
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'replay-btn';
-    btn.textContent = 'Replay';
+    btn.innerHTML = REPLAY_ICON + '<span>Replay</span>';
     btn.setAttribute('aria-label', 'Replay animation');
-    btn.addEventListener('click', () => replayBlock(block));
-    block.appendChild(btn);
+
+    btn.addEventListener('click', () => {
+      if (!reduced()) {
+        // Drop the class and force a reflow before re-adding, so clicking again
+        // mid-spin restarts the animation instead of being ignored
+        btn.classList.remove('spinning');
+        void btn.offsetWidth;
+        btn.classList.add('spinning');
+      }
+      replayBlock(block);
+    });
+    btn.addEventListener('animationend', (e) => {
+      if (e.animationName === 'replay-spin') btn.classList.remove('spinning');
+    });
+
+    actions.appendChild(btn);
   });
 
   // ── Scrub effects ───────────────────────────────────────────────────────
@@ -151,9 +176,30 @@
   // Fraction of the way through the window-crossing span:
   // 0 when the element's top touches the bottom of the viewport,
   // 1 when its bottom clears the top of the viewport.
+  // Right for a continuous offset like parallax, which has no "finish" state.
   function crossProgress(rect, vh) {
     return clamp01((vh - rect.top) / (vh + rect.height));
   }
+
+  // Wrong, though, for an effect that has a climax. crossProgress only reaches 1.0
+  // once the block has fully exited the top of the viewport, so Zoom Through's peak
+  // scale and its whole fade-out (which starts at 0.75) played off-screen — and on
+  // the last block on the page there was no runway left to reach it at all: it
+  // capped at 0.693, so it never faded and only ever hit 1.57 of its 2.0 scale.
+  // Completing over ZOOM_SPAN of a viewport instead puts the climax on screen with
+  // the text near centre, and needs far less trailing room than a full viewport.
+  //
+  // The block is 60vh (.scroll-block-tall), so the room required below it is
+  // vh * (ZOOM_SPAN - 0.6). That scales with the viewport while the trailing room is
+  // mostly fixed px (footer + margins), so keep ZOOM_SPAN low enough that the
+  // requirement stays satisfiable on tall screens: 0.75 needs only 15vh. At 0.85 it
+  // needed 25vh and stopped fitting past ~1600px tall.
+  const ZOOM_SPAN = 0.75;
+  function zoomProgress(rect, vh) {
+    return clamp01((vh - rect.top) / (vh * ZOOM_SPAN));
+  }
+
+  const PARALLAX_RANGE = 180;
 
   let lastScrollY = window.scrollY;
   let skew = 0;
@@ -161,16 +207,17 @@
   function tickScrub() {
     const vh = window.innerHeight;
 
-    // Parallax. Note: `in-view` is owned by the IntersectionObserver — the old
-    // loop re-added it every frame, which silently undid replayBlock()'s reset.
-    if (parallaxBlock && parallaxInner) {
+    // Parallax. One offset drives every layer; each scales it by its own --depth in
+    // CSS, so the differential the eye reads as depth comes for free.
+    // Note: `in-view` is owned by the IntersectionObserver — the old loop re-added
+    // it every frame, which silently undid replayBlock()'s reset.
+    if (parallaxBlock && parallaxStage) {
       const rect = parallaxBlock.getBoundingClientRect();
       if (rect.top < vh && rect.bottom > 0) {
-        parallaxInner.classList.add('parallax-active');
-        const offset = (crossProgress(rect, vh) - 0.5) * 100;
-        parallaxInner.style.setProperty('--parallax-offset', `${offset.toFixed(2)}px`);
-      } else {
-        parallaxInner.classList.remove('parallax-active');
+        // Total travel of a depth-1 layer across the crossing. The spread between
+        // the back layer (1) and the front tag (-0.45) is 1.45x this.
+        const offset = (crossProgress(rect, vh) - 0.5) * PARALLAX_RANGE;
+        parallaxStage.style.setProperty('--parallax-offset', `${offset.toFixed(2)}px`);
       }
     }
 
@@ -195,7 +242,7 @@
     // 33. Zoom Through
     if (zoomText && zoomBlock) {
       const rect = zoomBlock.getBoundingClientRect();
-      const progress = crossProgress(rect, vh);
+      const progress = zoomProgress(rect, vh);
       const scale = 0.6 + progress * 1.4;
       zoomText.style.transform = `scale(${scale.toFixed(3)})`;
       zoomText.style.opacity = progress < 0.75 ? 1 : Math.max(0, 1 - (progress - 0.75) * 4);

@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Scroll Animations — Animation Playground</title>
+  <title>Scroll Animations — Motion Bench</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="scroll.css">
+  <link rel="stylesheet" href="nav-tooltips.css">
   <link rel="stylesheet" href="transitions.css">
   <link rel="stylesheet" href="code-panel.css">
 </head>
@@ -131,9 +133,12 @@
 
     <!-- 10. Parallax -->
     <section class="scroll-block scroll-block-tall" data-anim="parallax">
-      <div class="scroll-content parallax-inner">
-        <span class="anim-label">Parallax</span>
-        <h2>Parallax</h2>
+      <!-- The bordered stage is the frame of reference. Layers clip against its
+           fixed edge, which is what makes the differing rates readable. -->
+      <div class="parallax-stage">
+        <div class="px-layer px-rules" aria-hidden="true"></div>
+        <span class="px-layer px-label anim-label">Parallax</span>
+        <h2 class="px-layer px-title">Parallax</h2>
       </div>
     </section>
 
@@ -329,7 +334,7 @@
   </main>
 
   <footer class="scroll-footer">
-    <p>33 scroll-triggered animations · Intersection Observer + scroll-scrubbed effects</p>
+    <p>33 Scroll Animations · Pure JS &amp; CSS</p>
     <p class="site-credit">Scroll Animations by <a href="https://anishkapse.com/" target="_blank" rel="noopener noreferrer">Anish Kapse</a></p>
   </footer>
 
