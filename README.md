@@ -1,4 +1,4 @@
-# Animation Playground
+# Motion Bench
 
 **144 copy-paste animation effects** for typography, scroll, galleries, cursors, and layout — built with nothing but plain HTML, CSS, and JavaScript. No build step, no framework, no backend. Every effect ships with its own copyable, standalone code.
 

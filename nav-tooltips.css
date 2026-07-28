@@ -1,0 +1,56 @@
+/* Shared labels for the icon-only section navigation. */
+.nav-btn {
+  position: relative;
+}
+
+.nav-btn::after {
+  content: attr(aria-label);
+  position: absolute;
+  top: calc(100% + 0.65rem);
+  left: 50%;
+  z-index: 2;
+  padding: 0.38rem 0.55rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  background: rgba(13, 13, 15, 0.94);
+  color: #f3f3f5;
+  font-family: "Geist", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translate(-50%, -4px);
+  transition:
+    opacity 140ms ease,
+    transform 140ms ease,
+    visibility 140ms;
+}
+
+.nav-btn:last-child::after {
+  right: 0;
+  left: auto;
+  transform: translateY(-4px);
+}
+
+.nav-btn:hover::after,
+.nav-btn:focus-visible::after {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
+}
+
+.nav-btn:last-child:hover::after,
+.nav-btn:last-child:focus-visible::after {
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nav-btn::after {
+    transition: none;
+  }
+}
