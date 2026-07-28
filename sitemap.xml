@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://motion-bench.vercel.app/</loc><priority>1.0</priority></url>
+  <url><loc>https://motion-bench.vercel.app/typography.html</loc><priority>0.8</priority></url>
+  <url><loc>https://motion-bench.vercel.app/scroll.html</loc><priority>0.8</priority></url>
+  <url><loc>https://motion-bench.vercel.app/gallery.html</loc><priority>0.8</priority></url>
+  <url><loc>https://motion-bench.vercel.app/cursor.html</loc><priority>0.8</priority></url>
+  <url><loc>https://motion-bench.vercel.app/layout.html</loc><priority>0.8</priority></url>
+</urlset>

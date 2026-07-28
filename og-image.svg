@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#0d0d0f"/>
+  <!-- subtle top hairline grid accent -->
+  <g stroke="rgba(255,255,255,0.05)" stroke-width="1">
+    <line x1="0" y1="120" x2="1200" y2="120"/>
+    <line x1="0" y1="510" x2="1200" y2="510"/>
+  </g>
+  <g font-family="Geist, 'Segoe UI', system-ui, -apple-system, sans-serif">
+    <!-- eyebrow -->
+    <text x="100" y="175" fill="#7c7c86" font-size="26" font-weight="600" letter-spacing="6">144 COPY-PASTE EFFECTS</text>
+    <!-- wordmark -->
+    <text x="96" y="330" fill="#f3f3f5" font-size="150" font-weight="600" letter-spacing="-5">Motion<tspan fill="#b5b5bd">Bench</tspan></text>
+    <!-- tagline -->
+    <text x="100" y="430" fill="#b5b5bd" font-size="34" font-weight="400">Typography · Scroll · Gallery · Cursor · Layout</text>
+    <text x="100" y="480" fill="#7c7c86" font-size="28" font-weight="400">Pure HTML, CSS &amp; JavaScript — every effect copyable</text>
+    <!-- footer credit -->
+    <text x="100" y="565" fill="#55555f" font-size="24" font-weight="500">motion-bench.vercel.app</text>
+  </g>
+</svg>
