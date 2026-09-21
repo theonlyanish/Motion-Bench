@@ -8,7 +8,7 @@ window.EFFECTS_INDEX = [
     "name": "Variable Font Axes",
     "cat": "typography",
     "page": "/typography",
-    "desc": "",
+    "desc": "Drag the sliders to change weight, width and slant live using font-variation-settings on a variable font. One font file, every style in between — no extra requests.",
     "tags": [
       "variable",
       "font",
@@ -21,7 +21,7 @@ window.EFFECTS_INDEX = [
     "name": "Wave Distort",
     "cat": "typography",
     "page": "/typography",
-    "desc": "",
+    "desc": "Each character bobs on a sine wave with a phase offset from its neighbour, producing a rolling distortion. Pure CSS transforms driven by a tiny per-letter delay.",
     "tags": [
       "wave",
       "distort",
@@ -33,7 +33,7 @@ window.EFFECTS_INDEX = [
     "name": "Noise Jitter",
     "cat": "typography",
     "page": "/typography",
-    "desc": "",
+    "desc": "Letters twitch with small random offsets on every frame, like a shaky signal. Uses requestAnimationFrame and translate, so it stays smooth and never triggers layout.",
     "tags": [
       "noise",
       "jitter",
@@ -45,7 +45,7 @@ window.EFFECTS_INDEX = [
     "name": "Text on Path",
     "cat": "typography",
     "page": "/typography",
-    "desc": "",
+    "desc": "Text flows along an SVG curve with textPath, then slides along it as the offset animates. Great for badges, seals and circular labels.",
     "tags": [
       "text",
       "on",
@@ -95,7 +95,7 @@ window.EFFECTS_INDEX = [
     "name": "Glitch",
     "cat": "typography",
     "page": "/typography",
-    "desc": "",
+    "desc": "Two clipped copies of the headline flicker over the original with clip-path and small horizontal shifts, giving a digital glitch look. Toggle the intensity to compare.",
     "tags": [
       "glitch",
       "typography"
@@ -106,7 +106,7 @@ window.EFFECTS_INDEX = [
     "name": "Scale Wave",
     "cat": "typography",
     "page": "/typography",
-    "desc": "",
+    "desc": "Characters scale up and back down in sequence, sending a pulse across the word. A staggered CSS keyframe with no JavaScript required.",
     "tags": [
       "scale",
       "wave",
@@ -409,7 +409,7 @@ window.EFFECTS_INDEX = [
     "name": "Fade In",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "The simplest scroll reveal: content starts transparent and fades in when it enters the viewport. Uses IntersectionObserver to add a class, and CSS handles the transition.",
     "tags": [
       "fade",
       "in",
@@ -421,7 +421,7 @@ window.EFFECTS_INDEX = [
     "name": "Slide Up",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "Content rises into place while fading in, the most common entrance for cards and sections. A translateY offset plus opacity, both transitioned on an ease-out curve.",
     "tags": [
       "slide",
       "up",
@@ -433,7 +433,7 @@ window.EFFECTS_INDEX = [
     "name": "Slide From Right",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "Enters from the right edge and settles in, a good fit for alternating two-column layouts. translateX with an ease-out so it decelerates into position.",
     "tags": [
       "slide",
       "from",
@@ -447,7 +447,7 @@ window.EFFECTS_INDEX = [
     "name": "Slide From Left",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "Enters from the left edge and settles in, the mirror of Slide From Right. Pair the two for zig-zag content that reads left to right.",
     "tags": [
       "slide",
       "from",
@@ -461,7 +461,7 @@ window.EFFECTS_INDEX = [
     "name": "Scale Up",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "Content grows from slightly smaller than final size while fading in, which draws focus without feeling like a bounce. A single scale transform on an ease-out.",
     "tags": [
       "scale",
       "up",
@@ -473,7 +473,7 @@ window.EFFECTS_INDEX = [
     "name": "Rotate In",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "Content swings in with a small rotation that straightens out as it lands. A rotate plus translate combo that adds character without heavy motion.",
     "tags": [
       "rotate",
       "in",
@@ -485,7 +485,7 @@ window.EFFECTS_INDEX = [
     "name": "Staggered Letters",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "Each letter rises and fades in a beat after the one before it, spelling the word out. Per-character spans with an incrementing transition-delay.",
     "tags": [
       "staggered",
       "letters",
@@ -498,7 +498,7 @@ window.EFFECTS_INDEX = [
     "name": "Blur to Sharp",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "Content comes into focus as it enters view, starting blurred and transparent. A CSS filter blur that transitions to zero; keep the radius small for performance.",
     "tags": [
       "blur",
       "to",
@@ -511,7 +511,7 @@ window.EFFECTS_INDEX = [
     "name": "Skew In",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "Content slides in with a skew that relaxes to upright, like it is catching up to itself. A skewX plus translateX transition on one element.",
     "tags": [
       "skew",
       "in",
@@ -523,7 +523,7 @@ window.EFFECTS_INDEX = [
     "name": "Parallax",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "Layers move at different rates as you scroll, so the label, title and background rules separate in depth. Read from scroll position and applied with translateY in requestAnimationFrame.",
     "tags": [
       "parallax",
       "scroll"
@@ -534,7 +534,7 @@ window.EFFECTS_INDEX = [
     "name": "Clip Reveal",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "Content is unmasked from one edge as it enters view, as if a curtain is pulled back. A clip-path inset that animates to zero, leaving the element itself in place.",
     "tags": [
       "clip",
       "reveal",
@@ -546,7 +546,7 @@ window.EFFECTS_INDEX = [
     "name": "3D Flip",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "Content flips around its vertical axis into view with a perspective transform. A rotateY on a perspective parent gives real depth to a card entrance.",
     "tags": [
       "3d",
       "flip",
@@ -559,7 +559,7 @@ window.EFFECTS_INDEX = [
     "name": "Bounce In",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "Content drops in and overshoots before settling, using a spring-like cubic-bezier. Good for playful UI; keep it to one or two elements per screen.",
     "tags": [
       "bounce",
       "in",
@@ -571,7 +571,7 @@ window.EFFECTS_INDEX = [
     "name": "Split Converge",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "Two halves of the headline slide in from opposite sides and meet in the middle. Independent translateX transitions on a left and right span.",
     "tags": [
       "split",
       "converge",
@@ -583,7 +583,7 @@ window.EFFECTS_INDEX = [
     "name": "Underline Grow",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "An underline draws itself across the text when the heading scrolls into view. A background-image gradient whose background-size animates from zero to full width.",
     "tags": [
       "underline",
       "grow",
@@ -595,7 +595,7 @@ window.EFFECTS_INDEX = [
     "name": "Letter Spacing",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "Letters start spread wide and tighten into normal spacing as the text fades in. Animates letter-spacing, a cheap way to add a typographic entrance.",
     "tags": [
       "letter",
       "spacing",
@@ -607,7 +607,7 @@ window.EFFECTS_INDEX = [
     "name": "Slide + Fade",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "A combined slide and fade, tuned so both finish together. This is the workhorse reveal for lists, cards and section intros.",
     "tags": [
       "slide",
       "fade",
@@ -619,7 +619,7 @@ window.EFFECTS_INDEX = [
     "name": "Scale + Rotate",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "Content scales up while rotating into alignment, a slightly more dramatic take on Scale Up. Two transforms on one transition.",
     "tags": [
       "scale",
       "rotate",
@@ -631,7 +631,7 @@ window.EFFECTS_INDEX = [
     "name": "Gradient Shift",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "A gradient sweeps across the text once it enters view, using background-clip: text. Animates background-position over a wide gradient.",
     "tags": [
       "gradient",
       "shift",
@@ -643,7 +643,7 @@ window.EFFECTS_INDEX = [
     "name": "Typewriter",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "Text types itself out one character at a time with a blinking cursor, triggered when it scrolls into view. A small JavaScript loop; the cursor is a CSS blink.",
     "tags": [
       "typewriter",
       "scroll"
@@ -654,7 +654,7 @@ window.EFFECTS_INDEX = [
     "name": "Sticky Stack",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "Cards pin to the viewport and stack on top of each other as you scroll through the section. Built on position: sticky with a rotation and offset per card.",
     "tags": [
       "sticky",
       "stack",
@@ -666,7 +666,7 @@ window.EFFECTS_INDEX = [
     "name": "Horizontal Scroll",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "A row of items slides horizontally into view as you scroll vertically. A translateX driven by IntersectionObserver, without hijacking the wheel.",
     "tags": [
       "horizontal",
       "scroll"
@@ -677,7 +677,7 @@ window.EFFECTS_INDEX = [
     "name": "Counter Up",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "A number counts up from zero to its target when it enters the viewport, with easing so it slows as it lands. Reads the target from a data attribute.",
     "tags": [
       "counter",
       "up",
@@ -689,7 +689,7 @@ window.EFFECTS_INDEX = [
     "name": "Image Reveal",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "An image is uncovered by a coloured curtain sliding away, a common editorial reveal. A pseudo-panel that transitions translateX over the picture.",
     "tags": [
       "image",
       "reveal",
@@ -702,7 +702,7 @@ window.EFFECTS_INDEX = [
     "name": "Text Highlight",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "A highlighter mark sweeps across the words when the text scrolls into view. A background gradient whose size grows from zero, so it works on wrapping text.",
     "tags": [
       "text",
       "highlight",
@@ -714,7 +714,7 @@ window.EFFECTS_INDEX = [
     "name": "Perspective Grid",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "Grid items rotate up from a tilted plane into place, one after another. A rotateX on a perspective container with staggered delays.",
     "tags": [
       "perspective",
       "grid",
@@ -726,7 +726,7 @@ window.EFFECTS_INDEX = [
     "name": "Circle Expand",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "A circle grows from the centre to fill its container as it enters view, revealing the label. A single scale transform on a rounded element.",
     "tags": [
       "circle",
       "expand",
@@ -738,7 +738,7 @@ window.EFFECTS_INDEX = [
     "name": "Staggered List",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "List items slide and fade in one at a time, top to bottom. Uses nth-child transition delays, so adding items needs no extra code.",
     "tags": [
       "staggered",
       "list",
@@ -751,7 +751,7 @@ window.EFFECTS_INDEX = [
     "name": "Video Play",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "A video plays when it scrolls into view and pauses when it leaves, saving bandwidth and battery. IntersectionObserver calls play() and pause().",
     "tags": [
       "video",
       "play",
@@ -763,7 +763,7 @@ window.EFFECTS_INDEX = [
     "name": "Color Morph",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "The background colour shifts smoothly as the block moves through the viewport. Scroll progress is mapped to an HSL hue and set as a CSS variable.",
     "tags": [
       "color",
       "morph",
@@ -775,7 +775,7 @@ window.EFFECTS_INDEX = [
     "name": "Velocity Skew",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "Text skews in proportion to how fast you scroll and snaps back when you stop. Scroll velocity is measured per frame and applied as skewX.",
     "tags": [
       "velocity",
       "skew",
@@ -787,7 +787,7 @@ window.EFFECTS_INDEX = [
     "name": "Text Fill Scrub",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "Text fills with colour in step with your scroll position rather than on a timer. Scroll progress drives background-size on a clipped gradient.",
     "tags": [
       "text",
       "fill",
@@ -800,7 +800,7 @@ window.EFFECTS_INDEX = [
     "name": "Zoom Through",
     "cat": "scroll",
     "page": "/scroll",
-    "desc": "",
+    "desc": "The headline scales up toward you as you scroll past, as if you are moving through it. Scroll progress maps to a scale and opacity, applied each frame.",
     "tags": [
       "zoom",
       "through",

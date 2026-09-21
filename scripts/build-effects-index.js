@@ -48,7 +48,8 @@ function parseScroll() {
     else if (id === 'imgReveal') name = 'Image Reveal';
     else if (id === 'stagger') name = 'Staggered Letters';
     else name = id.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase());
-    out.push({ id, name, page: '/scroll', cat: 'scroll', desc: '' });
+    const descMatch = chunk.match(/class="anim-desc">([^<]+)<\/p>/);
+    out.push({ id, name, page: '/scroll', cat: 'scroll', desc: descMatch ? descMatch[1].trim() : '' });
   }
   return out;
 }
