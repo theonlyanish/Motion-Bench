@@ -46,6 +46,7 @@ This is meant to be forked and extended. Adding your own effect is deliberately 
 
    ```bash
    node scripts/build-effects-index.js
+   node scripts/build-schema.js
    ```
 
 That's it — your effect shows up in search and filters on the home page. Build a wild one? Keep it in your copy, or open a PR if you think others would enjoy it.
@@ -62,6 +63,7 @@ cursor.html                      Cursor effects
 layout.html                      Layout effects
 snippets/                        Per-category copyable code snippets
 scripts/build-effects-index.js   Regenerates effects-index.js
+scripts/build-schema.js          Regenerates the JSON-LD in each page <head>
 a11y.js                          Reduced-motion + touch handling (shared)
 transitions.js / .css            Page-to-page transitions + smooth scroll
 code-panel.js / .css             The "View code" panel
