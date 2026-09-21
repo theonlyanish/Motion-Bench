@@ -20,7 +20,7 @@ function parseTypography() {
       id: id,
       name: nameMatch ? nameMatch[1].trim() : id,
       desc: hintMatch ? hintMatch[1].trim() : '',
-      page: 'typography.html',
+      page: '/typography',
       cat: 'typography'
     };
   });
@@ -48,7 +48,7 @@ function parseScroll() {
     else if (id === 'imgReveal') name = 'Image Reveal';
     else if (id === 'stagger') name = 'Staggered Letters';
     else name = id.replace(/([A-Z])/g, ' $1').replace(/^./, s => s.toUpperCase());
-    out.push({ id, name, page: 'scroll.html', cat: 'scroll', desc: '' });
+    out.push({ id, name, page: '/scroll', cat: 'scroll', desc: '' });
   }
   return out;
 }
@@ -89,9 +89,9 @@ function enrich(items) {
 const all = [
   ...enrich(parseTypography()),
   ...enrich(parseScroll()),
-  ...enrich(parseBlocks('gallery.html', 'gallery', 'gallery.html')),
-  ...enrich(parseBlocks('cursor.html', 'cursor', 'cursor.html')),
-  ...enrich(parseBlocks('layout.html', 'layout', 'layout.html'))
+  ...enrich(parseBlocks('gallery.html', 'gallery', '/gallery')),
+  ...enrich(parseBlocks('cursor.html', 'cursor', '/cursor')),
+  ...enrich(parseBlocks('layout.html', 'layout', '/layout'))
 ];
 
 const lines = [

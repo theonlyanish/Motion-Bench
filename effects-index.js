@@ -7,7 +7,7 @@ window.EFFECTS_INDEX = [
     "id": "variable",
     "name": "Variable Font Axes",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "",
     "tags": [
       "variable",
@@ -20,7 +20,7 @@ window.EFFECTS_INDEX = [
     "id": "wave",
     "name": "Wave Distort",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "",
     "tags": [
       "wave",
@@ -32,7 +32,7 @@ window.EFFECTS_INDEX = [
     "id": "jitter",
     "name": "Noise Jitter",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "",
     "tags": [
       "noise",
@@ -44,7 +44,7 @@ window.EFFECTS_INDEX = [
     "id": "path",
     "name": "Text on Path",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "",
     "tags": [
       "text",
@@ -57,7 +57,7 @@ window.EFFECTS_INDEX = [
     "id": "magnetic",
     "name": "Magnetic Letters",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Move cursor near letters — they'll magnetically attract",
     "tags": [
       "magnetic",
@@ -69,7 +69,7 @@ window.EFFECTS_INDEX = [
     "id": "repulsion",
     "name": "Cursor Repulsion",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Letters repel from your cursor",
     "tags": [
       "cursor",
@@ -81,7 +81,7 @@ window.EFFECTS_INDEX = [
     "id": "tilt3d",
     "name": "3D Tilt",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Move cursor — text tilts toward you in 3D",
     "tags": [
       "3d",
@@ -94,7 +94,7 @@ window.EFFECTS_INDEX = [
     "id": "glitch",
     "name": "Glitch",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "",
     "tags": [
       "glitch",
@@ -105,7 +105,7 @@ window.EFFECTS_INDEX = [
     "id": "scaleWave",
     "name": "Scale Wave",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "",
     "tags": [
       "scale",
@@ -117,7 +117,7 @@ window.EFFECTS_INDEX = [
     "id": "blurDistance",
     "name": "Blur on Distance",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Letters sharpen near cursor, blur when far",
     "tags": [
       "blur",
@@ -130,7 +130,7 @@ window.EFFECTS_INDEX = [
     "id": "colorChase",
     "name": "Color Chase",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Gradient follows your cursor",
     "tags": [
       "color",
@@ -142,7 +142,7 @@ window.EFFECTS_INDEX = [
     "id": "stagger",
     "name": "Staggered Reveal",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Letters animate in with stagger — like Framer's staggerChildren",
     "tags": [
       "staggered",
@@ -155,7 +155,7 @@ window.EFFECTS_INDEX = [
     "id": "spring",
     "name": "Spring Letters",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Hover letters — they bounce with spring physics",
     "tags": [
       "spring",
@@ -167,7 +167,7 @@ window.EFFECTS_INDEX = [
     "id": "scrollView",
     "name": "Scroll Into View",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Scroll down — text animates when it enters viewport",
     "tags": [
       "scroll",
@@ -180,7 +180,7 @@ window.EFFECTS_INDEX = [
     "id": "hoverPop",
     "name": "Hover Pop",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Hover — smooth scale + lift, like whileHover",
     "tags": [
       "hover",
@@ -192,7 +192,7 @@ window.EFFECTS_INDEX = [
     "id": "scramble",
     "name": "Scramble Reveal",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Letters scramble then settle — like a terminal",
     "tags": [
       "scramble",
@@ -204,7 +204,7 @@ window.EFFECTS_INDEX = [
     "id": "shadowChase",
     "name": "Shadow Chase",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Drop shadow stretches toward your cursor",
     "tags": [
       "shadow",
@@ -216,7 +216,7 @@ window.EFFECTS_INDEX = [
     "id": "letterFlip",
     "name": "Letter Flip",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Hover — letters flip in 3D",
     "tags": [
       "letter",
@@ -228,7 +228,7 @@ window.EFFECTS_INDEX = [
     "id": "breathing",
     "name": "Breathing",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Gentle pulse — meditative scale",
     "tags": [
       "breathing",
@@ -239,7 +239,7 @@ window.EFFECTS_INDEX = [
     "id": "gradientSweep",
     "name": "Gradient Sweep",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Animated gradient flows across the text",
     "tags": [
       "gradient",
@@ -251,7 +251,7 @@ window.EFFECTS_INDEX = [
     "id": "spotlight",
     "name": "Spotlight Reveal",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Hover to reveal text like a flashlight",
     "tags": [
       "spotlight",
@@ -263,7 +263,7 @@ window.EFFECTS_INDEX = [
     "id": "gooey",
     "name": "Gooey Text",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Letters merge and separate like goo",
     "tags": [
       "gooey",
@@ -275,7 +275,7 @@ window.EFFECTS_INDEX = [
     "id": "marquee",
     "name": "Infinite Marquee",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Continuous scrolling text loop",
     "tags": [
       "infinite",
@@ -287,7 +287,7 @@ window.EFFECTS_INDEX = [
     "id": "elastic",
     "name": "Elastic Bounce",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Hover letters for elastic scale effect",
     "tags": [
       "elastic",
@@ -299,7 +299,7 @@ window.EFFECTS_INDEX = [
     "id": "liquid",
     "name": "Liquid Fill",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Text fills up like liquid on hover",
     "tags": [
       "liquid",
@@ -311,7 +311,7 @@ window.EFFECTS_INDEX = [
     "id": "neon",
     "name": "Neon Flicker",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Realistic neon sign flicker animation",
     "tags": [
       "neon",
@@ -323,7 +323,7 @@ window.EFFECTS_INDEX = [
     "id": "mirror",
     "name": "Mirror Reflection",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Text with a fading floor reflection",
     "tags": [
       "mirror",
@@ -335,7 +335,7 @@ window.EFFECTS_INDEX = [
     "id": "variableAxis",
     "name": "Variable Axis Hover",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Weight and Width change dynamically",
     "tags": [
       "variable",
@@ -348,7 +348,7 @@ window.EFFECTS_INDEX = [
     "id": "codeDecode",
     "name": "Code Decode",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Binary decode effect on hover",
     "tags": [
       "code",
@@ -360,7 +360,7 @@ window.EFFECTS_INDEX = [
     "id": "splitHover",
     "name": "Split Hover",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Text splits and reveals alternate version",
     "tags": [
       "split",
@@ -372,7 +372,7 @@ window.EFFECTS_INDEX = [
     "id": "weightWave",
     "name": "Weight Wave",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "A wave of font-weight travels through the letters — rare variable-font trick",
     "tags": [
       "weight",
@@ -384,7 +384,7 @@ window.EFFECTS_INDEX = [
     "id": "strokeDraw",
     "name": "Stroke Draw",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Text outline draws itself like handwriting (SVG stroke-dasharray)",
     "tags": [
       "stroke",
@@ -396,7 +396,7 @@ window.EFFECTS_INDEX = [
     "id": "gravityDrop",
     "name": "Gravity Drop",
     "cat": "typography",
-    "page": "typography.html",
+    "page": "/typography",
     "desc": "Click — letters fall with gravity and bounce. Click again to reset",
     "tags": [
       "gravity",
@@ -408,7 +408,7 @@ window.EFFECTS_INDEX = [
     "id": "fade",
     "name": "Fade In",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "fade",
@@ -420,7 +420,7 @@ window.EFFECTS_INDEX = [
     "id": "slideUp",
     "name": "Slide Up",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "slide",
@@ -432,7 +432,7 @@ window.EFFECTS_INDEX = [
     "id": "slideLeft",
     "name": "Slide From Right",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "slide",
@@ -446,7 +446,7 @@ window.EFFECTS_INDEX = [
     "id": "slideRight",
     "name": "Slide From Left",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "slide",
@@ -460,7 +460,7 @@ window.EFFECTS_INDEX = [
     "id": "scaleUp",
     "name": "Scale Up",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "scale",
@@ -472,7 +472,7 @@ window.EFFECTS_INDEX = [
     "id": "rotateIn",
     "name": "Rotate In",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "rotate",
@@ -484,7 +484,7 @@ window.EFFECTS_INDEX = [
     "id": "stagger",
     "name": "Staggered Letters",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "staggered",
@@ -497,7 +497,7 @@ window.EFFECTS_INDEX = [
     "id": "blurSharp",
     "name": "Blur to Sharp",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "blur",
@@ -510,7 +510,7 @@ window.EFFECTS_INDEX = [
     "id": "skewIn",
     "name": "Skew In",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "skew",
@@ -522,7 +522,7 @@ window.EFFECTS_INDEX = [
     "id": "parallax",
     "name": "Parallax",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "parallax",
@@ -533,7 +533,7 @@ window.EFFECTS_INDEX = [
     "id": "clipReveal",
     "name": "Clip Reveal",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "clip",
@@ -545,7 +545,7 @@ window.EFFECTS_INDEX = [
     "id": "flip3d",
     "name": "3D Flip",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "3d",
@@ -558,7 +558,7 @@ window.EFFECTS_INDEX = [
     "id": "bounceIn",
     "name": "Bounce In",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "bounce",
@@ -570,7 +570,7 @@ window.EFFECTS_INDEX = [
     "id": "splitConverge",
     "name": "Split Converge",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "split",
@@ -582,7 +582,7 @@ window.EFFECTS_INDEX = [
     "id": "underlineGrow",
     "name": "Underline Grow",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "underline",
@@ -594,7 +594,7 @@ window.EFFECTS_INDEX = [
     "id": "letterSpacing",
     "name": "Letter Spacing",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "letter",
@@ -606,7 +606,7 @@ window.EFFECTS_INDEX = [
     "id": "slideFade",
     "name": "Slide + Fade",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "slide",
@@ -618,7 +618,7 @@ window.EFFECTS_INDEX = [
     "id": "scaleRotate",
     "name": "Scale + Rotate",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "scale",
@@ -630,7 +630,7 @@ window.EFFECTS_INDEX = [
     "id": "gradientShift",
     "name": "Gradient Shift",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "gradient",
@@ -642,7 +642,7 @@ window.EFFECTS_INDEX = [
     "id": "typewriter",
     "name": "Typewriter",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "typewriter",
@@ -653,7 +653,7 @@ window.EFFECTS_INDEX = [
     "id": "stickyStack",
     "name": "Sticky Stack",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "sticky",
@@ -665,7 +665,7 @@ window.EFFECTS_INDEX = [
     "id": "horizontalScroll",
     "name": "Horizontal Scroll",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "horizontal",
@@ -676,7 +676,7 @@ window.EFFECTS_INDEX = [
     "id": "counter",
     "name": "Counter Up",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "counter",
@@ -688,7 +688,7 @@ window.EFFECTS_INDEX = [
     "id": "imgReveal",
     "name": "Image Reveal",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "image",
@@ -701,7 +701,7 @@ window.EFFECTS_INDEX = [
     "id": "textHighlight",
     "name": "Text Highlight",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "text",
@@ -713,7 +713,7 @@ window.EFFECTS_INDEX = [
     "id": "perspectiveGrid",
     "name": "Perspective Grid",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "perspective",
@@ -725,7 +725,7 @@ window.EFFECTS_INDEX = [
     "id": "circleExpand",
     "name": "Circle Expand",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "circle",
@@ -737,7 +737,7 @@ window.EFFECTS_INDEX = [
     "id": "staggerList",
     "name": "Staggered List",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "staggered",
@@ -750,7 +750,7 @@ window.EFFECTS_INDEX = [
     "id": "videoScroll",
     "name": "Video Play",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "video",
@@ -762,7 +762,7 @@ window.EFFECTS_INDEX = [
     "id": "colorMorph",
     "name": "Color Morph",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "color",
@@ -774,7 +774,7 @@ window.EFFECTS_INDEX = [
     "id": "velocitySkew",
     "name": "Velocity Skew",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "velocity",
@@ -786,7 +786,7 @@ window.EFFECTS_INDEX = [
     "id": "textFillScrub",
     "name": "Text Fill Scrub",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "text",
@@ -799,7 +799,7 @@ window.EFFECTS_INDEX = [
     "id": "zoomThrough",
     "name": "Zoom Through",
     "cat": "scroll",
-    "page": "scroll.html",
+    "page": "/scroll",
     "desc": "",
     "tags": [
       "zoom",
@@ -811,7 +811,7 @@ window.EFFECTS_INDEX = [
     "id": "zoomHover",
     "name": "Zoom Hover",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Simple scale on hover",
     "tags": [
       "zoom",
@@ -823,7 +823,7 @@ window.EFFECTS_INDEX = [
     "id": "grayColor",
     "name": "Grayscale → Color",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Fade in color on interaction",
     "tags": [
       "grayscale",
@@ -836,7 +836,7 @@ window.EFFECTS_INDEX = [
     "id": "curtainReveal",
     "name": "Curtain Reveal",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Overlay slides away",
     "tags": [
       "curtain",
@@ -848,7 +848,7 @@ window.EFFECTS_INDEX = [
     "id": "captionSlide",
     "name": "Caption Slide Up",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Details appear from bottom",
     "tags": [
       "caption",
@@ -861,7 +861,7 @@ window.EFFECTS_INDEX = [
     "id": "tilt3d",
     "name": "3D Tilt",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Mouse-driven perspective tilt",
     "tags": [
       "3d",
@@ -874,7 +874,7 @@ window.EFFECTS_INDEX = [
     "id": "blurReveal",
     "name": "Blur Reveal",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Starts blurred, sharpens on hover",
     "tags": [
       "blur",
@@ -886,7 +886,7 @@ window.EFFECTS_INDEX = [
     "id": "clipMorph",
     "name": "Clip Path Morph",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Circle to rounded rectangle",
     "tags": [
       "clip",
@@ -899,7 +899,7 @@ window.EFFECTS_INDEX = [
     "id": "glitchImage",
     "name": "Glitch Image",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "RGB split on hover",
     "tags": [
       "glitch",
@@ -911,7 +911,7 @@ window.EFFECTS_INDEX = [
     "id": "parallaxScroll",
     "name": "Parallax Scroll",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Image moves slower than scroll",
     "tags": [
       "parallax",
@@ -923,7 +923,7 @@ window.EFFECTS_INDEX = [
     "id": "magneticCursor",
     "name": "Magnetic Cursor",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Custom cursor sticks to image",
     "tags": [
       "magnetic",
@@ -935,7 +935,7 @@ window.EFFECTS_INDEX = [
     "id": "sliceReveal",
     "name": "Slice Reveal",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Image split into sliding strips",
     "tags": [
       "slice",
@@ -947,7 +947,7 @@ window.EFFECTS_INDEX = [
     "id": "inkSpread",
     "name": "Ink Spread",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "SVG path morph reveal",
     "tags": [
       "ink",
@@ -959,7 +959,7 @@ window.EFFECTS_INDEX = [
     "id": "perspectiveRotate",
     "name": "Perspective Rotate",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Rotates in 3D space on hover",
     "tags": [
       "perspective",
@@ -971,7 +971,7 @@ window.EFFECTS_INDEX = [
     "id": "borderDraw",
     "name": "Border Draw",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Line traces inside edge",
     "tags": [
       "border",
@@ -983,7 +983,7 @@ window.EFFECTS_INDEX = [
     "id": "duotone",
     "name": "Duotone Gradient",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Mix-blend-mode overlay",
     "tags": [
       "duotone",
@@ -995,7 +995,7 @@ window.EFFECTS_INDEX = [
     "id": "centerReveal",
     "name": "Center Reveal",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Circular mask expands",
     "tags": [
       "center",
@@ -1007,7 +1007,7 @@ window.EFFECTS_INDEX = [
     "id": "pixelate",
     "name": "Pixelate",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Steps down resolution (CSS filter)",
     "tags": [
       "pixelate",
@@ -1018,7 +1018,7 @@ window.EFFECTS_INDEX = [
     "id": "slideBehind",
     "name": "Slide Behind",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Image slides to reveal text behind",
     "tags": [
       "slide",
@@ -1030,7 +1030,7 @@ window.EFFECTS_INDEX = [
     "id": "flashOverlay",
     "name": "Flash Overlay",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Bright flash transition",
     "tags": [
       "flash",
@@ -1042,7 +1042,7 @@ window.EFFECTS_INDEX = [
     "id": "panHover",
     "name": "Pan on Hover",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Large image pans within frame",
     "tags": [
       "pan",
@@ -1055,7 +1055,7 @@ window.EFFECTS_INDEX = [
     "id": "turbulence",
     "name": "Turbulence Distort",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "SVG Turbulence filter on hover",
     "tags": [
       "turbulence",
@@ -1067,7 +1067,7 @@ window.EFFECTS_INDEX = [
     "id": "foldReveal",
     "name": "Fold Reveal",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Unfolds from top like paper",
     "tags": [
       "fold",
@@ -1079,7 +1079,7 @@ window.EFFECTS_INDEX = [
     "id": "circleSwap",
     "name": "Circular Swap",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Clip-path circle expands new image",
     "tags": [
       "circular",
@@ -1092,7 +1092,7 @@ window.EFFECTS_INDEX = [
     "id": "dirOverlay",
     "name": "Directional Overlay",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Overlay follows mouse entry direction",
     "tags": [
       "directional",
@@ -1105,7 +1105,7 @@ window.EFFECTS_INDEX = [
     "id": "blockGlitch",
     "name": "Block Glitch",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Mosaic reveal/glitch effect",
     "tags": [
       "block",
@@ -1117,7 +1117,7 @@ window.EFFECTS_INDEX = [
     "id": "halftone",
     "name": "Halftone Pattern",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Dot pattern overlay on hover",
     "tags": [
       "halftone",
@@ -1129,7 +1129,7 @@ window.EFFECTS_INDEX = [
     "id": "expandCard",
     "name": "Expanding Card",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Content expands and pushes image",
     "tags": [
       "expanding",
@@ -1142,7 +1142,7 @@ window.EFFECTS_INDEX = [
     "id": "mirrorSplit",
     "name": "Mirror Split",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Splits and slides apart",
     "tags": [
       "mirror",
@@ -1154,7 +1154,7 @@ window.EFFECTS_INDEX = [
     "id": "videoHover",
     "name": "Video Hover",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Plays video on hover (replaces image)",
     "tags": [
       "video",
@@ -1166,7 +1166,7 @@ window.EFFECTS_INDEX = [
     "id": "ripple",
     "name": "Ripple",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Water ripple distortion (SVG filter)",
     "tags": [
       "ripple",
@@ -1177,7 +1177,7 @@ window.EFFECTS_INDEX = [
     "id": "crtScanlines",
     "name": "CRT Scanlines",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Retro monitor effect with rolling sweep",
     "tags": [
       "crt",
@@ -1189,7 +1189,7 @@ window.EFFECTS_INDEX = [
     "id": "chromaSplit",
     "name": "Chromatic Aberration",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "RGB channels split apart on hover",
     "tags": [
       "chromatic",
@@ -1203,7 +1203,7 @@ window.EFFECTS_INDEX = [
     "id": "compareSlider",
     "name": "Before / After",
     "cat": "gallery",
-    "page": "gallery.html",
+    "page": "/gallery",
     "desc": "Drag to compare (grayscale vs color)",
     "tags": [
       "before",
@@ -1217,7 +1217,7 @@ window.EFFECTS_INDEX = [
     "id": "magnetic",
     "name": "Magnetic Button",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Cursor snaps to button center",
     "tags": [
       "magnetic",
@@ -1229,7 +1229,7 @@ window.EFFECTS_INDEX = [
     "id": "blend",
     "name": "Blend Mode",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Cursor inverts background colors",
     "tags": [
       "blend",
@@ -1241,7 +1241,7 @@ window.EFFECTS_INDEX = [
     "id": "mask",
     "name": "Mask Reveal",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Cursor acts as a window",
     "tags": [
       "mask",
@@ -1253,7 +1253,7 @@ window.EFFECTS_INDEX = [
     "id": "trail",
     "name": "Cursor Trail",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Dot trail follows movement",
     "tags": [
       "cursor",
@@ -1264,7 +1264,7 @@ window.EFFECTS_INDEX = [
     "id": "scale",
     "name": "Scale Interaction",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Cursor grows when hovering targets",
     "tags": [
       "scale",
@@ -1276,7 +1276,7 @@ window.EFFECTS_INDEX = [
     "id": "text",
     "name": "Text Cursor",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Cursor becomes text label",
     "tags": [
       "text",
@@ -1287,7 +1287,7 @@ window.EFFECTS_INDEX = [
     "id": "spotlight",
     "name": "Spotlight",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Light reveals content in dark",
     "tags": [
       "spotlight",
@@ -1298,7 +1298,7 @@ window.EFFECTS_INDEX = [
     "id": "sticky",
     "name": "Sticky Cursor",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Cursor sticks to element edge",
     "tags": [
       "sticky",
@@ -1309,7 +1309,7 @@ window.EFFECTS_INDEX = [
     "id": "glitch",
     "name": "Glitch Cursor",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Cursor distortion and offset",
     "tags": [
       "glitch",
@@ -1320,7 +1320,7 @@ window.EFFECTS_INDEX = [
     "id": "arrow",
     "name": "Arrow Rotate",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Arrow points in movement direction",
     "tags": [
       "arrow",
@@ -1332,7 +1332,7 @@ window.EFFECTS_INDEX = [
     "id": "imgTrail",
     "name": "Image Trail",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Images spawn behind cursor",
     "tags": [
       "image",
@@ -1345,7 +1345,7 @@ window.EFFECTS_INDEX = [
     "id": "zoom",
     "name": "Zoom Lens",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Magnifying glass effect",
     "tags": [
       "zoom",
@@ -1357,7 +1357,7 @@ window.EFFECTS_INDEX = [
     "id": "emoji",
     "name": "Emoji Cursor",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Replaces cursor with emoji",
     "tags": [
       "emoji",
@@ -1368,7 +1368,7 @@ window.EFFECTS_INDEX = [
     "id": "ripple",
     "name": "Ripple Click",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Water ripple effect on click",
     "tags": [
       "ripple",
@@ -1380,7 +1380,7 @@ window.EFFECTS_INDEX = [
     "id": "elasticLine",
     "name": "Elastic Line",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Line stretches to cursor",
     "tags": [
       "elastic",
@@ -1392,7 +1392,7 @@ window.EFFECTS_INDEX = [
     "id": "noise",
     "name": "Noise Aura",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Grainy aura around cursor",
     "tags": [
       "noise",
@@ -1404,7 +1404,7 @@ window.EFFECTS_INDEX = [
     "id": "video",
     "name": "Video Cursor",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Video plays inside cursor",
     "tags": [
       "video",
@@ -1415,7 +1415,7 @@ window.EFFECTS_INDEX = [
     "id": "perspective",
     "name": "Perspective Tilt",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Element tilts towards cursor",
     "tags": [
       "perspective",
@@ -1427,7 +1427,7 @@ window.EFFECTS_INDEX = [
     "id": "dotGrid",
     "name": "Dot Grid Repel",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Grid points flee from cursor",
     "tags": [
       "dot",
@@ -1440,7 +1440,7 @@ window.EFFECTS_INDEX = [
     "id": "progress",
     "name": "Click Progress",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Cursor fills on mouse down",
     "tags": [
       "click",
@@ -1452,7 +1452,7 @@ window.EFFECTS_INDEX = [
     "id": "sparks",
     "name": "Particle Sparks",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Canvas particles burst from cursor",
     "tags": [
       "particle",
@@ -1464,7 +1464,7 @@ window.EFFECTS_INDEX = [
     "id": "rope",
     "name": "Rope Trail",
     "cat": "cursor",
-    "page": "cursor.html",
+    "page": "/cursor",
     "desc": "Elastic rope of segments chases cursor",
     "tags": [
       "rope",
@@ -1476,7 +1476,7 @@ window.EFFECTS_INDEX = [
     "id": "modal",
     "name": "Modal Scale",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "iOS-style spring scale",
     "tags": [
       "modal",
@@ -1488,7 +1488,7 @@ window.EFFECTS_INDEX = [
     "id": "accordion",
     "name": "Accordion",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "Smooth height expansion",
     "tags": [
       "accordion",
@@ -1499,7 +1499,7 @@ window.EFFECTS_INDEX = [
     "id": "tabs",
     "name": "Tabs Fade",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "Crossfade with sliding indicator",
     "tags": [
       "tabs",
@@ -1511,7 +1511,7 @@ window.EFFECTS_INDEX = [
     "id": "cardFlip",
     "name": "Card Flip",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "3D rotation on click/hover",
     "tags": [
       "card",
@@ -1523,7 +1523,7 @@ window.EFFECTS_INDEX = [
     "id": "offcanvas",
     "name": "Off-canvas",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "Slide-in side panel",
     "tags": [
       "off",
@@ -1536,7 +1536,7 @@ window.EFFECTS_INDEX = [
     "id": "toast",
     "name": "Toast",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "Notification slide-in",
     "tags": [
       "toast",
@@ -1547,7 +1547,7 @@ window.EFFECTS_INDEX = [
     "id": "gridList",
     "name": "Grid to List",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "FLIP layout transition",
     "tags": [
       "grid",
@@ -1560,7 +1560,7 @@ window.EFFECTS_INDEX = [
     "id": "expandCard",
     "name": "Expandable Card",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "Layout expansion",
     "tags": [
       "expandable",
@@ -1573,7 +1573,7 @@ window.EFFECTS_INDEX = [
     "id": "staggerLoad",
     "name": "Stagger Load",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "Sequential item entry",
     "tags": [
       "stagger",
@@ -1585,7 +1585,7 @@ window.EFFECTS_INDEX = [
     "id": "dropdown",
     "name": "Dropdown",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "Scale/fade from origin",
     "tags": [
       "dropdown",
@@ -1596,7 +1596,7 @@ window.EFFECTS_INDEX = [
     "id": "skeleton",
     "name": "Skeleton Load",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "Shimmer loading state",
     "tags": [
       "skeleton",
@@ -1608,7 +1608,7 @@ window.EFFECTS_INDEX = [
     "id": "fab",
     "name": "FAB Expand",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "Floating button reveal",
     "tags": [
       "fab",
@@ -1620,7 +1620,7 @@ window.EFFECTS_INDEX = [
     "id": "carousel",
     "name": "Carousel Snap",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "Horizontal snap scrolling",
     "tags": [
       "carousel",
@@ -1632,7 +1632,7 @@ window.EFFECTS_INDEX = [
     "id": "stepper",
     "name": "Stepper",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "Progress flow animation",
     "tags": [
       "stepper",
@@ -1643,7 +1643,7 @@ window.EFFECTS_INDEX = [
     "id": "toggle",
     "name": "Toggle Switch",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "Smooth state transition",
     "tags": [
       "toggle",
@@ -1655,7 +1655,7 @@ window.EFFECTS_INDEX = [
     "id": "floatLabel",
     "name": "Floating Label",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "Input focus interaction",
     "tags": [
       "floating",
@@ -1668,7 +1668,7 @@ window.EFFECTS_INDEX = [
     "id": "searchExpand",
     "name": "Search Expand",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "Width expansion on focus",
     "tags": [
       "search",
@@ -1680,7 +1680,7 @@ window.EFFECTS_INDEX = [
     "id": "deleteWipe",
     "name": "Delete Wipe",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "Collapse animation",
     "tags": [
       "delete",
@@ -1692,7 +1692,7 @@ window.EFFECTS_INDEX = [
     "id": "tooltip",
     "name": "Tooltip",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "Scale/fade hint",
     "tags": [
       "tooltip",
@@ -1703,7 +1703,7 @@ window.EFFECTS_INDEX = [
     "id": "badge",
     "name": "Notification Badge",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "Scale bounce on update",
     "tags": [
       "notification",
@@ -1715,7 +1715,7 @@ window.EFFECTS_INDEX = [
     "id": "confetti",
     "name": "Confetti Burst",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "Physics-based confetti from button",
     "tags": [
       "confetti",
@@ -1727,7 +1727,7 @@ window.EFFECTS_INDEX = [
     "id": "odometer",
     "name": "Odometer",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "Digits roll like a slot machine",
     "tags": [
       "odometer",
@@ -1738,7 +1738,7 @@ window.EFFECTS_INDEX = [
     "id": "hamburgerMorph",
     "name": "Hamburger Morph",
     "cat": "layout",
-    "page": "layout.html",
+    "page": "/layout",
     "desc": "Icon morphs to X on toggle",
     "tags": [
       "hamburger",

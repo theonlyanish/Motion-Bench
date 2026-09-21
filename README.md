@@ -8,18 +8,16 @@ Think of it as a private CodePen you can keep on your own machine: search it, st
 
 ## Take it for a spin
 
-Clone or download the repo, then serve the folder with anything you like:
+Clone or download the repo, then serve the folder with a server that supports clean URLs (the nav links to `/scroll`, not `/scroll.html`, to match how Vercel serves the site):
 
 ```bash
 git clone https://github.com/theonlyanish/frontend-reference.git
 cd frontend-reference
 
-# then pick one:
-npx serve .              # Node
-python -m http.server 8000   # Python
+npx serve .   # clean URLs on by default
 ```
 
-Open **`http://localhost:8000/`** and you're in. (Opening `index.html` straight from disk works too, but a local server loads the fonts and scripts more cleanly.)
+Open **`http://localhost:3000/`** and you're in. (Python's `http.server` also works if you append `.html` to the URL yourself; opening `index.html` straight from disk works for the home page only.)
 
 The home page is a searchable, filterable index — hit `/` to jump to search, type a few letters, and every matching effect surfaces instantly. Click any row to land right on that effect, then pop open **View code** to copy it.
 

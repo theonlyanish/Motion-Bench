@@ -43,13 +43,19 @@ const website = {
   }
 };
 
+// file = HTML on disk; page = clean URL path Vercel serves it at (cleanUrls: true).
 const categories = [
-  { cat: 'typography', page: 'typography.html', name: 'Typography Effects' },
-  { cat: 'scroll', page: 'scroll.html', name: 'Scroll Animations' },
-  { cat: 'gallery', page: 'gallery.html', name: 'Gallery Effects' },
-  { cat: 'cursor', page: 'cursor.html', name: 'Cursor & Pointer Effects' },
-  { cat: 'layout', page: 'layout.html', name: 'Reveal & Layout Patterns' }
+  { cat: 'typography', file: 'typography.html', page: '/typography', name: 'Typography Effects' },
+  { cat: 'scroll', file: 'scroll.html', page: '/scroll', name: 'Scroll Animations' },
+  { cat: 'gallery', file: 'gallery.html', page: '/gallery', name: 'Gallery Effects' },
+  { cat: 'cursor', file: 'cursor.html', page: '/cursor', name: 'Cursor & Pointer Effects' },
+  { cat: 'layout', file: 'layout.html', page: '/layout', name: 'Reveal & Layout Patterns' }
 ];
+
+// effects-index.js stores page as a root-relative clean path, e.g. '/scroll'.
+function absUrl(cleanPath) {
+  return SITE + cleanPath.replace(/^[/]/, "");
+}
 
 // Load effects-index.js by evaluating it against a stub window.
 function loadIndex() {
@@ -80,7 +86,7 @@ function breadcrumbs(items) {
 }
 
 function effectNode(e) {
-  const url = SITE + e.page + '#' + e.id;
+  const url = absUrl(e.page) + '#' + e.id;
   const node = {
     '@type': 'SoftwareSourceCode',
     '@id': url,
@@ -91,7 +97,7 @@ function effectNode(e) {
     runtimePlatform: 'Web browser',
     license: 'https://opensource.org/licenses/MIT',
     codeRepository: 'https://github.com/theonlyanish/frontend-reference',
-    isPartOf: { '@id': SITE + e.page },
+    isPartOf: { '@id': absUrl(e.page) },
     author: { '@id': AUTHOR_ID },
     keywords: e.tags.join(', ')
   };
@@ -100,7 +106,7 @@ function effectNode(e) {
 }
 
 function categorySchema(c, effects, head) {
-  const pageUrl = SITE + c.page;
+  const pageUrl = absUrl(c.page);
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -167,8 +173,8 @@ function homeSchema(index, head) {
             position: i + 1,
             item: {
               '@type': 'CollectionPage',
-              '@id': SITE + c.page,
-              url: SITE + c.page,
+              '@id': absUrl(c.page),
+              url: absUrl(c.page),
               name: c.name,
               description: (byCat[c.cat] || 0) + ' copy-paste ' + c.name.toLowerCase() + ' in HTML, CSS, and JavaScript.'
             }
@@ -203,9 +209,9 @@ const index = loadIndex();
 
 categories.forEach(function (c) {
   const effects = index.filter(function (e) { return e.cat === c.cat; });
-  const head = readHead(fs.readFileSync(path.join(root, c.page), 'utf8'));
-  inject(c.page, categorySchema(c, effects, head));
-  console.log(c.page + ': ' + effects.length + ' effects');
+  const head = readHead(fs.readFileSync(path.join(root, c.file), 'utf8'));
+  inject(c.file, categorySchema(c, effects, head));
+  console.log(c.file + ': ' + effects.length + ' effects');
 });
 
 inject('index.html', homeSchema(index, readHead(fs.readFileSync(path.join(root, 'index.html'), 'utf8'))));
