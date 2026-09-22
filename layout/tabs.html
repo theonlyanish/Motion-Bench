@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabs Fade — Layout Effect in CSS &amp; JS | Motion Bench</title>
+  <meta name="description" content="Crossfade with sliding indicator Copy-paste HTML, CSS and JavaScript, no dependencies.">
+  <link rel="canonical" href="https://motion-bench.vercel.app/layout/tabs">
+  <meta name="theme-color" content="#0d0d0f">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Motion Bench">
+  <meta property="og:title" content="Tabs Fade — Layout Effect">
+  <meta property="og:description" content="Crossfade with sliding indicator">
+  <meta property="og:url" content="https://motion-bench.vercel.app/layout/tabs">
+  <meta property="og:image" content="https://motion-bench.vercel.app/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Tabs Fade — Layout Effect">
+  <meta name="twitter:description" content="Crossfade with sliding indicator">
+  <meta name="twitter:image" content="https://motion-bench.vercel.app/og-image.png">
+  <script type="application/ld+json" id="ld-schema">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareSourceCode","@id":"https://motion-bench.vercel.app/layout/tabs","url":"https://motion-bench.vercel.app/layout/tabs","name":"Tabs Fade — Layout effect","description":"Crossfade with sliding indicator","programmingLanguage":["HTML","CSS","JavaScript"],"codeSampleType":"full","runtimePlatform":"Web browser","license":"https://opensource.org/licenses/MIT","codeRepository":"https://github.com/theonlyanish/frontend-reference","isPartOf":{"@id":"https://motion-bench.vercel.app/layout"},"author":{"@type":"Person","@id":"https://anishkapse.com/#person","name":"Anish Kapse","url":"https://anishkapse.com/"},"keywords":"tabs, fade, layout"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Motion Bench","item":"https://motion-bench.vercel.app/"},{"@type":"ListItem","position":2,"name":"Reveal & Layout Patterns","item":"https://motion-bench.vercel.app/layout"},{"@type":"ListItem","position":3,"name":"Tabs Fade","item":"https://motion-bench.vercel.app/layout/tabs"}]}]}</script>
+  <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32x32.png?v=2" type="image/png" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/home.css">
+  <link rel="stylesheet" href="/nav-tooltips.css">
+  <link rel="stylesheet" href="/transitions.css">
+  <link rel="stylesheet" href="/effect.css">
+</head>
+<body class="is-loaded fx-page" data-cat="layout">
+  <div class="transition-overlay"></div>
+
+  <nav class="nav-bar" aria-label="Site navigation">
+      <a href="/" class="nav-btn" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+      </a>
+      <a href="/typography" class="nav-btn" aria-label="Typography">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+        </svg>
+      </a>
+      <a href="/scroll" class="nav-btn" aria-label="Scroll Animations">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+      </a>
+      <a href="/gallery" class="nav-btn" aria-label="Gallery Effects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+      </a>
+      <a href="/cursor" class="nav-btn" aria-label="Cursor Effects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
+          <path d="M13 13l6 6"/>
+        </svg>
+      </a>
+      <a href="/layout" class="nav-btn" aria-label="Layout Animations">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <line x1="3" y1="9" x2="21" y2="9"/>
+          <line x1="9" y1="21" x2="9" y2="9"/>
+        </svg>
+      </a>
+    </nav>
+
+  <main class="fx-single wrap">
+    <nav class="fx-crumbs" aria-label="Breadcrumb">
+      <a href="/">Motion Bench</a><span aria-hidden="true">/</span><a href="/layout">Reveal &amp; Layout Patterns</a><span aria-hidden="true">/</span><span aria-current="page">Tabs Fade</span>
+    </nav>
+
+    <header class="fx-head">
+      <p class="fx-eyebrow">Layout · 03 of 23</p>
+      <h1>Tabs Fade</h1>
+      <p class="fx-lede">Crossfade with sliding indicator</p>
+      <p class="fx-meta">HTML · CSS · JavaScript · No dependencies · MIT</p>
+    </header>
+
+    <section class="fx-demo" aria-label="Live demo">
+      <iframe class="fx-frame" title="Tabs Fade live demo" loading="lazy" sandbox="allow-scripts" srcdoc="<!DOCTYPE html><html><head><meta charset=&quot;utf-8&quot;><link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;><link href=&quot;https://fonts.googleapis.com/css2?family=Geist:wght@300..700&amp;family=Roboto+Flex:opsz,slnt,wdth,wght@8..144,-10..0,25..151,100..1000&amp;display=swap&quot; rel=&quot;stylesheet&quot;><style>:root{--bg-dark:#0d0d0f;--bg-panel:#16161a;--border-subtle:rgba(255,255,255,.08);--border-strong:rgba(255,255,255,.15);--text-primary:#f3f3f5;--text-secondary:#b5b5bd;--text-muted:#7c7c86;--accent:#7c5cff;--cat:#a897e6;--radius:12px;--dur:.7s;--ease-out:cubic-bezier(.16,1,.3,1)}*{box-sizing:border-box}html,body{margin:0;min-height:100%}body{background:#0d0d0f;color:#f3f3f5;font-family:Geist,system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:2rem;gap:1rem;overflow-x:hidden}img{max-width:100%}</style><style>.tabs-container {
+  width: 100%;
+  max-width: 400px;
+  color: #f0f0f5;
+}
+
+.tabs-nav {
+  display: flex;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 1rem;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 0.8rem;
+  background: none;
+  border: none;
+  color: #6b6b80;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.tab-btn.active {
+  color: #7c5cff;
+}
+
+.tab-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: #7c5cff;
+  width: 50%; /* 100% / number of tabs */
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Panes are stacked so they can crossfade */
+.tabs-content {
+  position: relative;
+  height: 40px;
+}
+
+.tab-pane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.tab-pane.active {
+  opacity: 1;
+  transform: translateY(0);
+}</style></head><body><div class=&quot;tabs-container&quot;>
+  <div class=&quot;tabs-nav&quot;>
+    <button class=&quot;tab-btn active&quot; data-tab=&quot;1&quot;>Tab 1</button>
+    <button class=&quot;tab-btn&quot; data-tab=&quot;2&quot;>Tab 2</button>
+    <div class=&quot;tab-indicator&quot;></div>
+  </div>
+  <div class=&quot;tabs-content&quot;>
+    <div class=&quot;tab-pane active&quot; data-tab=&quot;1&quot;>Content 1</div>
+    <div class=&quot;tab-pane&quot; data-tab=&quot;2&quot;>Content 2</div>
+  </div>
+</div><script>var tabBtns = document.querySelectorAll('.tab-btn');
+var tabPanes = document.querySelectorAll('.tab-pane');
+var tabIndicator = document.querySelector('.tab-indicator');
+
+tabBtns.forEach(function (btn, index) {
+  btn.addEventListener('click', function () {
+    // Update nav highlight
+    tabBtns.forEach(function (b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+
+    // Slide the underline: each step is one indicator-width
+    tabIndicator.style.transform = 'translateX(' + (index * 100) + '%)';
+
+    // Crossfade content — slight delay lets the old pane fade out first
+    var target = btn.dataset.tab;
+    tabPanes.forEach(function (pane) {
+      pane.classList.remove('active');
+      if (pane.dataset.tab === target) {
+        setTimeout(function () { pane.classList.add('active'); }, 50);
+      }
+    });
+  });
+});</script></body></html>"></iframe>
+    </section>
+
+    <div class="fx-codes">
+      <section class="fx-code" aria-labelledby="code-html">
+        <div class="fx-code-bar"><h3 id="code-html">HTML</h3><button type="button" class="fx-copy" data-copy="html">Copy</button></div>
+        <pre><code class="language-html">&lt;div class=&quot;tabs-container&quot;&gt;
+  &lt;div class=&quot;tabs-nav&quot;&gt;
+    &lt;button class=&quot;tab-btn active&quot; data-tab=&quot;1&quot;&gt;Tab 1&lt;/button&gt;
+    &lt;button class=&quot;tab-btn&quot; data-tab=&quot;2&quot;&gt;Tab 2&lt;/button&gt;
+    &lt;div class=&quot;tab-indicator&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;tabs-content&quot;&gt;
+    &lt;div class=&quot;tab-pane active&quot; data-tab=&quot;1&quot;&gt;Content 1&lt;/div&gt;
+    &lt;div class=&quot;tab-pane&quot; data-tab=&quot;2&quot;&gt;Content 2&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </section>
+      <section class="fx-code" aria-labelledby="code-css">
+        <div class="fx-code-bar"><h3 id="code-css">CSS</h3><button type="button" class="fx-copy" data-copy="css">Copy</button></div>
+        <pre><code class="language-css">.tabs-container {
+  width: 100%;
+  max-width: 400px;
+  color: #f0f0f5;
+}
+
+.tabs-nav {
+  display: flex;
+  position: relative;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  margin-bottom: 1rem;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 0.8rem;
+  background: none;
+  border: none;
+  color: #6b6b80;
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.tab-btn.active {
+  color: #7c5cff;
+}
+
+.tab-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: #7c5cff;
+  width: 50%; /* 100% / number of tabs */
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Panes are stacked so they can crossfade */
+.tabs-content {
+  position: relative;
+  height: 40px;
+}
+
+.tab-pane {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.tab-pane.active {
+  opacity: 1;
+  transform: translateY(0);
+}</code></pre>
+      </section>
+      <section class="fx-code" aria-labelledby="code-js">
+        <div class="fx-code-bar"><h3 id="code-js">JavaScript</h3><button type="button" class="fx-copy" data-copy="js">Copy</button></div>
+        <pre><code class="language-js">var tabBtns = document.querySelectorAll('.tab-btn');
+var tabPanes = document.querySelectorAll('.tab-pane');
+var tabIndicator = document.querySelector('.tab-indicator');
+
+tabBtns.forEach(function (btn, index) {
+  btn.addEventListener('click', function () {
+    // Update nav highlight
+    tabBtns.forEach(function (b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+
+    // Slide the underline: each step is one indicator-width
+    tabIndicator.style.transform = 'translateX(' + (index * 100) + '%)';
+
+    // Crossfade content — slight delay lets the old pane fade out first
+    var target = btn.dataset.tab;
+    tabPanes.forEach(function (pane) {
+      pane.classList.remove('active');
+      if (pane.dataset.tab === target) {
+        setTimeout(function () { pane.classList.add('active'); }, 50);
+      }
+    });
+  });
+});</code></pre>
+      </section>
+    </div>
+
+    <section class="fx-related" aria-labelledby="related-h">
+      <h2 id="related-h">More layout effects</h2>
+      <ul>
+        <li><a href="/layout/card-flip"><span class="fx-rel-name">Card Flip</span><span class="fx-rel-desc">3D rotation on click/hover</span></a></li>
+        <li><a href="/layout/offcanvas"><span class="fx-rel-name">Off-canvas</span><span class="fx-rel-desc">Slide-in side panel</span></a></li>
+        <li><a href="/layout/toast"><span class="fx-rel-name">Toast</span><span class="fx-rel-desc">Notification slide-in</span></a></li>
+        <li><a href="/layout/grid-list"><span class="fx-rel-name">Grid to List</span><span class="fx-rel-desc">FLIP layout transition</span></a></li>
+      </ul>
+      <a class="fx-all" href="/layout#tabs">Browse all 23 reveal &amp; layout patterns <span aria-hidden="true">&rarr;</span></a>
+    </section>
+  </main>
+
+  <footer class="home-footer">
+    <div class="wrap">
+      <p>Pure HTML · CSS · JavaScript — every effect includes copyable standalone code</p>
+      <p class="home-credit">Motion Bench by <a href="https://anishkapse.com/" target="_blank" rel="noopener noreferrer">Anish Kapse</a></p>
+    </div>
+  </footer>
+
+  <script src="/a11y.js"></script>
+  <script src="/transitions.js"></script>
+  <script src="/effect.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

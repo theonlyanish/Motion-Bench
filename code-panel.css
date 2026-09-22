@@ -179,3 +179,30 @@
   padding: 0.75rem 1rem 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.06);
 }
+
+/* ── Permalink ──────────────────────────────────────
+   Icon-only link to the effect's standalone page, sitting beside the toggle.
+   Same box as the toggle, muted until hovered, so it reads as part of it. */
+.code-permalink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  margin-left: 0.35rem;
+  vertical-align: middle;
+  color: #6b6b80;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+.code-permalink:hover {
+  color: #f3f3f5;
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+}
+.code-permalink svg { width: 13px; height: 13px; }
+/* In the scroll actions row the panel is display:contents, so the link is a row
+   item of its own and needs no extra margin. */
+.block-actions .code-permalink { margin-left: 0; }

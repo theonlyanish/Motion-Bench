@@ -50,14 +50,19 @@ function esc(s) {
     .replace(/"/g, '&quot;');
 }
 
-function renderBlock(key, snippet) {
+// Must match slugify() in build-effect-pages.js.
+function slugify(id) {
+  return id.replace(/([a-z0-9])([A-Z])/g, '$1-$2').replace(/([A-Z])([A-Z][a-z])/g, '$1-$2').toLowerCase();
+}
+
+function renderBlock(key, snippet, permalink) {
   const pres = LANGS.filter(function (l) { return snippet[l]; }).map(function (l) {
     return '        <pre data-lang="' + l + '"><code>' + esc(snippet[l].trim()) + '</code></pre>';
   });
   if (!pres.length) return '';
   return [
     '      <!-- code-source:' + key + ' -->',
-    '      <div class="code-source" hidden>',
+    '      <div class="code-source" hidden data-permalink="' + permalink + '">',
     pres.join('\n'),
     '      </div>',
     '      <!-- /code-source -->'
@@ -89,7 +94,8 @@ pages.forEach(function (p) {
     // with the same indentation as the section's other children.
     let insertAt = closeIdx;
     while (insertAt > 0 && /[ \t\r\n]/.test(html[insertAt - 1])) insertAt--;
-    const block = snippets[key] ? renderBlock(key, snippets[key]) : '';
+    const permalink = '/' + p.file.replace(/\.html$/, '') + '/' + slugify(key);
+    const block = snippets[key] ? renderBlock(key, snippets[key], permalink) : '';
     if (!block) missing.push(key);
     out += html.slice(last, insertAt) + (block ? '\n' + block : '');
     last = insertAt;

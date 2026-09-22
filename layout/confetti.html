@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confetti Burst — Layout Effect in CSS &amp; JS | Motion Bench</title>
+  <meta name="description" content="Physics-based confetti from button Copy-paste HTML, CSS and JavaScript, no dependencies.">
+  <link rel="canonical" href="https://motion-bench.vercel.app/layout/confetti">
+  <meta name="theme-color" content="#0d0d0f">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Motion Bench">
+  <meta property="og:title" content="Confetti Burst — Layout Effect">
+  <meta property="og:description" content="Physics-based confetti from button">
+  <meta property="og:url" content="https://motion-bench.vercel.app/layout/confetti">
+  <meta property="og:image" content="https://motion-bench.vercel.app/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Confetti Burst — Layout Effect">
+  <meta name="twitter:description" content="Physics-based confetti from button">
+  <meta name="twitter:image" content="https://motion-bench.vercel.app/og-image.png">
+  <script type="application/ld+json" id="ld-schema">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareSourceCode","@id":"https://motion-bench.vercel.app/layout/confetti","url":"https://motion-bench.vercel.app/layout/confetti","name":"Confetti Burst — Layout effect","description":"Physics-based confetti from button","programmingLanguage":["HTML","CSS","JavaScript"],"codeSampleType":"full","runtimePlatform":"Web browser","license":"https://opensource.org/licenses/MIT","codeRepository":"https://github.com/theonlyanish/frontend-reference","isPartOf":{"@id":"https://motion-bench.vercel.app/layout"},"author":{"@type":"Person","@id":"https://anishkapse.com/#person","name":"Anish Kapse","url":"https://anishkapse.com/"},"keywords":"confetti, burst, layout"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Motion Bench","item":"https://motion-bench.vercel.app/"},{"@type":"ListItem","position":2,"name":"Reveal & Layout Patterns","item":"https://motion-bench.vercel.app/layout"},{"@type":"ListItem","position":3,"name":"Confetti Burst","item":"https://motion-bench.vercel.app/layout/confetti"}]}]}</script>
+  <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32x32.png?v=2" type="image/png" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/home.css">
+  <link rel="stylesheet" href="/nav-tooltips.css">
+  <link rel="stylesheet" href="/transitions.css">
+  <link rel="stylesheet" href="/effect.css">
+</head>
+<body class="is-loaded fx-page" data-cat="layout">
+  <div class="transition-overlay"></div>
+
+  <nav class="nav-bar" aria-label="Site navigation">
+      <a href="/" class="nav-btn" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+      </a>
+      <a href="/typography" class="nav-btn" aria-label="Typography">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+        </svg>
+      </a>
+      <a href="/scroll" class="nav-btn" aria-label="Scroll Animations">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+      </a>
+      <a href="/gallery" class="nav-btn" aria-label="Gallery Effects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+      </a>
+      <a href="/cursor" class="nav-btn" aria-label="Cursor Effects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
+          <path d="M13 13l6 6"/>
+        </svg>
+      </a>
+      <a href="/layout" class="nav-btn" aria-label="Layout Animations">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <line x1="3" y1="9" x2="21" y2="9"/>
+          <line x1="9" y1="21" x2="9" y2="9"/>
+        </svg>
+      </a>
+    </nav>
+
+  <main class="fx-single wrap">
+    <nav class="fx-crumbs" aria-label="Breadcrumb">
+      <a href="/">Motion Bench</a><span aria-hidden="true">/</span><a href="/layout">Reveal &amp; Layout Patterns</a><span aria-hidden="true">/</span><span aria-current="page">Confetti Burst</span>
+    </nav>
+
+    <header class="fx-head">
+      <p class="fx-eyebrow">Layout · 21 of 23</p>
+      <h1>Confetti Burst</h1>
+      <p class="fx-lede">Physics-based confetti from button</p>
+      <p class="fx-meta">HTML · CSS · JavaScript · No dependencies · MIT</p>
+    </header>
+
+    <section class="fx-demo" aria-label="Live demo">
+      <iframe class="fx-frame" title="Confetti Burst live demo" loading="lazy" sandbox="allow-scripts" srcdoc="<!DOCTYPE html><html><head><meta charset=&quot;utf-8&quot;><link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;><link href=&quot;https://fonts.googleapis.com/css2?family=Geist:wght@300..700&amp;family=Roboto+Flex:opsz,slnt,wdth,wght@8..144,-10..0,25..151,100..1000&amp;display=swap&quot; rel=&quot;stylesheet&quot;><style>:root{--bg-dark:#0d0d0f;--bg-panel:#16161a;--border-subtle:rgba(255,255,255,.08);--border-strong:rgba(255,255,255,.15);--text-primary:#f3f3f5;--text-secondary:#b5b5bd;--text-muted:#7c7c86;--accent:#7c5cff;--cat:#a897e6;--radius:12px;--dur:.7s;--ease-out:cubic-bezier(.16,1,.3,1)}*{box-sizing:border-box}html,body{margin:0;min-height:100%}body{background:#0d0d0f;color:#f3f3f5;font-family:Geist,system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:2rem;gap:1rem;overflow-x:hidden}img{max-width:100%}</style><style>.trigger-btn {
+  padding: 0.6rem 1.2rem;
+  background: #7c5cff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.confetti-piece {
+  position: fixed;
+  width: 8px;
+  height: 12px;
+  /* Centre on the launch point via margin, not transform — the WAAPI keyframes
+     own `transform` and would replace any base value set here */
+  margin: -6px 0 0 -4px;
+  border-radius: 1px;
+  pointer-events: none;
+  z-index: 5000;
+  will-change: transform, opacity;
+}</style></head><body><button class=&quot;trigger-btn&quot; id=&quot;confettiBtn&quot;>Celebrate &amp;#127881;</button><script>// Projectile motion with linear air drag, integrated into explicit keyframes and
+// played back with easing:'linear' — so the sampled physics *is* the motion.
+// (A single cubic-bezier can't express &quot;decelerate horizontally while accelerating
+// downward&quot;; an ease-out curve front-loads everything and the burst reads as a blink.)
+//
+//   dv/dt = g - k*v   ->   v(t) = (v0 - g/k)e^(-kt) + g/k
+//   x(t) = (v0x/k)(1 - e^(-kt))
+//   y(t) = ((v0y - g/k)/k)(1 - e^(-kt)) + (g/k)t
+//
+var confettiBtn = document.getElementById('confettiBtn');
+var COLORS = ['#7c5cff', '#a78bfa', '#ff006e', '#00f5d4', '#ffd60a'];
+var COUNT = 60;
+
+var G = 1600;      // px/s^2 — effective gravity
+var K = 2.2;       // 1/s   — drag; terminal fall speed = G/K ~ 727 px/s
+var K_ROT = 1.2;   // 1/s   — rotational drag
+var VT = G / K;
+var STEPS = 26;    // keyframes sampled per piece
+
+confettiBtn.addEventListener('click', function () {
+  var rect = confettiBtn.getBoundingClientRect();
+  var cx = rect.left + rect.width / 2;
+  var cy = rect.top + rect.height / 2;
+
+  for (var i = 0; i < COUNT; i++) {
+    var piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = cx + 'px';
+    piece.style.top = cy + 'px';
+    piece.style.background = COLORS[i % COLORS.length];
+    document.body.appendChild(piece);
+
+    // Launch in an upward cone: theta = -PI/2 + s, so v0y is always negative.
+    var s = (Math.random() * 2 - 1) * 0.95;
+    var v0 = 700 + Math.random() * 600;
+    var v0x = v0 * Math.sin(s);
+    var v0y = -v0 * Math.cos(s);
+
+    var durS = 2.4 + Math.random() * 0.8;
+    var w0 = (Math.random() < 0.5 ? -1 : 1) * (720 + Math.random() * 1440); // deg/s
+    // ~2-6 edge-on flips over the piece's life; faster than this strobes
+    var flutter0 = (Math.random() < 0.5 ? -1 : 1) * (300 + Math.random() * 500);
+    var flutterPhase = Math.random() * Math.PI * 2;
+
+    var frames = [];
+    for (var n = 0; n < STEPS; n++) {
+      var p = n / (STEPS - 1);
+      var t = p * durS;
+      var decay = 1 - Math.exp(-K * t);
+
+      var x = (v0x / K) * decay;
+      var y = ((v0y - VT) / K) * decay + VT * t;
+
+      var rot = (w0 / K_ROT) * (1 - Math.exp(-K_ROT * t));
+      // Edge-on flip, so pieces flash thin like real paper
+      var flip = flutter0 * t + Math.sin(t * 6 + flutterPhase) * 30;
+
+      frames.push({
+        offset: p,
+        transform: 'translate3d(' + x.toFixed(1) + 'px, ' + y.toFixed(1) + 'px, 0) ' +
+                   'rotate(' + rot.toFixed(1) + 'deg) rotateY(' + flip.toFixed(1) + 'deg)',
+        opacity: p < 0.7 ? 1 : Math.max(0, 1 - (p - 0.7) / 0.3)
+      });
+    }
+
+    piece.animate(frames, {
+      duration: durS * 1000,
+      easing: 'linear'   // the physics is already baked into the offsets
+    }).onfinish = function () { this.effect.target.remove(); };
+  }
+});</script></body></html>"></iframe>
+    </section>
+
+    <div class="fx-codes">
+      <section class="fx-code" aria-labelledby="code-html">
+        <div class="fx-code-bar"><h3 id="code-html">HTML</h3><button type="button" class="fx-copy" data-copy="html">Copy</button></div>
+        <pre><code class="language-html">&lt;button class=&quot;trigger-btn&quot; id=&quot;confettiBtn&quot;&gt;Celebrate &amp;#127881;&lt;/button&gt;</code></pre>
+      </section>
+      <section class="fx-code" aria-labelledby="code-css">
+        <div class="fx-code-bar"><h3 id="code-css">CSS</h3><button type="button" class="fx-copy" data-copy="css">Copy</button></div>
+        <pre><code class="language-css">.trigger-btn {
+  padding: 0.6rem 1.2rem;
+  background: #7c5cff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.confetti-piece {
+  position: fixed;
+  width: 8px;
+  height: 12px;
+  /* Centre on the launch point via margin, not transform — the WAAPI keyframes
+     own `transform` and would replace any base value set here */
+  margin: -6px 0 0 -4px;
+  border-radius: 1px;
+  pointer-events: none;
+  z-index: 5000;
+  will-change: transform, opacity;
+}</code></pre>
+      </section>
+      <section class="fx-code" aria-labelledby="code-js">
+        <div class="fx-code-bar"><h3 id="code-js">JavaScript</h3><button type="button" class="fx-copy" data-copy="js">Copy</button></div>
+        <pre><code class="language-js">// Projectile motion with linear air drag, integrated into explicit keyframes and
+// played back with easing:'linear' — so the sampled physics *is* the motion.
+// (A single cubic-bezier can't express &quot;decelerate horizontally while accelerating
+// downward&quot;; an ease-out curve front-loads everything and the burst reads as a blink.)
+//
+//   dv/dt = g - k*v   -&gt;   v(t) = (v0 - g/k)e^(-kt) + g/k
+//   x(t) = (v0x/k)(1 - e^(-kt))
+//   y(t) = ((v0y - g/k)/k)(1 - e^(-kt)) + (g/k)t
+//
+var confettiBtn = document.getElementById('confettiBtn');
+var COLORS = ['#7c5cff', '#a78bfa', '#ff006e', '#00f5d4', '#ffd60a'];
+var COUNT = 60;
+
+var G = 1600;      // px/s^2 — effective gravity
+var K = 2.2;       // 1/s   — drag; terminal fall speed = G/K ~ 727 px/s
+var K_ROT = 1.2;   // 1/s   — rotational drag
+var VT = G / K;
+var STEPS = 26;    // keyframes sampled per piece
+
+confettiBtn.addEventListener('click', function () {
+  var rect = confettiBtn.getBoundingClientRect();
+  var cx = rect.left + rect.width / 2;
+  var cy = rect.top + rect.height / 2;
+
+  for (var i = 0; i &lt; COUNT; i++) {
+    var piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = cx + 'px';
+    piece.style.top = cy + 'px';
+    piece.style.background = COLORS[i % COLORS.length];
+    document.body.appendChild(piece);
+
+    // Launch in an upward cone: theta = -PI/2 + s, so v0y is always negative.
+    var s = (Math.random() * 2 - 1) * 0.95;
+    var v0 = 700 + Math.random() * 600;
+    var v0x = v0 * Math.sin(s);
+    var v0y = -v0 * Math.cos(s);
+
+    var durS = 2.4 + Math.random() * 0.8;
+    var w0 = (Math.random() &lt; 0.5 ? -1 : 1) * (720 + Math.random() * 1440); // deg/s
+    // ~2-6 edge-on flips over the piece's life; faster than this strobes
+    var flutter0 = (Math.random() &lt; 0.5 ? -1 : 1) * (300 + Math.random() * 500);
+    var flutterPhase = Math.random() * Math.PI * 2;
+
+    var frames = [];
+    for (var n = 0; n &lt; STEPS; n++) {
+      var p = n / (STEPS - 1);
+      var t = p * durS;
+      var decay = 1 - Math.exp(-K * t);
+
+      var x = (v0x / K) * decay;
+      var y = ((v0y - VT) / K) * decay + VT * t;
+
+      var rot = (w0 / K_ROT) * (1 - Math.exp(-K_ROT * t));
+      // Edge-on flip, so pieces flash thin like real paper
+      var flip = flutter0 * t + Math.sin(t * 6 + flutterPhase) * 30;
+
+      frames.push({
+        offset: p,
+        transform: 'translate3d(' + x.toFixed(1) + 'px, ' + y.toFixed(1) + 'px, 0) ' +
+                   'rotate(' + rot.toFixed(1) + 'deg) rotateY(' + flip.toFixed(1) + 'deg)',
+        opacity: p &lt; 0.7 ? 1 : Math.max(0, 1 - (p - 0.7) / 0.3)
+      });
+    }
+
+    piece.animate(frames, {
+      duration: durS * 1000,
+      easing: 'linear'   // the physics is already baked into the offsets
+    }).onfinish = function () { this.effect.target.remove(); };
+  }
+});</code></pre>
+      </section>
+    </div>
+
+    <section class="fx-related" aria-labelledby="related-h">
+      <h2 id="related-h">More layout effects</h2>
+      <ul>
+        <li><a href="/layout/odometer"><span class="fx-rel-name">Odometer</span><span class="fx-rel-desc">Digits roll like a slot machine</span></a></li>
+        <li><a href="/layout/hamburger-morph"><span class="fx-rel-name">Hamburger Morph</span><span class="fx-rel-desc">Icon morphs to X on toggle</span></a></li>
+        <li><a href="/layout/modal"><span class="fx-rel-name">Modal Scale</span><span class="fx-rel-desc">iOS-style spring scale</span></a></li>
+        <li><a href="/layout/accordion"><span class="fx-rel-name">Accordion</span><span class="fx-rel-desc">Smooth height expansion</span></a></li>
+      </ul>
+      <a class="fx-all" href="/layout#confetti">Browse all 23 reveal &amp; layout patterns <span aria-hidden="true">&rarr;</span></a>
+    </section>
+  </main>
+
+  <footer class="home-footer">
+    <div class="wrap">
+      <p>Pure HTML · CSS · JavaScript — every effect includes copyable standalone code</p>
+      <p class="home-credit">Motion Bench by <a href="https://anishkapse.com/" target="_blank" rel="noopener noreferrer">Anish Kapse</a></p>
+    </div>
+  </footer>
+
+  <script src="/a11y.js"></script>
+  <script src="/transitions.js"></script>
+  <script src="/effect.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

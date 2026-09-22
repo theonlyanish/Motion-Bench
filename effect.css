@@ -1,0 +1,164 @@
+/* ========================================
+   Effect page — one standalone landing page
+   per effect. Inherits tokens from home.css.
+   ======================================== */
+
+.fx-single {
+  padding-top: clamp(4.5rem, 10vw, 6.5rem);
+  padding-bottom: 3rem;
+}
+
+/* Breadcrumb */
+.fx-crumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.82rem;
+  color: var(--ink-3);
+  margin-bottom: 2.25rem;
+}
+.fx-crumbs a { color: var(--ink-3); text-decoration: none; }
+.fx-crumbs a:hover { color: var(--ink); }
+.fx-crumbs span[aria-current] { color: var(--ink-2); }
+.fx-crumbs span[aria-hidden] { color: var(--ink-4); }
+
+/* Head */
+.fx-head { max-width: 760px; margin-bottom: 2rem; }
+.fx-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin: 0 0 0.75rem;
+}
+.fx-page[data-cat="typography"] .fx-eyebrow { color: var(--cat-typography); }
+.fx-page[data-cat="scroll"] .fx-eyebrow { color: var(--cat-scroll); }
+.fx-page[data-cat="gallery"] .fx-eyebrow { color: var(--cat-gallery); }
+.fx-page[data-cat="cursor"] .fx-eyebrow { color: var(--cat-cursor); }
+.fx-page[data-cat="layout"] .fx-eyebrow { color: var(--cat-layout); }
+
+.fx-head h1 {
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin: 0 0 1rem;
+}
+.fx-lede {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--ink-2);
+  margin: 0 0 0.75rem;
+}
+.fx-meta { font-size: 0.8rem; color: var(--ink-3); margin: 0; }
+
+/* Demo */
+.fx-demo { margin-bottom: 2.5rem; }
+.fx-frame {
+  display: block;
+  width: 100%;
+  height: clamp(320px, 45vh, 460px);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  background: var(--bg-raised);
+}
+.fx-demo-note {
+  font-size: 0.82rem;
+  color: var(--ink-3);
+  margin: 0.75rem 0 0;
+}
+.fx-demo-note a { color: var(--ink-2); }
+
+/* Code, visible by default */
+.fx-codes { display: flex; flex-direction: column; gap: 1.25rem; margin-bottom: 3rem; }
+.fx-code {
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: #0b0b12;
+  overflow: hidden;
+}
+.fx-code-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.45rem 0.6rem 0.45rem 1rem;
+  border-bottom: 1px solid var(--rule);
+  background: var(--wash);
+}
+.fx-code-bar h3 {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+.fx-copy {
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.3rem 0.7rem;
+  color: var(--ink-3);
+  background: transparent;
+  border: 1px solid var(--rule-strong);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.fx-copy:hover { color: var(--ink); border-color: rgba(255, 255, 255, 0.3); }
+.fx-copy.copied { color: #4ade80; border-color: rgba(74, 222, 128, 0.4); }
+.fx-code pre {
+  margin: 0;
+  padding: 1rem 1.1rem;
+  max-height: 520px;
+  overflow: auto;
+  font-size: 0.8rem;
+  line-height: 1.6;
+  tab-size: 2;
+}
+.fx-code code {
+  font-family: ui-monospace, 'Cascadia Code', 'SF Mono', Menlo, Consolas, monospace;
+  color: #c9c9d9;
+  white-space: pre;
+}
+
+/* Related */
+.fx-related h2 {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin: 0 0 0.75rem;
+}
+.fx-related ul {
+  list-style: none;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  border-top: 1px solid var(--rule);
+}
+.fx-related li { border-bottom: 1px solid var(--rule); }
+.fx-related li a {
+  display: grid;
+  grid-template-columns: minmax(140px, 1fr) 3fr;
+  gap: 1rem;
+  padding: 0.85rem 0.25rem;
+  color: var(--ink);
+  text-decoration: none;
+  transition: background 0.15s;
+}
+.fx-related li a:hover { background: var(--wash); }
+.fx-rel-name { font-weight: 500; }
+.fx-rel-desc { font-size: 0.85rem; color: var(--ink-3); line-height: 1.45; }
+.fx-all {
+  display: inline-block;
+  font-size: 0.9rem;
+  color: var(--ink-2);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-strong);
+  padding-bottom: 1px;
+}
+.fx-all:hover { color: var(--ink); border-color: var(--ink); }
+
+@media (max-width: 640px) {
+  .fx-related li a { grid-template-columns: 1fr; gap: 0.2rem; }
+  .fx-frame { height: 300px; }
+}

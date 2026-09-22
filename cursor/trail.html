@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursor Trail — Cursor Effect in CSS &amp; JS | Motion Bench</title>
+  <meta name="description" content="Dot trail follows movement Copy-paste HTML, CSS and JavaScript, no dependencies.">
+  <link rel="canonical" href="https://motion-bench.vercel.app/cursor/trail">
+  <meta name="theme-color" content="#0d0d0f">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Motion Bench">
+  <meta property="og:title" content="Cursor Trail — Cursor Effect">
+  <meta property="og:description" content="Dot trail follows movement">
+  <meta property="og:url" content="https://motion-bench.vercel.app/cursor/trail">
+  <meta property="og:image" content="https://motion-bench.vercel.app/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cursor Trail — Cursor Effect">
+  <meta name="twitter:description" content="Dot trail follows movement">
+  <meta name="twitter:image" content="https://motion-bench.vercel.app/og-image.png">
+  <script type="application/ld+json" id="ld-schema">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareSourceCode","@id":"https://motion-bench.vercel.app/cursor/trail","url":"https://motion-bench.vercel.app/cursor/trail","name":"Cursor Trail — Cursor effect","description":"Dot trail follows movement","programmingLanguage":["HTML","CSS","JavaScript"],"codeSampleType":"full","runtimePlatform":"Web browser","license":"https://opensource.org/licenses/MIT","codeRepository":"https://github.com/theonlyanish/frontend-reference","isPartOf":{"@id":"https://motion-bench.vercel.app/cursor"},"author":{"@type":"Person","@id":"https://anishkapse.com/#person","name":"Anish Kapse","url":"https://anishkapse.com/"},"keywords":"cursor, trail"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Motion Bench","item":"https://motion-bench.vercel.app/"},{"@type":"ListItem","position":2,"name":"Cursor & Pointer Effects","item":"https://motion-bench.vercel.app/cursor"},{"@type":"ListItem","position":3,"name":"Cursor Trail","item":"https://motion-bench.vercel.app/cursor/trail"}]}]}</script>
+  <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32x32.png?v=2" type="image/png" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/home.css">
+  <link rel="stylesheet" href="/nav-tooltips.css">
+  <link rel="stylesheet" href="/transitions.css">
+  <link rel="stylesheet" href="/effect.css">
+</head>
+<body class="is-loaded fx-page" data-cat="cursor">
+  <div class="transition-overlay"></div>
+
+  <nav class="nav-bar" aria-label="Site navigation">
+      <a href="/" class="nav-btn" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+      </a>
+      <a href="/typography" class="nav-btn" aria-label="Typography">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+        </svg>
+      </a>
+      <a href="/scroll" class="nav-btn" aria-label="Scroll Animations">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+      </a>
+      <a href="/gallery" class="nav-btn" aria-label="Gallery Effects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+      </a>
+      <a href="/cursor" class="nav-btn" aria-label="Cursor Effects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
+          <path d="M13 13l6 6"/>
+        </svg>
+      </a>
+      <a href="/layout" class="nav-btn" aria-label="Layout Animations">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <line x1="3" y1="9" x2="21" y2="9"/>
+          <line x1="9" y1="21" x2="9" y2="9"/>
+        </svg>
+      </a>
+    </nav>
+
+  <main class="fx-single wrap">
+    <nav class="fx-crumbs" aria-label="Breadcrumb">
+      <a href="/">Motion Bench</a><span aria-hidden="true">/</span><a href="/cursor">Cursor &amp; Pointer Effects</a><span aria-hidden="true">/</span><span aria-current="page">Cursor Trail</span>
+    </nav>
+
+    <header class="fx-head">
+      <p class="fx-eyebrow">Cursor · 04 of 22</p>
+      <h1>Cursor Trail</h1>
+      <p class="fx-lede">Dot trail follows movement</p>
+      <p class="fx-meta">HTML · CSS · JavaScript · No dependencies · MIT</p>
+    </header>
+
+    <section class="fx-demo" aria-label="Live demo">
+      <iframe class="fx-frame" title="Cursor Trail live demo" loading="lazy" sandbox="allow-scripts" srcdoc="<!DOCTYPE html><html><head><meta charset=&quot;utf-8&quot;><link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;><link href=&quot;https://fonts.googleapis.com/css2?family=Geist:wght@300..700&amp;family=Roboto+Flex:opsz,slnt,wdth,wght@8..144,-10..0,25..151,100..1000&amp;display=swap&quot; rel=&quot;stylesheet&quot;><style>:root{--bg-dark:#0d0d0f;--bg-panel:#16161a;--border-subtle:rgba(255,255,255,.08);--border-strong:rgba(255,255,255,.15);--text-primary:#f3f3f5;--text-secondary:#b5b5bd;--text-muted:#7c7c86;--accent:#7c5cff;--cat:#a897e6;--radius:12px;--dur:.7s;--ease-out:cubic-bezier(.16,1,.3,1)}*{box-sizing:border-box}html,body{margin:0;min-height:100%}body{background:#0d0d0f;color:#f3f3f5;font-family:Geist,system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:2rem;gap:1rem;overflow-x:hidden}img{max-width:100%}</style><style>.trail-area {
+  position: relative;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #12121a;
+  color: #6b6b80;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+
+.trail-dot {
+  position: absolute;
+  width: 6px; height: 6px;
+  background: #7c5cff;
+  border-radius: 50%;
+  pointer-events: none;
+}</style></head><body><div class=&quot;trail-area&quot; id=&quot;trailArea&quot;>
+  <span>Move Fast</span>
+</div><script>var area = document.getElementById('trailArea');
+var DENSITY = 0.5;  // chance to spawn a dot per mousemove event
+var LIFE = 800;     // ms
+
+area.addEventListener('mousemove', function (e) {
+  if (Math.random() > DENSITY) return; // limit density
+  var rect = area.getBoundingClientRect();
+  var dot = document.createElement('div');
+  dot.className = 'trail-dot';
+  dot.style.left = (e.clientX - rect.left) + 'px';
+  dot.style.top = (e.clientY - rect.top) + 'px';
+  area.appendChild(dot);
+
+  // Animate out. The translate(-50%,-50%) must live in the keyframes — a base
+  // transform would be replaced by the animation, leaving each dot offset by
+  // half its size (down-right of the pointer) for its whole life.
+  dot.animate([
+    { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+    { transform: 'translate(-50%, -50%) scale(0)', opacity: 0 }
+  ], { duration: LIFE, easing: 'ease-out' }).onfinish = function () {
+    dot.remove();
+  };
+});</script></body></html>"></iframe>
+    </section>
+
+    <div class="fx-codes">
+      <section class="fx-code" aria-labelledby="code-html">
+        <div class="fx-code-bar"><h3 id="code-html">HTML</h3><button type="button" class="fx-copy" data-copy="html">Copy</button></div>
+        <pre><code class="language-html">&lt;div class=&quot;trail-area&quot; id=&quot;trailArea&quot;&gt;
+  &lt;span&gt;Move Fast&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+      </section>
+      <section class="fx-code" aria-labelledby="code-css">
+        <div class="fx-code-bar"><h3 id="code-css">CSS</h3><button type="button" class="fx-copy" data-copy="css">Copy</button></div>
+        <pre><code class="language-css">.trail-area {
+  position: relative;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #12121a;
+  color: #6b6b80;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+
+.trail-dot {
+  position: absolute;
+  width: 6px; height: 6px;
+  background: #7c5cff;
+  border-radius: 50%;
+  pointer-events: none;
+}</code></pre>
+      </section>
+      <section class="fx-code" aria-labelledby="code-js">
+        <div class="fx-code-bar"><h3 id="code-js">JavaScript</h3><button type="button" class="fx-copy" data-copy="js">Copy</button></div>
+        <pre><code class="language-js">var area = document.getElementById('trailArea');
+var DENSITY = 0.5;  // chance to spawn a dot per mousemove event
+var LIFE = 800;     // ms
+
+area.addEventListener('mousemove', function (e) {
+  if (Math.random() &gt; DENSITY) return; // limit density
+  var rect = area.getBoundingClientRect();
+  var dot = document.createElement('div');
+  dot.className = 'trail-dot';
+  dot.style.left = (e.clientX - rect.left) + 'px';
+  dot.style.top = (e.clientY - rect.top) + 'px';
+  area.appendChild(dot);
+
+  // Animate out. The translate(-50%,-50%) must live in the keyframes — a base
+  // transform would be replaced by the animation, leaving each dot offset by
+  // half its size (down-right of the pointer) for its whole life.
+  dot.animate([
+    { transform: 'translate(-50%, -50%) scale(1)', opacity: 1 },
+    { transform: 'translate(-50%, -50%) scale(0)', opacity: 0 }
+  ], { duration: LIFE, easing: 'ease-out' }).onfinish = function () {
+    dot.remove();
+  };
+});</code></pre>
+      </section>
+    </div>
+
+    <section class="fx-related" aria-labelledby="related-h">
+      <h2 id="related-h">More cursor effects</h2>
+      <ul>
+        <li><a href="/cursor/scale"><span class="fx-rel-name">Scale Interaction</span><span class="fx-rel-desc">Cursor grows when hovering targets</span></a></li>
+        <li><a href="/cursor/text"><span class="fx-rel-name">Text Cursor</span><span class="fx-rel-desc">Cursor becomes text label</span></a></li>
+        <li><a href="/cursor/spotlight"><span class="fx-rel-name">Spotlight</span><span class="fx-rel-desc">Light reveals content in dark</span></a></li>
+        <li><a href="/cursor/sticky"><span class="fx-rel-name">Sticky Cursor</span><span class="fx-rel-desc">Cursor sticks to element edge</span></a></li>
+      </ul>
+      <a class="fx-all" href="/cursor#trail">Browse all 22 cursor &amp; pointer effects <span aria-hidden="true">&rarr;</span></a>
+    </section>
+  </main>
+
+  <footer class="home-footer">
+    <div class="wrap">
+      <p>Pure HTML · CSS · JavaScript — every effect includes copyable standalone code</p>
+      <p class="home-credit">Motion Bench by <a href="https://anishkapse.com/" target="_blank" rel="noopener noreferrer">Anish Kapse</a></p>
+    </div>
+  </footer>
+
+  <script src="/a11y.js"></script>
+  <script src="/transitions.js"></script>
+  <script src="/effect.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

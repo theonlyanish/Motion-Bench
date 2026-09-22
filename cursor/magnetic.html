@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magnetic Button — Cursor Effect in CSS &amp; JS | Motion Bench</title>
+  <meta name="description" content="Cursor snaps to button center Copy-paste HTML, CSS and JavaScript, no dependencies.">
+  <link rel="canonical" href="https://motion-bench.vercel.app/cursor/magnetic">
+  <meta name="theme-color" content="#0d0d0f">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Motion Bench">
+  <meta property="og:title" content="Magnetic Button — Cursor Effect">
+  <meta property="og:description" content="Cursor snaps to button center">
+  <meta property="og:url" content="https://motion-bench.vercel.app/cursor/magnetic">
+  <meta property="og:image" content="https://motion-bench.vercel.app/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Magnetic Button — Cursor Effect">
+  <meta name="twitter:description" content="Cursor snaps to button center">
+  <meta name="twitter:image" content="https://motion-bench.vercel.app/og-image.png">
+  <script type="application/ld+json" id="ld-schema">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareSourceCode","@id":"https://motion-bench.vercel.app/cursor/magnetic","url":"https://motion-bench.vercel.app/cursor/magnetic","name":"Magnetic Button — Cursor effect","description":"Cursor snaps to button center","programmingLanguage":["HTML","CSS","JavaScript"],"codeSampleType":"full","runtimePlatform":"Web browser","license":"https://opensource.org/licenses/MIT","codeRepository":"https://github.com/theonlyanish/frontend-reference","isPartOf":{"@id":"https://motion-bench.vercel.app/cursor"},"author":{"@type":"Person","@id":"https://anishkapse.com/#person","name":"Anish Kapse","url":"https://anishkapse.com/"},"keywords":"magnetic, button, cursor"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Motion Bench","item":"https://motion-bench.vercel.app/"},{"@type":"ListItem","position":2,"name":"Cursor & Pointer Effects","item":"https://motion-bench.vercel.app/cursor"},{"@type":"ListItem","position":3,"name":"Magnetic Button","item":"https://motion-bench.vercel.app/cursor/magnetic"}]}]}</script>
+  <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32x32.png?v=2" type="image/png" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/home.css">
+  <link rel="stylesheet" href="/nav-tooltips.css">
+  <link rel="stylesheet" href="/transitions.css">
+  <link rel="stylesheet" href="/effect.css">
+</head>
+<body class="is-loaded fx-page" data-cat="cursor">
+  <div class="transition-overlay"></div>
+
+  <nav class="nav-bar" aria-label="Site navigation">
+      <a href="/" class="nav-btn" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+      </a>
+      <a href="/typography" class="nav-btn" aria-label="Typography">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+        </svg>
+      </a>
+      <a href="/scroll" class="nav-btn" aria-label="Scroll Animations">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+      </a>
+      <a href="/gallery" class="nav-btn" aria-label="Gallery Effects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+      </a>
+      <a href="/cursor" class="nav-btn" aria-label="Cursor Effects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
+          <path d="M13 13l6 6"/>
+        </svg>
+      </a>
+      <a href="/layout" class="nav-btn" aria-label="Layout Animations">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <line x1="3" y1="9" x2="21" y2="9"/>
+          <line x1="9" y1="21" x2="9" y2="9"/>
+        </svg>
+      </a>
+    </nav>
+
+  <main class="fx-single wrap">
+    <nav class="fx-crumbs" aria-label="Breadcrumb">
+      <a href="/">Motion Bench</a><span aria-hidden="true">/</span><a href="/cursor">Cursor &amp; Pointer Effects</a><span aria-hidden="true">/</span><span aria-current="page">Magnetic Button</span>
+    </nav>
+
+    <header class="fx-head">
+      <p class="fx-eyebrow">Cursor · 01 of 22</p>
+      <h1>Magnetic Button</h1>
+      <p class="fx-lede">Cursor snaps to button center</p>
+      <p class="fx-meta">HTML · CSS · JavaScript · No dependencies · MIT</p>
+    </header>
+
+    <section class="fx-demo" aria-label="Live demo">
+      <iframe class="fx-frame" title="Magnetic Button live demo" loading="lazy" sandbox="allow-scripts" srcdoc="<!DOCTYPE html><html><head><meta charset=&quot;utf-8&quot;><link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;><link href=&quot;https://fonts.googleapis.com/css2?family=Geist:wght@300..700&amp;family=Roboto+Flex:opsz,slnt,wdth,wght@8..144,-10..0,25..151,100..1000&amp;display=swap&quot; rel=&quot;stylesheet&quot;><style>:root{--bg-dark:#0d0d0f;--bg-panel:#16161a;--border-subtle:rgba(255,255,255,.08);--border-strong:rgba(255,255,255,.15);--text-primary:#f3f3f5;--text-secondary:#b5b5bd;--text-muted:#7c7c86;--accent:#7c5cff;--cat:#a897e6;--radius:12px;--dur:.7s;--ease-out:cubic-bezier(.16,1,.3,1)}*{box-sizing:border-box}html,body{margin:0;min-height:100%}body{background:#0d0d0f;color:#f3f3f5;font-family:Geist,system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:2rem;gap:1rem;overflow-x:hidden}img{max-width:100%}</style><style>.magnetic-area {
+  position: relative;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #12121a;
+  overflow: hidden;
+  cursor: none;
+}
+
+.magnetic-btn {
+  padding: 0.8rem 1.5rem;
+  background: #7c5cff;
+  color: #fff;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: none;
+  transition: transform 0.1s;
+}
+
+.cursor-ring {
+  position: absolute;
+  top: 0; left: 0;
+  width: 40px; height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, border-color 0.3s;
+  opacity: 0;
+}</style></head><body><div class=&quot;magnetic-area&quot; id=&quot;magneticArea&quot;>
+  <button class=&quot;magnetic-btn&quot; id=&quot;magneticBtn&quot;>Magnetic</button>
+  <div class=&quot;cursor-ring&quot; id=&quot;cursorRing&quot;></div>
+</div><script>var area = document.getElementById('magneticArea');
+var btn = document.getElementById('magneticBtn');
+var ring = document.getElementById('cursorRing');
+var RADIUS = 80;    // px — snap distance to button center
+var PULL = 0.4;     // fraction of the offset the button moves
+var SMOOTH = 0.15;  // ring lerp factor
+
+var mouseX = 0, mouseY = 0;   // relative to area
+var ringX = 0, ringY = 0;
+
+area.addEventListener('mousemove', function (e) {
+  var rect = area.getBoundingClientRect();
+  mouseX = e.clientX - rect.left;
+  mouseY = e.clientY - rect.top;
+  ring.style.opacity = '1';
+
+  var b = btn.getBoundingClientRect();
+  var dx = e.clientX - (b.left + b.width / 2);
+  var dy = e.clientY - (b.top + b.height / 2);
+  var dist = Math.sqrt(dx * dx + dy * dy);
+
+  if (dist < RADIUS) {
+    btn.style.transform = 'translate(' + (dx * PULL) + 'px, ' + (dy * PULL) + 'px)';
+    ring.style.width = '60px';
+    ring.style.height = '60px';
+    ring.style.borderColor = '#7c5cff';
+  } else {
+    btn.style.transform = 'translate(0, 0)';
+    ring.style.width = '40px';
+    ring.style.height = '40px';
+    ring.style.borderColor = 'rgba(255,255,255,0.5)';
+  }
+});
+
+area.addEventListener('mouseleave', function () {
+  btn.style.transform = 'translate(0, 0)';
+  ring.style.opacity = '0';
+});
+
+function tick() {
+  ringX += (mouseX - ringX) * SMOOTH;
+  ringY += (mouseY - ringY) * SMOOTH;
+  ring.style.left = ringX + 'px';
+  ring.style.top = ringY + 'px';
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);</script></body></html>"></iframe>
+    </section>
+
+    <div class="fx-codes">
+      <section class="fx-code" aria-labelledby="code-html">
+        <div class="fx-code-bar"><h3 id="code-html">HTML</h3><button type="button" class="fx-copy" data-copy="html">Copy</button></div>
+        <pre><code class="language-html">&lt;div class=&quot;magnetic-area&quot; id=&quot;magneticArea&quot;&gt;
+  &lt;button class=&quot;magnetic-btn&quot; id=&quot;magneticBtn&quot;&gt;Magnetic&lt;/button&gt;
+  &lt;div class=&quot;cursor-ring&quot; id=&quot;cursorRing&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </section>
+      <section class="fx-code" aria-labelledby="code-css">
+        <div class="fx-code-bar"><h3 id="code-css">CSS</h3><button type="button" class="fx-copy" data-copy="css">Copy</button></div>
+        <pre><code class="language-css">.magnetic-area {
+  position: relative;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #12121a;
+  overflow: hidden;
+  cursor: none;
+}
+
+.magnetic-btn {
+  padding: 0.8rem 1.5rem;
+  background: #7c5cff;
+  color: #fff;
+  border: none;
+  border-radius: 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: none;
+  transition: transform 0.1s;
+}
+
+.cursor-ring {
+  position: absolute;
+  top: 0; left: 0;
+  width: 40px; height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, border-color 0.3s;
+  opacity: 0;
+}</code></pre>
+      </section>
+      <section class="fx-code" aria-labelledby="code-js">
+        <div class="fx-code-bar"><h3 id="code-js">JavaScript</h3><button type="button" class="fx-copy" data-copy="js">Copy</button></div>
+        <pre><code class="language-js">var area = document.getElementById('magneticArea');
+var btn = document.getElementById('magneticBtn');
+var ring = document.getElementById('cursorRing');
+var RADIUS = 80;    // px — snap distance to button center
+var PULL = 0.4;     // fraction of the offset the button moves
+var SMOOTH = 0.15;  // ring lerp factor
+
+var mouseX = 0, mouseY = 0;   // relative to area
+var ringX = 0, ringY = 0;
+
+area.addEventListener('mousemove', function (e) {
+  var rect = area.getBoundingClientRect();
+  mouseX = e.clientX - rect.left;
+  mouseY = e.clientY - rect.top;
+  ring.style.opacity = '1';
+
+  var b = btn.getBoundingClientRect();
+  var dx = e.clientX - (b.left + b.width / 2);
+  var dy = e.clientY - (b.top + b.height / 2);
+  var dist = Math.sqrt(dx * dx + dy * dy);
+
+  if (dist &lt; RADIUS) {
+    btn.style.transform = 'translate(' + (dx * PULL) + 'px, ' + (dy * PULL) + 'px)';
+    ring.style.width = '60px';
+    ring.style.height = '60px';
+    ring.style.borderColor = '#7c5cff';
+  } else {
+    btn.style.transform = 'translate(0, 0)';
+    ring.style.width = '40px';
+    ring.style.height = '40px';
+    ring.style.borderColor = 'rgba(255,255,255,0.5)';
+  }
+});
+
+area.addEventListener('mouseleave', function () {
+  btn.style.transform = 'translate(0, 0)';
+  ring.style.opacity = '0';
+});
+
+function tick() {
+  ringX += (mouseX - ringX) * SMOOTH;
+  ringY += (mouseY - ringY) * SMOOTH;
+  ring.style.left = ringX + 'px';
+  ring.style.top = ringY + 'px';
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);</code></pre>
+      </section>
+    </div>
+
+    <section class="fx-related" aria-labelledby="related-h">
+      <h2 id="related-h">More cursor effects</h2>
+      <ul>
+        <li><a href="/cursor/blend"><span class="fx-rel-name">Blend Mode</span><span class="fx-rel-desc">Cursor inverts background colors</span></a></li>
+        <li><a href="/cursor/mask"><span class="fx-rel-name">Mask Reveal</span><span class="fx-rel-desc">Cursor acts as a window</span></a></li>
+        <li><a href="/cursor/trail"><span class="fx-rel-name">Cursor Trail</span><span class="fx-rel-desc">Dot trail follows movement</span></a></li>
+        <li><a href="/cursor/scale"><span class="fx-rel-name">Scale Interaction</span><span class="fx-rel-desc">Cursor grows when hovering targets</span></a></li>
+      </ul>
+      <a class="fx-all" href="/cursor#magnetic">Browse all 22 cursor &amp; pointer effects <span aria-hidden="true">&rarr;</span></a>
+    </section>
+  </main>
+
+  <footer class="home-footer">
+    <div class="wrap">
+      <p>Pure HTML · CSS · JavaScript — every effect includes copyable standalone code</p>
+      <p class="home-credit">Motion Bench by <a href="https://anishkapse.com/" target="_blank" rel="noopener noreferrer">Anish Kapse</a></p>
+    </div>
+  </footer>
+
+  <script src="/a11y.js"></script>
+  <script src="/transitions.js"></script>
+  <script src="/effect.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

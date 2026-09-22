@@ -124,6 +124,7 @@
     view.appendChild(bar);
     view.appendChild(pre);
     panel.appendChild(toggle);
+    if (snippet.permalink) panel.appendChild(buildPermalink(snippet.permalink));
     panel.appendChild(view);
 
     select(active);
@@ -141,8 +142,23 @@
     for (var i = 0; i < pres.length; i++) {
       snippet[pres[i].getAttribute('data-lang')] = pres[i].textContent;
     }
+    if (source.dataset.permalink) snippet.permalink = source.dataset.permalink;
     source.parentNode.removeChild(source);
     return snippet;
+  }
+
+  var ICON_LINK =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>';
+
+  // Quiet icon-only link to the effect's standalone page. Sits beside the toggle.
+  function buildPermalink(href) {
+    var a = document.createElement('a');
+    a.className = 'code-permalink';
+    a.href = href;
+    a.title = 'Open this effect on its own page';
+    a.setAttribute('aria-label', 'Open this effect on its own page');
+    a.innerHTML = ICON_LINK;
+    return a;
   }
 
   function init() {

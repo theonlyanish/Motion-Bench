@@ -82,7 +82,7 @@
       </div>
       <p class="anim-desc">The simplest scroll reveal: content starts transparent and fades in when it enters the viewport. Uses IntersectionObserver to add a class, and CSS handles the transition.</p>
       <!-- code-source:fade -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/fade">
         <pre data-lang="html"><code>&lt;!-- Place inside a scrollable page so the section starts off-screen --&gt;
 &lt;section class=&quot;fade-section&quot;&gt;
   &lt;h2&gt;Fade In&lt;/h2&gt;
@@ -124,7 +124,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">Content rises into place while fading in, the most common entrance for cards and sections. A translateY offset plus opacity, both transitioned on an ease-out curve.</p>
       <!-- code-source:slideUp -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/slide-up">
         <pre data-lang="html"><code>&lt;section class=&quot;slide-up-section&quot;&gt;
   &lt;h2&gt;Slide Up&lt;/h2&gt;
 &lt;/section&gt;</code></pre>
@@ -167,7 +167,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">Enters from the right edge and settles in, a good fit for alternating two-column layouts. translateX with an ease-out so it decelerates into position.</p>
       <!-- code-source:slideLeft -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/slide-left">
         <pre data-lang="html"><code>&lt;section class=&quot;slide-left-section&quot;&gt;
   &lt;h2&gt;Slide From Right&lt;/h2&gt;
 &lt;/section&gt;</code></pre>
@@ -211,7 +211,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">Enters from the left edge and settles in, the mirror of Slide From Right. Pair the two for zig-zag content that reads left to right.</p>
       <!-- code-source:slideRight -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/slide-right">
         <pre data-lang="html"><code>&lt;section class=&quot;slide-right-section&quot;&gt;
   &lt;h2&gt;Slide From Left&lt;/h2&gt;
 &lt;/section&gt;</code></pre>
@@ -255,7 +255,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">Content grows from slightly smaller than final size while fading in, which draws focus without feeling like a bounce. A single scale transform on an ease-out.</p>
       <!-- code-source:scaleUp -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/scale-up">
         <pre data-lang="html"><code>&lt;section class=&quot;scale-up-section&quot;&gt;
   &lt;h2&gt;Scale Up&lt;/h2&gt;
 &lt;/section&gt;</code></pre>
@@ -298,7 +298,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">Content swings in with a small rotation that straightens out as it lands. A rotate plus translate combo that adds character without heavy motion.</p>
       <!-- code-source:rotateIn -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/rotate-in">
         <pre data-lang="html"><code>&lt;section class=&quot;rotate-in-section&quot;&gt;
   &lt;h2&gt;Rotate In&lt;/h2&gt;
 &lt;/section&gt;</code></pre>
@@ -341,7 +341,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">Each letter rises and fades in a beat after the one before it, spelling the word out. Per-character spans with an incrementing transition-delay.</p>
       <!-- code-source:stagger -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/stagger">
         <pre data-lang="html"><code>&lt;section class=&quot;stagger-section&quot;&gt;
   &lt;h2 class=&quot;stagger-word&quot;&gt;&lt;/h2&gt;
 &lt;/section&gt;</code></pre>
@@ -397,7 +397,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">Content comes into focus as it enters view, starting blurred and transparent. A CSS filter blur that transitions to zero; keep the radius small for performance.</p>
       <!-- code-source:blurSharp -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/blur-sharp">
         <pre data-lang="html"><code>&lt;section class=&quot;blur-sharp-section&quot;&gt;
   &lt;h2&gt;Blur to Sharp&lt;/h2&gt;
 &lt;/section&gt;</code></pre>
@@ -440,7 +440,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">Content slides in with a skew that relaxes to upright, like it is catching up to itself. A skewX plus translateX transition on one element.</p>
       <!-- code-source:skewIn -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/skew-in">
         <pre data-lang="html"><code>&lt;section class=&quot;skew-in-section&quot;&gt;
   &lt;h2&gt;Skew In&lt;/h2&gt;
 &lt;/section&gt;</code></pre>
@@ -486,7 +486,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">Layers move at different rates as you scroll, so the label, title and background rules separate in depth. Read from scroll position and applied with translateY in requestAnimationFrame.</p>
       <!-- code-source:parallax -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/parallax">
         <pre data-lang="html"><code>&lt;!-- Make the section tall so there is room to scrub through it.
      The bordered stage is the frame of reference — parallax is differential
      motion, so without something STATIC to measure against, and without layers
@@ -601,7 +601,7 @@ requestAnimationFrame(tick);</code></pre>
       </div>
       <p class="anim-desc">Content is unmasked from one edge as it enters view, as if a curtain is pulled back. A clip-path inset that animates to zero, leaving the element itself in place.</p>
       <!-- code-source:clipReveal -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/clip-reveal">
         <pre data-lang="html"><code>&lt;section class=&quot;clip-reveal-section&quot;&gt;
   &lt;h2&gt;Clip Reveal&lt;/h2&gt;
 &lt;/section&gt;</code></pre>
@@ -641,7 +641,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">Content flips around its vertical axis into view with a perspective transform. A rotateY on a perspective parent gives real depth to a card entrance.</p>
       <!-- code-source:flip3d -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/flip3d">
         <pre data-lang="html"><code>&lt;section class=&quot;flip3d-section&quot;&gt;
   &lt;h2&gt;3D Flip&lt;/h2&gt;
 &lt;/section&gt;</code></pre>
@@ -684,7 +684,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">Content drops in and overshoots before settling, using a spring-like cubic-bezier. Good for playful UI; keep it to one or two elements per screen.</p>
       <!-- code-source:bounceIn -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/bounce-in">
         <pre data-lang="html"><code>&lt;section class=&quot;bounce-in-section&quot;&gt;
   &lt;h2&gt;Bounce In&lt;/h2&gt;
 &lt;/section&gt;</code></pre>
@@ -728,7 +728,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">Two halves of the headline slide in from opposite sides and meet in the middle. Independent translateX transitions on a left and right span.</p>
       <!-- code-source:splitConverge -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/split-converge">
         <pre data-lang="html"><code>&lt;section class=&quot;split-converge-section&quot;&gt;
   &lt;h2&gt;&lt;span class=&quot;split-left&quot;&gt;Split&lt;/span&gt; &lt;span class=&quot;split-right&quot;&gt;Converge&lt;/span&gt;&lt;/h2&gt;
 &lt;/section&gt;</code></pre>
@@ -777,7 +777,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">An underline draws itself across the text when the heading scrolls into view. A background-image gradient whose background-size animates from zero to full width.</p>
       <!-- code-source:underlineGrow -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/underline-grow">
         <pre data-lang="html"><code>&lt;section class=&quot;underline-grow-section&quot;&gt;
   &lt;h2 class=&quot;underline-text&quot;&gt;Underline Grow&lt;/h2&gt;
 &lt;/section&gt;</code></pre>
@@ -820,7 +820,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">Letters start spread wide and tighten into normal spacing as the text fades in. Animates letter-spacing, a cheap way to add a typographic entrance.</p>
       <!-- code-source:letterSpacing -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/letter-spacing">
         <pre data-lang="html"><code>&lt;section class=&quot;letter-spacing-section&quot;&gt;
   &lt;h2 class=&quot;letter-spacing-text&quot;&gt;Letter Spacing&lt;/h2&gt;
 &lt;/section&gt;</code></pre>
@@ -863,7 +863,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">A combined slide and fade, tuned so both finish together. This is the workhorse reveal for lists, cards and section intros.</p>
       <!-- code-source:slideFade -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/slide-fade">
         <pre data-lang="html"><code>&lt;section class=&quot;slide-fade-section&quot;&gt;
   &lt;h2&gt;Slide + Fade&lt;/h2&gt;
 &lt;/section&gt;</code></pre>
@@ -906,7 +906,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">Content scales up while rotating into alignment, a slightly more dramatic take on Scale Up. Two transforms on one transition.</p>
       <!-- code-source:scaleRotate -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/scale-rotate">
         <pre data-lang="html"><code>&lt;section class=&quot;scale-rotate-section&quot;&gt;
   &lt;h2&gt;Scale + Rotate&lt;/h2&gt;
 &lt;/section&gt;</code></pre>
@@ -949,7 +949,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">A gradient sweeps across the text once it enters view, using background-clip: text. Animates background-position over a wide gradient.</p>
       <!-- code-source:gradientShift -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/gradient-shift">
         <pre data-lang="html"><code>&lt;section class=&quot;gradient-shift-section&quot;&gt;
   &lt;h2 class=&quot;gradient-text&quot;&gt;Gradient Shift&lt;/h2&gt;
 &lt;/section&gt;</code></pre>
@@ -993,7 +993,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">Text types itself out one character at a time with a blinking cursor, triggered when it scrolls into view. A small JavaScript loop; the cursor is a CSS blink.</p>
       <!-- code-source:typewriter -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/typewriter">
         <pre data-lang="html"><code>&lt;section class=&quot;typewriter-section&quot;&gt;
   &lt;h2 class=&quot;typewriter-text&quot;&gt;&lt;span class=&quot;tw-chars&quot;&gt;&lt;/span&gt;&lt;span class=&quot;tw-cursor&quot;&gt;|&lt;/span&gt;&lt;/h2&gt;
 &lt;/section&gt;</code></pre>
@@ -1065,7 +1065,7 @@ new IntersectionObserver(function (entries) {
       <div class="card card-3">Card 3</div>
       <p class="anim-desc">Cards pin to the viewport and stack on top of each other as you scroll through the section. Built on position: sticky with a rotation and offset per card.</p>
       <!-- code-source:stickyStack -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/sticky-stack">
         <pre data-lang="html"><code>&lt;section class=&quot;sticky-stack-section&quot;&gt;
   &lt;div class=&quot;stack-card stack-card-1&quot;&gt;Card 1&lt;/div&gt;
   &lt;div class=&quot;stack-card stack-card-2&quot;&gt;Card 2&lt;/div&gt;
@@ -1135,7 +1135,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">A row of items slides horizontally into view as you scroll vertically. A translateX driven by IntersectionObserver, without hijacking the wheel.</p>
       <!-- code-source:horizontalScroll -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/horizontal-scroll">
         <pre data-lang="html"><code>&lt;section class=&quot;horizontal-scroll-section&quot;&gt;
   &lt;div class=&quot;horizontal-track&quot;&gt;
     &lt;div class=&quot;h-item&quot;&gt;Item 1&lt;/div&gt;
@@ -1195,7 +1195,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">A number counts up from zero to its target when it enters the viewport, with easing so it slows as it lands. Reads the target from a data attribute.</p>
       <!-- code-source:counter -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/counter">
         <pre data-lang="html"><code>&lt;section class=&quot;counter-section&quot;&gt;
   &lt;h2 class=&quot;counter-text&quot; data-target=&quot;100&quot;&gt;0&lt;/h2&gt;
 &lt;/section&gt;</code></pre>
@@ -1259,7 +1259,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">An image is uncovered by a coloured curtain sliding away, a common editorial reveal. A pseudo-panel that transitions translateX over the picture.</p>
       <!-- code-source:imgReveal -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/img-reveal">
         <pre data-lang="html"><code>&lt;section class=&quot;img-reveal-section&quot;&gt;
   &lt;div class=&quot;img-reveal-wrapper&quot;&gt;
     &lt;div class=&quot;img-reveal-curtain&quot;&gt;&lt;/div&gt;
@@ -1321,7 +1321,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">A highlighter mark sweeps across the words when the text scrolls into view. A background gradient whose size grows from zero, so it works on wrapping text.</p>
       <!-- code-source:textHighlight -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/text-highlight">
         <pre data-lang="html"><code>&lt;section class=&quot;text-highlight-section&quot;&gt;
   &lt;h2&gt;Important &lt;span class=&quot;marker&quot;&gt;Concept&lt;/span&gt;&lt;/h2&gt;
 &lt;/section&gt;</code></pre>
@@ -1372,7 +1372,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">Grid items rotate up from a tilted plane into place, one after another. A rotateX on a perspective container with staggered delays.</p>
       <!-- code-source:perspectiveGrid -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/perspective-grid">
         <pre data-lang="html"><code>&lt;section class=&quot;perspective-grid-section&quot;&gt;
   &lt;div class=&quot;perspective-grid&quot;&gt;
     &lt;div class=&quot;grid-item&quot;&gt;&lt;/div&gt;
@@ -1431,7 +1431,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">A circle grows from the centre to fill its container as it enters view, revealing the label. A single scale transform on a rounded element.</p>
       <!-- code-source:circleExpand -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/circle-expand">
         <pre data-lang="html"><code>&lt;section class=&quot;circle-expand-section&quot;&gt;
   &lt;div class=&quot;circle-expand&quot;&gt;
     &lt;span&gt;Circle Expand&lt;/span&gt;
@@ -1482,7 +1482,7 @@ new IntersectionObserver(function (entries) {
       </ul>
       <p class="anim-desc">List items slide and fade in one at a time, top to bottom. Uses nth-child transition delays, so adding items needs no extra code.</p>
       <!-- code-source:staggerList -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/stagger-list">
         <pre data-lang="html"><code>&lt;section class=&quot;stagger-list-section&quot;&gt;
   &lt;ul class=&quot;stagger-list&quot;&gt;
     &lt;li&gt;List Item 1&lt;/li&gt;
@@ -1539,7 +1539,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">A video plays when it scrolls into view and pauses when it leaves, saving bandwidth and battery. IntersectionObserver calls play() and pause().</p>
       <!-- code-source:videoScroll -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/video-scroll">
         <pre data-lang="html"><code>&lt;!-- Swap the placeholder for a real &lt;video muted playsinline&gt; to
      auto play/pause it — see the commented lines in the JS --&gt;
 &lt;section class=&quot;video-scroll-section&quot;&gt;
@@ -1590,7 +1590,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">The background colour shifts smoothly as the block moves through the viewport. Scroll progress is mapped to an HSL hue and set as a CSS variable.</p>
       <!-- code-source:colorMorph -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/color-morph">
         <pre data-lang="html"><code>&lt;section class=&quot;color-morph-section&quot;&gt;
   &lt;h2&gt;Background Shift&lt;/h2&gt;
 &lt;/section&gt;</code></pre>
@@ -1630,7 +1630,7 @@ new IntersectionObserver(function (entries) {
       </div>
       <p class="anim-desc">Text skews in proportion to how fast you scroll and snaps back when you stop. Scroll velocity is measured per frame and applied as skewX.</p>
       <!-- code-source:velocitySkew -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/velocity-skew">
         <pre data-lang="html"><code>&lt;!-- Needs a scrollable page — the skew follows how fast you scroll --&gt;
 &lt;section class=&quot;velocity-skew-section&quot;&gt;
   &lt;h2 class=&quot;velocity-text&quot;&gt;Scroll Fast!&lt;/h2&gt;
@@ -1678,7 +1678,7 @@ requestAnimationFrame(tick);</code></pre>
       </div>
       <p class="anim-desc">Text fills with colour in step with your scroll position rather than on a timer. Scroll progress drives background-size on a clipped gradient.</p>
       <!-- code-source:textFillScrub -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/text-fill-scrub">
         <pre data-lang="html"><code>&lt;!-- Make the section tall so there is room to scrub through it --&gt;
 &lt;section class=&quot;fill-scrub-section&quot;&gt;
   &lt;h2 class=&quot;fill-scrub-text&quot;&gt;Filled by your scroll position, not by time&lt;/h2&gt;
@@ -1728,7 +1728,7 @@ requestAnimationFrame(tick);</code></pre>
       </div>
       <p class="anim-desc">The headline scales up toward you as you scroll past, as if you are moving through it. Scroll progress maps to a scale and opacity, applied each frame.</p>
       <!-- code-source:zoomThrough -->
-      <div class="code-source" hidden>
+      <div class="code-source" hidden data-permalink="/scroll/zoom-through">
         <pre data-lang="html"><code>&lt;!-- Make the section tall so there is room to scrub through it --&gt;
 &lt;section class=&quot;zoom-through-section&quot;&gt;
   &lt;h2 class=&quot;zoom-through-text&quot;&gt;Closer&lt;/h2&gt;

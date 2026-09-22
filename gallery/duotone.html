@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Duotone Gradient — Gallery Effect in CSS &amp; JS | Motion Bench</title>
+  <meta name="description" content="Mix-blend-mode overlay Copy-paste HTML, CSS and JavaScript, no dependencies.">
+  <link rel="canonical" href="https://motion-bench.vercel.app/gallery/duotone">
+  <meta name="theme-color" content="#0d0d0f">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Motion Bench">
+  <meta property="og:title" content="Duotone Gradient — Gallery Effect">
+  <meta property="og:description" content="Mix-blend-mode overlay">
+  <meta property="og:url" content="https://motion-bench.vercel.app/gallery/duotone">
+  <meta property="og:image" content="https://motion-bench.vercel.app/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Duotone Gradient — Gallery Effect">
+  <meta name="twitter:description" content="Mix-blend-mode overlay">
+  <meta name="twitter:image" content="https://motion-bench.vercel.app/og-image.png">
+  <script type="application/ld+json" id="ld-schema">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareSourceCode","@id":"https://motion-bench.vercel.app/gallery/duotone","url":"https://motion-bench.vercel.app/gallery/duotone","name":"Duotone Gradient — Gallery effect","description":"Mix-blend-mode overlay","programmingLanguage":["HTML","CSS"],"codeSampleType":"full","runtimePlatform":"Web browser","license":"https://opensource.org/licenses/MIT","codeRepository":"https://github.com/theonlyanish/frontend-reference","isPartOf":{"@id":"https://motion-bench.vercel.app/gallery"},"author":{"@type":"Person","@id":"https://anishkapse.com/#person","name":"Anish Kapse","url":"https://anishkapse.com/"},"keywords":"duotone, gradient, gallery"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Motion Bench","item":"https://motion-bench.vercel.app/"},{"@type":"ListItem","position":2,"name":"Gallery Effects","item":"https://motion-bench.vercel.app/gallery"},{"@type":"ListItem","position":3,"name":"Duotone Gradient","item":"https://motion-bench.vercel.app/gallery/duotone"}]}]}</script>
+  <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32x32.png?v=2" type="image/png" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/home.css">
+  <link rel="stylesheet" href="/nav-tooltips.css">
+  <link rel="stylesheet" href="/transitions.css">
+  <link rel="stylesheet" href="/effect.css">
+</head>
+<body class="is-loaded fx-page" data-cat="gallery">
+  <div class="transition-overlay"></div>
+
+  <nav class="nav-bar" aria-label="Site navigation">
+      <a href="/" class="nav-btn" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+      </a>
+      <a href="/typography" class="nav-btn" aria-label="Typography">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+        </svg>
+      </a>
+      <a href="/scroll" class="nav-btn" aria-label="Scroll Animations">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+      </a>
+      <a href="/gallery" class="nav-btn" aria-label="Gallery Effects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+      </a>
+      <a href="/cursor" class="nav-btn" aria-label="Cursor Effects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
+          <path d="M13 13l6 6"/>
+        </svg>
+      </a>
+      <a href="/layout" class="nav-btn" aria-label="Layout Animations">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <line x1="3" y1="9" x2="21" y2="9"/>
+          <line x1="9" y1="21" x2="9" y2="9"/>
+        </svg>
+      </a>
+    </nav>
+
+  <main class="fx-single wrap">
+    <nav class="fx-crumbs" aria-label="Breadcrumb">
+      <a href="/">Motion Bench</a><span aria-hidden="true">/</span><a href="/gallery">Gallery Effects</a><span aria-hidden="true">/</span><span aria-current="page">Duotone Gradient</span>
+    </nav>
+
+    <header class="fx-head">
+      <p class="fx-eyebrow">Gallery · 15 of 33</p>
+      <h1>Duotone Gradient</h1>
+      <p class="fx-lede">Mix-blend-mode overlay</p>
+      <p class="fx-meta">HTML · CSS · No dependencies · MIT</p>
+    </header>
+
+    <section class="fx-demo" aria-label="Live demo">
+      <iframe class="fx-frame" title="Duotone Gradient live demo" loading="lazy" sandbox="allow-scripts" srcdoc="<!DOCTYPE html><html><head><meta charset=&quot;utf-8&quot;><link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;><link href=&quot;https://fonts.googleapis.com/css2?family=Geist:wght@300..700&amp;family=Roboto+Flex:opsz,slnt,wdth,wght@8..144,-10..0,25..151,100..1000&amp;display=swap&quot; rel=&quot;stylesheet&quot;><style>:root{--bg-dark:#0d0d0f;--bg-panel:#16161a;--border-subtle:rgba(255,255,255,.08);--border-strong:rgba(255,255,255,.15);--text-primary:#f3f3f5;--text-secondary:#b5b5bd;--text-muted:#7c7c86;--accent:#7c5cff;--cat:#a897e6;--radius:12px;--dur:.7s;--ease-out:cubic-bezier(.16,1,.3,1)}*{box-sizing:border-box}html,body{margin:0;min-height:100%}body{background:#0d0d0f;color:#f3f3f5;font-family:Geist,system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:2rem;gap:1rem;overflow-x:hidden}img{max-width:100%}</style><style>.duotone-hover {
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+  /* The tint color that shows through luminosity blending */
+  background: #f00;
+}
+
+.duotone-hover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  mix-blend-mode: luminosity;
+  filter: contrast(1.2);
+  transition: mix-blend-mode 0.4s, filter 0.4s;
+}
+
+.duotone-hover:hover img {
+  mix-blend-mode: normal;
+  filter: none;
+}</style></head><body><div class=&quot;duotone-hover&quot;>
+  <img src=&quot;https://picsum.photos/id/96/800/600&quot; alt=&quot;Tools&quot;>
+</div><script></script></body></html>"></iframe>
+    </section>
+
+    <div class="fx-codes">
+      <section class="fx-code" aria-labelledby="code-html">
+        <div class="fx-code-bar"><h3 id="code-html">HTML</h3><button type="button" class="fx-copy" data-copy="html">Copy</button></div>
+        <pre><code class="language-html">&lt;div class=&quot;duotone-hover&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/96/800/600&quot; alt=&quot;Tools&quot;&gt;
+&lt;/div&gt;</code></pre>
+      </section>
+      <section class="fx-code" aria-labelledby="code-css">
+        <div class="fx-code-bar"><h3 id="code-css">CSS</h3><button type="button" class="fx-copy" data-copy="css">Copy</button></div>
+        <pre><code class="language-css">.duotone-hover {
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+  /* The tint color that shows through luminosity blending */
+  background: #f00;
+}
+
+.duotone-hover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  mix-blend-mode: luminosity;
+  filter: contrast(1.2);
+  transition: mix-blend-mode 0.4s, filter 0.4s;
+}
+
+.duotone-hover:hover img {
+  mix-blend-mode: normal;
+  filter: none;
+}</code></pre>
+      </section>
+    </div>
+
+    <section class="fx-related" aria-labelledby="related-h">
+      <h2 id="related-h">More gallery effects</h2>
+      <ul>
+        <li><a href="/gallery/center-reveal"><span class="fx-rel-name">Center Reveal</span><span class="fx-rel-desc">Circular mask expands</span></a></li>
+        <li><a href="/gallery/pixelate"><span class="fx-rel-name">Pixelate</span><span class="fx-rel-desc">Steps down resolution (CSS filter)</span></a></li>
+        <li><a href="/gallery/slide-behind"><span class="fx-rel-name">Slide Behind</span><span class="fx-rel-desc">Image slides to reveal text behind</span></a></li>
+        <li><a href="/gallery/flash-overlay"><span class="fx-rel-name">Flash Overlay</span><span class="fx-rel-desc">Bright flash transition</span></a></li>
+      </ul>
+      <a class="fx-all" href="/gallery#duotone">Browse all 33 gallery effects <span aria-hidden="true">&rarr;</span></a>
+    </section>
+  </main>
+
+  <footer class="home-footer">
+    <div class="wrap">
+      <p>Pure HTML · CSS · JavaScript — every effect includes copyable standalone code</p>
+      <p class="home-credit">Motion Bench by <a href="https://anishkapse.com/" target="_blank" rel="noopener noreferrer">Anish Kapse</a></p>
+    </div>
+  </footer>
+
+  <script src="/a11y.js"></script>
+  <script src="/transitions.js"></script>
+  <script src="/effect.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

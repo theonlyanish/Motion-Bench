@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scale Interaction — Cursor Effect in CSS &amp; JS | Motion Bench</title>
+  <meta name="description" content="Cursor grows when hovering targets Copy-paste HTML, CSS and JavaScript, no dependencies.">
+  <link rel="canonical" href="https://motion-bench.vercel.app/cursor/scale">
+  <meta name="theme-color" content="#0d0d0f">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Motion Bench">
+  <meta property="og:title" content="Scale Interaction — Cursor Effect">
+  <meta property="og:description" content="Cursor grows when hovering targets">
+  <meta property="og:url" content="https://motion-bench.vercel.app/cursor/scale">
+  <meta property="og:image" content="https://motion-bench.vercel.app/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Scale Interaction — Cursor Effect">
+  <meta name="twitter:description" content="Cursor grows when hovering targets">
+  <meta name="twitter:image" content="https://motion-bench.vercel.app/og-image.png">
+  <script type="application/ld+json" id="ld-schema">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareSourceCode","@id":"https://motion-bench.vercel.app/cursor/scale","url":"https://motion-bench.vercel.app/cursor/scale","name":"Scale Interaction — Cursor effect","description":"Cursor grows when hovering targets","programmingLanguage":["HTML","CSS","JavaScript"],"codeSampleType":"full","runtimePlatform":"Web browser","license":"https://opensource.org/licenses/MIT","codeRepository":"https://github.com/theonlyanish/frontend-reference","isPartOf":{"@id":"https://motion-bench.vercel.app/cursor"},"author":{"@type":"Person","@id":"https://anishkapse.com/#person","name":"Anish Kapse","url":"https://anishkapse.com/"},"keywords":"scale, interaction, cursor"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Motion Bench","item":"https://motion-bench.vercel.app/"},{"@type":"ListItem","position":2,"name":"Cursor & Pointer Effects","item":"https://motion-bench.vercel.app/cursor"},{"@type":"ListItem","position":3,"name":"Scale Interaction","item":"https://motion-bench.vercel.app/cursor/scale"}]}]}</script>
+  <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32x32.png?v=2" type="image/png" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/home.css">
+  <link rel="stylesheet" href="/nav-tooltips.css">
+  <link rel="stylesheet" href="/transitions.css">
+  <link rel="stylesheet" href="/effect.css">
+</head>
+<body class="is-loaded fx-page" data-cat="cursor">
+  <div class="transition-overlay"></div>
+
+  <nav class="nav-bar" aria-label="Site navigation">
+      <a href="/" class="nav-btn" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+      </a>
+      <a href="/typography" class="nav-btn" aria-label="Typography">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+        </svg>
+      </a>
+      <a href="/scroll" class="nav-btn" aria-label="Scroll Animations">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+      </a>
+      <a href="/gallery" class="nav-btn" aria-label="Gallery Effects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+      </a>
+      <a href="/cursor" class="nav-btn" aria-label="Cursor Effects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
+          <path d="M13 13l6 6"/>
+        </svg>
+      </a>
+      <a href="/layout" class="nav-btn" aria-label="Layout Animations">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <line x1="3" y1="9" x2="21" y2="9"/>
+          <line x1="9" y1="21" x2="9" y2="9"/>
+        </svg>
+      </a>
+    </nav>
+
+  <main class="fx-single wrap">
+    <nav class="fx-crumbs" aria-label="Breadcrumb">
+      <a href="/">Motion Bench</a><span aria-hidden="true">/</span><a href="/cursor">Cursor &amp; Pointer Effects</a><span aria-hidden="true">/</span><span aria-current="page">Scale Interaction</span>
+    </nav>
+
+    <header class="fx-head">
+      <p class="fx-eyebrow">Cursor · 05 of 22</p>
+      <h1>Scale Interaction</h1>
+      <p class="fx-lede">Cursor grows when hovering targets</p>
+      <p class="fx-meta">HTML · CSS · JavaScript · No dependencies · MIT</p>
+    </header>
+
+    <section class="fx-demo" aria-label="Live demo">
+      <iframe class="fx-frame" title="Scale Interaction live demo" loading="lazy" sandbox="allow-scripts" srcdoc="<!DOCTYPE html><html><head><meta charset=&quot;utf-8&quot;><link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;><link href=&quot;https://fonts.googleapis.com/css2?family=Geist:wght@300..700&amp;family=Roboto+Flex:opsz,slnt,wdth,wght@8..144,-10..0,25..151,100..1000&amp;display=swap&quot; rel=&quot;stylesheet&quot;><style>:root{--bg-dark:#0d0d0f;--bg-panel:#16161a;--border-subtle:rgba(255,255,255,.08);--border-strong:rgba(255,255,255,.15);--text-primary:#f3f3f5;--text-secondary:#b5b5bd;--text-muted:#7c7c86;--accent:#7c5cff;--cat:#a897e6;--radius:12px;--dur:.7s;--ease-out:cubic-bezier(.16,1,.3,1)}*{box-sizing:border-box}html,body{margin:0;min-height:100%}body{background:#0d0d0f;color:#f3f3f5;font-family:Geist,system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:2rem;gap:1rem;overflow-x:hidden}img{max-width:100%}</style><style>.scale-area {
+  position: relative;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #12121a;
+  overflow: hidden;
+  cursor: none;
+  font-family: sans-serif;
+}
+
+.scale-target {
+  padding: 1rem 2rem;
+  border: 1px solid #7c5cff;
+  color: #7c5cff;
+  border-radius: 8px;
+  cursor: none;
+}
+
+.scale-dot {
+  position: absolute;
+  top: 0; left: 0;
+  width: 10px; height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s;
+  opacity: 0;
+}
+
+.scale-ring {
+  position: absolute;
+  top: 0; left: 0;
+  width: 40px; height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, background 0.3s, border-color 0.3s;
+  opacity: 0;
+}</style></head><body><div class=&quot;scale-area&quot; id=&quot;scaleArea&quot;>
+  <div class=&quot;scale-target&quot; id=&quot;scaleTarget&quot;>Target</div>
+  <div class=&quot;scale-dot&quot; id=&quot;scaleDot&quot;></div>
+  <div class=&quot;scale-ring&quot; id=&quot;scaleRing&quot;></div>
+</div><script>var area = document.getElementById('scaleArea');
+var target = document.getElementById('scaleTarget');
+var dot = document.getElementById('scaleDot');
+var ring = document.getElementById('scaleRing');
+var SMOOTH = 0.15; // ring lerp factor
+
+var mouseX = 0, mouseY = 0;
+var ringX = 0, ringY = 0;
+
+area.addEventListener('mousemove', function (e) {
+  var rect = area.getBoundingClientRect();
+  mouseX = e.clientX - rect.left;
+  mouseY = e.clientY - rect.top;
+  dot.style.left = mouseX + 'px';
+  dot.style.top = mouseY + 'px';
+});
+area.addEventListener('mouseenter', function () {
+  dot.style.opacity = '1';
+  ring.style.opacity = '1';
+});
+area.addEventListener('mouseleave', function () {
+  dot.style.opacity = '0';
+  ring.style.opacity = '0';
+});
+
+// Grow the ring and hide the dot while hovering the target
+target.addEventListener('mouseenter', function () {
+  dot.style.transform = 'translate(-50%, -50%) scale(0)';
+  ring.style.background = 'rgba(124, 92, 255, 0.2)';
+  ring.style.width = '80px';
+  ring.style.height = '80px';
+  ring.style.borderColor = '#7c5cff';
+});
+target.addEventListener('mouseleave', function () {
+  dot.style.transform = 'translate(-50%, -50%) scale(1)';
+  ring.style.background = 'transparent';
+  ring.style.width = '40px';
+  ring.style.height = '40px';
+  ring.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+});
+
+function tick() {
+  ringX += (mouseX - ringX) * SMOOTH;
+  ringY += (mouseY - ringY) * SMOOTH;
+  ring.style.left = ringX + 'px';
+  ring.style.top = ringY + 'px';
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);</script></body></html>"></iframe>
+    </section>
+
+    <div class="fx-codes">
+      <section class="fx-code" aria-labelledby="code-html">
+        <div class="fx-code-bar"><h3 id="code-html">HTML</h3><button type="button" class="fx-copy" data-copy="html">Copy</button></div>
+        <pre><code class="language-html">&lt;div class=&quot;scale-area&quot; id=&quot;scaleArea&quot;&gt;
+  &lt;div class=&quot;scale-target&quot; id=&quot;scaleTarget&quot;&gt;Target&lt;/div&gt;
+  &lt;div class=&quot;scale-dot&quot; id=&quot;scaleDot&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;scale-ring&quot; id=&quot;scaleRing&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </section>
+      <section class="fx-code" aria-labelledby="code-css">
+        <div class="fx-code-bar"><h3 id="code-css">CSS</h3><button type="button" class="fx-copy" data-copy="css">Copy</button></div>
+        <pre><code class="language-css">.scale-area {
+  position: relative;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #12121a;
+  overflow: hidden;
+  cursor: none;
+  font-family: sans-serif;
+}
+
+.scale-target {
+  padding: 1rem 2rem;
+  border: 1px solid #7c5cff;
+  color: #7c5cff;
+  border-radius: 8px;
+  cursor: none;
+}
+
+.scale-dot {
+  position: absolute;
+  top: 0; left: 0;
+  width: 10px; height: 10px;
+  background: #fff;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.2s;
+  opacity: 0;
+}
+
+.scale-ring {
+  position: absolute;
+  top: 0; left: 0;
+  width: 40px; height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s, background 0.3s, border-color 0.3s;
+  opacity: 0;
+}</code></pre>
+      </section>
+      <section class="fx-code" aria-labelledby="code-js">
+        <div class="fx-code-bar"><h3 id="code-js">JavaScript</h3><button type="button" class="fx-copy" data-copy="js">Copy</button></div>
+        <pre><code class="language-js">var area = document.getElementById('scaleArea');
+var target = document.getElementById('scaleTarget');
+var dot = document.getElementById('scaleDot');
+var ring = document.getElementById('scaleRing');
+var SMOOTH = 0.15; // ring lerp factor
+
+var mouseX = 0, mouseY = 0;
+var ringX = 0, ringY = 0;
+
+area.addEventListener('mousemove', function (e) {
+  var rect = area.getBoundingClientRect();
+  mouseX = e.clientX - rect.left;
+  mouseY = e.clientY - rect.top;
+  dot.style.left = mouseX + 'px';
+  dot.style.top = mouseY + 'px';
+});
+area.addEventListener('mouseenter', function () {
+  dot.style.opacity = '1';
+  ring.style.opacity = '1';
+});
+area.addEventListener('mouseleave', function () {
+  dot.style.opacity = '0';
+  ring.style.opacity = '0';
+});
+
+// Grow the ring and hide the dot while hovering the target
+target.addEventListener('mouseenter', function () {
+  dot.style.transform = 'translate(-50%, -50%) scale(0)';
+  ring.style.background = 'rgba(124, 92, 255, 0.2)';
+  ring.style.width = '80px';
+  ring.style.height = '80px';
+  ring.style.borderColor = '#7c5cff';
+});
+target.addEventListener('mouseleave', function () {
+  dot.style.transform = 'translate(-50%, -50%) scale(1)';
+  ring.style.background = 'transparent';
+  ring.style.width = '40px';
+  ring.style.height = '40px';
+  ring.style.borderColor = 'rgba(255, 255, 255, 0.5)';
+});
+
+function tick() {
+  ringX += (mouseX - ringX) * SMOOTH;
+  ringY += (mouseY - ringY) * SMOOTH;
+  ring.style.left = ringX + 'px';
+  ring.style.top = ringY + 'px';
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);</code></pre>
+      </section>
+    </div>
+
+    <section class="fx-related" aria-labelledby="related-h">
+      <h2 id="related-h">More cursor effects</h2>
+      <ul>
+        <li><a href="/cursor/text"><span class="fx-rel-name">Text Cursor</span><span class="fx-rel-desc">Cursor becomes text label</span></a></li>
+        <li><a href="/cursor/spotlight"><span class="fx-rel-name">Spotlight</span><span class="fx-rel-desc">Light reveals content in dark</span></a></li>
+        <li><a href="/cursor/sticky"><span class="fx-rel-name">Sticky Cursor</span><span class="fx-rel-desc">Cursor sticks to element edge</span></a></li>
+        <li><a href="/cursor/glitch"><span class="fx-rel-name">Glitch Cursor</span><span class="fx-rel-desc">Cursor distortion and offset</span></a></li>
+      </ul>
+      <a class="fx-all" href="/cursor#scale">Browse all 22 cursor &amp; pointer effects <span aria-hidden="true">&rarr;</span></a>
+    </section>
+  </main>
+
+  <footer class="home-footer">
+    <div class="wrap">
+      <p>Pure HTML · CSS · JavaScript — every effect includes copyable standalone code</p>
+      <p class="home-credit">Motion Bench by <a href="https://anishkapse.com/" target="_blank" rel="noopener noreferrer">Anish Kapse</a></p>
+    </div>
+  </footer>
+
+  <script src="/a11y.js"></script>
+  <script src="/transitions.js"></script>
+  <script src="/effect.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

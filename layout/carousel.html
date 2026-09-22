@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carousel Snap — Layout Effect in CSS &amp; JS | Motion Bench</title>
+  <meta name="description" content="Horizontal snap scrolling Copy-paste HTML, CSS and JavaScript, no dependencies.">
+  <link rel="canonical" href="https://motion-bench.vercel.app/layout/carousel">
+  <meta name="theme-color" content="#0d0d0f">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Motion Bench">
+  <meta property="og:title" content="Carousel Snap — Layout Effect">
+  <meta property="og:description" content="Horizontal snap scrolling">
+  <meta property="og:url" content="https://motion-bench.vercel.app/layout/carousel">
+  <meta property="og:image" content="https://motion-bench.vercel.app/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Carousel Snap — Layout Effect">
+  <meta name="twitter:description" content="Horizontal snap scrolling">
+  <meta name="twitter:image" content="https://motion-bench.vercel.app/og-image.png">
+  <script type="application/ld+json" id="ld-schema">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareSourceCode","@id":"https://motion-bench.vercel.app/layout/carousel","url":"https://motion-bench.vercel.app/layout/carousel","name":"Carousel Snap — Layout effect","description":"Horizontal snap scrolling","programmingLanguage":["HTML","CSS","JavaScript"],"codeSampleType":"full","runtimePlatform":"Web browser","license":"https://opensource.org/licenses/MIT","codeRepository":"https://github.com/theonlyanish/frontend-reference","isPartOf":{"@id":"https://motion-bench.vercel.app/layout"},"author":{"@type":"Person","@id":"https://anishkapse.com/#person","name":"Anish Kapse","url":"https://anishkapse.com/"},"keywords":"carousel, snap, layout"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Motion Bench","item":"https://motion-bench.vercel.app/"},{"@type":"ListItem","position":2,"name":"Reveal & Layout Patterns","item":"https://motion-bench.vercel.app/layout"},{"@type":"ListItem","position":3,"name":"Carousel Snap","item":"https://motion-bench.vercel.app/layout/carousel"}]}]}</script>
+  <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32x32.png?v=2" type="image/png" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/home.css">
+  <link rel="stylesheet" href="/nav-tooltips.css">
+  <link rel="stylesheet" href="/transitions.css">
+  <link rel="stylesheet" href="/effect.css">
+</head>
+<body class="is-loaded fx-page" data-cat="layout">
+  <div class="transition-overlay"></div>
+
+  <nav class="nav-bar" aria-label="Site navigation">
+      <a href="/" class="nav-btn" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+      </a>
+      <a href="/typography" class="nav-btn" aria-label="Typography">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+        </svg>
+      </a>
+      <a href="/scroll" class="nav-btn" aria-label="Scroll Animations">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+      </a>
+      <a href="/gallery" class="nav-btn" aria-label="Gallery Effects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+      </a>
+      <a href="/cursor" class="nav-btn" aria-label="Cursor Effects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
+          <path d="M13 13l6 6"/>
+        </svg>
+      </a>
+      <a href="/layout" class="nav-btn" aria-label="Layout Animations">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <line x1="3" y1="9" x2="21" y2="9"/>
+          <line x1="9" y1="21" x2="9" y2="9"/>
+        </svg>
+      </a>
+    </nav>
+
+  <main class="fx-single wrap">
+    <nav class="fx-crumbs" aria-label="Breadcrumb">
+      <a href="/">Motion Bench</a><span aria-hidden="true">/</span><a href="/layout">Reveal &amp; Layout Patterns</a><span aria-hidden="true">/</span><span aria-current="page">Carousel Snap</span>
+    </nav>
+
+    <header class="fx-head">
+      <p class="fx-eyebrow">Layout · 13 of 23</p>
+      <h1>Carousel Snap</h1>
+      <p class="fx-lede">Horizontal snap scrolling</p>
+      <p class="fx-meta">HTML · CSS · JavaScript · No dependencies · MIT</p>
+    </header>
+
+    <section class="fx-demo" aria-label="Live demo">
+      <iframe class="fx-frame" title="Carousel Snap live demo" loading="lazy" sandbox="allow-scripts" srcdoc="<!DOCTYPE html><html><head><meta charset=&quot;utf-8&quot;><link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;><link href=&quot;https://fonts.googleapis.com/css2?family=Geist:wght@300..700&amp;family=Roboto+Flex:opsz,slnt,wdth,wght@8..144,-10..0,25..151,100..1000&amp;display=swap&quot; rel=&quot;stylesheet&quot;><style>:root{--bg-dark:#0d0d0f;--bg-panel:#16161a;--border-subtle:rgba(255,255,255,.08);--border-strong:rgba(255,255,255,.15);--text-primary:#f3f3f5;--text-secondary:#b5b5bd;--text-muted:#7c7c86;--accent:#7c5cff;--cat:#a897e6;--radius:12px;--dur:.7s;--ease-out:cubic-bezier(.16,1,.3,1)}*{box-sizing:border-box}html,body{margin:0;min-height:100%}body{background:#0d0d0f;color:#f3f3f5;font-family:Geist,system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:2rem;gap:1rem;overflow-x:hidden}img{max-width:100%}</style><style>.carousel-snap {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  width: 100%;
+  max-width: 400px;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory; /* native CSS snapping */
+  cursor: grab;
+  user-select: none;
+  /* Windows/Chrome renders a white native scrollbar here otherwise */
+  scrollbar-width: thin;
+  scrollbar-color: #7c5cff rgba(255, 255, 255, 0.08);
+}
+
+.carousel-snap::-webkit-scrollbar {
+  height: 6px;
+}
+
+.carousel-snap::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+}
+
+.carousel-snap::-webkit-scrollbar-thumb {
+  background: #7c5cff;
+  border-radius: 3px;
+}
+
+.carousel-snap::-webkit-scrollbar-thumb:hover {
+  background: #a78bfa;
+}
+
+.carousel-snap::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.carousel-snap.dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+.c-item {
+  min-width: 80%;
+  height: 120px;
+  background: #333;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #555;
+  scroll-snap-align: center;
+}</style></head><body><div class=&quot;carousel-snap&quot;>
+  <div class=&quot;c-item&quot;>1</div>
+  <div class=&quot;c-item&quot;>2</div>
+  <div class=&quot;c-item&quot;>3</div>
+  <div class=&quot;c-item&quot;>4</div>
+</div><script>// The CSS scroll-snap works on its own with touch / trackpad.
+// This JS adds mouse-wheel paging and click-drag scrolling.
+var carousel = document.querySelector('.carousel-snap');
+var items = carousel.querySelectorAll('.c-item');
+var carouselIndex = 0;
+
+function snapTo(index) {
+  carouselIndex = Math.max(0, Math.min(items.length - 1, index));
+  var item = items[carouselIndex];
+  var left = item.offsetLeft - (carousel.clientWidth - item.offsetWidth) / 2;
+  carousel.scrollTo({ left: left, behavior: 'smooth' });
+}
+
+// Vertical wheel scrolls advance one card at a time
+carousel.addEventListener('wheel', function (e) {
+  e.preventDefault();
+  snapTo(carouselIndex + ((e.deltaY || e.deltaX) > 0 ? 1 : -1));
+}, { passive: false });
+
+// Drag to scroll (mouse drag does nothing on overflow containers by default)
+var dragStartX = 0;
+var dragStartScroll = 0;
+var isDragging = false;
+
+carousel.addEventListener('pointerdown', function (e) {
+  isDragging = true;
+  dragStartX = e.clientX;
+  dragStartScroll = carousel.scrollLeft;
+  carousel.setPointerCapture(e.pointerId);
+  carousel.style.scrollSnapType = 'none'; // let the drag move freely
+  carousel.style.scrollBehavior = 'auto';
+  carousel.classList.add('dragging');
+});
+
+carousel.addEventListener('pointermove', function (e) {
+  if (!isDragging) return;
+  carousel.scrollLeft = dragStartScroll - (e.clientX - dragStartX);
+});
+
+function endDrag() {
+  if (!isDragging) return;
+  isDragging = false;
+  carousel.classList.remove('dragging');
+  carousel.style.scrollBehavior = '';
+  // Snap to whichever item is closest to the center
+  var center = carousel.scrollLeft + carousel.clientWidth / 2;
+  var best = 0;
+  var bestDist = Infinity;
+  items.forEach(function (item, i) {
+    var d = Math.abs(item.offsetLeft + item.offsetWidth / 2 - center);
+    if (d < bestDist) { bestDist = d; best = i; }
+  });
+  carousel.style.scrollSnapType = 'none'; // keep off so smooth scrollTo isn't hijacked
+  snapTo(best);
+}
+
+carousel.addEventListener('pointerup', endDrag);
+carousel.addEventListener('pointercancel', endDrag);</script></body></html>"></iframe>
+    </section>
+
+    <div class="fx-codes">
+      <section class="fx-code" aria-labelledby="code-html">
+        <div class="fx-code-bar"><h3 id="code-html">HTML</h3><button type="button" class="fx-copy" data-copy="html">Copy</button></div>
+        <pre><code class="language-html">&lt;div class=&quot;carousel-snap&quot;&gt;
+  &lt;div class=&quot;c-item&quot;&gt;1&lt;/div&gt;
+  &lt;div class=&quot;c-item&quot;&gt;2&lt;/div&gt;
+  &lt;div class=&quot;c-item&quot;&gt;3&lt;/div&gt;
+  &lt;div class=&quot;c-item&quot;&gt;4&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </section>
+      <section class="fx-code" aria-labelledby="code-css">
+        <div class="fx-code-bar"><h3 id="code-css">CSS</h3><button type="button" class="fx-copy" data-copy="css">Copy</button></div>
+        <pre><code class="language-css">.carousel-snap {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  width: 100%;
+  max-width: 400px;
+  padding-bottom: 1rem;
+  scroll-snap-type: x mandatory; /* native CSS snapping */
+  cursor: grab;
+  user-select: none;
+  /* Windows/Chrome renders a white native scrollbar here otherwise */
+  scrollbar-width: thin;
+  scrollbar-color: #7c5cff rgba(255, 255, 255, 0.08);
+}
+
+.carousel-snap::-webkit-scrollbar {
+  height: 6px;
+}
+
+.carousel-snap::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+}
+
+.carousel-snap::-webkit-scrollbar-thumb {
+  background: #7c5cff;
+  border-radius: 3px;
+}
+
+.carousel-snap::-webkit-scrollbar-thumb:hover {
+  background: #a78bfa;
+}
+
+.carousel-snap::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.carousel-snap.dragging {
+  cursor: grabbing;
+  scroll-behavior: auto;
+}
+
+.c-item {
+  min-width: 80%;
+  height: 120px;
+  background: #333;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #555;
+  scroll-snap-align: center;
+}</code></pre>
+      </section>
+      <section class="fx-code" aria-labelledby="code-js">
+        <div class="fx-code-bar"><h3 id="code-js">JavaScript</h3><button type="button" class="fx-copy" data-copy="js">Copy</button></div>
+        <pre><code class="language-js">// The CSS scroll-snap works on its own with touch / trackpad.
+// This JS adds mouse-wheel paging and click-drag scrolling.
+var carousel = document.querySelector('.carousel-snap');
+var items = carousel.querySelectorAll('.c-item');
+var carouselIndex = 0;
+
+function snapTo(index) {
+  carouselIndex = Math.max(0, Math.min(items.length - 1, index));
+  var item = items[carouselIndex];
+  var left = item.offsetLeft - (carousel.clientWidth - item.offsetWidth) / 2;
+  carousel.scrollTo({ left: left, behavior: 'smooth' });
+}
+
+// Vertical wheel scrolls advance one card at a time
+carousel.addEventListener('wheel', function (e) {
+  e.preventDefault();
+  snapTo(carouselIndex + ((e.deltaY || e.deltaX) &gt; 0 ? 1 : -1));
+}, { passive: false });
+
+// Drag to scroll (mouse drag does nothing on overflow containers by default)
+var dragStartX = 0;
+var dragStartScroll = 0;
+var isDragging = false;
+
+carousel.addEventListener('pointerdown', function (e) {
+  isDragging = true;
+  dragStartX = e.clientX;
+  dragStartScroll = carousel.scrollLeft;
+  carousel.setPointerCapture(e.pointerId);
+  carousel.style.scrollSnapType = 'none'; // let the drag move freely
+  carousel.style.scrollBehavior = 'auto';
+  carousel.classList.add('dragging');
+});
+
+carousel.addEventListener('pointermove', function (e) {
+  if (!isDragging) return;
+  carousel.scrollLeft = dragStartScroll - (e.clientX - dragStartX);
+});
+
+function endDrag() {
+  if (!isDragging) return;
+  isDragging = false;
+  carousel.classList.remove('dragging');
+  carousel.style.scrollBehavior = '';
+  // Snap to whichever item is closest to the center
+  var center = carousel.scrollLeft + carousel.clientWidth / 2;
+  var best = 0;
+  var bestDist = Infinity;
+  items.forEach(function (item, i) {
+    var d = Math.abs(item.offsetLeft + item.offsetWidth / 2 - center);
+    if (d &lt; bestDist) { bestDist = d; best = i; }
+  });
+  carousel.style.scrollSnapType = 'none'; // keep off so smooth scrollTo isn't hijacked
+  snapTo(best);
+}
+
+carousel.addEventListener('pointerup', endDrag);
+carousel.addEventListener('pointercancel', endDrag);</code></pre>
+      </section>
+    </div>
+
+    <section class="fx-related" aria-labelledby="related-h">
+      <h2 id="related-h">More layout effects</h2>
+      <ul>
+        <li><a href="/layout/stepper"><span class="fx-rel-name">Stepper</span><span class="fx-rel-desc">Progress flow animation</span></a></li>
+        <li><a href="/layout/toggle"><span class="fx-rel-name">Toggle Switch</span><span class="fx-rel-desc">Smooth state transition</span></a></li>
+        <li><a href="/layout/float-label"><span class="fx-rel-name">Floating Label</span><span class="fx-rel-desc">Input focus interaction</span></a></li>
+        <li><a href="/layout/search-expand"><span class="fx-rel-name">Search Expand</span><span class="fx-rel-desc">Width expansion on focus</span></a></li>
+      </ul>
+      <a class="fx-all" href="/layout#carousel">Browse all 23 reveal &amp; layout patterns <span aria-hidden="true">&rarr;</span></a>
+    </section>
+  </main>
+
+  <footer class="home-footer">
+    <div class="wrap">
+      <p>Pure HTML · CSS · JavaScript — every effect includes copyable standalone code</p>
+      <p class="home-credit">Motion Bench by <a href="https://anishkapse.com/" target="_blank" rel="noopener noreferrer">Anish Kapse</a></p>
+    </div>
+  </footer>
+
+  <script src="/a11y.js"></script>
+  <script src="/transitions.js"></script>
+  <script src="/effect.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

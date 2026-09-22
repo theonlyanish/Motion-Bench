@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parallax — Scroll Effect in CSS &amp; JS | Motion Bench</title>
+  <meta name="description" content="Layers move at different rates as you scroll, so the label, title and background rules separate in depth. Read from scroll position and applied with translateY in requestAnimationFrame. Copy-paste HTML, CSS and JavaScript, no dependencies.">
+  <link rel="canonical" href="https://motion-bench.vercel.app/scroll/parallax">
+  <meta name="theme-color" content="#0d0d0f">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Motion Bench">
+  <meta property="og:title" content="Parallax — Scroll Effect">
+  <meta property="og:description" content="Layers move at different rates as you scroll, so the label, title and background rules separate in depth. Read from scroll position and applied with translateY in requestAnimationFrame.">
+  <meta property="og:url" content="https://motion-bench.vercel.app/scroll/parallax">
+  <meta property="og:image" content="https://motion-bench.vercel.app/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Parallax — Scroll Effect">
+  <meta name="twitter:description" content="Layers move at different rates as you scroll, so the label, title and background rules separate in depth. Read from scroll position and applied with translateY in requestAnimationFrame.">
+  <meta name="twitter:image" content="https://motion-bench.vercel.app/og-image.png">
+  <script type="application/ld+json" id="ld-schema">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareSourceCode","@id":"https://motion-bench.vercel.app/scroll/parallax","url":"https://motion-bench.vercel.app/scroll/parallax","name":"Parallax — Scroll effect","description":"Layers move at different rates as you scroll, so the label, title and background rules separate in depth. Read from scroll position and applied with translateY in requestAnimationFrame.","programmingLanguage":["HTML","CSS","JavaScript"],"codeSampleType":"full","runtimePlatform":"Web browser","license":"https://opensource.org/licenses/MIT","codeRepository":"https://github.com/theonlyanish/frontend-reference","isPartOf":{"@id":"https://motion-bench.vercel.app/scroll"},"author":{"@type":"Person","@id":"https://anishkapse.com/#person","name":"Anish Kapse","url":"https://anishkapse.com/"},"keywords":"parallax, scroll"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Motion Bench","item":"https://motion-bench.vercel.app/"},{"@type":"ListItem","position":2,"name":"Scroll Animations","item":"https://motion-bench.vercel.app/scroll"},{"@type":"ListItem","position":3,"name":"Parallax","item":"https://motion-bench.vercel.app/scroll/parallax"}]}]}</script>
+  <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32x32.png?v=2" type="image/png" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/home.css">
+  <link rel="stylesheet" href="/nav-tooltips.css">
+  <link rel="stylesheet" href="/transitions.css">
+  <link rel="stylesheet" href="/effect.css">
+</head>
+<body class="is-loaded fx-page" data-cat="scroll">
+  <div class="transition-overlay"></div>
+
+  <nav class="nav-bar" aria-label="Site navigation">
+      <a href="/" class="nav-btn" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+      </a>
+      <a href="/typography" class="nav-btn" aria-label="Typography">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+        </svg>
+      </a>
+      <a href="/scroll" class="nav-btn" aria-label="Scroll Animations">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+      </a>
+      <a href="/gallery" class="nav-btn" aria-label="Gallery Effects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+      </a>
+      <a href="/cursor" class="nav-btn" aria-label="Cursor Effects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
+          <path d="M13 13l6 6"/>
+        </svg>
+      </a>
+      <a href="/layout" class="nav-btn" aria-label="Layout Animations">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <line x1="3" y1="9" x2="21" y2="9"/>
+          <line x1="9" y1="21" x2="9" y2="9"/>
+        </svg>
+      </a>
+    </nav>
+
+  <main class="fx-single wrap">
+    <nav class="fx-crumbs" aria-label="Breadcrumb">
+      <a href="/">Motion Bench</a><span aria-hidden="true">/</span><a href="/scroll">Scroll Animations</a><span aria-hidden="true">/</span><span aria-current="page">Parallax</span>
+    </nav>
+
+    <header class="fx-head">
+      <p class="fx-eyebrow">Scroll · 10 of 33</p>
+      <h1>Parallax</h1>
+      <p class="fx-lede">Layers move at different rates as you scroll, so the label, title and background rules separate in depth. Read from scroll position and applied with translateY in requestAnimationFrame.</p>
+      <p class="fx-meta">HTML · CSS · JavaScript · No dependencies · MIT</p>
+    </header>
+
+    <section class="fx-demo" aria-label="Live demo">
+      <iframe class="fx-frame" title="Parallax live demo" loading="lazy" sandbox="allow-scripts" srcdoc="<!DOCTYPE html><html><head><meta charset=&quot;utf-8&quot;><link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;><link href=&quot;https://fonts.googleapis.com/css2?family=Geist:wght@300..700&amp;family=Roboto+Flex:opsz,slnt,wdth,wght@8..144,-10..0,25..151,100..1000&amp;display=swap&quot; rel=&quot;stylesheet&quot;><style>:root{--bg-dark:#0d0d0f;--bg-panel:#16161a;--border-subtle:rgba(255,255,255,.08);--border-strong:rgba(255,255,255,.15);--text-primary:#f3f3f5;--text-secondary:#b5b5bd;--text-muted:#7c7c86;--accent:#7c5cff;--cat:#a897e6;--radius:12px;--dur:.7s;--ease-out:cubic-bezier(.16,1,.3,1)}*{box-sizing:border-box}html,body{margin:0;min-height:100%}body{background:#0d0d0f;color:#f3f3f5;font-family:Geist,system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:2rem;gap:1rem;overflow-x:hidden}img{max-width:100%}</style><style>.parallax-section {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.parallax-stage {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  height: 240px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  background: #16161a;
+  overflow: hidden;          /* layers clip against the fixed edge */
+  display: grid;
+  place-items: center;
+}
+
+/* One offset, scaled per layer. Higher --depth lags further behind the scroll and
+   so reads as more distant. Keep every depth the same sign: mixing signs makes
+   layers travel toward each other and cross over, which breaks the illusion and
+   collides the text. Each layer also needs (depth * RANGE/2) of clearance from the
+   stage edge, or it clips out of the frame at the extremes of the sweep. */
+.px-layer {
+  transform: translateY(calc(var(--parallax-offset, 0px) * var(--depth, 0)));
+  will-change: transform;
+}
+
+/* Back — ruled hairlines give the eye something to read the other layers against */
+.px-rules {
+  --depth: 1;
+  position: absolute;
+  left: 0; right: 0;
+  top: -140px; bottom: -140px;   /* overshoot so it never runs out while travelling */
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.08) 0 1px,
+    transparent 1px 34px
+  );
+}
+
+/* Mid — the only in-flow child, so place-items centres it */
+.px-title {
+  --depth: 0.5;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #f0f0f5;
+}
+
+/* Front — pinned near the top rather than sitting directly above the title:
+   adjacent lines can't hold different depths without colliding, since the gap
+   between them is only a few px to spend. */
+.px-label {
+  --depth: 0.15;
+  position: absolute;
+  top: 1.75rem; left: 0; right: 0;
+  z-index: 2;
+  text-align: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #6fb2d6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .px-layer { transform: none !important; }
+}</style></head><body><!-- Make the section tall so there is room to scrub through it.
+     The bordered stage is the frame of reference — parallax is differential
+     motion, so without something STATIC to measure against, and without layers
+     moving at different rates, a lone drifting element reads as nothing. -->
+<section class=&quot;parallax-section&quot;>
+  <div class=&quot;parallax-stage&quot;>
+    <div class=&quot;px-layer px-rules&quot; aria-hidden=&quot;true&quot;></div>
+    <span class=&quot;px-layer px-label&quot;>Parallax</span>
+    <h2 class=&quot;px-layer px-title&quot;>Parallax</h2>
+  </div>
+</section><script>var section = document.querySelector('.parallax-section');
+var stage = document.querySelector('.parallax-stage');
+var RANGE = 180; // px travelled by a depth-1 layer across the crossing
+
+function tick() {
+  var rect = section.getBoundingClientRect();
+  var vh = window.innerHeight;
+  if (rect.top < vh &amp;&amp; rect.bottom > 0) {
+    // 0 when the section enters at the bottom, 1 when it leaves at the top
+    var progress = (vh - rect.top) / (vh + rect.height);
+    progress = Math.max(0, Math.min(1, progress));
+    var offset = (progress - 0.5) * RANGE;
+    // Write once; CSS multiplies it by each layer's --depth
+    stage.style.setProperty('--parallax-offset', offset.toFixed(2) + 'px');
+  }
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);</script></body></html>"></iframe>
+      <p class="fx-demo-note">This one is driven by scroll position, so it reads best in context. <a href="/scroll#parallax">See it on the scroll page</a>.</p>
+    </section>
+
+    <div class="fx-codes">
+      <section class="fx-code" aria-labelledby="code-html">
+        <div class="fx-code-bar"><h3 id="code-html">HTML</h3><button type="button" class="fx-copy" data-copy="html">Copy</button></div>
+        <pre><code class="language-html">&lt;!-- Make the section tall so there is room to scrub through it.
+     The bordered stage is the frame of reference — parallax is differential
+     motion, so without something STATIC to measure against, and without layers
+     moving at different rates, a lone drifting element reads as nothing. --&gt;
+&lt;section class=&quot;parallax-section&quot;&gt;
+  &lt;div class=&quot;parallax-stage&quot;&gt;
+    &lt;div class=&quot;px-layer px-rules&quot; aria-hidden=&quot;true&quot;&gt;&lt;/div&gt;
+    &lt;span class=&quot;px-layer px-label&quot;&gt;Parallax&lt;/span&gt;
+    &lt;h2 class=&quot;px-layer px-title&quot;&gt;Parallax&lt;/h2&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</code></pre>
+      </section>
+      <section class="fx-code" aria-labelledby="code-css">
+        <div class="fx-code-bar"><h3 id="code-css">CSS</h3><button type="button" class="fx-copy" data-copy="css">Copy</button></div>
+        <pre><code class="language-css">.parallax-section {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.parallax-stage {
+  position: relative;
+  width: 100%;
+  max-width: 460px;
+  height: 240px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  background: #16161a;
+  overflow: hidden;          /* layers clip against the fixed edge */
+  display: grid;
+  place-items: center;
+}
+
+/* One offset, scaled per layer. Higher --depth lags further behind the scroll and
+   so reads as more distant. Keep every depth the same sign: mixing signs makes
+   layers travel toward each other and cross over, which breaks the illusion and
+   collides the text. Each layer also needs (depth * RANGE/2) of clearance from the
+   stage edge, or it clips out of the frame at the extremes of the sweep. */
+.px-layer {
+  transform: translateY(calc(var(--parallax-offset, 0px) * var(--depth, 0)));
+  will-change: transform;
+}
+
+/* Back — ruled hairlines give the eye something to read the other layers against */
+.px-rules {
+  --depth: 1;
+  position: absolute;
+  left: 0; right: 0;
+  top: -140px; bottom: -140px;   /* overshoot so it never runs out while travelling */
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.08) 0 1px,
+    transparent 1px 34px
+  );
+}
+
+/* Mid — the only in-flow child, so place-items centres it */
+.px-title {
+  --depth: 0.5;
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #f0f0f5;
+}
+
+/* Front — pinned near the top rather than sitting directly above the title:
+   adjacent lines can't hold different depths without colliding, since the gap
+   between them is only a few px to spend. */
+.px-label {
+  --depth: 0.15;
+  position: absolute;
+  top: 1.75rem; left: 0; right: 0;
+  z-index: 2;
+  text-align: center;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #6fb2d6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .px-layer { transform: none !important; }
+}</code></pre>
+      </section>
+      <section class="fx-code" aria-labelledby="code-js">
+        <div class="fx-code-bar"><h3 id="code-js">JavaScript</h3><button type="button" class="fx-copy" data-copy="js">Copy</button></div>
+        <pre><code class="language-js">var section = document.querySelector('.parallax-section');
+var stage = document.querySelector('.parallax-stage');
+var RANGE = 180; // px travelled by a depth-1 layer across the crossing
+
+function tick() {
+  var rect = section.getBoundingClientRect();
+  var vh = window.innerHeight;
+  if (rect.top &lt; vh &amp;&amp; rect.bottom &gt; 0) {
+    // 0 when the section enters at the bottom, 1 when it leaves at the top
+    var progress = (vh - rect.top) / (vh + rect.height);
+    progress = Math.max(0, Math.min(1, progress));
+    var offset = (progress - 0.5) * RANGE;
+    // Write once; CSS multiplies it by each layer's --depth
+    stage.style.setProperty('--parallax-offset', offset.toFixed(2) + 'px');
+  }
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);</code></pre>
+      </section>
+    </div>
+
+    <section class="fx-related" aria-labelledby="related-h">
+      <h2 id="related-h">More scroll effects</h2>
+      <ul>
+        <li><a href="/scroll/clip-reveal"><span class="fx-rel-name">Clip Reveal</span><span class="fx-rel-desc">Content is unmasked from one edge as it enters view, as if a curtain is pulled back. A clip-path inset that animates to zero, leaving the element itself in place.</span></a></li>
+        <li><a href="/scroll/flip3d"><span class="fx-rel-name">3D Flip</span><span class="fx-rel-desc">Content flips around its vertical axis into view with a perspective transform. A rotateY on a perspective parent gives real depth to a card entrance.</span></a></li>
+        <li><a href="/scroll/bounce-in"><span class="fx-rel-name">Bounce In</span><span class="fx-rel-desc">Content drops in and overshoots before settling, using a spring-like cubic-bezier. Good for playful UI; keep it to one or two elements per screen.</span></a></li>
+        <li><a href="/scroll/split-converge"><span class="fx-rel-name">Split Converge</span><span class="fx-rel-desc">Two halves of the headline slide in from opposite sides and meet in the middle. Independent translateX transitions on a left and right span.</span></a></li>
+      </ul>
+      <a class="fx-all" href="/scroll#parallax">Browse all 33 scroll animations <span aria-hidden="true">&rarr;</span></a>
+    </section>
+  </main>
+
+  <footer class="home-footer">
+    <div class="wrap">
+      <p>Pure HTML · CSS · JavaScript — every effect includes copyable standalone code</p>
+      <p class="home-credit">Motion Bench by <a href="https://anishkapse.com/" target="_blank" rel="noopener noreferrer">Anish Kapse</a></p>
+    </div>
+  </footer>
+
+  <script src="/a11y.js"></script>
+  <script src="/transitions.js"></script>
+  <script src="/effect.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

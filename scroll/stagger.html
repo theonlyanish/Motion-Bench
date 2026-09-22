@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Staggered Letters — Scroll Effect in CSS &amp; JS | Motion Bench</title>
+  <meta name="description" content="Each letter rises and fades in a beat after the one before it, spelling the word out. Per-character spans with an incrementing transition-delay. Copy-paste HTML, CSS and JavaScript, no dependencies.">
+  <link rel="canonical" href="https://motion-bench.vercel.app/scroll/stagger">
+  <meta name="theme-color" content="#0d0d0f">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Motion Bench">
+  <meta property="og:title" content="Staggered Letters — Scroll Effect">
+  <meta property="og:description" content="Each letter rises and fades in a beat after the one before it, spelling the word out. Per-character spans with an incrementing transition-delay.">
+  <meta property="og:url" content="https://motion-bench.vercel.app/scroll/stagger">
+  <meta property="og:image" content="https://motion-bench.vercel.app/og-image.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Staggered Letters — Scroll Effect">
+  <meta name="twitter:description" content="Each letter rises and fades in a beat after the one before it, spelling the word out. Per-character spans with an incrementing transition-delay.">
+  <meta name="twitter:image" content="https://motion-bench.vercel.app/og-image.png">
+  <script type="application/ld+json" id="ld-schema">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareSourceCode","@id":"https://motion-bench.vercel.app/scroll/stagger","url":"https://motion-bench.vercel.app/scroll/stagger","name":"Staggered Letters — Scroll effect","description":"Each letter rises and fades in a beat after the one before it, spelling the word out. Per-character spans with an incrementing transition-delay.","programmingLanguage":["HTML","CSS","JavaScript"],"codeSampleType":"full","runtimePlatform":"Web browser","license":"https://opensource.org/licenses/MIT","codeRepository":"https://github.com/theonlyanish/frontend-reference","isPartOf":{"@id":"https://motion-bench.vercel.app/scroll"},"author":{"@type":"Person","@id":"https://anishkapse.com/#person","name":"Anish Kapse","url":"https://anishkapse.com/"},"keywords":"staggered, letters, stagger, scroll"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Motion Bench","item":"https://motion-bench.vercel.app/"},{"@type":"ListItem","position":2,"name":"Scroll Animations","item":"https://motion-bench.vercel.app/scroll"},{"@type":"ListItem","position":3,"name":"Staggered Letters","item":"https://motion-bench.vercel.app/scroll/stagger"}]}]}</script>
+  <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32x32.png?v=2" type="image/png" sizes="32x32">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300..700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/home.css">
+  <link rel="stylesheet" href="/nav-tooltips.css">
+  <link rel="stylesheet" href="/transitions.css">
+  <link rel="stylesheet" href="/effect.css">
+</head>
+<body class="is-loaded fx-page" data-cat="scroll">
+  <div class="transition-overlay"></div>
+
+  <nav class="nav-bar" aria-label="Site navigation">
+      <a href="/" class="nav-btn" aria-label="Home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="7" height="7" rx="1"/>
+          <rect x="14" y="3" width="7" height="7" rx="1"/>
+          <rect x="3" y="14" width="7" height="7" rx="1"/>
+          <rect x="14" y="14" width="7" height="7" rx="1"/>
+        </svg>
+      </a>
+      <a href="/typography" class="nav-btn" aria-label="Typography">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 7V4h16v3M9 20h6M12 4v16"/>
+        </svg>
+      </a>
+      <a href="/scroll" class="nav-btn" aria-label="Scroll Animations">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+      </a>
+      <a href="/gallery" class="nav-btn" aria-label="Gallery Effects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <circle cx="8.5" cy="8.5" r="1.5"/>
+          <polyline points="21 15 16 10 5 21"/>
+        </svg>
+      </a>
+      <a href="/cursor" class="nav-btn" aria-label="Cursor Effects">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 3l7.07 16.97 2.51-7.39 7.39-2.51L3 3z"/>
+          <path d="M13 13l6 6"/>
+        </svg>
+      </a>
+      <a href="/layout" class="nav-btn" aria-label="Layout Animations">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+          <line x1="3" y1="9" x2="21" y2="9"/>
+          <line x1="9" y1="21" x2="9" y2="9"/>
+        </svg>
+      </a>
+    </nav>
+
+  <main class="fx-single wrap">
+    <nav class="fx-crumbs" aria-label="Breadcrumb">
+      <a href="/">Motion Bench</a><span aria-hidden="true">/</span><a href="/scroll">Scroll Animations</a><span aria-hidden="true">/</span><span aria-current="page">Staggered Letters</span>
+    </nav>
+
+    <header class="fx-head">
+      <p class="fx-eyebrow">Scroll · 07 of 33</p>
+      <h1>Staggered Letters</h1>
+      <p class="fx-lede">Each letter rises and fades in a beat after the one before it, spelling the word out. Per-character spans with an incrementing transition-delay.</p>
+      <p class="fx-meta">HTML · CSS · JavaScript · No dependencies · MIT</p>
+    </header>
+
+    <section class="fx-demo" aria-label="Live demo">
+      <iframe class="fx-frame" title="Staggered Letters live demo" loading="lazy" sandbox="allow-scripts" srcdoc="<!DOCTYPE html><html><head><meta charset=&quot;utf-8&quot;><link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;><link href=&quot;https://fonts.googleapis.com/css2?family=Geist:wght@300..700&amp;family=Roboto+Flex:opsz,slnt,wdth,wght@8..144,-10..0,25..151,100..1000&amp;display=swap&quot; rel=&quot;stylesheet&quot;><style>:root{--bg-dark:#0d0d0f;--bg-panel:#16161a;--border-subtle:rgba(255,255,255,.08);--border-strong:rgba(255,255,255,.15);--text-primary:#f3f3f5;--text-secondary:#b5b5bd;--text-muted:#7c7c86;--accent:#7c5cff;--cat:#a897e6;--radius:12px;--dur:.7s;--ease-out:cubic-bezier(.16,1,.3,1)}*{box-sizing:border-box}html,body{margin:0;min-height:100%}body{background:#0d0d0f;color:#f3f3f5;font-family:Geist,system-ui,sans-serif;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;padding:2rem;gap:1rem;overflow-x:hidden}img{max-width:100%}</style><style>.stagger-section {
+  min-height: 35vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stagger-word {
+  font-size: 2.5rem;
+  color: #f0f0f5;
+}
+
+.stagger-word .s-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stagger-section.in-view .s-char {
+  opacity: 1;
+  transform: translateY(0);
+}</style></head><body><section class=&quot;stagger-section&quot;>
+  <h2 class=&quot;stagger-word&quot;></h2>
+</section><script>var section = document.querySelector('.stagger-section');
+var word = document.querySelector('.stagger-word');
+var text = 'Stagger';
+var DELAY = 50; // ms between letters
+
+// Split into spans and stagger the transition-delay per letter
+word.innerHTML = text.split('').map(function (c, i) {
+  return '<span class=&quot;s-char&quot; style=&quot;transition-delay: ' + (i * DELAY) + 'ms&quot;>' +
+    (c === ' ' ? '&amp;nbsp;' : c) + '</span>';
+}).join('');
+
+new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    entry.target.classList.toggle('in-view', entry.isIntersecting);
+  });
+}, { threshold: 0.25 }).observe(section);</script></body></html>"></iframe>
+    </section>
+
+    <div class="fx-codes">
+      <section class="fx-code" aria-labelledby="code-html">
+        <div class="fx-code-bar"><h3 id="code-html">HTML</h3><button type="button" class="fx-copy" data-copy="html">Copy</button></div>
+        <pre><code class="language-html">&lt;section class=&quot;stagger-section&quot;&gt;
+  &lt;h2 class=&quot;stagger-word&quot;&gt;&lt;/h2&gt;
+&lt;/section&gt;</code></pre>
+      </section>
+      <section class="fx-code" aria-labelledby="code-css">
+        <div class="fx-code-bar"><h3 id="code-css">CSS</h3><button type="button" class="fx-copy" data-copy="css">Copy</button></div>
+        <pre><code class="language-css">.stagger-section {
+  min-height: 35vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stagger-word {
+  font-size: 2.5rem;
+  color: #f0f0f5;
+}
+
+.stagger-word .s-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.stagger-section.in-view .s-char {
+  opacity: 1;
+  transform: translateY(0);
+}</code></pre>
+      </section>
+      <section class="fx-code" aria-labelledby="code-js">
+        <div class="fx-code-bar"><h3 id="code-js">JavaScript</h3><button type="button" class="fx-copy" data-copy="js">Copy</button></div>
+        <pre><code class="language-js">var section = document.querySelector('.stagger-section');
+var word = document.querySelector('.stagger-word');
+var text = 'Stagger';
+var DELAY = 50; // ms between letters
+
+// Split into spans and stagger the transition-delay per letter
+word.innerHTML = text.split('').map(function (c, i) {
+  return '&lt;span class=&quot;s-char&quot; style=&quot;transition-delay: ' + (i * DELAY) + 'ms&quot;&gt;' +
+    (c === ' ' ? '&amp;nbsp;' : c) + '&lt;/span&gt;';
+}).join('');
+
+new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    entry.target.classList.toggle('in-view', entry.isIntersecting);
+  });
+}, { threshold: 0.25 }).observe(section);</code></pre>
+      </section>
+    </div>
+
+    <section class="fx-related" aria-labelledby="related-h">
+      <h2 id="related-h">More scroll effects</h2>
+      <ul>
+        <li><a href="/scroll/blur-sharp"><span class="fx-rel-name">Blur to Sharp</span><span class="fx-rel-desc">Content comes into focus as it enters view, starting blurred and transparent. A CSS filter blur that transitions to zero; keep the radius small for performance.</span></a></li>
+        <li><a href="/scroll/skew-in"><span class="fx-rel-name">Skew In</span><span class="fx-rel-desc">Content slides in with a skew that relaxes to upright, like it is catching up to itself. A skewX plus translateX transition on one element.</span></a></li>
+        <li><a href="/scroll/parallax"><span class="fx-rel-name">Parallax</span><span class="fx-rel-desc">Layers move at different rates as you scroll, so the label, title and background rules separate in depth. Read from scroll position and applied with translateY in requestAnimationFrame.</span></a></li>
+        <li><a href="/scroll/clip-reveal"><span class="fx-rel-name">Clip Reveal</span><span class="fx-rel-desc">Content is unmasked from one edge as it enters view, as if a curtain is pulled back. A clip-path inset that animates to zero, leaving the element itself in place.</span></a></li>
+      </ul>
+      <a class="fx-all" href="/scroll#stagger">Browse all 33 scroll animations <span aria-hidden="true">&rarr;</span></a>
+    </section>
+  </main>
+
+  <footer class="home-footer">
+    <div class="wrap">
+      <p>Pure HTML · CSS · JavaScript — every effect includes copyable standalone code</p>
+      <p class="home-credit">Motion Bench by <a href="https://anishkapse.com/" target="_blank" rel="noopener noreferrer">Anish Kapse</a></p>
+    </div>
+  </footer>
+
+  <script src="/a11y.js"></script>
+  <script src="/transitions.js"></script>
+  <script src="/effect.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>
