@@ -101,6 +101,27 @@
       <div class="headline-wrapper">
         <p class="headline variable-headline" id="variableHeadline">Morph Me</p>
       </div>
+      <!-- code-source:variable -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;!-- Requires a variable font, e.g. Roboto Flex from Google Fonts:
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,slnt,wdth,wght@8..144,-10..0,25..151,100..1000&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt; --&gt;
+
+&lt;label&gt;Weight &lt;input type=&quot;range&quot; id=&quot;weight&quot; min=&quot;100&quot; max=&quot;1000&quot; value=&quot;400&quot;&gt;&lt;/label&gt;
+&lt;p class=&quot;variable-headline&quot; id=&quot;variableHeadline&quot;&gt;Morph Me&lt;/p&gt;</code></pre>
+        <pre data-lang="css"><code>.variable-headline {
+  font-family: 'Roboto Flex', sans-serif;
+  font-size: 3.5rem;
+  font-variation-settings: 'wght' 400, 'wdth' 100, 'slnt' 0;
+}</code></pre>
+        <pre data-lang="js"><code>var slider = document.getElementById('weight');
+var headline = document.getElementById('variableHeadline');
+
+slider.addEventListener('input', function () {
+  headline.style.fontVariationSettings =
+    &quot;'wght' &quot; + slider.value + &quot;, 'wdth' 100, 'slnt' 0&quot;;
+});</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 2: Wave Distort -->
@@ -131,6 +152,42 @@
       <div class="headline-wrapper wave-wrapper">
         <p class="headline wave-headline" id="waveHeadline"></p>
       </div>
+      <!-- code-source:wave -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;p class=&quot;wave-headline&quot; id=&quot;waveHeadline&quot;&gt;&lt;/p&gt;</code></pre>
+        <pre data-lang="css"><code>.wave-headline {
+  display: flex;
+  justify-content: center;
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.wave-char {
+  display: inline-block;
+  will-change: transform;
+}</code></pre>
+        <pre data-lang="js"><code>var headline = document.getElementById('waveHeadline');
+var text = 'Wave Distortion';
+var AMPLITUDE = 20;  // px
+var FREQUENCY = 5;   // full sine cycles across the text
+
+headline.innerHTML = text.split('').map(function (c) {
+  return '&lt;span class=&quot;wave-char&quot;&gt;' + (c === ' ' ? '&amp;nbsp;' : c) + '&lt;/span&gt;';
+}).join('');
+var chars = headline.querySelectorAll('.wave-char');
+
+var phase = 0;
+function tick() {
+  phase += 0.035;
+  chars.forEach(function (el, i) {
+    var y = Math.sin((i / (chars.length - 1)) * Math.PI * 2 * FREQUENCY + phase) * AMPLITUDE;
+    el.style.transform = 'translateY(' + y + 'px)';
+  });
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 3: Noise Jitter -->
@@ -154,6 +211,50 @@
           <span class="jitter-char" data-char="N">N</span><span class="jitter-char" data-char="o">o</span><span class="jitter-char" data-char="i">i</span><span class="jitter-char" data-char="s">s</span><span class="jitter-char" data-char="e">e</span><span class="jitter-char" data-char=" "> </span><span class="jitter-char" data-char="J">J</span><span class="jitter-char" data-char="i">i</span><span class="jitter-char" data-char="t">t</span><span class="jitter-char" data-char="t">t</span><span class="jitter-char" data-char="e">e</span><span class="jitter-char" data-char="r">r</span>
         </p>
       </div>
+      <!-- code-source:jitter -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;p class=&quot;jitter-headline&quot; id=&quot;jitterHeadline&quot;&gt;&lt;/p&gt;</code></pre>
+        <pre data-lang="css"><code>.jitter-headline {
+  display: flex;
+  justify-content: center;
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.jitter-char {
+  display: inline-block;
+  will-change: transform;
+}</code></pre>
+        <pre data-lang="js"><code>var headline = document.getElementById('jitterHeadline');
+var text = 'Noise Jitter';
+var JITTER = 5;   // max px displacement
+var SPEED = 0.06;
+
+headline.innerHTML = text.split('').map(function (c) {
+  return '&lt;span class=&quot;jitter-char&quot;&gt;' + (c === ' ' ? '&amp;nbsp;' : c) + '&lt;/span&gt;';
+}).join('');
+var chars = headline.querySelectorAll('.jitter-char');
+var seeds = Array.from(chars, function () { return Math.random() * 1000; });
+
+// fract() of a sine hash — cheap 1D pseudo-noise
+function noise1D(x) {
+  var v = Math.sin(x * 12.9898) * 43758.5453;
+  return v - Math.floor(v);
+}
+
+var phase = 0;
+function tick() {
+  phase += SPEED;
+  chars.forEach(function (el, i) {
+    var tx = (noise1D(seeds[i] + phase) - 0.5) * 2 * JITTER;
+    var ty = (noise1D(seeds[i] + 100 + phase) - 0.5) * 2 * JITTER;
+    el.style.transform = 'translate(' + tx + 'px, ' + ty + 'px)';
+  });
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 4: Text on Path -->
@@ -175,6 +276,57 @@
           </text>
         </svg>
       </div>
+      <!-- code-source:path -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;svg viewBox=&quot;0 0 700 200&quot; width=&quot;100%&quot;&gt;
+  &lt;path id=&quot;textPath&quot; d=&quot;M 50 120 Q 350 84 650 120&quot; fill=&quot;none&quot; stroke=&quot;none&quot;/&gt;
+  &lt;!-- text-anchor=&quot;middle&quot; + startOffset=&quot;50%&quot; centres the run on the curve;
+       left-aligned at 0% it hangs off the start of the path --&gt;
+  &lt;text class=&quot;path-text&quot; text-anchor=&quot;middle&quot;&gt;
+    &lt;textPath href=&quot;#textPath&quot; startOffset=&quot;50%&quot;&gt;Text follows the path&lt;/textPath&gt;
+  &lt;/text&gt;
+&lt;/svg&gt;</code></pre>
+        <pre data-lang="css"><code>.path-text {
+  font-size: 2rem;
+  font-weight: 600;
+  fill: #f0f0f5;
+}</code></pre>
+        <pre data-lang="js"><code>var pathEl = document.getElementById('textPath');
+
+// viewBox is 0 0 700 200 at 1:1 scale, .path-text is 2rem (32px).
+// Glyph ink runs from baseline-capHeight to baseline+descender, so the ink's
+// centre sits above the baseline — measured at 11.3px for this face/size.
+var BASELINE = 111.3;
+var MAX_AMP = 60;
+// On a curved path the glyphs rotate with the tangent, which inflates the ink
+// box upward in proportion to the arc depth. Measured at 0.146px per unit amp.
+var TILT_COMP = 0.146;
+
+// For a quadratic Bezier the mean y over t is (y0 + y1 + y2)/3. Pinning that
+// mean (rather than the endpoints) is what keeps the text vertically centred at
+// every curve value: raising the control point by `amp` drops the two ends by
+// amp/2, leaving the mean unchanged.
+//   mean = (2*(m + amp/2) + (m - amp))/3 = m
+function buildPath(curveVal) {
+  var amp = (curveVal / 100) * MAX_AMP;
+  var mean = BASELINE + TILT_COMP * amp;
+  var cpY = (mean - amp).toFixed(1);
+  var endY = (mean + amp / 2).toFixed(1);
+  pathEl.setAttribute('d', 'M 50 ' + endY + ' Q 350 ' + cpY + ' 650 ' + endY);
+}
+
+buildPath(40); // curveVal runs -100..100
+
+// Optional: animate the curve by sweeping curveVal
+var phase = 0;
+function tick() {
+  phase += 0.02;
+  buildPath(Math.sin(phase) * 100);
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 5: Magnetic Letters -->
@@ -186,6 +338,62 @@
           <span class="mag-char" data-i="0">M</span><span class="mag-char" data-i="1">a</span><span class="mag-char" data-i="2">g</span><span class="mag-char" data-i="3">n</span><span class="mag-char" data-i="4">e</span><span class="mag-char" data-i="5">t</span><span class="mag-char" data-i="6">i</span><span class="mag-char" data-i="7">c</span>
         </p>
       </div>
+      <!-- code-source:magnetic -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;p class=&quot;magnetic-headline&quot;&gt;
+  &lt;span class=&quot;mag-char&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;mag-char&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;mag-char&quot;&gt;g&lt;/span&gt;&lt;span class=&quot;mag-char&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;mag-char&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;mag-char&quot;&gt;t&lt;/span&gt;&lt;span class=&quot;mag-char&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;mag-char&quot;&gt;c&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+        <pre data-lang="css"><code>.magnetic-headline {
+  display: flex;
+  justify-content: center;
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.mag-char {
+  display: inline-block;
+  will-change: transform;
+}</code></pre>
+        <pre data-lang="js"><code>var chars = document.querySelectorAll('.mag-char');
+var RADIUS = 120;    // px — attraction range
+var STRENGTH = 0.35;
+var SMOOTH = 0.12;   // lerp factor
+
+var mouseX = -9999, mouseY = -9999;
+var targets = [], current = [];
+chars.forEach(function () {
+  targets.push({ x: 0, y: 0 });
+  current.push({ x: 0, y: 0 });
+});
+
+document.addEventListener('mousemove', function (e) {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function tick() {
+  chars.forEach(function (el, i) {
+    var r = el.getBoundingClientRect();
+    var dx = mouseX - (r.left + r.width / 2);
+    var dy = mouseY - (r.top + r.height / 2);
+    var dist = Math.sqrt(dx * dx + dy * dy);
+    if (dist &lt; RADIUS &amp;&amp; dist &gt; 0) {
+      var f = (1 - dist / RADIUS) * STRENGTH;
+      targets[i].x = (dx / dist) * f * 30;
+      targets[i].y = (dy / dist) * f * 30;
+    } else {
+      targets[i].x *= 0.9;
+      targets[i].y *= 0.9;
+    }
+    current[i].x += (targets[i].x - current[i].x) * SMOOTH;
+    current[i].y += (targets[i].y - current[i].y) * SMOOTH;
+    el.style.transform = 'translate(' + current[i].x + 'px, ' + current[i].y + 'px)';
+  });
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 6: Cursor Repulsion -->
@@ -204,6 +412,57 @@
           <span class="repel-char" data-i="0">R</span><span class="repel-char" data-i="1">e</span><span class="repel-char" data-i="2">p</span><span class="repel-char" data-i="3">e</span><span class="repel-char" data-i="4">l</span><span class="repel-char" data-i="5"> </span><span class="repel-char" data-i="6">M</span><span class="repel-char" data-i="7">e</span>
         </p>
       </div>
+      <!-- code-source:repulsion -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;p class=&quot;repel-headline&quot;&gt;
+  &lt;span class=&quot;repel-char&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;repel-char&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;repel-char&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;repel-char&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;repel-char&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;repel-char&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span class=&quot;repel-char&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;repel-char&quot;&gt;e&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+        <pre data-lang="css"><code>.repel-headline {
+  display: flex;
+  justify-content: center;
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.repel-char {
+  display: inline-block;
+  will-change: transform;
+}</code></pre>
+        <pre data-lang="js"><code>var chars = document.querySelectorAll('.repel-char');
+var MAX_DIST = 150;   // px — repulsion range
+var STRENGTH = 1.2;
+var SMOOTH = 0.18;
+
+var mouseX = -9999, mouseY = -9999;
+var positions = [];
+chars.forEach(function () { positions.push({ x: 0, y: 0 }); });
+
+document.addEventListener('mousemove', function (e) {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function tick() {
+  chars.forEach(function (el, i) {
+    var r = el.getBoundingClientRect();
+    var dx = (r.left + r.width / 2) - mouseX;
+    var dy = (r.top + r.height / 2) - mouseY;
+    var dist = Math.sqrt(dx * dx + dy * dy) || 1;
+    if (dist &lt; MAX_DIST) {
+      var force = (1 - dist / MAX_DIST) * STRENGTH * 80;
+      positions[i].x += ((dx / dist) * force - positions[i].x) * SMOOTH;
+      positions[i].y += ((dy / dist) * force - positions[i].y) * SMOOTH;
+    } else {
+      positions[i].x *= 0.92;
+      positions[i].y *= 0.92;
+    }
+    el.style.transform = 'translate(' + positions[i].x + 'px, ' + positions[i].y + 'px)';
+  });
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 7: 3D Tilt -->
@@ -213,6 +472,33 @@
       <div class="headline-wrapper tilt3d-wrapper">
         <p class="headline tilt3d-headline" id="tilt3dHeadline">Tilt Me</p>
       </div>
+      <!-- code-source:tilt3d -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;tilt3d-wrapper&quot;&gt;
+  &lt;p class=&quot;tilt3d-headline&quot; id=&quot;tilt3dHeadline&quot;&gt;Tilt Me&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.tilt3d-wrapper {
+  perspective: 800px;
+  display: flex;
+  justify-content: center;
+}
+
+.tilt3d-headline {
+  font-size: 3.5rem;
+  font-weight: 600;
+  transform-style: preserve-3d;
+  will-change: transform;
+}</code></pre>
+        <pre data-lang="js"><code>var headline = document.getElementById('tilt3dHeadline');
+
+document.addEventListener('mousemove', function (e) {
+  var dx = (e.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
+  var dy = (e.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
+  headline.style.transform =
+    'perspective(800px) rotateX(' + (-dy * 20) + 'deg) rotateY(' + (dx * 25) + 'deg)';
+});</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 8: Glitch -->
@@ -242,6 +528,55 @@
           <span class="glitch-text glitch-g" aria-hidden="true">Glitch Effect</span>
         </p>
       </div>
+      <!-- code-source:glitch -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;p class=&quot;glitch-headline&quot;&gt;
+  &lt;span class=&quot;glitch-text glitch-main&quot;&gt;Glitch Effect&lt;/span&gt;
+  &lt;span class=&quot;glitch-text glitch-r&quot; aria-hidden=&quot;true&quot;&gt;Glitch Effect&lt;/span&gt;
+  &lt;span class=&quot;glitch-text glitch-g&quot; aria-hidden=&quot;true&quot;&gt;Glitch Effect&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+        <pre data-lang="css"><code>.glitch-headline {
+  position: relative;
+  display: inline-block;
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.glitch-text {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  pointer-events: none;
+}
+
+.glitch-main {
+  position: relative;
+  color: #f0f0f5;
+}
+
+.glitch-r { color: #ff006e; mix-blend-mode: screen; }
+.glitch-g { color: #00f5d4; mix-blend-mode: screen; }</code></pre>
+        <pre data-lang="js"><code>var glitchR = document.querySelector('.glitch-r');
+var glitchG = document.querySelector('.glitch-g');
+var OFFSET = 4;    // max px displacement
+var OPACITY = 0.25;
+
+function tick() {
+  var rx = (Math.random() - 0.5) * 2 * OFFSET;
+  var ry = (Math.random() - 0.5) * 2 * OFFSET;
+  var gx = (Math.random() - 0.5) * 2 * OFFSET;
+  var gy = (Math.random() - 0.5) * 2 * OFFSET;
+  glitchR.style.transform = 'translate(' + rx + 'px, ' + ry + 'px)';
+  glitchG.style.transform = 'translate(' + gx + 'px, ' + gy + 'px)';
+  glitchR.style.opacity = OPACITY;
+  glitchG.style.opacity = OPACITY;
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 9: Scale Wave -->
@@ -263,6 +598,43 @@
       <div class="headline-wrapper scale-wave-wrapper">
         <p class="headline scale-wave-headline" id="scaleWaveHeadline"></p>
       </div>
+      <!-- code-source:scaleWave -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;p class=&quot;scale-wave-headline&quot; id=&quot;scaleWaveHeadline&quot;&gt;&lt;/p&gt;</code></pre>
+        <pre data-lang="css"><code>.scale-wave-headline {
+  display: flex;
+  justify-content: center;
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.scale-char {
+  display: inline-block;
+  transform-origin: center bottom;
+  will-change: transform;
+}</code></pre>
+        <pre data-lang="js"><code>var headline = document.getElementById('scaleWaveHeadline');
+var text = 'Scale Wave';
+var AMPLITUDE = 0.25; // scale variation
+var SPEED = 0.1;
+
+headline.innerHTML = text.split('').map(function (c) {
+  return '&lt;span class=&quot;scale-char&quot;&gt;' + (c === ' ' ? '&amp;nbsp;' : c) + '&lt;/span&gt;';
+}).join('');
+var chars = headline.querySelectorAll('.scale-char');
+
+var phase = 0;
+function tick() {
+  phase += SPEED;
+  chars.forEach(function (el, i) {
+    var s = 1 + Math.sin(phase + i * 0.5) * AMPLITUDE;
+    el.style.transform = 'scaleY(' + s + ')';
+  });
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 10: Blur on Distance -->
@@ -274,6 +646,47 @@
           <span class="blur-char" data-i="0">S</span><span class="blur-char" data-i="1">h</span><span class="blur-char" data-i="2">a</span><span class="blur-char" data-i="3">r</span><span class="blur-char" data-i="4">p</span><span class="blur-char" data-i="5"> </span><span class="blur-char" data-i="6">H</span><span class="blur-char" data-i="7">e</span><span class="blur-char" data-i="8">r</span><span class="blur-char" data-i="9">e</span>
         </p>
       </div>
+      <!-- code-source:blurDistance -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;p class=&quot;blur-distance-headline&quot;&gt;
+  &lt;span class=&quot;blur-char&quot;&gt;S&lt;/span&gt;&lt;span class=&quot;blur-char&quot;&gt;h&lt;/span&gt;&lt;span class=&quot;blur-char&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;blur-char&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;blur-char&quot;&gt;p&lt;/span&gt;&lt;span class=&quot;blur-char&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span class=&quot;blur-char&quot;&gt;H&lt;/span&gt;&lt;span class=&quot;blur-char&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;blur-char&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;blur-char&quot;&gt;e&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+        <pre data-lang="css"><code>.blur-distance-headline {
+  display: flex;
+  justify-content: center;
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.blur-char {
+  display: inline-block;
+  will-change: filter;
+  transition: filter 0.1s ease-out;
+}</code></pre>
+        <pre data-lang="js"><code>var chars = document.querySelectorAll('.blur-char');
+var MAX_DIST = 120; // px — fully blurred beyond this distance
+var MAX_BLUR = 8;   // px
+
+var mouseX = -9999, mouseY = -9999;
+document.addEventListener('mousemove', function (e) {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function tick() {
+  chars.forEach(function (el) {
+    var r = el.getBoundingClientRect();
+    var dx = (r.left + r.width / 2) - mouseX;
+    var dy = (r.top + r.height / 2) - mouseY;
+    var dist = Math.sqrt(dx * dx + dy * dy);
+    var blur = Math.min(MAX_BLUR, (dist / MAX_DIST) * MAX_BLUR);
+    el.style.filter = 'blur(' + blur + 'px)';
+  });
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 11: Color Chase -->
@@ -283,6 +696,33 @@
       <div class="headline-wrapper color-chase-wrapper">
         <p class="headline color-chase-headline" id="colorChaseHeadline">Chase the Light</p>
       </div>
+      <!-- code-source:colorChase -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;color-chase-wrapper&quot;&gt;
+  &lt;p class=&quot;color-chase-headline&quot; id=&quot;colorChaseHeadline&quot;&gt;Chase the Light&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.color-chase-headline {
+  font-size: 3.5rem;
+  font-weight: 600;
+  background: linear-gradient(90deg,
+    #f0f0f5 0%, #f0f0f5 35%, #7c5cff 50%, #f0f0f5 65%, #f0f0f5 100%);
+  background-size: 200% 100%;
+  background-position: 50% 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: background-position 0.08s ease-out;
+}</code></pre>
+        <pre data-lang="js"><code>var headline = document.getElementById('colorChaseHeadline');
+var wrapper = document.querySelector('.color-chase-wrapper');
+
+wrapper.addEventListener('mousemove', function (e) {
+  var rect = wrapper.getBoundingClientRect();
+  var x = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+  headline.style.backgroundPosition = ((1 - x) * 100) + '% 0';
+});</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 12: Staggered Reveal -->
@@ -300,6 +740,47 @@
       <div class="headline-wrapper stagger-wrapper">
         <p class="headline stagger-headline" id="staggerHeadline"></p>
       </div>
+      <!-- code-source:stagger -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;p class=&quot;stagger-headline&quot; id=&quot;staggerHeadline&quot;&gt;&lt;/p&gt;</code></pre>
+        <pre data-lang="css"><code>.stagger-headline {
+  display: flex;
+  justify-content: center;
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.stagger-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(24px);
+  will-change: transform, opacity;
+}
+
+.stagger-char.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}</code></pre>
+        <pre data-lang="js"><code>var headline = document.getElementById('staggerHeadline');
+var text = 'Hello World';
+var DELAY = 50; // ms between letters
+var EASE = 'cubic-bezier(0.16, 1, 0.3, 1)';
+
+headline.innerHTML = text.split('').map(function (c) {
+  return '&lt;span class=&quot;stagger-char&quot;&gt;' + (c === ' ' ? '&amp;nbsp;' : c) + '&lt;/span&gt;';
+}).join('');
+var chars = headline.querySelectorAll('.stagger-char');
+
+requestAnimationFrame(function () {
+  chars.forEach(function (el, i) {
+    el.style.transition =
+      'opacity 0.5s ' + EASE + ' ' + (i * DELAY) + 'ms, ' +
+      'transform 0.5s ' + EASE + ' ' + (i * DELAY) + 'ms';
+    el.classList.add('revealed');
+  });
+});</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 13: Spring Letters -->
@@ -309,6 +790,59 @@
       <div class="headline-wrapper spring-wrapper">
         <p class="headline spring-headline" id="springHeadline"></p>
       </div>
+      <!-- code-source:spring -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;p class=&quot;spring-headline&quot; id=&quot;springHeadline&quot;&gt;&lt;/p&gt;</code></pre>
+        <pre data-lang="css"><code>.spring-headline {
+  display: flex;
+  justify-content: center;
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.spring-char {
+  display: inline-block;
+  transform-origin: center bottom;
+  will-change: transform;
+}</code></pre>
+        <pre data-lang="js"><code>var headline = document.getElementById('springHeadline');
+var text = 'Spring';
+var STIFFNESS = 400;
+var DAMPING = 15;
+var LIFT = -12; // px hover target
+
+headline.innerHTML = text.split('').map(function (c) {
+  return '&lt;span class=&quot;spring-char&quot;&gt;' + c + '&lt;/span&gt;';
+}).join('');
+var chars = headline.querySelectorAll('.spring-char');
+
+var targets = [], state = [];
+chars.forEach(function (el, i) {
+  targets[i] = 0;
+  state[i] = { y: 0, v: 0 };
+  el.addEventListener('mouseenter', function () { targets[i] = LIFT; });
+  el.addEventListener('mouseleave', function () { targets[i] = 0; });
+});
+
+function tick() {
+  var dt = 1 / 60;
+  chars.forEach(function (el, i) {
+    var s = state[i];
+    var force = (targets[i] - s.y) * STIFFNESS - s.v * DAMPING;
+    s.v += force * dt;
+    s.y += s.v * dt;
+    s.v *= 0.98;
+    if (Math.abs(s.v) &lt; 0.01 &amp;&amp; Math.abs(targets[i] - s.y) &lt; 0.01) {
+      s.y = targets[i];
+      s.v = 0;
+    }
+    el.style.transform = 'translateY(' + s.y + 'px)';
+  });
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 14: Scroll Into View -->
@@ -321,6 +855,49 @@
       <div class="headline-wrapper scroll-view-wrapper">
         <p class="headline scroll-view-headline" id="scrollViewHeadline"></p>
       </div>
+      <!-- code-source:scrollView -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;p class=&quot;scroll-view-headline&quot; id=&quot;scrollViewHeadline&quot;&gt;&lt;/p&gt;</code></pre>
+        <pre data-lang="css"><code>.scroll-view-headline {
+  display: flex;
+  justify-content: center;
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.scroll-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  will-change: transform, opacity;
+}
+
+.scroll-char.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}</code></pre>
+        <pre data-lang="js"><code>var headline = document.getElementById('scrollViewHeadline');
+var text = 'In View';
+var EASE = 'cubic-bezier(0.16, 1, 0.3, 1)';
+
+headline.innerHTML = text.split('').map(function (c, i) {
+  return '&lt;span class=&quot;scroll-char&quot; style=&quot;transition: ' +
+    'opacity 0.6s ' + (i * 0.06) + 's ' + EASE + ', ' +
+    'transform 0.6s ' + (i * 0.06) + 's ' + EASE + '&quot;&gt;' +
+    (c === ' ' ? '&amp;nbsp;' : c) + '&lt;/span&gt;';
+}).join('');
+var chars = headline.querySelectorAll('.scroll-char');
+
+var observer = new IntersectionObserver(function (entries) {
+  entries.forEach(function (entry) {
+    if (entry.isIntersecting) {
+      chars.forEach(function (el) { el.classList.add('in-view'); });
+    }
+  });
+}, { threshold: 0.1 });
+observer.observe(headline);</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 15: Hover Pop -->
@@ -330,6 +907,30 @@
       <div class="headline-wrapper hover-pop-wrapper">
         <p class="headline hover-pop-headline" id="hoverPopHeadline"></p>
       </div>
+      <!-- code-source:hoverPop -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;p class=&quot;hover-pop-headline&quot;&gt;
+  &lt;span class=&quot;hover-pop-char&quot;&gt;H&lt;/span&gt;&lt;span class=&quot;hover-pop-char&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;hover-pop-char&quot;&gt;v&lt;/span&gt;&lt;span class=&quot;hover-pop-char&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;hover-pop-char&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;hover-pop-char&quot;&gt;&amp;nbsp;&lt;/span&gt;&lt;span class=&quot;hover-pop-char&quot;&gt;M&lt;/span&gt;&lt;span class=&quot;hover-pop-char&quot;&gt;e&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+        <pre data-lang="css"><code>.hover-pop-headline {
+  display: flex;
+  justify-content: center;
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.hover-pop-char {
+  display: inline-block;
+  transform-origin: center bottom;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+}
+
+.hover-pop-char:hover {
+  transform: scale(1.15) translateY(-4px);
+  color: #7c5cff;
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 16: Scramble Reveal -->
@@ -347,6 +948,49 @@
       <div class="headline-wrapper scramble-wrapper">
         <p class="headline scramble-headline" id="scrambleHeadline"></p>
       </div>
+      <!-- code-source:scramble -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;p class=&quot;scramble-headline&quot; id=&quot;scrambleHeadline&quot;&gt;&lt;/p&gt;</code></pre>
+        <pre data-lang="css"><code>.scramble-headline {
+  display: flex;
+  justify-content: center;
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.scramble-char {
+  display: inline-block;
+  min-width: 0.6em;
+  font-variant-numeric: tabular-nums;
+}</code></pre>
+        <pre data-lang="js"><code>var headline = document.getElementById('scrambleHeadline');
+var text = 'Decoded';
+var POOL = '!@#$%^&amp;*0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+headline.innerHTML = text.split('').map(function (c) {
+  return '&lt;span class=&quot;scramble-char&quot; data-final=&quot;' + c + '&quot;&gt;' + c + '&lt;/span&gt;';
+}).join('');
+var chars = headline.querySelectorAll('.scramble-char');
+
+function scrambleChar(el) {
+  var final = el.dataset.final;
+  var iterations = 12 + Math.floor(Math.random() * 8);
+  var i = 0;
+  var t = setInterval(function () {
+    el.textContent = POOL[Math.floor(Math.random() * POOL.length)];
+    i++;
+    if (i &gt;= iterations) {
+      el.textContent = final;
+      clearInterval(t);
+    }
+  }, 28);
+}
+
+chars.forEach(function (el, i) {
+  setTimeout(function () { scrambleChar(el); }, i * 50);
+});</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 17: Shadow Chase -->
@@ -356,6 +1000,38 @@
       <div class="headline-wrapper shadow-chase-wrapper">
         <p class="headline shadow-chase-headline" id="shadowChaseHeadline">Shadow</p>
       </div>
+      <!-- code-source:shadowChase -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;shadow-chase-wrapper&quot;&gt;
+  &lt;p class=&quot;shadow-chase-headline&quot; id=&quot;shadowChaseHeadline&quot;&gt;Shadow&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.shadow-chase-wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 3rem;
+}
+
+.shadow-chase-headline {
+  font-size: 3.5rem;
+  font-weight: 600;
+  text-shadow: 0 4px 12px rgba(124, 92, 255, 0.4);
+  will-change: text-shadow;
+}</code></pre>
+        <pre data-lang="js"><code>var headline = document.getElementById('shadowChaseHeadline');
+var wrapper = document.querySelector('.shadow-chase-wrapper');
+
+wrapper.addEventListener('mousemove', function (e) {
+  var rect = wrapper.getBoundingClientRect();
+  var dx = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+  var dy = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+  var len = 24 + Math.sqrt(dx * dx + dy * dy) * 16;
+  var angle = Math.atan2(dy, dx);
+  headline.style.textShadow =
+    (Math.cos(angle) * len) + 'px ' + (Math.sin(angle) * len) +
+    'px 20px rgba(124, 92, 255, 0.5)';
+});</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 18: Letter Flip -->
@@ -365,6 +1041,30 @@
       <div class="headline-wrapper letter-flip-wrapper">
         <p class="headline letter-flip-headline" id="letterFlipHeadline"></p>
       </div>
+      <!-- code-source:letterFlip -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;p class=&quot;letter-flip-headline&quot;&gt;
+  &lt;span class=&quot;flip-char&quot;&gt;F&lt;/span&gt;&lt;span class=&quot;flip-char&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;flip-char&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;flip-char&quot;&gt;p&lt;/span&gt;
+&lt;/p&gt;</code></pre>
+        <pre data-lang="css"><code>.letter-flip-headline {
+  display: flex;
+  justify-content: center;
+  font-size: 3.5rem;
+  font-weight: 600;
+  perspective: 600px;
+}
+
+.flip-char {
+  display: inline-block;
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.flip-char:hover {
+  transform: rotateY(180deg);
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 19: Breathing -->
@@ -381,6 +1081,23 @@
       <div class="headline-wrapper breathing-wrapper">
         <p class="headline breathing-headline" id="breathingHeadline">Breathe</p>
       </div>
+      <!-- code-source:breathing -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;p class=&quot;breathing-headline&quot;&gt;Breathe&lt;/p&gt;</code></pre>
+        <pre data-lang="css"><code>.breathing-headline {
+  font-size: 3.5rem;
+  font-weight: 600;
+  text-align: center;
+  transform-origin: center center;
+  animation: breathe 2.5s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 20: Gradient Sweep -->
@@ -397,6 +1114,27 @@
       <div class="headline-wrapper gradient-sweep-wrapper">
         <p class="headline gradient-sweep-headline" id="gradientSweepHeadline">Sweep</p>
       </div>
+      <!-- code-source:gradientSweep -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;p class=&quot;gradient-sweep-headline&quot;&gt;Sweep&lt;/p&gt;</code></pre>
+        <pre data-lang="css"><code>.gradient-sweep-headline {
+  font-size: 3.5rem;
+  font-weight: 600;
+  text-align: center;
+  background: linear-gradient(90deg, #f0f0f5, #7c5cff, #a78bfa, #f0f0f5);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-sweep 4s linear infinite;
+}
+
+@keyframes gradient-sweep {
+  from { background-position: 0% 50%; }
+  to { background-position: 300% 50%; }
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 21: Spotlight Reveal -->
@@ -407,6 +1145,62 @@
         <h2 class="headline spotlight-text">Hidden in Shadows</h2>
         <div class="spotlight-mask" id="spotlightMask"></div>
       </div>
+      <!-- code-source:spotlight -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;spotlight-wrapper&quot; id=&quot;spotlightWrapper&quot;&gt;
+  &lt;h2 class=&quot;spotlight-text&quot;&gt;Hidden in Shadows&lt;/h2&gt;
+  &lt;div class=&quot;spotlight-mask&quot; id=&quot;spotlightMask&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.spotlight-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  background: #000;
+  overflow: hidden;
+}
+
+.spotlight-text {
+  font-size: 3.5rem;
+  font-weight: 600;
+  color: #222;
+  z-index: 1;
+  margin: 0;
+}
+
+/* Bright copy sits behind, revealed through the mask hole */
+.spotlight-wrapper::after {
+  content: &quot;Hidden in Shadows&quot;;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  z-index: 0;
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.spotlight-mask {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle 80px at var(--x, 50%) var(--y, 50%),
+    transparent 0%, #000 100%);
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: hard-light;
+}</code></pre>
+        <pre data-lang="js"><code>var wrapper = document.getElementById('spotlightWrapper');
+var mask = document.getElementById('spotlightMask');
+
+wrapper.addEventListener('mousemove', function (e) {
+  var rect = wrapper.getBoundingClientRect();
+  mask.style.setProperty('--x', (e.clientX - rect.left) + 'px');
+  mask.style.setProperty('--y', (e.clientY - rect.top) + 'px');
+});</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 22: Gooey Text -->
@@ -423,6 +1217,50 @@
       <div class="headline-wrapper gooey-wrapper">
         <h2 class="headline gooey-text"><span class="gooey-char">G</span><span class="gooey-char">o</span><span class="gooey-char">o</span><span class="gooey-char">e</span><span class="gooey-char">y</span></h2>
       </div>
+      <!-- code-source:gooey -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;svg width=&quot;0&quot; height=&quot;0&quot;&gt;
+  &lt;filter id=&quot;gooey-filter&quot;&gt;
+    &lt;feGaussianBlur in=&quot;SourceGraphic&quot; stdDeviation=&quot;4&quot; result=&quot;blur&quot; /&gt;
+    &lt;feColorMatrix in=&quot;blur&quot; mode=&quot;matrix&quot;
+      values=&quot;1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -8&quot; result=&quot;goo&quot; /&gt;
+    &lt;feComposite in=&quot;SourceGraphic&quot; in2=&quot;goo&quot; operator=&quot;atop&quot;/&gt;
+  &lt;/filter&gt;
+&lt;/svg&gt;
+
+&lt;div class=&quot;gooey-wrapper&quot;&gt;
+  &lt;h2 class=&quot;gooey-text&quot;&gt;&lt;span class=&quot;gooey-char&quot;&gt;G&lt;/span&gt;&lt;span class=&quot;gooey-char&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;gooey-char&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;gooey-char&quot;&gt;e&lt;/span&gt;&lt;span class=&quot;gooey-char&quot;&gt;y&lt;/span&gt;&lt;/h2&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.gooey-wrapper {
+  filter: url('#gooey-filter');
+  padding: 1rem; /* room so gooey blobs don't clip */
+  text-align: center;
+}
+
+.gooey-text {
+  display: inline-block;
+  font-size: 3.5rem;
+  font-weight: 700; /* thick strokes merge better */
+  color: #7c5cff;
+}
+
+.gooey-char {
+  display: inline-block;
+  animation: gooey-drift 2.4s ease-in-out infinite alternate;
+}
+
+.gooey-char:nth-child(odd) { animation-direction: alternate-reverse; }
+.gooey-char:nth-child(2) { animation-delay: 0.15s; }
+.gooey-char:nth-child(3) { animation-delay: 0.3s; }
+.gooey-char:nth-child(4) { animation-delay: 0.45s; }
+.gooey-char:nth-child(5) { animation-delay: 0.6s; }
+
+@keyframes gooey-drift {
+  0% { transform: translateX(-0.18em); }
+  100% { transform: translateX(0.18em); }
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 23: Infinite Marquee -->
@@ -434,6 +1272,39 @@
           <span>SCROLLING TEXT LOOP &bull; SCROLLING TEXT LOOP &bull; </span><span aria-hidden="true">SCROLLING TEXT LOOP &bull; SCROLLING TEXT LOOP &bull; </span>
         </div>
       </div>
+      <!-- code-source:marquee -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;marquee-wrapper&quot;&gt;
+  &lt;div class=&quot;marquee-inner&quot;&gt;
+    &lt;span&gt;SCROLLING TEXT LOOP &amp;bull; SCROLLING TEXT LOOP &amp;bull; &lt;/span&gt;&lt;span aria-hidden=&quot;true&quot;&gt;SCROLLING TEXT LOOP &amp;bull; SCROLLING TEXT LOOP &amp;bull; &lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.marquee-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-inner {
+  display: inline-block;
+  animation: marquee 10s linear infinite;
+}
+
+.marquee-inner span {
+  padding-right: 2rem;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #6b6b80;
+}
+
+/* The text is duplicated in the HTML, so -50% loops seamlessly */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 24: Elastic Bounce -->
@@ -445,6 +1316,31 @@
           <span class="elastic-char">B</span><span class="elastic-char">o</span><span class="elastic-char">u</span><span class="elastic-char">n</span><span class="elastic-char">c</span><span class="elastic-char">e</span>
         </h2>
       </div>
+      <!-- code-source:elastic -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;h2 class=&quot;elastic-text&quot;&gt;
+  &lt;span class=&quot;elastic-char&quot;&gt;B&lt;/span&gt;&lt;span class=&quot;elastic-char&quot;&gt;o&lt;/span&gt;&lt;span class=&quot;elastic-char&quot;&gt;u&lt;/span&gt;&lt;span class=&quot;elastic-char&quot;&gt;n&lt;/span&gt;&lt;span class=&quot;elastic-char&quot;&gt;c&lt;/span&gt;&lt;span class=&quot;elastic-char&quot;&gt;e&lt;/span&gt;
+&lt;/h2&gt;</code></pre>
+        <pre data-lang="css"><code>.elastic-text {
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.elastic-char {
+  display: inline-block;
+  /* Overshooting cubic-bezier gives the elastic feel */
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.elastic-char:hover {
+  transform: scale(1.4) translateY(-10px);
+  color: #7c5cff;
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 25: Liquid Fill -->
@@ -454,6 +1350,28 @@
       <div class="headline-wrapper liquid-wrapper">
         <h2 class="headline liquid-text">Liquid Fill</h2>
       </div>
+      <!-- code-source:liquid -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;h2 class=&quot;liquid-text&quot;&gt;Liquid Fill&lt;/h2&gt;</code></pre>
+        <pre data-lang="css"><code>.liquid-text {
+  font-size: 3.5rem;
+  font-weight: 600;
+  text-align: center;
+  background: linear-gradient(to top, #7c5cff 50%, #6b6b80 50%);
+  background-size: 100% 200%;
+  background-position: 0 0%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  transition: background-position 0.5s ease;
+  cursor: pointer;
+}
+
+.liquid-text:hover {
+  background-position: 0 100%;
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 26: Neon Flicker -->
@@ -463,6 +1381,32 @@
       <div class="headline-wrapper neon-wrapper">
         <h2 class="headline neon-text flicker">OPEN 24/7</h2>
       </div>
+      <!-- code-source:neon -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;h2 class=&quot;neon-text&quot;&gt;OPEN 24/7&lt;/h2&gt;</code></pre>
+        <pre data-lang="css"><code>.neon-text {
+  font-size: 3.5rem;
+  font-weight: 600;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff,
+    0 0 20px #7c5cff, 0 0 30px #7c5cff, 0 0 40px #7c5cff;
+  animation: neon-flicker 3s infinite;
+}
+
+@keyframes neon-flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff,
+      0 0 20px #7c5cff, 0 0 30px #7c5cff, 0 0 40px #7c5cff;
+  }
+  20%, 24%, 55% {
+    opacity: 0.5;
+    text-shadow: none;
+  }
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 27: Mirror Reflection -->
@@ -473,6 +1417,38 @@
         <h2 class="headline mirror-text">Reflection</h2>
         <h2 class="headline mirror-reflection">Reflection</h2>
       </div>
+      <!-- code-source:mirror -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;mirror-wrapper&quot;&gt;
+  &lt;h2 class=&quot;mirror-text&quot;&gt;Reflection&lt;/h2&gt;
+  &lt;h2 class=&quot;mirror-reflection&quot; aria-hidden=&quot;true&quot;&gt;Reflection&lt;/h2&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.mirror-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  perspective: 500px;
+}
+
+.mirror-text,
+.mirror-reflection {
+  font-size: 3.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.mirror-reflection {
+  transform: rotateX(180deg);
+  opacity: 0.3;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent 70%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-top: -10px;
+  filter: blur(1px);
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 28: Variable Axis Interaction -->
@@ -482,6 +1458,27 @@
       <div class="headline-wrapper variable-axis-wrapper">
         <h2 class="headline variable-axis-text">Variable</h2>
       </div>
+      <!-- code-source:variableAxis -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;!-- Requires a variable font, e.g. Roboto Flex from Google Fonts:
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,slnt,wdth,wght@8..144,-10..0,25..151,100..1000&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt; --&gt;
+
+&lt;h2 class=&quot;variable-axis-text&quot;&gt;Variable&lt;/h2&gt;</code></pre>
+        <pre data-lang="css"><code>.variable-axis-text {
+  font-family: 'Roboto Flex', sans-serif;
+  font-size: 3.5rem;
+  text-align: center;
+  font-variation-settings: 'wght' 100, 'wdth' 100, 'slnt' 0;
+  transition: font-variation-settings 0.5s ease;
+  cursor: pointer;
+}
+
+.variable-axis-text:hover {
+  font-variation-settings: 'wght' 900, 'wdth' 150, 'slnt' -10;
+  color: #7c5cff;
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 29: Code Type Decode -->
@@ -491,6 +1488,40 @@
       <div class="headline-wrapper code-wrapper">
         <h2 class="headline code-text" data-value="System Ready">01010101</h2>
       </div>
+      <!-- code-source:codeDecode -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;h2 class=&quot;code-text&quot; data-value=&quot;System Ready&quot;&gt;01010101&lt;/h2&gt;</code></pre>
+        <pre data-lang="css"><code>.code-text {
+  font-family: monospace;
+  font-size: 3.5rem;
+  text-align: center;
+  color: #7c5cff;
+  cursor: pointer;
+}</code></pre>
+        <pre data-lang="js"><code>var el = document.querySelector('.code-text');
+var final = el.dataset.value;
+var POOL = '01';
+var interval = null;
+
+el.addEventListener('mouseenter', function () {
+  var iteration = 0;
+  clearInterval(interval);
+  interval = setInterval(function () {
+    el.innerText = final.split('').map(function (letter, index) {
+      if (index &lt; iteration) return final[index];
+      return POOL[Math.floor(Math.random() * POOL.length)];
+    }).join('');
+    if (iteration &gt;= final.length) clearInterval(interval);
+    iteration += 1 / 3;
+  }, 30);
+});
+
+el.addEventListener('mouseleave', function () {
+  clearInterval(interval);
+  el.innerText = '01010101';
+});</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 30: Split Hover -->
@@ -503,6 +1534,48 @@
           <span class="split-bottom">Open</span>
         </div>
       </div>
+      <!-- code-source:splitHover -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;split-hover-wrapper&quot;&gt;
+  &lt;div class=&quot;split-hover-inner&quot;&gt;
+    &lt;span class=&quot;split-top&quot;&gt;Menu&lt;/span&gt;
+    &lt;span class=&quot;split-bottom&quot;&gt;Open&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.split-hover-wrapper {
+  position: relative;
+  overflow: hidden;
+  height: 3.5rem; /* must match .split-top/.split-bottom height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.split-hover-inner {
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  text-align: center;
+}
+
+.split-hover-wrapper:hover .split-hover-inner {
+  transform: translateY(-3.5rem);
+}
+
+.split-top,
+.split-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3.5rem;
+}
+
+.split-bottom {
+  color: #7c5cff;
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 31: Weight Wave -->
@@ -519,6 +1592,45 @@
       <div class="headline-wrapper weight-wave-wrapper">
         <p class="headline weight-wave-headline" id="weightWaveHeadline"></p>
       </div>
+      <!-- code-source:weightWave -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;!-- Requires a variable font, e.g. Roboto Flex from Google Fonts:
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,slnt,wdth,wght@8..144,-10..0,25..151,100..1000&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt; --&gt;
+
+&lt;p class=&quot;weight-wave-headline&quot; id=&quot;weightWaveHeadline&quot;&gt;&lt;/p&gt;</code></pre>
+        <pre data-lang="css"><code>.weight-wave-headline {
+  font-family: 'Roboto Flex', sans-serif;
+  display: flex;
+  justify-content: center;
+  font-size: 3.5rem;
+}
+
+.weight-wave-char {
+  display: inline-block;
+  font-variation-settings: 'wght' 100;
+}</code></pre>
+        <pre data-lang="js"><code>var headline = document.getElementById('weightWaveHeadline');
+var text = 'Heavy Light';
+var SPEED = 0.06;
+
+headline.innerHTML = text.split('').map(function (c) {
+  return '&lt;span class=&quot;weight-wave-char&quot;&gt;' + (c === ' ' ? '&amp;nbsp;' : c) + '&lt;/span&gt;';
+}).join('');
+var chars = headline.querySelectorAll('.weight-wave-char');
+
+var phase = 0;
+function tick() {
+  phase += SPEED;
+  chars.forEach(function (el, i) {
+    // A wave of font-weight 100..900 travels through the word
+    var w = 500 + Math.sin(phase - i * 0.6) * 400;
+    el.style.fontVariationSettings = &quot;'wght' &quot; + Math.round(w);
+  });
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 32: Stroke Draw -->
@@ -533,6 +1645,80 @@
           <text x="350" y="85" text-anchor="middle" class="stroke-text" id="strokeText">Draw Me</text>
         </svg>
       </div>
+      <!-- code-source:strokeDraw -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;svg class=&quot;stroke-svg&quot; viewBox=&quot;0 0 700 120&quot; width=&quot;100%&quot;&gt;
+  &lt;text x=&quot;350&quot; y=&quot;85&quot; text-anchor=&quot;middle&quot; class=&quot;stroke-text&quot; id=&quot;strokeText&quot;&gt;Draw Me&lt;/text&gt;
+&lt;/svg&gt;</code></pre>
+        <pre data-lang="css"><code>.stroke-text {
+  font-size: 4.5rem;
+  font-weight: 700;
+  fill: none;
+  stroke: #7c5cff;
+  stroke-width: 1.5;
+}
+
+.stroke-text.drawing {
+  /* Near-linear pen speed — ease-out-expo drew ~90% of the outline in the first
+     third and then crawled, which reads as a glitch rather than handwriting */
+  animation: stroke-draw 2.6s cubic-bezier(0.4, 0, 0.5, 1) forwards;
+}
+
+@keyframes stroke-draw {
+  0% { stroke-dashoffset: var(--dash-from, 3300); fill: transparent; }
+  84% { fill: transparent; }
+  100% { stroke-dashoffset: var(--dash-to, 1020); fill: #f0f0f5; }
+}</code></pre>
+        <pre data-lang="js"><code>var textEl = document.getElementById('strokeText');
+
+// SVG &lt;text&gt; has no getTotalLength(), so the glyph outline perimeter has to be
+// estimated. getComputedTextLength() is the *advance width* — not the outline —
+// so a small multiplier falls well short of it. When stroke-dasharray is shorter
+// than the real outline the pattern REPEATS, so a second dash starts partway
+// through and leaves a visible seam mid-glyph.
+//
+// Model each glyph as its bbox perimeter 2(w + h) times ~1.6 for the inner
+// counters that most letters carry:  actual ~= 3.2 * (W + N*h)
+function measure() {
+  var W = textEl.getComputedTextLength();   // total advance width
+  var h = textEl.getBBox().height;          // ink height
+  var N = (textEl.textContent.replace(/\s/g, '') || ' ').length;
+  var unit = W + N * h;
+
+  // `bound` must exceed the true perimeter so the pattern can never repeat.
+  // `draw`  must also exceed it (an undershoot would leave letters unfinished),
+  // but only slightly, so the reveal spans almost the whole duration.
+  return { bound: Math.ceil(5.5 * unit), draw: Math.ceil(3.8 * unit) };
+}
+
+function play() {
+  textEl.classList.remove('drawing');
+
+  var bound = 3300, draw = 2280; // fallbacks if measurement throws
+  try {
+    var m = measure();
+    bound = m.bound;
+    draw = m.draw;
+  } catch (e) {}
+
+  textEl.style.strokeDasharray = bound;
+  // Reveal by walking the offset from `bound` down to `bound - draw` — never to
+  // 0, which would idle for ~40% of the duration after the outline is complete.
+  textEl.style.setProperty('--dash-from', bound);
+  textEl.style.setProperty('--dash-to', bound - draw);
+  textEl.style.strokeDashoffset = bound;
+  void textEl.getBoundingClientRect(); // force reflow so the animation restarts
+  textEl.classList.add('drawing');
+}
+
+// Fonts must be loaded before measuring the outline length
+if (document.fonts &amp;&amp; document.fonts.ready) {
+  document.fonts.ready.then(play);
+} else {
+  play();
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- Section 33: Gravity Drop -->
@@ -542,6 +1728,93 @@
       <div class="headline-wrapper gravity-wrapper" id="gravityWrapper">
         <p class="headline gravity-headline" id="gravityHeadline"></p>
       </div>
+      <!-- code-source:gravityDrop -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;gravity-wrapper&quot; id=&quot;gravityWrapper&quot;&gt;
+  &lt;p class=&quot;gravity-headline&quot; id=&quot;gravityHeadline&quot;&gt;&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.gravity-wrapper {
+  min-height: 160px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.gravity-headline {
+  display: flex;
+  justify-content: center;
+  font-size: 3.5rem;
+  font-weight: 600;
+}
+
+.gravity-char {
+  display: inline-block;
+  will-change: transform;
+}</code></pre>
+        <pre data-lang="js"><code>var headline = document.getElementById('gravityHeadline');
+var wrapper = document.getElementById('gravityWrapper');
+var text = 'Timber!';
+
+headline.innerHTML = text.split('').map(function (c) {
+  return '&lt;span class=&quot;gravity-char&quot;&gt;' + c + '&lt;/span&gt;';
+}).join('');
+var chars = headline.querySelectorAll('.gravity-char');
+
+var dropped = false;
+var rafId = null;
+
+function drop() {
+  var wrapRect = wrapper.getBoundingClientRect();
+  var bodies = Array.from(chars).map(function (el) {
+    var r = el.getBoundingClientRect();
+    return {
+      el: el,
+      y: 0,
+      vy: -(2 + Math.random() * 3),        // small upward pop first
+      rot: 0,
+      vr: (Math.random() - 0.5) * 10,
+      floor: wrapRect.bottom - r.bottom,   // distance to wrapper floor
+      delay: Math.random() * 15,           // frames before falling
+      bounces: 0
+    };
+  });
+
+  function tick() {
+    var alive = false;
+    bodies.forEach(function (b) {
+      if (b.delay &gt; 0) { b.delay--; alive = true; return; }
+      b.vy += 0.9;                         // gravity
+      b.y += b.vy;
+      b.rot += b.vr;
+      if (b.y &gt;= b.floor) {
+        b.y = b.floor;
+        b.vy *= -0.45;                     // restitution
+        b.vr *= 0.6;
+        b.bounces++;
+        if (Math.abs(b.vy) &lt; 1 || b.bounces &gt; 4) { b.vy = 0; b.vr = 0; }
+      }
+      if (b.vy !== 0 || b.y &lt; b.floor) alive = true;
+      b.el.style.transform = 'translateY(' + b.y + 'px) rotate(' + b.rot + 'deg)';
+    });
+    if (alive) rafId = requestAnimationFrame(tick);
+  }
+  rafId = requestAnimationFrame(tick);
+}
+
+function reset() {
+  if (rafId) cancelAnimationFrame(rafId);
+  chars.forEach(function (el) {
+    el.style.transition = 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)';
+    el.style.transform = 'translateY(0) rotate(0deg)';
+    setTimeout(function () { el.style.transition = ''; }, 500);
+  });
+}
+
+wrapper.addEventListener('click', function () {
+  dropped = !dropped;
+  if (dropped) drop(); else reset();
+});</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
   </main>
@@ -555,7 +1828,6 @@
   <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
   <script src="transitions.js"></script>
   <script src="app.js"></script>
-  <script src="snippets/typography.js"></script>
   <script src="code-panel.js"></script>
   <script src="deep-link.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>

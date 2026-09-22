@@ -1,12 +1,13 @@
 /**
  * Code Panel — shared "view code" component.
  *
- * Reads window.EFFECT_SNIPPETS (a registry defined by the page's snippets/*.js
- * file) and injects a collapsible HTML/CSS/JS code viewer with a copy button
- * into every effect section.
+ * Injects a collapsible HTML/CSS/JS code viewer with a copy button into every
+ * effect section (matched by its data-fx, data-panel, or data-anim attribute).
  *
- * A section is matched to a snippet by its data-fx, data-panel, or data-anim
- * attribute.
+ * The code comes from the hidden <div class="code-source"> that
+ * scripts/build-code-blocks.js pre-renders into each section from snippets/*.js,
+ * so the snippets are real, crawlable HTML. window.EFFECT_SNIPPETS is still
+ * honoured as a fallback for pages that load a snippets file directly.
  */
 (function () {
   'use strict';
@@ -129,14 +130,29 @@
     return panel;
   }
 
+  // Preferred source: the <div class="code-source"> that scripts/build-code-blocks.js
+  // pre-renders into each section, so the code is real HTML that crawlers can read.
+  // The div is consumed (removed) once its text has been lifted into the panel.
+  function snippetFromDOM(section) {
+    var source = section.querySelector(':scope > .code-source');
+    if (!source) return null;
+    var snippet = {};
+    var pres = source.querySelectorAll('pre[data-lang]');
+    for (var i = 0; i < pres.length; i++) {
+      snippet[pres[i].getAttribute('data-lang')] = pres[i].textContent;
+    }
+    source.parentNode.removeChild(source);
+    return snippet;
+  }
+
   function init() {
-    var registry = window.EFFECT_SNIPPETS;
-    if (!registry) return;
+    // Fallback registry for pages that still load snippets/*.js directly.
+    var registry = window.EFFECT_SNIPPETS || {};
 
     var sections = document.querySelectorAll('[data-fx], [data-panel], [data-anim]');
     sections.forEach(function (section) {
       var key = section.dataset.fx || section.dataset.panel || section.dataset.anim;
-      var snippet = registry[key];
+      var snippet = snippetFromDOM(section) || registry[key];
       if (!snippet) return;
       var panel = buildPanel(snippet);
       if (!panel) return;

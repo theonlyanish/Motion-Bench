@@ -84,6 +84,31 @@
         <h2>Zoom Hover</h2>
         <p>Simple scale on hover</p>
       </div>
+      <!-- code-source:zoomHover -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;zoom-hover&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/10/800/600&quot; alt=&quot;Nature&quot;&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.zoom-hover {
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.zoom-hover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.zoom-hover:hover img {
+  transform: scale(1.1);
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 2. Grayscale to Color -->
@@ -95,6 +120,32 @@
         <h2>Grayscale → Color</h2>
         <p>Fade in color on interaction</p>
       </div>
+      <!-- code-source:grayColor -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;gray-color&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/12/800/600&quot; alt=&quot;Beach&quot;&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.gray-color {
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.gray-color img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(100%);
+  transition: filter 0.5s ease;
+}
+
+.gray-color:hover img {
+  filter: grayscale(0%);
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 3. Curtain Reveal -->
@@ -107,6 +158,44 @@
         <h2>Curtain Reveal</h2>
         <p>Overlay slides away</p>
       </div>
+      <!-- code-source:curtainReveal -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;curtain-reveal&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/15/800/600&quot; alt=&quot;Waterfall&quot;&gt;
+  &lt;div class=&quot;curtain&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.curtain-reveal {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.curtain-reveal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.curtain-reveal .curtain {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #0a0a0f;
+  opacity: 0.8;
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.curtain-reveal:hover .curtain {
+  transform: scaleY(1);
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 4. Caption Slide Up -->
@@ -122,6 +211,51 @@
         <h2>Caption Slide Up</h2>
         <p>Details appear from bottom</p>
       </div>
+      <!-- code-source:captionSlide -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;caption-slide&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/16/800/600&quot; alt=&quot;Ocean&quot;&gt;
+  &lt;div class=&quot;caption-overlay&quot;&gt;
+    &lt;h3&gt;Ocean View&lt;/h3&gt;
+    &lt;p&gt;A serene view of the water&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.caption-slide {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+  color: #f0f0f5;
+  font-family: system-ui, sans-serif;
+}
+
+.caption-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.caption-overlay {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  padding: 1.5rem;
+  box-sizing: border-box;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  transform: translateY(100%);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.caption-slide:hover .caption-overlay {
+  transform: translateY(0);
+}
+
+.caption-overlay h3 { margin: 0; font-size: 1.1rem; }
+.caption-overlay p { margin: 0.25rem 0 0; font-size: 0.85rem; color: #ccc; }</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 5. 3D Tilt Card -->
@@ -135,6 +269,53 @@
         <h2>3D Tilt</h2>
         <p>Mouse-driven perspective tilt</p>
       </div>
+      <!-- code-source:tilt3d -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;tilt-card&quot; id=&quot;tiltCard&quot;&gt;
+  &lt;div class=&quot;tilt-inner&quot; id=&quot;tiltInner&quot;&gt;
+    &lt;img src=&quot;https://picsum.photos/id/28/800/600&quot; alt=&quot;Forest&quot;&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.tilt-card {
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  perspective: 1000px;
+}
+
+.tilt-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+.tilt-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}</code></pre>
+        <pre data-lang="js"><code>var card = document.getElementById('tiltCard');
+var inner = document.getElementById('tiltInner');
+var MAX_TILT = 15; // degrees
+
+card.addEventListener('mousemove', function (e) {
+  var rect = card.getBoundingClientRect();
+  var xPct = ((e.clientX - rect.left) / rect.width - 0.5) * 2;  // -1..1
+  var yPct = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+  var rotX = -yPct * MAX_TILT;
+  var rotY = xPct * MAX_TILT;
+  inner.style.transform =
+    'rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg) scale(1.05)';
+});
+
+card.addEventListener('mouseleave', function () {
+  inner.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+});</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 6. Blur Reveal -->
@@ -146,6 +327,33 @@
         <h2>Blur Reveal</h2>
         <p>Starts blurred, sharpens on hover</p>
       </div>
+      <!-- code-source:blurReveal -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;blur-reveal&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/29/800/600&quot; alt=&quot;Mountain&quot;&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.blur-reveal {
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.blur-reveal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: blur(8px);
+  transform: scale(1.05); /* hides the blurred edge fringe */
+  transition: filter 0.5s ease;
+}
+
+.blur-reveal:hover img {
+  filter: blur(0);
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 7. Clip Path Shape -->
@@ -157,6 +365,35 @@
         <h2>Clip Path Morph</h2>
         <p>Circle to rounded rectangle</p>
       </div>
+      <!-- code-source:clipMorph -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;clip-shape&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/40/800/600&quot; alt=&quot;Cat&quot;&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.clip-shape {
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #000;
+}
+
+.clip-shape img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  clip-path: circle(40% at 50% 50%);
+  transition: clip-path 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.clip-shape:hover img {
+  clip-path: circle(75% at 50% 50%);
+  transform: scale(1.05);
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 8. Glitch Image -->
@@ -170,6 +407,83 @@
         <h2>Glitch Image</h2>
         <p>RGB split on hover</p>
       </div>
+      <!-- code-source:glitchImage -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;glitch-img&quot; id=&quot;glitchImg&quot;&gt;
+  &lt;div class=&quot;glitch-layer layer-1&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;glitch-layer layer-2&quot;&gt;&lt;/div&gt;
+  &lt;img src=&quot;https://picsum.photos/id/48/800/600&quot; alt=&quot;Architecture&quot;&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.glitch-img {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.glitch-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.glitch-layer {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('https://picsum.photos/id/48/800/600') no-repeat center/cover;
+  opacity: 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.glitch-img:hover .layer-1 {
+  opacity: 0.5;
+  animation: glitch-anim-1 0.3s infinite linear alternate-reverse;
+  filter: hue-rotate(90deg);
+}
+
+.glitch-img:hover .layer-2 {
+  opacity: 0.5;
+  animation: glitch-anim-2 0.3s infinite linear alternate-reverse;
+  filter: hue-rotate(-90deg);
+}
+
+@keyframes glitch-anim-1 {
+  0% { transform: translate(-2px, 2px); }
+  100% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-anim-2 {
+  0% { transform: translate(2px, -2px); }
+  100% { transform: translate(-2px, 2px); }
+}</code></pre>
+        <pre data-lang="js"><code>// Optional: the layers also drift with the mouse position
+var glitch = document.getElementById('glitchImg');
+var layers = glitch.querySelectorAll('.glitch-layer');
+
+glitch.addEventListener('mousemove', function (e) {
+  var rect = glitch.getBoundingClientRect();
+  var x = (e.clientX - rect.left) / rect.width;
+  var y = (e.clientY - rect.top) / rect.height;
+  layers.forEach(function (layer, i) {
+    var factor = (i + 1) * 5;
+    var moveX = (x - 0.5) * factor;
+    var moveY = (y - 0.5) * factor;
+    layer.style.transform = 'translate(' + moveX + 'px, ' + moveY + 'px)';
+  });
+});
+
+glitch.addEventListener('mouseleave', function () {
+  layers.forEach(function (layer) {
+    layer.style.transform = 'translate(0, 0)';
+  });
+});</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 9. Parallax Scroll (Container) -->
@@ -181,6 +495,56 @@
         <h2>Parallax Scroll</h2>
         <p>Image moves slower than scroll</p>
       </div>
+      <!-- code-source:parallaxScroll -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;!-- Put this partway down a scrollable page so it can move --&gt;
+&lt;div class=&quot;parallax-container&quot; id=&quot;parallaxContainer&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/54/800/900&quot; alt=&quot;Tall Building&quot; id=&quot;parallaxImg&quot;&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.parallax-container {
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+/* Image is taller than its frame so it has room to slide */
+.parallax-container img {
+  width: 100%;
+  height: 120%;
+  object-fit: cover;
+  display: block;
+  will-change: transform;
+}</code></pre>
+        <pre data-lang="js"><code>var container = document.getElementById('parallaxContainer');
+var img = document.getElementById('parallaxImg');
+var RANGE = 80; // total px of travel across the viewport
+
+var ticking = false;
+
+function update() {
+  ticking = false;
+  var rect = container.getBoundingClientRect();
+  var viewHeight = window.innerHeight;
+  if (rect.top &lt; viewHeight &amp;&amp; rect.bottom &gt; 0) {
+    // 0 when entering at the bottom, 1 when leaving at the top
+    var progress = (viewHeight - rect.top) / (viewHeight + rect.height);
+    var y = (progress - 0.5) * RANGE;
+    img.style.transform = 'translateY(' + y + 'px)';
+  }
+}
+
+function onScroll() {
+  if (!ticking) {
+    ticking = true;
+    requestAnimationFrame(update);
+  }
+}
+
+window.addEventListener('scroll', onScroll, { passive: true });
+update();</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 10. Magnetic Cursor -->
@@ -193,6 +557,62 @@
         <h2>Magnetic Cursor</h2>
         <p>Custom cursor sticks to image</p>
       </div>
+      <!-- code-source:magneticCursor -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;magnetic-wrap&quot; id=&quot;magneticWrap&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/57/800/600&quot; alt=&quot;Castle&quot;&gt;
+  &lt;div class=&quot;magnetic-cursor&quot; id=&quot;magneticCursor&quot;&gt;View&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.magnetic-wrap {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: none;
+}
+
+.magnetic-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.magnetic-cursor {
+  position: absolute;
+  top: 0; left: 0;
+  width: 60px; height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(4px);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fff;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  z-index: 10;
+}</code></pre>
+        <pre data-lang="js"><code>var wrap = document.getElementById('magneticWrap');
+var cursor = document.getElementById('magneticCursor');
+
+wrap.addEventListener('mousemove', function (e) {
+  var rect = wrap.getBoundingClientRect();
+  cursor.style.left = (e.clientX - rect.left) + 'px';
+  cursor.style.top = (e.clientY - rect.top) + 'px';
+  cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+});
+
+wrap.addEventListener('mouseleave', function () {
+  cursor.style.transform = 'translate(-50%, -50%) scale(0)';
+});</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 11. Slice Reveal -->
@@ -207,6 +627,49 @@
         <h2>Slice Reveal</h2>
         <p>Image split into sliding strips</p>
       </div>
+      <!-- code-source:sliceReveal -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;slice-reveal&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/60/800/600&quot; alt=&quot;Computer&quot;&gt;
+  &lt;div class=&quot;slice s1&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;slice s2&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;slice s3&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.slice-reveal {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.slice-reveal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.slice {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 33.34%;
+  background: #0a0a0f;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+/* Alternate origins so the strips wipe in opposite directions */
+.s1 { left: 0; transform-origin: top; }
+.s2 { left: 33.33%; transform-origin: bottom; transition-delay: 0.1s; }
+.s3 { left: 66.66%; transform-origin: top; transition-delay: 0.2s; }
+
+.slice-reveal:hover .slice {
+  transform: scaleY(0);
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 12. Ink Spread (SVG Mask) -->
@@ -221,6 +684,45 @@
         <h2>Ink Spread</h2>
         <p>SVG path morph reveal</p>
       </div>
+      <!-- code-source:inkSpread -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;ink-spread&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/65/800/600&quot; alt=&quot;Girl&quot;&gt;
+  &lt;svg class=&quot;ink-mask&quot; viewBox=&quot;0 0 100 100&quot; preserveAspectRatio=&quot;none&quot;&gt;
+    &lt;path d=&quot;M0 0 H100 V100 H0 Z&quot; /&gt;
+  &lt;/svg&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.ink-spread {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.ink-spread img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ink-mask {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%; height: 100%;
+  fill: #0a0a0f;
+  transform: scaleY(1);
+  transform-origin: bottom;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.ink-spread:hover .ink-mask {
+  transform: scaleY(0);
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 13. Perspective Rotate -->
@@ -232,6 +734,46 @@
         <h2>Perspective Rotate</h2>
         <p>Rotates in 3D space on hover</p>
       </div>
+      <!-- code-source:perspectiveRotate -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;perspective-rotate&quot; id=&quot;perspectiveRotate&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/75/800/600&quot; alt=&quot;Plant&quot; id=&quot;perspectiveImg&quot;&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.perspective-rotate {
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+  perspective: 800px;
+}
+
+.perspective-rotate img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform-origin: center center;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}</code></pre>
+        <pre data-lang="js"><code>var wrap = document.getElementById('perspectiveRotate');
+var img = document.getElementById('perspectiveImg');
+var MAX_TILT = 15; // degrees
+
+wrap.addEventListener('mousemove', function (e) {
+  var rect = wrap.getBoundingClientRect();
+  var xPct = ((e.clientX - rect.left) / rect.width - 0.5) * 2;  // -1..1
+  var yPct = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+  var rotX = -yPct * MAX_TILT;
+  var rotY = xPct * MAX_TILT;
+  img.style.transform =
+    'rotateX(' + rotX + 'deg) rotateY(' + rotY + 'deg) scale(0.95)';
+});
+
+wrap.addEventListener('mouseleave', function () {
+  img.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+});</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 14. Inner Border Draw -->
@@ -244,6 +786,48 @@
         <h2>Border Draw</h2>
         <p>Line traces inside edge</p>
       </div>
+      <!-- code-source:borderDraw -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;border-draw&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/88/800/600&quot; alt=&quot;Road&quot;&gt;
+  &lt;div class=&quot;border-box&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.border-draw {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.border-draw img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.border-box {
+  position: absolute;
+  top: 1rem; left: 1rem; right: 1rem; bottom: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  transform: scale(0.9);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.border-draw:hover .border-box {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.border-draw:hover img {
+  transform: scale(1.05);
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 15. Duotone Hover -->
@@ -255,6 +839,36 @@
         <h2>Duotone Gradient</h2>
         <p>Mix-blend-mode overlay</p>
       </div>
+      <!-- code-source:duotone -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;duotone-hover&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/96/800/600&quot; alt=&quot;Tools&quot;&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.duotone-hover {
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+  /* The tint color that shows through luminosity blending */
+  background: #f00;
+}
+
+.duotone-hover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  mix-blend-mode: luminosity;
+  filter: contrast(1.2);
+  transition: mix-blend-mode 0.4s, filter 0.4s;
+}
+
+.duotone-hover:hover img {
+  mix-blend-mode: normal;
+  filter: none;
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 16. Reveal from Center -->
@@ -267,6 +881,44 @@
         <h2>Center Reveal</h2>
         <p>Circular mask expands</p>
       </div>
+      <!-- code-source:centerReveal -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;center-reveal&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/102/800/600&quot; alt=&quot;Raspberries&quot;&gt;
+  &lt;div class=&quot;center-mask&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.center-reveal {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.center-reveal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* A donut mask: transparent circle in the middle, dark everywhere else.
+   Scaling the whole mask up grows the visible hole. */
+.center-mask {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 150%; height: 150%;
+  background: radial-gradient(circle, transparent 30%, #0a0a0f 31%);
+  transform: translate(-50%, -50%) scale(1);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+.center-reveal:hover .center-mask {
+  transform: translate(-50%, -50%) scale(3);
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 17. Pixelate (Canvas/CSS) -->
@@ -278,6 +930,33 @@
         <h2>Pixelate</h2>
         <p>Steps down resolution (CSS filter)</p>
       </div>
+      <!-- code-source:pixelate -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;pixelate&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/106/800/600&quot; alt=&quot;Flower&quot;&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.pixelate {
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.pixelate img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  image-rendering: pixelated;
+  filter: contrast(1.2) blur(4px);
+  transition: filter 0.4s ease;
+}
+
+.pixelate:hover img {
+  filter: contrast(1) blur(0);
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 18. Slide Behind -->
@@ -294,6 +973,62 @@
         <h2>Slide Behind</h2>
         <p>Image slides to reveal text behind</p>
       </div>
+      <!-- code-source:slideBehind -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;slide-behind&quot;&gt;
+  &lt;div class=&quot;img-front&quot;&gt;
+    &lt;img src=&quot;https://picsum.photos/id/111/800/600&quot; alt=&quot;Car&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;img-back&quot;&gt;
+    &lt;h3&gt;Vintage&lt;/h3&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.slide-behind {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #7c5cff;
+}
+
+.img-front {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.img-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.img-back {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.img-back h3 {
+  font-family: system-ui, sans-serif;
+  font-size: 2rem;
+  color: #fff;
+  margin: 0;
+}
+
+.slide-behind:hover .img-front {
+  transform: translateX(60px) translateY(-40px) scale(0.8);
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 19. Flash Overlay -->
@@ -306,6 +1041,47 @@
         <h2>Flash Overlay</h2>
         <p>Bright flash transition</p>
       </div>
+      <!-- code-source:flashOverlay -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;flash-overlay&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/120/800/600&quot; alt=&quot;Shoes&quot;&gt;
+  &lt;div class=&quot;flash&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.flash-overlay {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.flash-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.flash {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #fff;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Bright flash that immediately fades out */
+.flash-overlay:hover .flash {
+  animation: flash-anim 0.4s forwards;
+}
+
+@keyframes flash-anim {
+  0% { opacity: 0.6; }
+  100% { opacity: 0; }
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 20. Pan on Hover -->
@@ -317,6 +1093,43 @@
         <h2>Pan on Hover</h2>
         <p>Large image pans within frame</p>
       </div>
+      <!-- code-source:panHover -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;pan-hover&quot; id=&quot;panHover&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/128/1000/800&quot; alt=&quot;City&quot; id=&quot;panImg&quot;&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.pan-hover {
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.pan-hover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 4s ease-in-out;
+}</code></pre>
+        <pre data-lang="js"><code>var wrap = document.getElementById('panHover');
+var img = document.getElementById('panImg');
+var ZOOM = 1.2;
+
+wrap.addEventListener('mousemove', function (e) {
+  var rect = wrap.getBoundingClientRect();
+  var xPct = ((e.clientX - rect.left) / rect.width) * 100;
+  var yPct = ((e.clientY - rect.top) / rect.height) * 100;
+  // Zoom toward the cursor; the slow transition makes the pan drift
+  img.style.transformOrigin = xPct + '% ' + yPct + '%';
+  img.style.transform = 'scale(' + ZOOM + ')';
+});
+
+wrap.addEventListener('mouseleave', function () {
+  img.style.transform = 'scale(1)';
+});</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 21. Image Distortion (Filter) -->
@@ -328,6 +1141,31 @@
         <h2>Turbulence Distort</h2>
         <p>SVG Turbulence filter on hover</p>
       </div>
+      <!-- code-source:turbulence -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;distort-filter&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/133/800/600&quot; alt=&quot;Distort&quot;&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.distort-filter {
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.distort-filter img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* An SVG turbulence + displacement filter inlined as a data URI */
+.distort-filter:hover img {
+  filter: url('data:image/svg+xml;utf8,&lt;svg xmlns=&quot;http://www.w3.org/2000/svg&quot;&gt;&lt;filter id=&quot;distort&quot;&gt;&lt;feTurbulence type=&quot;fractalNoise&quot; baseFrequency=&quot;0.05&quot; numOctaves=&quot;2&quot; /&gt;&lt;feDisplacementMap in=&quot;SourceGraphic&quot; scale=&quot;20&quot; /&gt;&lt;/filter&gt;&lt;/svg&gt;#distort');
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 22. Fold Reveal -->
@@ -340,6 +1178,46 @@
         <h2>Fold Reveal</h2>
         <p>Unfolds from top like paper</p>
       </div>
+      <!-- code-source:foldReveal -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;fold-reveal&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/145/800/600&quot; alt=&quot;Fold&quot;&gt;
+  &lt;div class=&quot;fold-cover&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.fold-reveal {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+  perspective: 1000px;
+}
+
+.fold-reveal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.fold-cover {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: #0a0a0f;
+  opacity: 0.9;
+  transform-origin: top;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Swings up and away like a sheet of paper */
+.fold-reveal:hover .fold-cover {
+  transform: rotateX(-100deg);
+  opacity: 0;
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 23. Circular Swap -->
@@ -352,6 +1230,41 @@
         <h2>Circular Swap</h2>
         <p>Clip-path circle expands new image</p>
       </div>
+      <!-- code-source:circleSwap -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;circle-swap&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/152/800/600&quot; alt=&quot;Swap 1&quot; class=&quot;c-img-1&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/158/800/600&quot; alt=&quot;Swap 2&quot; class=&quot;c-img-2&quot;&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.circle-swap {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.circle-swap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* The second image starts as a zero-size circle in the center */
+.circle-swap .c-img-2 {
+  position: absolute;
+  top: 0; left: 0;
+  clip-path: circle(0% at 50% 50%);
+  transition: clip-path 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.circle-swap:hover .c-img-2 {
+  clip-path: circle(100% at 50% 50%);
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 24. Directional Overlay -->
@@ -364,6 +1277,75 @@
         <h2>Directional Overlay</h2>
         <p>Overlay follows mouse entry direction</p>
       </div>
+      <!-- code-source:dirOverlay -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;dir-overlay&quot; id=&quot;dirOverlay&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/160/800/600&quot; alt=&quot;Direction&quot;&gt;
+  &lt;div class=&quot;dir-content&quot; id=&quot;dirContent&quot;&gt;&lt;span&gt;Hello&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.dir-overlay {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.dir-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.dir-content {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(124, 92, 255, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: system-ui, sans-serif;
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  transform: translate(0, 100%); /* off-screen by default; JS overrides */
+  transition: transform 0.4s ease;
+}</code></pre>
+        <pre data-lang="js"><code>var overlay = document.getElementById('dirOverlay');
+var content = document.getElementById('dirContent');
+
+// 0 = top, 1 = right, 2 = bottom, 3 = left
+function getDirection(e) {
+  var rect = overlay.getBoundingClientRect();
+  var x = e.clientX - rect.left - rect.width / 2;
+  var y = e.clientY - rect.top - rect.height / 2;
+  return Math.round((Math.atan2(y, x) * (180 / Math.PI) + 180) / 90 + 3) % 4;
+}
+
+var OFFSCREEN = [
+  'translateY(-100%)', // top
+  'translateX(100%)',  // right
+  'translateY(100%)',  // bottom
+  'translateX(-100%)'  // left
+];
+
+overlay.addEventListener('mouseenter', function (e) {
+  // Jump (no transition) to the entry edge, then animate in
+  content.style.transition = 'none';
+  content.style.transform = OFFSCREEN[getDirection(e)];
+  requestAnimationFrame(function () {
+    content.style.transition = 'transform 0.4s ease';
+    content.style.transform = 'translate(0, 0)';
+  });
+});
+
+overlay.addEventListener('mouseleave', function (e) {
+  content.style.transform = OFFSCREEN[getDirection(e)];
+});</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 25. Block Glitch -->
@@ -381,6 +1363,65 @@
         <h2>Block Glitch</h2>
         <p>Mosaic reveal/glitch effect</p>
       </div>
+      <!-- code-source:blockGlitch -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;block-glitch&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/164/800/600&quot; alt=&quot;Block&quot;&gt;
+  &lt;div class=&quot;glitch-blocks&quot;&gt;
+    &lt;div class=&quot;g-block&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;g-block&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;g-block&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;g-block&quot;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.block-glitch {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.block-glitch img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.glitch-blocks {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  pointer-events: none;
+}
+
+.g-block {
+  background: #fff;
+  opacity: 0;
+  transition: opacity 0.1s;
+}
+
+.block-glitch:hover .g-block {
+  animation: block-flicker 0.2s infinite steps(2);
+}
+
+/* Stagger each quadrant so the flicker looks chaotic */
+.g-block:nth-child(1) { animation-delay: 0s; }
+.g-block:nth-child(2) { animation-delay: 0.05s; }
+.g-block:nth-child(3) { animation-delay: 0.1s; }
+.g-block:nth-child(4) { animation-delay: 0.15s; }
+
+@keyframes block-flicker {
+  0% { opacity: 0; }
+  50% { opacity: 0.3; }
+  100% { opacity: 0; }
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 26. Color Halftone -->
@@ -392,6 +1433,45 @@
         <h2>Halftone Pattern</h2>
         <p>Dot pattern overlay on hover</p>
       </div>
+      <!-- code-source:halftone -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;halftone&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/177/800/600&quot; alt=&quot;Halftone&quot;&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.halftone {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.halftone img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* A repeating radial gradient produces the dot grid */
+.halftone::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: radial-gradient(circle, #000 2px, transparent 2.5px);
+  background-size: 8px 8px;
+  opacity: 0;
+  transition: opacity 0.4s;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+}
+
+.halftone:hover::after {
+  opacity: 0.4;
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 27. Expanding Card -->
@@ -407,6 +1487,57 @@
         <h2>Expanding Card</h2>
         <p>Content expands and pushes image</p>
       </div>
+      <!-- code-source:expandCard -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;expanding-card&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/180/800/600&quot; alt=&quot;Expand&quot;&gt;
+  &lt;div class=&quot;card-info&quot;&gt;
+    &lt;h3&gt;Title&lt;/h3&gt;
+    &lt;p&gt;Description goes here&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.expanding-card {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #12121a;
+}
+
+.expanding-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-info {
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+  background: #12121a;
+  font-family: system-ui, sans-serif;
+  color: #f0f0f5;
+  transform: translateY(100%);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-info h3 { margin: 0; font-size: 1rem; }
+.card-info p { margin: 0.25rem 0 0; font-size: 0.8rem; color: #6b6b80; }
+
+.expanding-card:hover img {
+  transform: translateY(-20px) scale(0.9);
+}
+
+.expanding-card:hover .card-info {
+  transform: translateY(0);
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 28. Mirror Split -->
@@ -423,6 +1554,52 @@
         <h2>Mirror Split</h2>
         <p>Splits and slides apart</p>
       </div>
+      <!-- code-source:mirrorSplit -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;mirror-split&quot;&gt;
+  &lt;div class=&quot;mirror-half m-left&quot;&gt;
+    &lt;img src=&quot;https://picsum.photos/id/193/800/600&quot; alt=&quot;Mirror&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;mirror-half m-right&quot;&gt;
+    &lt;img src=&quot;https://picsum.photos/id/193/800/600&quot; alt=&quot;Mirror&quot;&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.mirror-split {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #0a0a0f;
+}
+
+.mirror-half {
+  position: absolute;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Each half holds a full-width copy of the image, offset so the
+   two halves line up as one picture */
+.mirror-half img {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.m-left { left: 0; }
+.m-left img { left: 0; }
+.m-right { right: 0; }
+.m-right img { left: -100%; }
+
+.mirror-split:hover .m-left { transform: translateX(-10px); }
+.mirror-split:hover .m-right { transform: translateX(10px); }</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 29. Video Hover -->
@@ -435,6 +1612,68 @@
         <h2>Video Hover</h2>
         <p>Plays video on hover (replaces image)</p>
       </div>
+      <!-- code-source:videoHover -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;video-hover&quot; id=&quot;videoHover&quot;
+  data-video=&quot;https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/200/800/600&quot; alt=&quot;Video Placeholder&quot;&gt;
+  &lt;div class=&quot;video-container&quot; id=&quot;videoContainer&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.video-hover {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #000;
+}
+
+.video-hover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 1;
+  transition: opacity 0.3s;
+}
+
+.video-hover:hover img {
+  opacity: 0;
+}
+
+.video-container video {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+}</code></pre>
+        <pre data-lang="js"><code>var wrap = document.getElementById('videoHover');
+var container = document.getElementById('videoContainer');
+var src = wrap.dataset.video;
+var video = null;
+
+wrap.addEventListener('mouseenter', function () {
+  // Lazily create the video on first hover
+  if (!video) {
+    video = document.createElement('video');
+    video.src = src;
+    video.loop = true;
+    video.muted = true;
+    video.playsInline = true;
+    container.appendChild(video);
+  }
+  video.play().catch(function () {});
+});
+
+wrap.addEventListener('mouseleave', function () {
+  if (video) {
+    video.pause();
+    video.currentTime = 0;
+  }
+});</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 30. Ripple Displacement (Filter) -->
@@ -452,6 +1691,52 @@
         <h2>Ripple</h2>
         <p>Water ripple distortion (SVG filter)</p>
       </div>
+      <!-- code-source:ripple -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;ripple-effect&quot; id=&quot;rippleEffect&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/211/800/600&quot; alt=&quot;Ripple&quot;&gt;
+  &lt;svg width=&quot;0&quot; height=&quot;0&quot;&gt;
+    &lt;filter id=&quot;ripple-filter&quot;&gt;
+      &lt;feTurbulence type=&quot;turbulence&quot; baseFrequency=&quot;0.02&quot; numOctaves=&quot;2&quot; result=&quot;turbulence&quot;/&gt;
+      &lt;feDisplacementMap in2=&quot;turbulence&quot; in=&quot;SourceGraphic&quot; scale=&quot;0&quot; xChannelSelector=&quot;R&quot; yChannelSelector=&quot;G&quot;/&gt;
+    &lt;/filter&gt;
+  &lt;/svg&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.ripple-effect {
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+/* Filter applied at all times; JS animates the feDisplacementMap
+   scale (scale=0 is a no-op, so the resting state looks normal) */
+.ripple-effect img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: url('#ripple-filter');
+}</code></pre>
+        <pre data-lang="js"><code>var wrap = document.getElementById('rippleEffect');
+var displacement = document.querySelector('#ripple-filter feDisplacementMap');
+var MAX_SCALE = 30;  // displacement strength on hover
+var SMOOTH = 0.1;    // lerp factor
+
+var scale = 0;
+var target = 0;
+
+wrap.addEventListener('mouseenter', function () { target = MAX_SCALE; });
+wrap.addEventListener('mouseleave', function () { target = 0; });
+
+function tick() {
+  scale += (target - scale) * SMOOTH;
+  displacement.setAttribute('scale', scale);
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 31. CRT Scanlines -->
@@ -465,6 +1750,67 @@
         <h2>CRT Scanlines</h2>
         <p>Retro monitor effect with rolling sweep</p>
       </div>
+      <!-- code-source:crtScanlines -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;crt-effect&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/219/800/600&quot; alt=&quot;CRT&quot;&gt;
+  &lt;div class=&quot;crt-scanlines&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;crt-sweep&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.crt-effect {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.crt-effect img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: filter 0.3s;
+}
+
+.crt-scanlines {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: repeating-linear-gradient(to bottom,
+    transparent 0 2px, rgba(0, 0, 0, 0.35) 2px 4px);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+
+.crt-sweep {
+  position: absolute;
+  top: -20%; left: 0;
+  width: 100%; height: 15%;
+  background: linear-gradient(to bottom,
+    transparent, rgba(255, 255, 255, 0.15), transparent);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.crt-effect:hover .crt-scanlines { opacity: 1; }
+
+.crt-effect:hover .crt-sweep {
+  opacity: 1;
+  animation: crt-roll 2.5s linear infinite;
+}
+
+.crt-effect:hover img {
+  filter: contrast(1.15) saturate(1.3) brightness(1.05);
+}
+
+@keyframes crt-roll {
+  0% { top: -20%; }
+  100% { top: 120%; }
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 32. Chromatic Aberration -->
@@ -478,6 +1824,53 @@
         <h2>Chromatic Aberration</h2>
         <p>RGB channels split apart on hover</p>
       </div>
+      <!-- code-source:chromaSplit -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;chroma-split&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/225/800/600&quot; alt=&quot;Chroma&quot; class=&quot;chroma-base&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/225/800/600&quot; alt=&quot;&quot; aria-hidden=&quot;true&quot; class=&quot;chroma-r&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/225/800/600&quot; alt=&quot;&quot; aria-hidden=&quot;true&quot; class=&quot;chroma-b&quot;&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.chroma-split {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.chroma-split img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s;
+}
+
+/* Two tinted ghost copies that slide apart on hover */
+.chroma-r,
+.chroma-b {
+  position: absolute;
+  top: 0; left: 0;
+  opacity: 0;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.chroma-r { filter: sepia(1) saturate(6) hue-rotate(-50deg); }
+.chroma-b { filter: sepia(1) saturate(6) hue-rotate(180deg); }
+
+.chroma-split:hover .chroma-r {
+  opacity: 0.55;
+  transform: translate(-8px, 3px);
+}
+
+.chroma-split:hover .chroma-b {
+  opacity: 0.55;
+  transform: translate(8px, -3px);
+}</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
     <!-- 33. Before / After Slider -->
@@ -493,6 +1886,105 @@
         <h2>Before / After</h2>
         <p>Drag to compare (grayscale vs color)</p>
       </div>
+      <!-- code-source:compareSlider -->
+      <div class="code-source" hidden>
+        <pre data-lang="html"><code>&lt;div class=&quot;compare-slider&quot; id=&quot;compareSlider&quot;&gt;
+  &lt;img src=&quot;https://picsum.photos/id/230/800/600&quot; alt=&quot;After&quot;&gt;
+  &lt;div class=&quot;compare-before&quot;&gt;
+    &lt;img src=&quot;https://picsum.photos/id/230/800/600&quot; alt=&quot;Before&quot;&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;compare-handle&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+        <pre data-lang="css"><code>.compare-slider {
+  position: relative;
+  width: 400px;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  border-radius: 12px;
+  cursor: ew-resize;
+  touch-action: none;
+  user-select: none;
+}
+
+.compare-slider img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+.compare-before {
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%;
+  width: var(--split, 50%);
+  overflow: hidden;
+}
+
+.compare-before img {
+  width: auto;
+  height: 100%;
+  filter: grayscale(100%);
+  /* Fixed width so the image doesn't squish as the pane resizes */
+  max-width: none;
+}
+
+.compare-handle {
+  position: absolute;
+  top: 0;
+  left: var(--split, 50%);
+  width: 2px;
+  height: 100%;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+  pointer-events: none;
+}
+
+.compare-handle::after {
+  content: '\21d4'; /* ⇔ */
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 32px; height: 32px;
+  background: #fff;
+  color: #000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}</code></pre>
+        <pre data-lang="js"><code>var slider = document.getElementById('compareSlider');
+var dragging = false;
+
+function setSplit(clientX) {
+  var rect = slider.getBoundingClientRect();
+  var pct = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
+  slider.style.setProperty('--split', pct + '%');
+}
+
+// Stop the browser's native image drag from hijacking the gesture
+slider.querySelectorAll('img').forEach(function (img) {
+  img.draggable = false;
+});
+slider.addEventListener('dragstart', function (e) { e.preventDefault(); });
+
+slider.addEventListener('pointerdown', function (e) {
+  e.preventDefault();
+  dragging = true;
+  slider.setPointerCapture(e.pointerId);
+  setSplit(e.clientX);
+});
+slider.addEventListener('pointermove', function (e) {
+  if (dragging) setSplit(e.clientX);
+});
+slider.addEventListener('pointerup', function () { dragging = false; });
+slider.addEventListener('pointercancel', function () { dragging = false; });</code></pre>
+      </div>
+      <!-- /code-source -->
     </section>
 
   </main>
@@ -506,7 +1998,6 @@
   <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
   <script src="transitions.js"></script>
   <script src="gallery.js"></script>
-  <script src="snippets/gallery.js"></script>
   <script src="code-panel.js"></script>
   <script src="deep-link.js"></script>
   <script defer src="/_vercel/insights/script.js"></script>

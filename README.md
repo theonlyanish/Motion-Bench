@@ -40,9 +40,10 @@ This is meant to be forked and extended. Adding your own effect is deliberately 
 1. Drop a new `<section>` into the relevant page (e.g. `typography.html`) following the pattern of the effects already there.
 2. Add its behavior to that page's script and any styles to its CSS.
 3. Add a copyable snippet in `snippets/` so **View code** has something to show.
-4. Re-sync the searchable index:
+4. Re-sync the generated bits (pre-rendered code blocks, searchable index, structured data):
 
    ```bash
+   node scripts/build-code-blocks.js
    node scripts/build-effects-index.js
    node scripts/build-schema.js
    ```
@@ -59,7 +60,8 @@ scroll.html                      Scroll effects
 gallery.html                     Gallery effects
 cursor.html                      Cursor effects
 layout.html                      Layout effects
-snippets/                        Per-category copyable code snippets
+snippets/                        Per-category copyable code snippets (source of truth)
+scripts/build-code-blocks.js     Pre-renders each snippet into its page as hidden, crawlable HTML
 scripts/build-effects-index.js   Regenerates effects-index.js
 scripts/build-schema.js          Regenerates the JSON-LD in each page <head>
 a11y.js                          Reduced-motion + touch handling (shared)
