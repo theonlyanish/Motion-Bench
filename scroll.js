@@ -215,6 +215,8 @@
   let letterParticles = [];
   let letterColor = '#6fb2d6';
   const LETTER_TAIL = 160;
+  const LETTER_GAP = 45; // ms between letters settling; a big scroll step still plays one by one
+  let letterLast = 0;
 
   if (letterText && letterCanvas) {
     letterText.innerHTML = letterText.textContent.replace(/\S/g, '<span class="ls-char">$&</span>');
@@ -258,13 +260,29 @@
     // Finish LETTER_TAIL px before the stage releases, so the caption that sits at
     // the block's bottom never scrolls up under text that is still arriving.
     const progress = clamp01((vh * 0.25 - rect.top) / (rect.height - vh * 0.5 - LETTER_TAIL));
+    // Settle at most one letter every LETTER_GAP ms. One wheel notch can carry
+    // several letters over their threshold in a single frame, and toggling them
+    // together made them appear as a pair; this keeps it strictly one at a time.
+    // Forward: the lowest letter that should be on. Backward: the highest that
+    // should be off, so un-writing runs from the end like a backspace.
     const n = letterSpans.length;
-    for (let i = 0; i < n; i++) {
-      const on = i / n < progress;
-      if (on !== letterOn[i]) {
-        letterOn[i] = on;
-        letterSpans[i].classList.toggle('is-on', on);
-        if (on) letterPuff(letterSpans[i]);
+    const now = performance.now();
+    if (now - letterLast >= LETTER_GAP) {
+      let idx = -1;
+      for (let i = 0; i < n; i++) {
+        if (i / n < progress && !letterOn[i]) { idx = i; break; }
+      }
+      if (idx === -1) {
+        for (let i = n - 1; i >= 0; i--) {
+          if (!(i / n < progress) && letterOn[i]) { idx = i; break; }
+        }
+      }
+      if (idx !== -1) {
+        const on = !letterOn[idx];
+        letterOn[idx] = on;
+        letterSpans[idx].classList.toggle('is-on', on);
+        if (on) letterPuff(letterSpans[idx]);
+        letterLast = now;
       }
     }
 

@@ -1450,6 +1450,8 @@ var ctx = canvas.getContext('2d');
 var COLOR = '#6fb2d6';
 var PUFF = 8;   // particles per letter
 var TAIL = 160; // px of scroll left after the last letter lands, before the stage releases
+var GAP = 45;   // ms between letters settling
+var last = 0;
 var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // Wrap every non-space character so each can be switched on individually
@@ -1492,12 +1494,25 @@ function tick() {
   // (block bottom at 75vh) — the whole reveal happens while pinned
   var progress = clamp01((vh * 0.25 - rect.top) / (rect.height - vh * 0.5 - TAIL));
 
-  for (var i = 0; i < spans.length; i++) {
-    var next = i / spans.length < progress;
-    if (next !== on[i]) {
-      on[i] = next;
-      spans[i].classList.toggle('is-on', next);
-      if (next) puff(spans[i]);
+  // Settle at most one letter every GAP ms, so a big scroll step still plays
+  // out one letter at a time. Forward: lowest letter that should be on.
+  // Backward: highest that should be off, so it un-writes like a backspace.
+  var now = performance.now();
+  if (now - last >= GAP) {
+    var idx = -1;
+    for (var i = 0; i < spans.length; i++) {
+      if (i / spans.length < progress && !on[i]) { idx = i; break; }
+    }
+    if (idx === -1) {
+      for (var j = spans.length - 1; j >= 0; j--) {
+        if (!(j / spans.length < progress) && on[j]) { idx = j; break; }
+      }
+    }
+    if (idx !== -1) {
+      on[idx] = !on[idx];
+      spans[idx].classList.toggle('is-on', on[idx]);
+      if (on[idx]) puff(spans[idx]);
+      last = now;
     }
   }
 
