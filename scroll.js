@@ -121,7 +121,8 @@
     'parallax',      // offset mapped from scroll progress
     'velocitySkew',  // skew mapped from scroll velocity
     'textFillScrub', // background-position mapped from scroll progress
-    'zoomThrough'    // scale/opacity mapped from scroll progress
+    'zoomThrough',   // scale/opacity mapped from scroll progress
+    'letterScrub'    // per-letter opacity mapped from scroll progress
   ]);
 
   const REPLAY_ICON =
@@ -201,6 +202,91 @@
 
   const PARALLAX_RANGE = 180;
 
+  // 5b. Letter Scrub Reveal — letters switch on one by one as the pinned block is
+  // scrolled through; each one that lands releases a puff of particles onto a
+  // canvas that covers the stage. Reduced motion keeps the fade, skips the puff.
+  const letterBlock = document.querySelector('[data-anim="letterScrub"]');
+  const letterStage = letterBlock && letterBlock.querySelector('.letter-scrub-stage');
+  const letterText = letterBlock && letterBlock.querySelector('.letter-scrub-text');
+  const letterCanvas = letterBlock && letterBlock.querySelector('.letter-scrub-canvas');
+  let letterSpans = [];
+  let letterOn = [];
+  let letterCtx = null;
+  let letterParticles = [];
+  let letterColor = '#6fb2d6';
+  const LETTER_TAIL = 160;
+
+  if (letterText && letterCanvas) {
+    letterText.innerHTML = letterText.textContent.replace(/\S/g, '<span class="ls-char">$&</span>');
+    letterSpans = Array.from(letterText.querySelectorAll('.ls-char'));
+    letterOn = letterSpans.map(() => false);
+    letterCtx = letterCanvas.getContext('2d');
+    letterColor = getComputedStyle(letterBlock).getPropertyValue('--cat').trim() || letterColor;
+    const sizeLetterCanvas = () => {
+      letterCanvas.width = letterStage.clientWidth;
+      letterCanvas.height = letterStage.clientHeight;
+    };
+    sizeLetterCanvas();
+    window.addEventListener('resize', sizeLetterCanvas);
+  }
+
+  function letterPuff(span) {
+    if (reduced()) return;
+    const r = span.getBoundingClientRect();
+    const s = letterStage.getBoundingClientRect();
+    const cx = r.left + r.width / 2 - s.left;
+    const cy = r.top + r.height / 2 - s.top;
+    for (let i = 0; i < 8; i++) {
+      letterParticles.push({
+        x: cx,
+        y: cy,
+        vx: (Math.random() - 0.5) * 2.4,
+        vy: (Math.random() - 0.5) * 2.4 - 0.6,
+        size: 1 + Math.random() * 2.5,
+        life: 1
+      });
+    }
+  }
+
+  function tickLetterScrub(vh) {
+    const rect = letterBlock.getBoundingClientRect();
+    const onScreen = rect.bottom > 0 && rect.top < vh;
+    if (!onScreen && !letterParticles.length) return;
+
+    // 0 when the stage pins (block top reaches 25vh), 1 when it releases
+    // (block bottom reaches 75vh). The whole reveal happens while pinned.
+    // Finish LETTER_TAIL px before the stage releases, so the caption that sits at
+    // the block's bottom never scrolls up under text that is still arriving.
+    const progress = clamp01((vh * 0.25 - rect.top) / (rect.height - vh * 0.5 - LETTER_TAIL));
+    const n = letterSpans.length;
+    for (let i = 0; i < n; i++) {
+      const on = i / n < progress;
+      if (on !== letterOn[i]) {
+        letterOn[i] = on;
+        letterSpans[i].classList.toggle('is-on', on);
+        if (on) letterPuff(letterSpans[i]);
+      }
+    }
+
+    const ctx = letterCtx;
+    ctx.clearRect(0, 0, letterCanvas.width, letterCanvas.height);
+    if (!letterParticles.length) return;
+    ctx.fillStyle = letterColor;
+    letterParticles = letterParticles.filter((p) => {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.02;
+      p.life -= 0.025;
+      if (p.life <= 0) return false;
+      ctx.globalAlpha = p.life;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+      ctx.fill();
+      return true;
+    });
+    ctx.globalAlpha = 1;
+  }
+
   let lastScrollY = window.scrollY;
   let skew = 0;
 
@@ -239,6 +325,9 @@
       fillScrub.style.backgroundPosition = `${(100 - progress * 100).toFixed(2)}% 0`;
     }
 
+    // 5b. Letter Scrub Reveal
+    if (letterBlock && letterCtx) tickLetterScrub(vh);
+
     // 33. Zoom Through
     if (zoomText && zoomBlock) {
       const rect = zoomBlock.getBoundingClientRect();
@@ -251,7 +340,7 @@
     requestAnimationFrame(tickScrub);
   }
 
-  if (parallaxBlock || velocityText || fillScrub || zoomText) {
+  if (parallaxBlock || velocityText || fillScrub || zoomText || letterBlock) {
     requestAnimationFrame(tickScrub);
   }
 })();

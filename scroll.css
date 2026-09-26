@@ -549,6 +549,44 @@ body {
   transform-origin: center center;
 }
 
+/* 5b. Letter Scrub Reveal — tall block, pinned stage, letters keyed to progress */
+.letter-scrub-block {
+  min-height: 130vh;
+  justify-content: flex-start;
+}
+.letter-scrub-stage {
+  position: sticky;
+  top: 25vh;
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.letter-scrub-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.letter-scrub-text {
+  position: relative;
+  margin: 0;
+  font-size: clamp(1.6rem, 4.5vw, 2.8rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+.ls-char {
+  opacity: 0.12; /* faint ghost so the layout reads before the reveal */
+  transition: opacity 0.25s ease-out;
+}
+.ls-char.is-on { opacity: 1; }
+/* The stage is sticky, so keep the caption and actions at the block's bottom
+   where they appear once the stage releases (same trick as Sticky Stack). */
+.letter-scrub-block .anim-desc { margin-top: auto; }
+.letter-scrub-block .block-actions { margin-top: 0.6rem; }
+
 /* Footer */
 .scroll-footer {
   padding: 3rem 1.5rem;

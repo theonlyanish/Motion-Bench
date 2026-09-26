@@ -29,7 +29,7 @@ const CATS = {
 };
 
 // Snippets whose demo only makes sense while scrolling a long page.
-const SCRUB = new Set(['parallax', 'colorMorph', 'velocitySkew', 'textFillScrub', 'zoomThrough', 'stickyStack']);
+const SCRUB = new Set(['parallax', 'colorMorph', 'velocitySkew', 'textFillScrub', 'zoomThrough', 'stickyStack', 'letterScrub']);
 
 function runInWindow(file) {
   const sandbox = { window: {} };

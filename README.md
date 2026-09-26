@@ -1,6 +1,6 @@
 # Motion Bench
 
-**144 copy-paste animation effects** for typography, scroll, galleries, cursors, and layout — built with nothing but plain HTML, CSS, and JavaScript. No build step, no framework, no backend. Every effect ships with its own copyable, standalone code.
+**145 copy-paste animation effects** for typography, scroll, galleries, cursors, and layout — built with nothing but plain HTML, CSS, and JavaScript. No build step, no framework, no backend. Every effect ships with its own copyable, standalone code.
 
 Think of it as a private CodePen you can keep on your own machine: search it, steal from it, and make it your own.
 

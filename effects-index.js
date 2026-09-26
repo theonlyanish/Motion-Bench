@@ -469,6 +469,19 @@ window.EFFECTS_INDEX = [
     ]
   },
   {
+    "id": "letterScrub",
+    "name": "Letter Scrub Reveal",
+    "cat": "scroll",
+    "page": "/scroll",
+    "desc": "Each letter fades in as you scroll and releases a puff of particles when it lands; scroll back up and it un-writes itself. Progress is measured over a pinned block, so the text stays put while the letters arrive.",
+    "tags": [
+      "letter",
+      "scrub",
+      "reveal",
+      "scroll"
+    ]
+  },
+  {
     "id": "rotateIn",
     "name": "Rotate In",
     "cat": "scroll",

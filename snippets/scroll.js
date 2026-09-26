@@ -1396,5 +1396,129 @@ function tick() {
   requestAnimationFrame(tick);
 }
 requestAnimationFrame(tick);`
+  },
+
+  // ── 5b. Letter Scrub Reveal ───────────────────────────
+  letterScrub: {
+    html: `<section class="letter-scrub-block">
+  <div class="letter-scrub-stage">
+    <canvas class="letter-scrub-canvas" id="lsCanvas" aria-hidden="true"></canvas>
+    <h2 class="letter-scrub-text" id="lsText">Written by your scroll</h2>
+  </div>
+</section>`,
+    css: `/* Tall block; the stage pins for the middle 80vh of it */
+.letter-scrub-block {
+  min-height: 130vh;
+}
+
+.letter-scrub-stage {
+  position: sticky;
+  top: 25vh;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.letter-scrub-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.letter-scrub-text {
+  position: relative;
+  margin: 0;
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: #f3f3f5;
+}
+
+.ls-char {
+  opacity: 0.12; /* faint ghost so the layout reads before the reveal */
+  transition: opacity 0.25s ease-out;
+}
+
+.ls-char.is-on { opacity: 1; }`,
+    js: `var block = document.querySelector('.letter-scrub-block');
+var stage = document.querySelector('.letter-scrub-stage');
+var text = document.getElementById('lsText');
+var canvas = document.getElementById('lsCanvas');
+var ctx = canvas.getContext('2d');
+var COLOR = '#6fb2d6';
+var PUFF = 8;   // particles per letter
+var TAIL = 160; // px of scroll left after the last letter lands, before the stage releases
+var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// Wrap every non-space character so each can be switched on individually
+text.innerHTML = text.textContent.replace(/\\S/g, '<span class="ls-char">$&</span>');
+var spans = Array.prototype.slice.call(text.querySelectorAll('.ls-char'));
+var on = spans.map(function () { return false; });
+var particles = [];
+
+function size() {
+  canvas.width = stage.clientWidth;
+  canvas.height = stage.clientHeight;
+}
+size();
+window.addEventListener('resize', size);
+
+function puff(span) {
+  if (reduced) return;
+  var r = span.getBoundingClientRect();
+  var s = stage.getBoundingClientRect();
+  var cx = r.left + r.width / 2 - s.left;
+  var cy = r.top + r.height / 2 - s.top;
+  for (var i = 0; i < PUFF; i++) {
+    particles.push({
+      x: cx, y: cy,
+      vx: (Math.random() - 0.5) * 2.4,
+      vy: (Math.random() - 0.5) * 2.4 - 0.6,
+      size: 1 + Math.random() * 2.5,
+      life: 1
+    });
   }
+}
+
+function clamp01(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+
+function tick() {
+  var vh = window.innerHeight;
+  var rect = block.getBoundingClientRect();
+
+  // 0 when the stage pins (block top at 25vh), 1 when it releases
+  // (block bottom at 75vh) — the whole reveal happens while pinned
+  var progress = clamp01((vh * 0.25 - rect.top) / (rect.height - vh * 0.5 - TAIL));
+
+  for (var i = 0; i < spans.length; i++) {
+    var next = i / spans.length < progress;
+    if (next !== on[i]) {
+      on[i] = next;
+      spans[i].classList.toggle('is-on', next);
+      if (next) puff(spans[i]);
+    }
+  }
+
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = COLOR;
+  particles = particles.filter(function (p) {
+    p.x += p.vx;
+    p.y += p.vy;
+    p.vy += 0.02;    // a little gravity
+    p.life -= 0.025;
+    if (p.life <= 0) return false;
+    ctx.globalAlpha = p.life;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+    ctx.fill();
+    return true;
+  });
+  ctx.globalAlpha = 1;
+
+  requestAnimationFrame(tick);
+}
+requestAnimationFrame(tick);`
+  },
 };
