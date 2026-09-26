@@ -188,9 +188,7 @@
   align-items: center;
   justify-content: center;
   width: 30px;
-  height: 30px;
-  margin-left: 0.35rem;
-  vertical-align: middle;
+  align-self: stretch; /* same height as the toggle beside it */
   color: #6b6b80;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -203,6 +201,10 @@
   background: rgba(255, 255, 255, 0.06);
 }
 .code-permalink svg { width: 13px; height: 13px; }
-/* In the scroll actions row the panel is display:contents, so the link is a row
-   item of its own and needs no extra margin. */
-.block-actions .code-permalink { margin-left: 0; }
+/* Toggle + permalink row. Inside .block-actions the panel is display:contents,
+   so this row becomes one item of the shared Replay / View code row. */
+.code-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}

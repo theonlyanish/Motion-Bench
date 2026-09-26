@@ -123,8 +123,12 @@
     bar.appendChild(copyBtn);
     view.appendChild(bar);
     view.appendChild(pre);
-    panel.appendChild(toggle);
-    if (snippet.permalink) panel.appendChild(buildPermalink(snippet.permalink));
+    // Toggle and permalink share one flex row so they centre against each other.
+    var actions = document.createElement('div');
+    actions.className = 'code-actions';
+    actions.appendChild(toggle);
+    if (snippet.permalink) actions.appendChild(buildPermalink(snippet.permalink));
+    panel.appendChild(actions);
     panel.appendChild(view);
 
     select(active);
