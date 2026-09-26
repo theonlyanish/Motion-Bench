@@ -17,7 +17,7 @@
   <meta name="twitter:title" content="Gooey Text — Typography Effect">
   <meta name="twitter:description" content="Letters merge and separate like goo">
   <meta name="twitter:image" content="https://motion-bench.vercel.app/og-image.png">
-  <script type="application/ld+json" id="ld-schema">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareSourceCode","@id":"https://motion-bench.vercel.app/typography/gooey","url":"https://motion-bench.vercel.app/typography/gooey","name":"Gooey Text — Typography effect","description":"Letters merge and separate like goo","programmingLanguage":["HTML","CSS"],"codeSampleType":"full","runtimePlatform":"Web browser","license":"https://opensource.org/licenses/MIT","codeRepository":"https://github.com/theonlyanish/frontend-reference","isPartOf":{"@id":"https://motion-bench.vercel.app/typography"},"author":{"@type":"Person","@id":"https://anishkapse.com/#person","name":"Anish Kapse","url":"https://anishkapse.com/"},"keywords":"gooey, text, typography"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Motion Bench","item":"https://motion-bench.vercel.app/"},{"@type":"ListItem","position":2,"name":"Typography Effects","item":"https://motion-bench.vercel.app/typography"},{"@type":"ListItem","position":3,"name":"Gooey Text","item":"https://motion-bench.vercel.app/typography/gooey"}]}]}</script>
+  <script type="application/ld+json" id="ld-schema">{"@context":"https://schema.org","@graph":[{"@type":"SoftwareSourceCode","@id":"https://motion-bench.vercel.app/typography/gooey","url":"https://motion-bench.vercel.app/typography/gooey","name":"Gooey Text — Typography effect","description":"Letters merge and separate like goo","programmingLanguage":["HTML","CSS","JavaScript"],"codeSampleType":"full","runtimePlatform":"Web browser","license":"https://opensource.org/licenses/MIT","codeRepository":"https://github.com/theonlyanish/frontend-reference","isPartOf":{"@id":"https://motion-bench.vercel.app/typography"},"author":{"@type":"Person","@id":"https://anishkapse.com/#person","name":"Anish Kapse","url":"https://anishkapse.com/"},"keywords":"gooey, text, typography"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Motion Bench","item":"https://motion-bench.vercel.app/"},{"@type":"ListItem","position":2,"name":"Typography Effects","item":"https://motion-bench.vercel.app/typography"},{"@type":"ListItem","position":3,"name":"Gooey Text","item":"https://motion-bench.vercel.app/typography/gooey"}]}]}</script>
   <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
   <link rel="icon" href="/favicon-32x32.png?v=2" type="image/png" sizes="32x32">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,7 +84,7 @@
       <p class="fx-eyebrow">Typography · 22 of 33</p>
       <h1>Gooey Text</h1>
       <p class="fx-lede">Letters merge and separate like goo</p>
-      <p class="fx-meta">HTML · CSS · No dependencies · MIT</p>
+      <p class="fx-meta">HTML · CSS · JavaScript · No dependencies · MIT</p>
     </header>
 
     <section class="fx-demo" aria-label="Live demo">
@@ -118,16 +118,47 @@
   100% { left: 0.18em; }
 }</style></head><body><svg width=&quot;0&quot; height=&quot;0&quot;>
   <filter id=&quot;gooey-filter&quot; color-interpolation-filters=&quot;sRGB&quot;>
-    <feGaussianBlur in=&quot;SourceGraphic&quot; stdDeviation=&quot;4&quot; result=&quot;blur&quot; />
+    <feGaussianBlur in=&quot;SourceGraphic&quot; stdDeviation=&quot;1.5&quot; result=&quot;blur&quot; />
     <feColorMatrix in=&quot;blur&quot; mode=&quot;matrix&quot;
-      values=&quot;1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -8&quot; result=&quot;goo&quot; />
+      values=&quot;1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -8.4&quot; result=&quot;goo&quot; />
     <feComposite in=&quot;SourceGraphic&quot; in2=&quot;goo&quot; operator=&quot;atop&quot;/>
   </filter>
 </svg>
 
 <div class=&quot;gooey-wrapper&quot;>
   <h2 class=&quot;gooey-text&quot;><span class=&quot;gooey-char&quot;>G</span><span class=&quot;gooey-char&quot;>o</span><span class=&quot;gooey-char&quot;>o</span><span class=&quot;gooey-char&quot;>e</span><span class=&quot;gooey-char&quot;>y</span></h2>
-</div><script></script></body></html>"></iframe>
+</div><script>var wrap = document.querySelector('.gooey-wrapper');
+var text = document.querySelector('.gooey-text');
+var blur = document.querySelector('#gooey-filter feGaussianBlur');
+var matrix = document.querySelector('#gooey-filter feColorMatrix');
+
+// A bare url(#id) resolves against the document base URL. A <base> tag
+// (CodePen previews, some extensions) turns it into a cross-document
+// reference that Chrome won't load, so reference the filter by the page's
+// own absolute URL instead.
+var base = location.href.split('#')[0];
+var ref = /^https?:/.test(base) ? 'url(&quot;' + base + '#gooey-filter&quot;)' : 'url(#gooey-filter)';
+
+// Blur is in pixels, so scale it with the font size: LEVEL is &quot;goo per 50px
+// of text&quot;. 1.5 is subtle, 4 is obvious, 8+ melts the word into one blob.
+var LEVEL = 1.5;
+var K = 20;
+var THRESHOLD = Math.max(0.2, 0.45 - 0.02 * LEVEL);
+
+function applyGoo() {
+  var sd = LEVEL * parseFloat(getComputedStyle(text).fontSize) / 50;
+  blur.setAttribute('stdDeviation', sd.toFixed(2));
+  matrix.setAttribute('values',
+    '1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 ' + K + ' ' + (-(K * THRESHOLD)).toFixed(1));
+  // Re-attach the filter so Chrome repaints with the new primitives.
+  wrap.style.filter = 'none';
+  void wrap.offsetWidth;
+  wrap.style.filter = ref;
+}
+
+applyGoo();
+window.addEventListener('load', applyGoo);
+window.addEventListener('resize', applyGoo);</script></body></html>"></iframe>
     </section>
 
     <div class="fx-codes">
@@ -135,9 +166,9 @@
         <div class="fx-code-bar"><h3 id="code-html">HTML</h3><button type="button" class="fx-copy" data-copy="html">Copy</button></div>
         <pre><code class="language-html">&lt;svg width=&quot;0&quot; height=&quot;0&quot;&gt;
   &lt;filter id=&quot;gooey-filter&quot; color-interpolation-filters=&quot;sRGB&quot;&gt;
-    &lt;feGaussianBlur in=&quot;SourceGraphic&quot; stdDeviation=&quot;4&quot; result=&quot;blur&quot; /&gt;
+    &lt;feGaussianBlur in=&quot;SourceGraphic&quot; stdDeviation=&quot;1.5&quot; result=&quot;blur&quot; /&gt;
     &lt;feColorMatrix in=&quot;blur&quot; mode=&quot;matrix&quot;
-      values=&quot;1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -8&quot; result=&quot;goo&quot; /&gt;
+      values=&quot;1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -8.4&quot; result=&quot;goo&quot; /&gt;
     &lt;feComposite in=&quot;SourceGraphic&quot; in2=&quot;goo&quot; operator=&quot;atop&quot;/&gt;
   &lt;/filter&gt;
 &lt;/svg&gt;
@@ -177,6 +208,41 @@
   0% { left: -0.18em; }
   100% { left: 0.18em; }
 }</code></pre>
+      </section>
+      <section class="fx-code" aria-labelledby="code-js">
+        <div class="fx-code-bar"><h3 id="code-js">JavaScript</h3><button type="button" class="fx-copy" data-copy="js">Copy</button></div>
+        <pre><code class="language-js">var wrap = document.querySelector('.gooey-wrapper');
+var text = document.querySelector('.gooey-text');
+var blur = document.querySelector('#gooey-filter feGaussianBlur');
+var matrix = document.querySelector('#gooey-filter feColorMatrix');
+
+// A bare url(#id) resolves against the document base URL. A &lt;base&gt; tag
+// (CodePen previews, some extensions) turns it into a cross-document
+// reference that Chrome won't load, so reference the filter by the page's
+// own absolute URL instead.
+var base = location.href.split('#')[0];
+var ref = /^https?:/.test(base) ? 'url(&quot;' + base + '#gooey-filter&quot;)' : 'url(#gooey-filter)';
+
+// Blur is in pixels, so scale it with the font size: LEVEL is &quot;goo per 50px
+// of text&quot;. 1.5 is subtle, 4 is obvious, 8+ melts the word into one blob.
+var LEVEL = 1.5;
+var K = 20;
+var THRESHOLD = Math.max(0.2, 0.45 - 0.02 * LEVEL);
+
+function applyGoo() {
+  var sd = LEVEL * parseFloat(getComputedStyle(text).fontSize) / 50;
+  blur.setAttribute('stdDeviation', sd.toFixed(2));
+  matrix.setAttribute('values',
+    '1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 ' + K + ' ' + (-(K * THRESHOLD)).toFixed(1));
+  // Re-attach the filter so Chrome repaints with the new primitives.
+  wrap.style.filter = 'none';
+  void wrap.offsetWidth;
+  wrap.style.filter = ref;
+}
+
+applyGoo();
+window.addEventListener('load', applyGoo);
+window.addEventListener('resize', applyGoo);</code></pre>
       </section>
     </div>
 

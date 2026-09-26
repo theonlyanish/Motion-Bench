@@ -800,13 +800,13 @@ wrapper.addEventListener('mousemove', function (e) {
 });`
   },
 
-  // ── 22. Gooey Text (pure CSS + SVG filter) ────────────
+  // ── 22. Gooey Text (SVG filter, sized to the text by JS) ──
   gooey: {
     html: `<svg width="0" height="0">
   <filter id="gooey-filter" color-interpolation-filters="sRGB">
-    <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
+    <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur" />
     <feColorMatrix in="blur" mode="matrix"
-      values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -8" result="goo" />
+      values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -8.4" result="goo" />
     <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
   </filter>
 </svg>
@@ -842,7 +842,39 @@ wrapper.addEventListener('mousemove', function (e) {
 @keyframes gooey-drift {
   0% { left: -0.18em; }
   100% { left: 0.18em; }
-}`
+}`,
+    js: `var wrap = document.querySelector('.gooey-wrapper');
+var text = document.querySelector('.gooey-text');
+var blur = document.querySelector('#gooey-filter feGaussianBlur');
+var matrix = document.querySelector('#gooey-filter feColorMatrix');
+
+// A bare url(#id) resolves against the document base URL. A <base> tag
+// (CodePen previews, some extensions) turns it into a cross-document
+// reference that Chrome won't load, so reference the filter by the page's
+// own absolute URL instead.
+var base = location.href.split('#')[0];
+var ref = /^https?:/.test(base) ? 'url("' + base + '#gooey-filter")' : 'url(#gooey-filter)';
+
+// Blur is in pixels, so scale it with the font size: LEVEL is "goo per 50px
+// of text". 1.5 is subtle, 4 is obvious, 8+ melts the word into one blob.
+var LEVEL = 1.5;
+var K = 20;
+var THRESHOLD = Math.max(0.2, 0.45 - 0.02 * LEVEL);
+
+function applyGoo() {
+  var sd = LEVEL * parseFloat(getComputedStyle(text).fontSize) / 50;
+  blur.setAttribute('stdDeviation', sd.toFixed(2));
+  matrix.setAttribute('values',
+    '1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 ' + K + ' ' + (-(K * THRESHOLD)).toFixed(1));
+  // Re-attach the filter so Chrome repaints with the new primitives.
+  wrap.style.filter = 'none';
+  void wrap.offsetWidth;
+  wrap.style.filter = ref;
+}
+
+applyGoo();
+window.addEventListener('load', applyGoo);
+window.addEventListener('resize', applyGoo);`
   },
 
   // ── 23. Infinite Marquee (pure CSS) ───────────────────

@@ -1209,8 +1209,8 @@ wrapper.addEventListener('mousemove', function (e) {
       <p class="panel-hint">Letters merge and separate like goo</p>
       <svg width="0" height="0">
         <filter id="gooey-filter" color-interpolation-filters="sRGB">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
-          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -8" result="goo" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur" />
+          <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -8.4" result="goo" />
           <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
         </filter>
       </svg>
@@ -1221,9 +1221,9 @@ wrapper.addEventListener('mousemove', function (e) {
       <div class="code-source" hidden data-permalink="/typography/gooey">
         <pre data-lang="html"><code>&lt;svg width=&quot;0&quot; height=&quot;0&quot;&gt;
   &lt;filter id=&quot;gooey-filter&quot; color-interpolation-filters=&quot;sRGB&quot;&gt;
-    &lt;feGaussianBlur in=&quot;SourceGraphic&quot; stdDeviation=&quot;4&quot; result=&quot;blur&quot; /&gt;
+    &lt;feGaussianBlur in=&quot;SourceGraphic&quot; stdDeviation=&quot;1.5&quot; result=&quot;blur&quot; /&gt;
     &lt;feColorMatrix in=&quot;blur&quot; mode=&quot;matrix&quot;
-      values=&quot;1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -8&quot; result=&quot;goo&quot; /&gt;
+      values=&quot;1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -8.4&quot; result=&quot;goo&quot; /&gt;
     &lt;feComposite in=&quot;SourceGraphic&quot; in2=&quot;goo&quot; operator=&quot;atop&quot;/&gt;
   &lt;/filter&gt;
 &lt;/svg&gt;
@@ -1260,6 +1260,38 @@ wrapper.addEventListener('mousemove', function (e) {
   0% { left: -0.18em; }
   100% { left: 0.18em; }
 }</code></pre>
+        <pre data-lang="js"><code>var wrap = document.querySelector('.gooey-wrapper');
+var text = document.querySelector('.gooey-text');
+var blur = document.querySelector('#gooey-filter feGaussianBlur');
+var matrix = document.querySelector('#gooey-filter feColorMatrix');
+
+// A bare url(#id) resolves against the document base URL. A &lt;base&gt; tag
+// (CodePen previews, some extensions) turns it into a cross-document
+// reference that Chrome won't load, so reference the filter by the page's
+// own absolute URL instead.
+var base = location.href.split('#')[0];
+var ref = /^https?:/.test(base) ? 'url(&quot;' + base + '#gooey-filter&quot;)' : 'url(#gooey-filter)';
+
+// Blur is in pixels, so scale it with the font size: LEVEL is &quot;goo per 50px
+// of text&quot;. 1.5 is subtle, 4 is obvious, 8+ melts the word into one blob.
+var LEVEL = 1.5;
+var K = 20;
+var THRESHOLD = Math.max(0.2, 0.45 - 0.02 * LEVEL);
+
+function applyGoo() {
+  var sd = LEVEL * parseFloat(getComputedStyle(text).fontSize) / 50;
+  blur.setAttribute('stdDeviation', sd.toFixed(2));
+  matrix.setAttribute('values',
+    '1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 ' + K + ' ' + (-(K * THRESHOLD)).toFixed(1));
+  // Re-attach the filter so Chrome repaints with the new primitives.
+  wrap.style.filter = 'none';
+  void wrap.offsetWidth;
+  wrap.style.filter = ref;
+}
+
+applyGoo();
+window.addEventListener('load', applyGoo);
+window.addEventListener('resize', applyGoo);</code></pre>
       </div>
       <!-- /code-source -->
     </section>

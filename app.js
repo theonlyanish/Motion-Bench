@@ -934,8 +934,48 @@
     });
   }
 
+  // ─── Gooey Text (SVG goo filter, sized to the text) ──────────────────
+  function initGooey() {
+    const wrap = document.querySelector('.gooey-wrapper');
+    const text = document.querySelector('.gooey-text');
+    const blur = document.querySelector('#gooey-filter feGaussianBlur');
+    const matrix = document.querySelector('#gooey-filter feColorMatrix');
+    if (!wrap || !text || !blur || !matrix) return;
+
+    // A bare url(#id) resolves against the document base URL. A <base> tag
+    // (injected by some extensions and by CodePen-style previews) turns it into
+    // a cross-document reference that Chrome won't load. Referencing the filter
+    // by the page's own absolute URL sidesteps that. about:/blob: documents
+    // keep the bare form.
+    const base = location.href.split('#')[0];
+    const ref = /^https?:/.test(base) ? 'url("' + base + '#gooey-filter")' : 'url(#gooey-filter)';
+
+    // Blur is in pixels, so scale it with the font size: LEVEL is "goo per 50px
+    // of text", which keeps the look the same at every viewport width.
+    const LEVEL = 1.5;
+    const K = 20;
+    const THRESHOLD = Math.max(0.2, 0.45 - 0.02 * LEVEL);
+
+    function apply() {
+      const sd = LEVEL * parseFloat(getComputedStyle(text).fontSize) / 50;
+      blur.setAttribute('stdDeviation', sd.toFixed(2));
+      matrix.setAttribute('values',
+        '1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 ' + K + ' ' + (-(K * THRESHOLD)).toFixed(1));
+      // Re-attach the filter so Chrome repaints with the new primitives instead
+      // of showing the letters unfiltered until something else invalidates them.
+      wrap.style.filter = 'none';
+      void wrap.offsetWidth;
+      wrap.style.filter = ref;
+    }
+
+    apply();
+    window.addEventListener('load', apply);
+    window.addEventListener('resize', apply);
+  }
+
   // ─── Init ───────────────────────────────────────────────────────────
   function init() {
+    initGooey();
     initVariableFonts();
     initWaveDistort();
     initNoiseJitter();
