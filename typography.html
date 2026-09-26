@@ -1208,7 +1208,7 @@ wrapper.addEventListener('mousemove', function (e) {
       <h2 class="panel-title">Gooey Text</h2>
       <p class="panel-hint">Letters merge and separate like goo</p>
       <svg width="0" height="0">
-        <filter id="gooey-filter">
+        <filter id="gooey-filter" color-interpolation-filters="sRGB">
           <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
           <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -8" result="goo" />
           <feComposite in="SourceGraphic" in2="goo" operator="atop"/>
@@ -1220,7 +1220,7 @@ wrapper.addEventListener('mousemove', function (e) {
       <!-- code-source:gooey -->
       <div class="code-source" hidden data-permalink="/typography/gooey">
         <pre data-lang="html"><code>&lt;svg width=&quot;0&quot; height=&quot;0&quot;&gt;
-  &lt;filter id=&quot;gooey-filter&quot;&gt;
+  &lt;filter id=&quot;gooey-filter&quot; color-interpolation-filters=&quot;sRGB&quot;&gt;
     &lt;feGaussianBlur in=&quot;SourceGraphic&quot; stdDeviation=&quot;4&quot; result=&quot;blur&quot; /&gt;
     &lt;feColorMatrix in=&quot;blur&quot; mode=&quot;matrix&quot;
       values=&quot;1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -8&quot; result=&quot;goo&quot; /&gt;
@@ -1246,6 +1246,7 @@ wrapper.addEventListener('mousemove', function (e) {
 
 .gooey-char {
   display: inline-block;
+  position: relative; /* animate left, not transform, so the filter covers every letter */
   animation: gooey-drift 2.4s ease-in-out infinite alternate;
 }
 
@@ -1256,8 +1257,8 @@ wrapper.addEventListener('mousemove', function (e) {
 .gooey-char:nth-child(5) { animation-delay: 0.6s; }
 
 @keyframes gooey-drift {
-  0% { transform: translateX(-0.18em); }
-  100% { transform: translateX(0.18em); }
+  0% { left: -0.18em; }
+  100% { left: 0.18em; }
 }</code></pre>
       </div>
       <!-- /code-source -->

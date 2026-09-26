@@ -803,7 +803,7 @@ wrapper.addEventListener('mousemove', function (e) {
   // ── 22. Gooey Text (pure CSS + SVG filter) ────────────
   gooey: {
     html: `<svg width="0" height="0">
-  <filter id="gooey-filter">
+  <filter id="gooey-filter" color-interpolation-filters="sRGB">
     <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
     <feColorMatrix in="blur" mode="matrix"
       values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -8" result="goo" />
@@ -829,6 +829,7 @@ wrapper.addEventListener('mousemove', function (e) {
 
 .gooey-char {
   display: inline-block;
+  position: relative; /* animate left, not transform, so the filter covers every letter */
   animation: gooey-drift 2.4s ease-in-out infinite alternate;
 }
 
@@ -839,8 +840,8 @@ wrapper.addEventListener('mousemove', function (e) {
 .gooey-char:nth-child(5) { animation-delay: 0.6s; }
 
 @keyframes gooey-drift {
-  0% { transform: translateX(-0.18em); }
-  100% { transform: translateX(0.18em); }
+  0% { left: -0.18em; }
+  100% { left: 0.18em; }
 }`
   },
 

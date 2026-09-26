@@ -103,6 +103,7 @@
 
 .gooey-char {
   display: inline-block;
+  position: relative; /* animate left, not transform, so the filter covers every letter */
   animation: gooey-drift 2.4s ease-in-out infinite alternate;
 }
 
@@ -113,10 +114,10 @@
 .gooey-char:nth-child(5) { animation-delay: 0.6s; }
 
 @keyframes gooey-drift {
-  0% { transform: translateX(-0.18em); }
-  100% { transform: translateX(0.18em); }
+  0% { left: -0.18em; }
+  100% { left: 0.18em; }
 }</style></head><body><svg width=&quot;0&quot; height=&quot;0&quot;>
-  <filter id=&quot;gooey-filter&quot;>
+  <filter id=&quot;gooey-filter&quot; color-interpolation-filters=&quot;sRGB&quot;>
     <feGaussianBlur in=&quot;SourceGraphic&quot; stdDeviation=&quot;4&quot; result=&quot;blur&quot; />
     <feColorMatrix in=&quot;blur&quot; mode=&quot;matrix&quot;
       values=&quot;1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -8&quot; result=&quot;goo&quot; />
@@ -133,7 +134,7 @@
       <section class="fx-code" aria-labelledby="code-html">
         <div class="fx-code-bar"><h3 id="code-html">HTML</h3><button type="button" class="fx-copy" data-copy="html">Copy</button></div>
         <pre><code class="language-html">&lt;svg width=&quot;0&quot; height=&quot;0&quot;&gt;
-  &lt;filter id=&quot;gooey-filter&quot;&gt;
+  &lt;filter id=&quot;gooey-filter&quot; color-interpolation-filters=&quot;sRGB&quot;&gt;
     &lt;feGaussianBlur in=&quot;SourceGraphic&quot; stdDeviation=&quot;4&quot; result=&quot;blur&quot; /&gt;
     &lt;feColorMatrix in=&quot;blur&quot; mode=&quot;matrix&quot;
       values=&quot;1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -8&quot; result=&quot;goo&quot; /&gt;
@@ -162,6 +163,7 @@
 
 .gooey-char {
   display: inline-block;
+  position: relative; /* animate left, not transform, so the filter covers every letter */
   animation: gooey-drift 2.4s ease-in-out infinite alternate;
 }
 
@@ -172,8 +174,8 @@
 .gooey-char:nth-child(5) { animation-delay: 0.6s; }
 
 @keyframes gooey-drift {
-  0% { transform: translateX(-0.18em); }
-  100% { transform: translateX(0.18em); }
+  0% { left: -0.18em; }
+  100% { left: 0.18em; }
 }</code></pre>
       </section>
     </div>

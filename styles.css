@@ -606,6 +606,9 @@ body.show-cursor-glow .cursor-glow {
 }
 .gooey-char {
   display: inline-block;
+  /* Animate `left`, not `transform`: a transformed child gets its own compositor
+     layer, and Chrome can skip the parent's SVG reference filter for it. */
+  position: relative;
   animation: gooey-drift 2.4s ease-in-out infinite alternate;
 }
 .gooey-char:nth-child(odd) { animation-direction: alternate-reverse; }
@@ -614,8 +617,8 @@ body.show-cursor-glow .cursor-glow {
 .gooey-char:nth-child(4) { animation-delay: 0.45s; }
 .gooey-char:nth-child(5) { animation-delay: 0.6s; }
 @keyframes gooey-drift {
-  0% { transform: translateX(-0.18em); }
-  100% { transform: translateX(0.18em); }
+  0% { left: -0.18em; }
+  100% { left: 0.18em; }
 }
 
 /* 23. Text Scroller (Marquee) */
