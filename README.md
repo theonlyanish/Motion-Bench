@@ -2,6 +2,8 @@
 
 **145 copy-paste animation effects** for typography, scroll, galleries, cursors, and layout — built with nothing but plain HTML, CSS, and JavaScript. No build step, no framework, no backend. Every effect ships with its own copyable, standalone code.
 
+**Live:** [motion-bench.vercel.app](https://motion-bench.vercel.app/) — search all 145 effects, or jump straight to a category: [typography](https://motion-bench.vercel.app/typography), [scroll](https://motion-bench.vercel.app/scroll), [gallery](https://motion-bench.vercel.app/gallery), [cursor](https://motion-bench.vercel.app/cursor), [layout](https://motion-bench.vercel.app/layout).
+
 Think of it as a private CodePen you can keep on your own machine: search it, steal from it, and make it your own.
 
 👉 **Grab it, run it locally, and start playing.** Then add your own effects — it's built to grow.
