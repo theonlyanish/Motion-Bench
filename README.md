@@ -71,6 +71,7 @@ scripts/build-schema.js          Regenerates the JSON-LD in each page <head>
 scripts/build-effect-pages.js    Generates one standalone page per effect (<cat>/<slug>.html) + sitemap.xml
 effect.css / effect.js           Styles and copy buttons for those effect pages
 scripts/build-llms.js            Generates llms.txt / llms-full.txt (AI-crawler summaries of the site)
+scripts/indexnow.js              After a deploy: pings IndexNow (Bing & co.) with every sitemap URL
 a11y.js                          Reduced-motion + touch handling (shared)
 transitions.js / .css            Page-to-page transitions + smooth scroll
 code-panel.js / .css             The "View code" panel
