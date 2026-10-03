@@ -1,606 +1,606 @@
 {
   "https://motion-bench.vercel.app/": {
-    "hash": "fe8c1d82922259c4ad0ffc0f16517fb5805e009e",
+    "hash": "607f00522c36920fdc4cfdf4f654642f6d2f6c25",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/cursor": {
-    "hash": "0e76f93a48d64eefd5219f01a29c37eae57a855f",
+    "hash": "261273222c0b7edc61c7fbb2aaca31b2784a5dae",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/arrow": {
-    "hash": "f34de5dfe89ffe888c2b0167e5b310d97ddc63b6",
+    "hash": "097c4e1156c7b20c1954e0445336343077810a24",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/blend": {
-    "hash": "1dd89537e14119e73881af0341bc20ec0ab73c1a",
+    "hash": "d212c8e077f2e83856cf57b1cfdb2e58d04f24a2",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/dot-grid": {
-    "hash": "dd05683eaf08d47365ca9ca1858b7bfdba1fb914",
+    "hash": "7da7b65775806bf77d43ad7b8a84bf763ba16545",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/elastic-line": {
-    "hash": "adaf73c933f0c5686277338ea405171ab576c73d",
+    "hash": "1fa56fea031709f8eb737f25d9cbdb51017c62de",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/emoji": {
-    "hash": "160509e00d24b0dee228ef8266dbad45e501b5ba",
+    "hash": "949b3115e70aecc13205b27b13a61e123b70fc89",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/glitch": {
-    "hash": "f2b15812ac750c0c7975ddfdf239439372e51357",
+    "hash": "98cf67cc4a9bedddb6b831bcb274cb2502a2d7c0",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/img-trail": {
-    "hash": "ef079d237ea752e58e148a056b1e2ec289f3f17c",
+    "hash": "7ce5be29cbf71c9f2f1e04e25f902a87d736fd94",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/magnetic": {
-    "hash": "0b0b82619bb382e03d215963a245c751d58c9cad",
+    "hash": "da82717168afb545a67aa756d8bdc30c0d678283",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/mask": {
-    "hash": "71f0b5f0f61f4a168120addc4216d7a3c4621ad8",
+    "hash": "07e8330d1d8065b522cca024a1b406e84d98d48f",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/noise": {
-    "hash": "cd9e40e06639fc572db1b9751419508656b30de2",
+    "hash": "93bb0ee059980a482c84c206d9796857627e96db",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/perspective": {
-    "hash": "0dda9398fa61ff8331338832727b46d140936441",
+    "hash": "a313ce22e6b5e89ad5d86c73e2a424c7bcdf66e9",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/progress": {
-    "hash": "505d99e98dadc26916ba5d0b86e3627cb7fc3dfd",
+    "hash": "31eda2b0fe5bb7f5770a1f3f48e2882b78b21e8f",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/ripple": {
-    "hash": "77484b466e2fb75584653bdeeb038b6fe119d974",
+    "hash": "02fbf69afef9282b17c084637543c4e1384bfd11",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/rope": {
-    "hash": "2b6eb2d5b1be55e4ebf6e7212a9630aedfa2f27c",
+    "hash": "a2493cae87b9ad1234eb171c9d1b2d93dcf43138",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/scale": {
-    "hash": "85e65d63b805b8e8af73e49616217da41e12826c",
+    "hash": "7eda5e7a772994dd59901a6158f7a55c35d54d65",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/sparks": {
-    "hash": "795c8990e28817dbeec654e727c887e74090e4c8",
+    "hash": "ca5c80f19c4a0cf9cbd16f99694b658cf9c6ab51",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/spotlight": {
-    "hash": "3552689060759fb85d065dff1e34494641d96fe7",
+    "hash": "4a8be59b9a324503636a5643bf24a7dae34dbca5",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/sticky": {
-    "hash": "91f5ab119af69db6ca5b0210f6a5f6387f5edc12",
+    "hash": "461f21720ee5e20cdaf0e20997fdc692c53e84ca",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/text": {
-    "hash": "239ebef4eaaaad8dc1f490a55ba13ef8ab901955",
+    "hash": "1f8991dac1e8cbc05c38095733ad5c0687290596",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/trail": {
-    "hash": "2e114c03730c03b77562ca6d8d3bbfebd1b7a9a7",
+    "hash": "47c231b8dfd58de6e22cc8c6c3c1b3d82d21848d",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/video": {
-    "hash": "d4080dc7f30bd328cb6aab35ae93e3fe99f8baa0",
+    "hash": "23c78eb2f0587804166b32232964c7f2e6341295",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/cursor/zoom": {
-    "hash": "ebc590b6691f901c7c31fe05cd18701adf9d28c6",
+    "hash": "075efd1b0bec0346420a10dbd63f4c51b52ff059",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery": {
-    "hash": "da549188d9fa0cf25479088c2b29e527dfe912e2",
+    "hash": "5e5e4fdce9b706d01ad8320be5c6e67362c9d858",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/block-glitch": {
-    "hash": "e7afdeb0211d0adca2266a08524339c9633a41d6",
+    "hash": "25fd64a7bda9c43bf6cb17ee71f504a825a5a8fb",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/blur-reveal": {
-    "hash": "001d16e5f1565139a0c806e82141cb852e38dd1b",
+    "hash": "bcca67dc76ae8bbd9e8f33af67d12018b54bdb8d",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/border-draw": {
-    "hash": "20e24a137527d71149f13da304725725f98c2b31",
+    "hash": "e0d2ba7ea22298c5b3104f8f4fd45ff78cb6bba5",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/caption-slide": {
-    "hash": "8d61ae919aedd7a38b8dad030b2407a0d26bf10a",
+    "hash": "95b4c0c9715e1d5c608b1c7179e18e0a890ab388",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/center-reveal": {
-    "hash": "82a64bbed50946e3bac7d7bedc7d97688074cdde",
+    "hash": "bb4f7ada575bca2dedc62f3af73ef451b4f941f8",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/chroma-split": {
-    "hash": "69fa5883ab0570b3180773729f019864d4ea6498",
+    "hash": "f0c1fef79b450e3e3de4520463f4bf7037bdcfdb",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/circle-swap": {
-    "hash": "39e05c8a7c2c56cb640692c1ea6f7780635e7acc",
+    "hash": "8828dc8f149b8d2ba49e4ed82e5064e0f8e1a6b4",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/clip-morph": {
-    "hash": "cc233c295b7e77e6595fb9922dcb9fb544fd5aee",
+    "hash": "dcce67b026b1c03245e0615f9115277caf8e8db8",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/compare-slider": {
-    "hash": "52861ff43253378efb307bc435b68abfcd5f2237",
+    "hash": "0a395b4484b85a7f5177badfebe15c2b1a5c154a",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/crt-scanlines": {
-    "hash": "09f28a78f1adec928f2986b37171abfccabc901a",
+    "hash": "1f8598a8a276f814fe10ad3405885be8f8854143",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/curtain-reveal": {
-    "hash": "190c28baff7de4bdf9c1cbc059f1cbed6e3ba5cd",
+    "hash": "e6bb4121b0a3a25e9c00080e26198b6e412274b4",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/dir-overlay": {
-    "hash": "e8361dadffd851c7ac0230632a41ca3115cfa1c1",
+    "hash": "6f1e322787ef0621246c1295a39cda90878263dc",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/duotone": {
-    "hash": "0118fd1ac820f0c8e83467816d18f46f441b3d66",
+    "hash": "3bc2d06e185386a6b7e38ee5967d6b51594c3113",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/expand-card": {
-    "hash": "e5caae2050d58a2c6feaeb131e488288f4d987db",
+    "hash": "f0b7ee042daf736ac2fece943d9758db784e49e3",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/flash-overlay": {
-    "hash": "3edfd3db08fdb03949e58681f47feb3b7be8e26c",
+    "hash": "e15a19c5ddc6191285e11f630e166178bc117545",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/fold-reveal": {
-    "hash": "8c2045b5357f3f3f728238c4a95369e420516daa",
+    "hash": "d922f1804e80d2c4cdff183f01ac54b3bfc047d6",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/glitch-image": {
-    "hash": "4204207f64f2f69e4fdb9db7f3025fbe1f9f673d",
+    "hash": "c1e376fa6375549a5a27a31bc7a8a0aa4e97c88a",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/gray-color": {
-    "hash": "29921fd23bfd044ca2e12caf61e2a0f39ab838e8",
+    "hash": "2f254977475e6fd40828761ee4a8f371ed2a6694",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/halftone": {
-    "hash": "eeae32b1d6f3d732615dd66aceee2e5b9829c5a7",
+    "hash": "a8d15eaca7eb7edc9928a56f548af3dc925f0230",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/ink-spread": {
-    "hash": "50e530774baedd528b60a6bfd8156c9f2df0d683",
+    "hash": "421420e5b751141fa8f98d16efaa58735ebe06ed",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/magnetic-cursor": {
-    "hash": "d00cbcdbc68fc61fb08cf94d154b3b6f73fc2906",
+    "hash": "c4773736019541747d5a698e07e4e02b092610a4",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/mirror-split": {
-    "hash": "7abf1c7888464bf223029e77d077fdcb77dbbe67",
+    "hash": "f92680b1aec4f62f4173e3e481f7d2e38ae0d745",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/pan-hover": {
-    "hash": "eee37b99b21cf06225224c58c597b8c25a4a2359",
+    "hash": "fa0e1061656f8e052ed2c6de9fe71827297fc302",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/parallax-scroll": {
-    "hash": "41aecab44d868a5122019b48a0ee132e75a04235",
+    "hash": "0a6a5445fb8d5ac286d363118196df72a58e33e3",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/perspective-rotate": {
-    "hash": "ded73330471a42ed9e45e9fcf2744db6b9cc8c58",
+    "hash": "8cf63a16a29d3594b17f048604d67876b907b293",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/pixelate": {
-    "hash": "1c262a79aee6be785972a10279e594f4384a5ece",
+    "hash": "fea334f06f95ca9dfac69399fc9a33b6d633173e",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/ripple": {
-    "hash": "f8fd873ee70c45d3830dbb85a4f6159e4dd8741d",
+    "hash": "b6289c3aee7ecbcbf104b639b657b878e92c03c8",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/slice-reveal": {
-    "hash": "6b88c9e090c15481e36dcc79776dfdd8c6e4c30c",
+    "hash": "54e7377cfeb4b83398472ec1ef5d1cb26ab98d5f",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/slide-behind": {
-    "hash": "d05c934ad90de0049af379e8cb11b4fbed8fa916",
+    "hash": "fa5c0dc6a8c74669b2cdd8dc6b935a57868b11e6",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/tilt3d": {
-    "hash": "14fca93de2a1aa1c78698afd64bb0d61a3d6c6a4",
+    "hash": "e0b7dc61c5b2ee6fc009eb360c60eedad4b4f781",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/turbulence": {
-    "hash": "4700fdc56edbd1c5dd5ef97470e1935b367876d4",
+    "hash": "d82ac17243471d4ff68aaaa33921a4fdfcba0254",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/video-hover": {
-    "hash": "98f0a036ffb78592e07a7e73f0f5976ead5c11f8",
+    "hash": "937fdb52bac8f94577516b79c856f1f9d6e37db6",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/gallery/zoom-hover": {
-    "hash": "a75849fcc5e36683b14f25b0187b0e361bf5cf84",
+    "hash": "b17cfa65bc7e284f7dada083b2968c0c3bd2ac76",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout": {
-    "hash": "2c85174ac2353a2a4b544c2f244ec591187d7255",
+    "hash": "c145eba385570540669135074d1c75a83e13e3b4",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/accordion": {
-    "hash": "aea115ef1271fe5c61a2f21ad2708f2517aca1f4",
+    "hash": "25057a09f6a76caf4b6af3e723eeebe4ae2ae263",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/badge": {
-    "hash": "36a0f9995a5e9bacecb317aa7dd72c50e20d4bcc",
+    "hash": "4e9a655a8864a79db0373704eeb945d2e1649bfb",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/card-flip": {
-    "hash": "7b970d4cedcb2e8c5f0d72fa9764858ea5542b98",
+    "hash": "a5934318f748cf83abfec15256dca0ee9573aeca",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/carousel": {
-    "hash": "0d1e344f956543e0060f116492a9b2d5f48d96d4",
+    "hash": "f62e8adada2c8eb69426df76f951a45f6dc93181",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/confetti": {
-    "hash": "7c19fa277e7b61d56165470b16413920b43918ca",
+    "hash": "59f6878efd4435a623225bc3b4dde929b379a709",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/delete-wipe": {
-    "hash": "bec970753d7ccdcae9c91167a59158f0d9a25f3f",
+    "hash": "1536438c32049d67942880d48d593ff9ebf742a9",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/dropdown": {
-    "hash": "20400eba6569ef257c11ee7a4d76916a4c328e16",
+    "hash": "ac26f57a9f10b2f32cb05ad5163d4a7d0332bb2a",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/expand-card": {
-    "hash": "405451616f50b71ce5a584aa68b051f89106aabe",
+    "hash": "7a50501a1ef02762e81eb77b7a32f6ce3a9fec34",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/fab": {
-    "hash": "e3cf522f57396a954e411b80b936a8d3c6af7179",
+    "hash": "8fc51a337177423621b2e4e329d5442edb835b47",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/float-label": {
-    "hash": "7f2ae95e9a7e0cbc119523469b5c25906de3157d",
+    "hash": "43270d4c8320346b909ec1d1ecf5a48eb9f5bac2",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/grid-list": {
-    "hash": "25a2dbbb4c6400521512b2ebfd39184141b846ac",
+    "hash": "860ffd8855de2a99ff3409906c1867886ad74b90",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/hamburger-morph": {
-    "hash": "8bdf77ebc2b607108ef9d2867259a28f064353a1",
+    "hash": "34d11aa29097f9757b62822778b3f6ea8f1bdd6c",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/modal": {
-    "hash": "5da5786bab5919a92becdfe836565689d6aeefdc",
+    "hash": "64af814fd65ec1c1e53826d4e936bd8822342ba0",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/odometer": {
-    "hash": "554066daecf2e1f24421865ecb351870856957d1",
+    "hash": "c3776a7553cbf286a84bd1178f8bf87d454568ce",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/offcanvas": {
-    "hash": "088049059a6dc201e64b642621a6e42c0d49e083",
+    "hash": "3636e0336e153bb3e9fc87b34559f44fe532fb0c",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/search-expand": {
-    "hash": "592d89a1ec6e3e17eeec8818e6a464c23d43851d",
+    "hash": "4f0a2bcae4c51345bf381788562859aa76b7bd88",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/skeleton": {
-    "hash": "f05a48f032c4088da38071d3952434bfe7a207e3",
+    "hash": "1c32db356e5f6200b6f631cca8dc040ecfc20b33",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/stagger-load": {
-    "hash": "1945025606464cd78a653a68f6a85cb98d7123d5",
+    "hash": "8b898520f6ac2e16147bafc649dbfbcb0742f06e",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/stepper": {
-    "hash": "d456cd56fd2ffa43b3379281ae5ce6f7583e22e6",
+    "hash": "78851fc17462cec25eb5f81de45dd43f34c6a0e9",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/tabs": {
-    "hash": "63ee222ed3c592af97836078657b7c2c1cd09ee4",
+    "hash": "25fd3552186ff3d2b5da485dd519b811c8c743d5",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/toast": {
-    "hash": "829443073762a8aec2332f0a2923cca4bab9a904",
+    "hash": "eec9a3989b566604b0c0a3bc2c709a9b4781327f",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/toggle": {
-    "hash": "41cec0abd9b0b47a0dc1bc11f2add595a7a5eaad",
+    "hash": "02360c4a7242f09d06b5eab187f7df549c892262",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/layout/tooltip": {
-    "hash": "73c061cb9812c407bd2ebee365e7f3f1521f45d3",
+    "hash": "b65fb7a03932ab3a5a602f8eb6023b01f60d23f5",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/scroll": {
-    "hash": "d28e148c3f4cf0f5988050d94a95ee73b042e1e7",
+    "hash": "eecb5575060b402b61347ad82bf157db41648ce3",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/blur-sharp": {
-    "hash": "66e42335a3827d3e21b146e2368ca54f0f11d207",
+    "hash": "f383bca98d39d51c3da30a21ef8965d2f1683995",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/bounce-in": {
-    "hash": "343ad76b06fd60828c4b77cef0ef4450b9c3e68d",
+    "hash": "b2e092de61d2816bf818509c375ded2e085899be",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/circle-expand": {
-    "hash": "dd0b0203cf4e49ec1fcc9e251265e162b81e5bea",
+    "hash": "a4507be2e1796b38a06bd74a1b789e204742c7c7",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/clip-reveal": {
-    "hash": "74366e2a71951bcb4b44c711f0e83483a37126a3",
+    "hash": "1f271f2d06711a314d993aca11728a7b86693cb0",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/color-morph": {
-    "hash": "688724d4abcaf5b5f10997fd77f01875ff02ea6a",
+    "hash": "796876d32b5720f2400d75605185b8aec9c3f1c7",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/counter": {
-    "hash": "c2d340887abfa79c2cf7e4e58b93fec09514e934",
+    "hash": "eeab3cdc0c3e6b291fa8bf66e7ead70265570f08",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/fade": {
-    "hash": "cca29d66610b8b04a368e1c93b4e6af51854508f",
+    "hash": "f3b9ea98c716fd17d7eb95761fcf7bf94492ba66",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/flip3d": {
-    "hash": "e8e2b32a08ccfc946c4acdbe8d2dd95cb930bc1d",
+    "hash": "84437067429445b296950d85fe920f5b47ff9225",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/gradient-shift": {
-    "hash": "f9e77deafafd5d7c1c649b99634fa2b0caccdfde",
+    "hash": "4bda0af7a9d0ce81f45a516625b0ae6dac005764",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/horizontal-scroll": {
-    "hash": "f6e85c8268f5bb91fe6927db2047e132267b88a6",
+    "hash": "ca7dba11544ba2f942257c84ef4bc9d20d8aecd9",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/img-reveal": {
-    "hash": "f2ee63a0021e6651857674d6acacf88be119e945",
+    "hash": "74694eb6ebb0aa4c73be7ce79b88f337258da4d5",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/letter-scrub": {
-    "hash": "c3d084f0aad8746f584ff22b2d7a65245f3c0b0b",
+    "hash": "73af01aeda2d8c23d3eaa79fe519ff4a8dd7f4ee",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/letter-spacing": {
-    "hash": "426f3eca99fa30835fbf9b0d8dfd87c7c2ecb8ac",
+    "hash": "9f30ee9049d1cf2fac3a7bf8255ac7fdc296bb5d",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/parallax": {
-    "hash": "bcdd8210c1ac7c2e21bed977919ae0cf70437b2a",
+    "hash": "577fb0507d590dc6164860cec36b6ec2ef747f27",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/perspective-grid": {
-    "hash": "9d131756fedf4261a9c30227fd4019bb46850131",
+    "hash": "ed3173230e9803fd851f167ac002a92f01a2fc70",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/rotate-in": {
-    "hash": "66aba402735af705f79764d76b65a33d0c83bde9",
+    "hash": "270541586512c922b88ca0576926fced7b2adedb",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/scale-rotate": {
-    "hash": "08286550a6fcbfd3f56c8a7cd881e4067e534ce3",
+    "hash": "025c12f8c9fec902b1d51885631bc79a137247ab",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/scale-up": {
-    "hash": "157a8f2623ee14e63a575bc17f27d16c57dbd2a3",
+    "hash": "f253e73126e5914141686859f322ba8119faff57",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/skew-in": {
-    "hash": "0da5587b978b2341864d61c7a2fbd9a9de6ea916",
+    "hash": "c46d663367503ace19d0825741b9390d1157d87a",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/slide-fade": {
-    "hash": "1b42338bec86aab298ff5f37ba61f686895d7d39",
+    "hash": "62f90770bcbe2e1e53585902cbc727cd5b2ba19d",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/slide-left": {
-    "hash": "e96dafa9f6bda229b533fa18c593992793d36aa5",
+    "hash": "5485b15ea54aaf65b40cf428bf1d106812e69b13",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/slide-right": {
-    "hash": "b98c8b0af05ce47e2a030e80916d14e36a053aae",
+    "hash": "2642007164b35ec41bb3e6e786d510022a89754d",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/slide-up": {
-    "hash": "8216867b021bd99e75bcce3779e2e86ce8e6c677",
+    "hash": "69cfd3fb3448830f001d90c2a5ea566b699170ff",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/split-converge": {
-    "hash": "9854152d3fbebe70fcb359fc8cb3e92b7af63b60",
+    "hash": "2c3dfaf1ac62d88c0fbfbb20c0b0d60244be605b",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/stagger": {
-    "hash": "ebdaabb4036182b330e11ef7261e26fa21e7125d",
+    "hash": "e390daf70484f72129e490336f3ee166ce04ed5c",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/stagger-list": {
-    "hash": "202b6400616d6118b44f47d6a28d25ece6c1108b",
+    "hash": "e7fec1855cb01306f7d25e3d5be2437590540978",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/sticky-stack": {
-    "hash": "614ed8f6dbc680fc7eeaa151d09ac2b80286b3a8",
+    "hash": "85042638409c85a1ce72d4ea268fefe61fd21d69",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/text-fill-scrub": {
-    "hash": "497c5eddcfbd80b5be1200c6bec3d82c8e957368",
+    "hash": "1ecd14f2486e23d2ad9d923de0e9c2a1bdf7281c",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/text-highlight": {
-    "hash": "af434fbc1444ef97baf6199f52520d94faff709b",
+    "hash": "91d7de1fd998866a7e29370aceb568b280dd8098",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/typewriter": {
-    "hash": "b7d143d82004cfd8a098e6c7cc0d61b5cb036c46",
+    "hash": "d3b4a6507c4190e3848e09780fd5fd9e1a6eb085",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/underline-grow": {
-    "hash": "9fbcd756c1f3ae4f45e41df52bde1c8da17cbdbf",
+    "hash": "7d99264d4aaf26c6a78e5edbb9ff43897e71d97b",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/velocity-skew": {
-    "hash": "adfd28c2dbd9edc936cf5becb8014c27e2c9fb90",
+    "hash": "77a3682b4a28dedfd29cf34979a200417202c155",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/video-scroll": {
-    "hash": "ed375ab96e68eca4f88438a644cdb03433ff3b2b",
+    "hash": "96e68ac9e4a505b60cfa5693f2818b8bef985865",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/scroll/zoom-through": {
-    "hash": "55e0a0128092649a32a5130d2edd4460dc324b0f",
+    "hash": "3fd4796c654b0f9d6462babfaceaac85340131c6",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/typography": {
-    "hash": "9836c294d5971400f1090d6f78897760f697b205",
+    "hash": "c5a9117984be5b1aee02fa33cfc9f7327e8a3aa2",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/typography/blur-distance": {
-    "hash": "43bc2b8fcb7bad45ff2c3fcb5116787526981423",
+    "hash": "0950d456fed4ecfe9f6c625af5c7bbd8a147872d",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/breathing": {
-    "hash": "47ac8b0dae69ae19352dfaacdce01d1d8f81ed41",
+    "hash": "db33cf415ccd8a38b8620564a682608466fac702",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/code-decode": {
-    "hash": "7d67dd3a2f6f675005b7e978ff1702ccd7c331f0",
+    "hash": "9c0fc3a26683b98625e95132aa8688e8c6a82f1d",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/color-chase": {
-    "hash": "42b63da0b3ed768e90e1f0c9aef80a03b86a2b42",
+    "hash": "10504273fc38c2a4ae938ebd5497e6734b116008",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/elastic": {
-    "hash": "dbcbb3570b6bac6835e07e290322bda1b2dabce1",
+    "hash": "64cb7a177a0b502210ebcfcb7aa25bda491b5e05",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/glitch": {
-    "hash": "88ce08c846f77e6bd4bb84a22e59d469979def4c",
+    "hash": "5f5674a8d6af8467ec3c4e87e0ddb15f58c7309e",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/gooey": {
-    "hash": "50895c64f71646c8f717d3a0d2ab93078a268369",
+    "hash": "1ce5670b16f342ed817797c683d35c508d462d0e",
     "date": "2026-09-26"
   },
   "https://motion-bench.vercel.app/typography/gradient-sweep": {
-    "hash": "356044507d2dd3292d35ab5a04ec06d777a82131",
+    "hash": "72123ee4076d6e9e946543fc012c18bf03bdc34a",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/gravity-drop": {
-    "hash": "f9eb7964c47d00e85d613c03793a783d8712be89",
+    "hash": "a0a4226f46f50f33be921bd284c13c9c6c04c826",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/hover-pop": {
-    "hash": "62f1d6a10f8e60085c1799fff336f7b5ed20d413",
+    "hash": "db577e10e7f6b95ca604420955ad1a1acc1053d0",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/jitter": {
-    "hash": "f3c85e54f0571520050308499ad9e72da3f30f65",
+    "hash": "92222d254f293ab7f6405ce60735f00cb0a42f43",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/letter-flip": {
-    "hash": "1791ea1f4f971adf4c89d77ddee0f6c04d050425",
+    "hash": "9364e0a16b5d955293a814dccd8dbb55a02b6a5e",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/liquid": {
-    "hash": "49b50d92ae939211390b23f45ca12bd29e1836b2",
+    "hash": "6475bb7f357f7df88a3a4726697b1881ee22c58c",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/magnetic": {
-    "hash": "5cfe5126b89172a5762255df13141ca9836eca1f",
+    "hash": "3cd89be90117dbb3ee260870876bd1907d6d4910",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/marquee": {
-    "hash": "a7922a3871bf6c6763b9610b63c32f8759313421",
+    "hash": "e727b8062284bd8d0d86529bf622211702299f79",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/mirror": {
-    "hash": "f63e8dc00756aae26d67b43c544bba751fe75acd",
+    "hash": "3b116a8d0caeceeb31f280475e6452d56ca43dcf",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/neon": {
-    "hash": "70fd43b57410c274a9b0845b889dc74e92aa8430",
+    "hash": "23eadacf9da14fa0228a5b66794032ccdc16c794",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/path": {
-    "hash": "9829677674f556dc14fbc3745a87f31f6c46fd9d",
+    "hash": "a30a90ee0b3723d8ac168a0eb28858b59f5b310a",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/repulsion": {
-    "hash": "0d71c1266b500742759048a4fbe4b62ecb62fcb1",
+    "hash": "b074fc30bdfeb9e9f940ed47f611ec52e0771616",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/scale-wave": {
-    "hash": "249efdb3dc27dbd279a0e2615cbac91e74077abf",
+    "hash": "d15c3c53e512d0181820b52f03a384c363f33e18",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/scramble": {
-    "hash": "e1a13fa677567e9fec7e172e1dc95501babbc50b",
+    "hash": "b3ddb3e769edbc3ba062c49c674c7228bc481888",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/scroll-view": {
-    "hash": "a4a1a8bfdb2310362f6a79d8a01db4a0c48447ef",
+    "hash": "6c30079226a0367fa5fc8d003d6b11711863f4a8",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/shadow-chase": {
-    "hash": "d4ace9694a8ee24689856275daf083edd454c842",
+    "hash": "e74edec121ab7335304f411fee58fb02ba9b9600",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/split-hover": {
-    "hash": "69c1ab60e60fa7558101e2c6ddcb3e02b13c8adf",
+    "hash": "95c0d581902e9b9cc3632b0e40b5432f00d8121a",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/spotlight": {
-    "hash": "e9f066e888a169c6a7a1d85392921e50076b9d4d",
+    "hash": "ab5e17559b2573f43fe33625fbeeee256962e261",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/spring": {
-    "hash": "d448af1355e3ba73bc415382f9ff8e76e39f0da6",
+    "hash": "54b57a28efa3364d75012568d56ed3dde3b99f26",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/stagger": {
-    "hash": "602b3e1101ae9045c7e25a6ac46df99d4559e677",
+    "hash": "59e5348cf400a23f555f8083975ddf15bf3d2726",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/stroke-draw": {
-    "hash": "0c9a946f3e5fdd764a8ede53929f5eb65d72ba9a",
+    "hash": "f829de2ff55f57ef4ee20cef8146a1eab081214d",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/tilt3d": {
-    "hash": "c62f575399f43dbaed76361dea01e7283c70ee2c",
+    "hash": "3004877c05ca1162fdf4e5fe740a39e62b023329",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/variable": {
-    "hash": "f3af94a05ddde42b4ff788ccf7184fc5f611128c",
+    "hash": "faee209be8a5992ec36d9d2212beeee58a308e5c",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/variable-axis": {
-    "hash": "69b9309122413e4ba4e10039e9b691339b03ea53",
+    "hash": "45485ffdee40a30eec85f0cc06038d901f2a1c25",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/wave": {
-    "hash": "3399a521934c7944209f7a4e55d5cf6c2805f808",
+    "hash": "7c0b485eade802ceec17ace36ff998d3a49905a0",
     "date": "2026-09-22"
   },
   "https://motion-bench.vercel.app/typography/weight-wave": {
-    "hash": "0db12b08b8b9abbaacea970fb399fc747625f5f1",
+    "hash": "e72388e962735e062aab949d5d79165d4e5df388",
     "date": "2026-09-22"
   }
 }

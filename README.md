@@ -48,6 +48,7 @@ This is meant to be forked and extended. Adding your own effect is deliberately 
    node scripts/build-code-blocks.js
    node scripts/build-effects-index.js
    node scripts/build-schema.js
+   powershell -ExecutionPolicy Bypass -File tools/og-images.ps1   # Windows; social cards
    node scripts/build-effect-pages.js
    node scripts/build-llms.js
    ```
@@ -70,6 +71,7 @@ scripts/build-effects-index.js   Regenerates effects-index.js
 scripts/build-schema.js          Regenerates the JSON-LD in each page <head>
 scripts/build-effect-pages.js    Generates one standalone page per effect (<cat>/<slug>.html) + sitemap.xml
 scripts/page-dates.json          Content hashes + last-modified dates behind sitemap <lastmod> (commit it)
+tools/og-images.ps1              Renders og/<cat>-<slug>.png social cards (System.Drawing + Geist TTFs in tools/fonts)
 effect.css / effect.js           Styles and copy buttons for those effect pages
 scripts/build-llms.js            Generates llms.txt / llms-full.txt (AI-crawler summaries of the site)
 scripts/indexnow.js              After a deploy: pings IndexNow (Bing & co.) with every sitemap URL

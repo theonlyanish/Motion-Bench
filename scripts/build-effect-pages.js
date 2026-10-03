@@ -40,13 +40,20 @@ function gitDate(file) {
   } catch (e) { return null; }
 }
 
+// --rehash: refresh stored hashes without moving any date. Use it when the page
+// template changes in a way readers wouldn't call a content change (head tags,
+// schema, markup tidy-ups) so the sitemap doesn't claim 150 pages changed today.
+const REHASH = process.argv.includes('--rehash');
+
 function lastmod(url, content, file) {
-  const hash = crypto.createHash('sha1').update(content).digest('hex');
+  // Hash the body only: head changes (og tags, schema) aren't content changes.
+  const bodyAt = content.indexOf('<body');
+  const hash = crypto.createHash('sha1').update(bodyAt === -1 ? content : content.slice(bodyAt)).digest('hex');
   const prev = dates[url];
   let date;
-  if (prev && prev.hash === hash) date = prev.date;          // unchanged
-  else if (prev) date = TODAY;                               // changed
-  else date = gitDate(file) || TODAY;                        // first sighting
+  if (prev && (prev.hash === hash || REHASH)) date = prev.date; // unchanged (or rehash)
+  else if (prev) date = TODAY;                                  // changed
+  else date = gitDate(file) || TODAY;                           // first sighting
   dates[url] = { hash: hash, date: date };
   return date;
 }
@@ -163,6 +170,9 @@ function page(e, cat, snippet, siblings) {
   const slug = slugify(e.id);
   const relPath = cat.page + '/' + slug;
   const url = SITE + relPath;
+  // Per-effect social card rendered by tools/og-images.ps1; fall back to the site image.
+  const ogFile = 'og/' + cat.page + '-' + slug + '.png';
+  const ogImg = fs.existsSync(path.join(root, ogFile)) ? SITE + ogFile : SITE + 'og-image.png';
   const title = e.name + ' — ' + cat.label + ' Effect in CSS & JS | Motion Bench';
   const desc = e.desc + ' Copy-paste HTML, CSS and JavaScript, no dependencies.';
   const langs = ['html', 'css', 'js'].filter(function (l) { return snippet[l]; });
@@ -185,11 +195,14 @@ function page(e, cat, snippet, siblings) {
     '  <meta property="og:title" content="' + esc(e.name + ' — ' + cat.label + ' Effect') + '">\n' +
     '  <meta property="og:description" content="' + esc(e.desc) + '">\n' +
     '  <meta property="og:url" content="' + url + '">\n' +
-    '  <meta property="og:image" content="' + SITE + 'og-image.png">\n' +
+    '  <meta property="og:image" content="' + ogImg + '">\n' +
+    '  <meta property="og:image:type" content="image/png">\n' +
+    '  <meta property="og:image:width" content="1200">\n' +
+    '  <meta property="og:image:height" content="630">\n' +
     '  <meta name="twitter:card" content="summary_large_image">\n' +
     '  <meta name="twitter:title" content="' + esc(e.name + ' — ' + cat.label + ' Effect') + '">\n' +
     '  <meta name="twitter:description" content="' + esc(e.desc) + '">\n' +
-    '  <meta name="twitter:image" content="' + SITE + 'og-image.png">\n' +
+    '  <meta name="twitter:image" content="' + ogImg + '">\n' +
     '  <script type="application/ld+json" id="ld-schema">' + schema(e, cat, url, snippet) + '</script>\n' +
     '  <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">\n' +
     '  <link rel="icon" href="/favicon-32x32.png?v=2" type="image/png" sizes="32x32">\n' +
