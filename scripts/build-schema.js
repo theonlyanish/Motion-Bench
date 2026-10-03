@@ -96,7 +96,7 @@ function effectNode(e) {
     codeSampleType: 'full',
     runtimePlatform: 'Web browser',
     license: 'https://opensource.org/licenses/MIT',
-    codeRepository: 'https://github.com/theonlyanish/frontend-reference',
+    codeRepository: 'https://github.com/theonlyanish/Motion-Bench',
     isPartOf: { '@id': absUrl(e.page) },
     author: { '@id': AUTHOR_ID },
     keywords: e.tags.join(', ')

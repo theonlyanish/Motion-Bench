@@ -69,6 +69,7 @@ scripts/build-code-blocks.js     Pre-renders each snippet into its page as hidde
 scripts/build-effects-index.js   Regenerates effects-index.js
 scripts/build-schema.js          Regenerates the JSON-LD in each page <head>
 scripts/build-effect-pages.js    Generates one standalone page per effect (<cat>/<slug>.html) + sitemap.xml
+scripts/page-dates.json          Content hashes + last-modified dates behind sitemap <lastmod> (commit it)
 effect.css / effect.js           Styles and copy buttons for those effect pages
 scripts/build-llms.js            Generates llms.txt / llms-full.txt (AI-crawler summaries of the site)
 scripts/indexnow.js              After a deploy: pings IndexNow (Bing & co.) with every sitemap URL

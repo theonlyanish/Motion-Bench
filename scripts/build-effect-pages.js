@@ -15,10 +15,41 @@
 const fs = require('fs');
 const path = require('path');
 const vm = require('vm');
+const crypto = require('crypto');
+const { execSync } = require('child_process');
 
 const root = path.join(__dirname, '..');
 const SITE = 'https://motion-bench.vercel.app/';
 const AUTHOR_ID = 'https://anishkapse.com/#person';
+const REPO = 'https://github.com/theonlyanish/Motion-Bench';
+
+// ── Last-modified dates ───────────────────────────────────────────────────────
+// All 145 effect pages regenerate together, so git dates would all be the same.
+// Instead each URL's date is driven by its content: hash the page, keep the hash
+// and date in scripts/page-dates.json, and bump the date only when the hash
+// changes. A URL seen for the first time is seeded from the file's last git
+// commit so the initial sitemap isn't 150 copies of today.
+const DATES_FILE = path.join(__dirname, 'page-dates.json');
+const dates = fs.existsSync(DATES_FILE) ? JSON.parse(fs.readFileSync(DATES_FILE, 'utf8')) : {};
+const TODAY = new Date().toISOString().slice(0, 10);
+
+function gitDate(file) {
+  try {
+    const out = execSync('git log -1 --format=%cs -- "' + file + '"', { cwd: root, stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+    return /^\d{4}-\d{2}-\d{2}$/.test(out) ? out : null;
+  } catch (e) { return null; }
+}
+
+function lastmod(url, content, file) {
+  const hash = crypto.createHash('sha1').update(content).digest('hex');
+  const prev = dates[url];
+  let date;
+  if (prev && prev.hash === hash) date = prev.date;          // unchanged
+  else if (prev) date = TODAY;                               // changed
+  else date = gitDate(file) || TODAY;                        // first sighting
+  dates[url] = { hash: hash, date: date };
+  return date;
+}
 
 const CATS = {
   typography: { label: 'Typography', plural: 'Typography Effects', page: 'typography', snippets: 'snippets/typography.js', color: 'var(--cat-typography)' },
@@ -78,22 +109,42 @@ function codeBlock(lang, label, code) {
 }
 
 function schema(e, cat, url, snippet) {
+  const author = { '@type': 'Person', '@id': AUTHOR_ID, name: 'Anish Kapse', url: 'https://anishkapse.com/' };
   return JSON.stringify({
     '@context': 'https://schema.org',
     '@graph': [
+      {
+        // The page as an article: gives crawlers a dateModified that matches the
+        // sitemap lastmod. (HowTo was considered and skipped: Google retired
+        // HowTo rich results in 2023.)
+        '@type': 'TechArticle',
+        '@id': url + '#article',
+        headline: e.name + ' — ' + cat.label + ' effect in HTML, CSS and JavaScript',
+        description: e.desc,
+        url: url,
+        mainEntityOfPage: url,
+        about: { '@id': url },
+        dateModified: '__LASTMOD__',
+        inLanguage: 'en',
+        proficiencyLevel: 'Beginner',
+        dependencies: 'None — plain HTML, CSS and JavaScript',
+        isPartOf: { '@id': SITE + '#website' },
+        author: author
+      },
       {
         '@type': 'SoftwareSourceCode',
         '@id': url,
         url: url,
         name: e.name + ' — ' + cat.label + ' effect',
         description: e.desc,
+        dateModified: '__LASTMOD__',
         programmingLanguage: ['html', 'css', 'js'].filter(function (l) { return snippet[l]; }).map(function (l) { return ({ html: 'HTML', css: 'CSS', js: 'JavaScript' })[l]; }),
         codeSampleType: 'full',
         runtimePlatform: 'Web browser',
         license: 'https://opensource.org/licenses/MIT',
-        codeRepository: 'https://github.com/theonlyanish/frontend-reference',
+        codeRepository: REPO,
         isPartOf: { '@id': SITE + cat.page },
-        author: { '@type': 'Person', '@id': AUTHOR_ID, name: 'Anish Kapse', url: 'https://anishkapse.com/' },
+        author: author,
         keywords: e.tags.join(', ')
       },
       {
@@ -207,18 +258,35 @@ Object.keys(CATS).forEach(function (catKey) {
   siblings.forEach(function (e) {
     const snippet = snippets[e.id];
     if (!snippet) { console.warn('no snippet for', e.id); return; }
-    fs.writeFileSync(path.join(dir, slugify(e.id) + '.html'), page(e, cat, snippet, siblings));
-    urls.push(SITE + cat.page + '/' + slugify(e.id));
+    const rel = cat.page + '/' + slugify(e.id);
+    const url = SITE + rel;
+    const html = page(e, cat, snippet, siblings); // carries the __LASTMOD__ token
+    const date = lastmod(url, html, rel + '.html');
+    fs.writeFileSync(path.join(dir, slugify(e.id) + '.html'), html.split('__LASTMOD__').join(date));
+    urls.push({ url: url, date: date });
     count++;
   });
 });
 
-// Sitemap: home, categories, then every effect page.
-const sitemap = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-  '  <url><loc>' + SITE + '</loc><priority>1.0</priority></url>']
-  .concat(Object.keys(CATS).map(function (k) { return '  <url><loc>' + SITE + CATS[k].page + '</loc><priority>0.8</priority></url>'; }))
-  .concat(urls.map(function (u) { return '  <url><loc>' + u + '</loc><priority>0.6</priority></url>'; }))
+// Sitemap: home, categories, then every effect page — each with a lastmod.
+// Home and category pages are hashed from the files on disk (run after
+// build-code-blocks / build-schema so their generated parts are current).
+function entry(loc, date, priority) {
+  return '  <url><loc>' + loc + '</loc><lastmod>' + date + '</lastmod><priority>' + priority + '</priority></url>';
+}
+const homeDate = lastmod(SITE, fs.readFileSync(path.join(root, 'index.html'), 'utf8'), 'index.html');
+const sitemap = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">', entry(SITE, homeDate, '1.0')]
+  .concat(Object.keys(CATS).map(function (k) {
+    const c = CATS[k];
+    const d = lastmod(SITE + c.page, fs.readFileSync(path.join(root, c.page + '.html'), 'utf8'), c.page + '.html');
+    return entry(SITE + c.page, d, '0.8');
+  }))
+  .concat(urls.map(function (u) { return entry(u.url, u.date, '0.6'); }))
   .concat(['</urlset>', '']).join('\n');
 fs.writeFileSync(path.join(root, 'sitemap.xml'), sitemap);
+
+const sorted = {};
+Object.keys(dates).sort().forEach(function (k) { sorted[k] = dates[k]; });
+fs.writeFileSync(DATES_FILE, JSON.stringify(sorted, null, 2) + '\n');
 
 console.log('Wrote ' + count + ' effect pages and sitemap.xml with ' + (urls.length + 6) + ' URLs');
