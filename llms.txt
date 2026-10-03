@@ -1,0 +1,22 @@
+# Motion Bench
+
+> A searchable library of 145 copy-paste web animation effects across typography, scroll, gallery, cursor and layout. Every effect is plain HTML, CSS and JavaScript with no dependencies, no build step and no framework, and ships with its own standalone, copyable code. MIT licensed.
+
+Each effect has a live demo, a short plain-language description of what it does and how it works, and the complete HTML, CSS and JavaScript needed to reproduce it. Effects are self-contained: copy the three code blocks into any page and they run.
+
+Site: https://motion-bench.vercel.app/
+Source: https://github.com/theonlyanish/Motion-Bench
+Author: Anish Kapse (https://anishkapse.com/)
+
+## Categories
+
+- [Typography Effects](https://motion-bench.vercel.app/typography): 33 effects. Text and letter animations: variable fonts, wave and scramble, magnetic letters, glitch, gooey, neon, marquee.
+- [Scroll Animations](https://motion-bench.vercel.app/scroll): 34 effects. Scroll-triggered and scroll-scrubbed motion: reveals, parallax, pinning, counters, typewriter, letter scrub.
+- [Gallery Effects](https://motion-bench.vercel.app/gallery): 33 effects. Image and gallery hover effects: tilt, masks, zoom, slice and curtain reveals, duotone, halftone, glitch.
+- [Cursor & Pointer Effects](https://motion-bench.vercel.app/cursor): 22 effects. Custom cursors and pointer-driven effects: magnetic buttons, trails, rope, sparks, spotlight, blend modes.
+- [Reveal & Layout Patterns](https://motion-bench.vercel.app/layout): 23 effects. UI motion patterns: modals, accordions, tabs, carousels, toasts, toggles, skeletons, confetti.
+
+## Optional
+
+- [All effects with descriptions](https://motion-bench.vercel.app/llms-full.txt): every effect, one line each, with its URL.
+- [Sitemap](https://motion-bench.vercel.app/sitemap.xml)

@@ -49,6 +49,7 @@ This is meant to be forked and extended. Adding your own effect is deliberately 
    node scripts/build-effects-index.js
    node scripts/build-schema.js
    node scripts/build-effect-pages.js
+   node scripts/build-llms.js
    ```
 
 That's it — your effect shows up in search and filters on the home page. Build a wild one? Keep it in your copy, or open a PR if you think others would enjoy it.
@@ -69,6 +70,7 @@ scripts/build-effects-index.js   Regenerates effects-index.js
 scripts/build-schema.js          Regenerates the JSON-LD in each page <head>
 scripts/build-effect-pages.js    Generates one standalone page per effect (<cat>/<slug>.html) + sitemap.xml
 effect.css / effect.js           Styles and copy buttons for those effect pages
+scripts/build-llms.js            Generates llms.txt / llms-full.txt (AI-crawler summaries of the site)
 a11y.js                          Reduced-motion + touch handling (shared)
 transitions.js / .css            Page-to-page transitions + smooth scroll
 code-panel.js / .css             The "View code" panel

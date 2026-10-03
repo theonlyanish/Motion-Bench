@@ -1,0 +1,187 @@
+# Motion Bench
+
+> A searchable library of 145 copy-paste web animation effects across typography, scroll, gallery, cursor and layout. Every effect is plain HTML, CSS and JavaScript with no dependencies, no build step and no framework, and ships with its own standalone, copyable code. MIT licensed.
+
+Each effect has a live demo, a short plain-language description of what it does and how it works, and the complete HTML, CSS and JavaScript needed to reproduce it. Effects are self-contained: copy the three code blocks into any page and they run.
+
+Site: https://motion-bench.vercel.app/
+Source: https://github.com/theonlyanish/Motion-Bench
+Author: Anish Kapse (https://anishkapse.com/)
+
+## Categories
+
+- [Typography Effects](https://motion-bench.vercel.app/typography): 33 effects. Text and letter animations: variable fonts, wave and scramble, magnetic letters, glitch, gooey, neon, marquee.
+- [Scroll Animations](https://motion-bench.vercel.app/scroll): 34 effects. Scroll-triggered and scroll-scrubbed motion: reveals, parallax, pinning, counters, typewriter, letter scrub.
+- [Gallery Effects](https://motion-bench.vercel.app/gallery): 33 effects. Image and gallery hover effects: tilt, masks, zoom, slice and curtain reveals, duotone, halftone, glitch.
+- [Cursor & Pointer Effects](https://motion-bench.vercel.app/cursor): 22 effects. Custom cursors and pointer-driven effects: magnetic buttons, trails, rope, sparks, spotlight, blend modes.
+- [Reveal & Layout Patterns](https://motion-bench.vercel.app/layout): 23 effects. UI motion patterns: modals, accordions, tabs, carousels, toasts, toggles, skeletons, confetti.
+
+## Typography Effects (33)
+
+Category page: https://motion-bench.vercel.app/typography
+
+- [Variable Font Axes](https://motion-bench.vercel.app/typography/variable): Drag the sliders to change weight, width and slant live using font-variation-settings on a variable font. One font file, every style in between — no extra requests.
+- [Wave Distort](https://motion-bench.vercel.app/typography/wave): Each character bobs on a sine wave with a phase offset from its neighbour, producing a rolling distortion. Pure CSS transforms driven by a tiny per-letter delay.
+- [Noise Jitter](https://motion-bench.vercel.app/typography/jitter): Letters twitch with small random offsets on every frame, like a shaky signal. Uses requestAnimationFrame and translate, so it stays smooth and never triggers layout.
+- [Text on Path](https://motion-bench.vercel.app/typography/path): Text flows along an SVG curve with textPath, then slides along it as the offset animates. Great for badges, seals and circular labels.
+- [Magnetic Letters](https://motion-bench.vercel.app/typography/magnetic): Move cursor near letters — they'll magnetically attract
+- [Cursor Repulsion](https://motion-bench.vercel.app/typography/repulsion): Letters repel from your cursor
+- [3D Tilt](https://motion-bench.vercel.app/typography/tilt3d): Move cursor — text tilts toward you in 3D
+- [Glitch](https://motion-bench.vercel.app/typography/glitch): Two clipped copies of the headline flicker over the original with clip-path and small horizontal shifts, giving a digital glitch look. Toggle the intensity to compare.
+- [Scale Wave](https://motion-bench.vercel.app/typography/scale-wave): Characters scale up and back down in sequence, sending a pulse across the word. A staggered CSS keyframe with no JavaScript required.
+- [Blur on Distance](https://motion-bench.vercel.app/typography/blur-distance): Letters sharpen near cursor, blur when far
+- [Color Chase](https://motion-bench.vercel.app/typography/color-chase): Gradient follows your cursor
+- [Staggered Reveal](https://motion-bench.vercel.app/typography/stagger): Letters animate in with stagger — like Framer's staggerChildren
+- [Spring Letters](https://motion-bench.vercel.app/typography/spring): Hover letters — they bounce with spring physics
+- [Scroll Into View](https://motion-bench.vercel.app/typography/scroll-view): Scroll down — text animates when it enters viewport
+- [Hover Pop](https://motion-bench.vercel.app/typography/hover-pop): Hover — smooth scale + lift, like whileHover
+- [Scramble Reveal](https://motion-bench.vercel.app/typography/scramble): Letters scramble then settle — like a terminal
+- [Shadow Chase](https://motion-bench.vercel.app/typography/shadow-chase): Drop shadow stretches toward your cursor
+- [Letter Flip](https://motion-bench.vercel.app/typography/letter-flip): Hover — letters flip in 3D
+- [Breathing](https://motion-bench.vercel.app/typography/breathing): Gentle pulse — meditative scale
+- [Gradient Sweep](https://motion-bench.vercel.app/typography/gradient-sweep): Animated gradient flows across the text
+- [Spotlight Reveal](https://motion-bench.vercel.app/typography/spotlight): Hover to reveal text like a flashlight
+- [Gooey Text](https://motion-bench.vercel.app/typography/gooey): Letters merge and separate like goo
+- [Infinite Marquee](https://motion-bench.vercel.app/typography/marquee): Continuous scrolling text loop
+- [Elastic Bounce](https://motion-bench.vercel.app/typography/elastic): Hover letters for elastic scale effect
+- [Liquid Fill](https://motion-bench.vercel.app/typography/liquid): Text fills up like liquid on hover
+- [Neon Flicker](https://motion-bench.vercel.app/typography/neon): Realistic neon sign flicker animation
+- [Mirror Reflection](https://motion-bench.vercel.app/typography/mirror): Text with a fading floor reflection
+- [Variable Axis Hover](https://motion-bench.vercel.app/typography/variable-axis): Weight and Width change dynamically
+- [Code Decode](https://motion-bench.vercel.app/typography/code-decode): Binary decode effect on hover
+- [Split Hover](https://motion-bench.vercel.app/typography/split-hover): Text splits and reveals alternate version
+- [Weight Wave](https://motion-bench.vercel.app/typography/weight-wave): A wave of font-weight travels through the letters — rare variable-font trick
+- [Stroke Draw](https://motion-bench.vercel.app/typography/stroke-draw): Text outline draws itself like handwriting (SVG stroke-dasharray)
+- [Gravity Drop](https://motion-bench.vercel.app/typography/gravity-drop): Click — letters fall with gravity and bounce. Click again to reset
+
+## Scroll Animations (34)
+
+Category page: https://motion-bench.vercel.app/scroll
+
+- [Fade In](https://motion-bench.vercel.app/scroll/fade): The simplest scroll reveal: content starts transparent and fades in when it enters the viewport. Uses IntersectionObserver to add a class, and CSS handles the transition.
+- [Slide Up](https://motion-bench.vercel.app/scroll/slide-up): Content rises into place while fading in, the most common entrance for cards and sections. A translateY offset plus opacity, both transitioned on an ease-out curve.
+- [Slide From Right](https://motion-bench.vercel.app/scroll/slide-left): Enters from the right edge and settles in, a good fit for alternating two-column layouts. translateX with an ease-out so it decelerates into position.
+- [Slide From Left](https://motion-bench.vercel.app/scroll/slide-right): Enters from the left edge and settles in, the mirror of Slide From Right. Pair the two for zig-zag content that reads left to right.
+- [Scale Up](https://motion-bench.vercel.app/scroll/scale-up): Content grows from slightly smaller than final size while fading in, which draws focus without feeling like a bounce. A single scale transform on an ease-out.
+- [Letter Scrub Reveal](https://motion-bench.vercel.app/scroll/letter-scrub): Each letter fades in as you scroll and releases a puff of particles when it lands; scroll back up and it un-writes itself. Progress is measured over a pinned block, so the text stays put while the letters arrive.
+- [Rotate In](https://motion-bench.vercel.app/scroll/rotate-in): Content swings in with a small rotation that straightens out as it lands. A rotate plus translate combo that adds character without heavy motion.
+- [Staggered Letters](https://motion-bench.vercel.app/scroll/stagger): Each letter rises and fades in a beat after the one before it, spelling the word out. Per-character spans with an incrementing transition-delay.
+- [Blur to Sharp](https://motion-bench.vercel.app/scroll/blur-sharp): Content comes into focus as it enters view, starting blurred and transparent. A CSS filter blur that transitions to zero; keep the radius small for performance.
+- [Skew In](https://motion-bench.vercel.app/scroll/skew-in): Content slides in with a skew that relaxes to upright, like it is catching up to itself. A skewX plus translateX transition on one element.
+- [Parallax](https://motion-bench.vercel.app/scroll/parallax): Layers move at different rates as you scroll, so the label, title and background rules separate in depth. Read from scroll position and applied with translateY in requestAnimationFrame.
+- [Clip Reveal](https://motion-bench.vercel.app/scroll/clip-reveal): Content is unmasked from one edge as it enters view, as if a curtain is pulled back. A clip-path inset that animates to zero, leaving the element itself in place.
+- [3D Flip](https://motion-bench.vercel.app/scroll/flip3d): Content flips around its vertical axis into view with a perspective transform. A rotateY on a perspective parent gives real depth to a card entrance.
+- [Bounce In](https://motion-bench.vercel.app/scroll/bounce-in): Content drops in and overshoots before settling, using a spring-like cubic-bezier. Good for playful UI; keep it to one or two elements per screen.
+- [Split Converge](https://motion-bench.vercel.app/scroll/split-converge): Two halves of the headline slide in from opposite sides and meet in the middle. Independent translateX transitions on a left and right span.
+- [Underline Grow](https://motion-bench.vercel.app/scroll/underline-grow): An underline draws itself across the text when the heading scrolls into view. A background-image gradient whose background-size animates from zero to full width.
+- [Letter Spacing](https://motion-bench.vercel.app/scroll/letter-spacing): Letters start spread wide and tighten into normal spacing as the text fades in. Animates letter-spacing, a cheap way to add a typographic entrance.
+- [Slide + Fade](https://motion-bench.vercel.app/scroll/slide-fade): A combined slide and fade, tuned so both finish together. This is the workhorse reveal for lists, cards and section intros.
+- [Scale + Rotate](https://motion-bench.vercel.app/scroll/scale-rotate): Content scales up while rotating into alignment, a slightly more dramatic take on Scale Up. Two transforms on one transition.
+- [Gradient Shift](https://motion-bench.vercel.app/scroll/gradient-shift): A gradient sweeps across the text once it enters view, using background-clip: text. Animates background-position over a wide gradient.
+- [Typewriter](https://motion-bench.vercel.app/scroll/typewriter): Text types itself out one character at a time with a blinking cursor, triggered when it scrolls into view. A small JavaScript loop; the cursor is a CSS blink.
+- [Sticky Stack](https://motion-bench.vercel.app/scroll/sticky-stack): Cards pin to the viewport and stack on top of each other as you scroll through the section. Built on position: sticky with a rotation and offset per card.
+- [Horizontal Scroll](https://motion-bench.vercel.app/scroll/horizontal-scroll): A row of items slides horizontally into view as you scroll vertically. A translateX driven by IntersectionObserver, without hijacking the wheel.
+- [Counter Up](https://motion-bench.vercel.app/scroll/counter): A number counts up from zero to its target when it enters the viewport, with easing so it slows as it lands. Reads the target from a data attribute.
+- [Image Reveal](https://motion-bench.vercel.app/scroll/img-reveal): An image is uncovered by a coloured curtain sliding away, a common editorial reveal. A pseudo-panel that transitions translateX over the picture.
+- [Text Highlight](https://motion-bench.vercel.app/scroll/text-highlight): A highlighter mark sweeps across the words when the text scrolls into view. A background gradient whose size grows from zero, so it works on wrapping text.
+- [Perspective Grid](https://motion-bench.vercel.app/scroll/perspective-grid): Grid items rotate up from a tilted plane into place, one after another. A rotateX on a perspective container with staggered delays.
+- [Circle Expand](https://motion-bench.vercel.app/scroll/circle-expand): A circle grows from the centre to fill its container as it enters view, revealing the label. A single scale transform on a rounded element.
+- [Staggered List](https://motion-bench.vercel.app/scroll/stagger-list): List items slide and fade in one at a time, top to bottom. Uses nth-child transition delays, so adding items needs no extra code.
+- [Video Play](https://motion-bench.vercel.app/scroll/video-scroll): A video plays when it scrolls into view and pauses when it leaves, saving bandwidth and battery. IntersectionObserver calls play() and pause().
+- [Color Morph](https://motion-bench.vercel.app/scroll/color-morph): The background colour shifts smoothly as the block moves through the viewport. Scroll progress is mapped to an HSL hue and set as a CSS variable.
+- [Velocity Skew](https://motion-bench.vercel.app/scroll/velocity-skew): Text skews in proportion to how fast you scroll and snaps back when you stop. Scroll velocity is measured per frame and applied as skewX.
+- [Text Fill Scrub](https://motion-bench.vercel.app/scroll/text-fill-scrub): Text fills with colour in step with your scroll position rather than on a timer. Scroll progress drives background-size on a clipped gradient.
+- [Zoom Through](https://motion-bench.vercel.app/scroll/zoom-through): The headline scales up toward you as you scroll past, as if you are moving through it. Scroll progress maps to a scale and opacity, applied each frame.
+
+## Gallery Effects (33)
+
+Category page: https://motion-bench.vercel.app/gallery
+
+- [Zoom Hover](https://motion-bench.vercel.app/gallery/zoom-hover): Simple scale on hover
+- [Grayscale → Color](https://motion-bench.vercel.app/gallery/gray-color): Fade in color on interaction
+- [Curtain Reveal](https://motion-bench.vercel.app/gallery/curtain-reveal): Overlay slides away
+- [Caption Slide Up](https://motion-bench.vercel.app/gallery/caption-slide): Details appear from bottom
+- [3D Tilt](https://motion-bench.vercel.app/gallery/tilt3d): Mouse-driven perspective tilt
+- [Blur Reveal](https://motion-bench.vercel.app/gallery/blur-reveal): Starts blurred, sharpens on hover
+- [Clip Path Morph](https://motion-bench.vercel.app/gallery/clip-morph): Circle to rounded rectangle
+- [Glitch Image](https://motion-bench.vercel.app/gallery/glitch-image): RGB split on hover
+- [Parallax Scroll](https://motion-bench.vercel.app/gallery/parallax-scroll): Image moves slower than scroll
+- [Magnetic Cursor](https://motion-bench.vercel.app/gallery/magnetic-cursor): Custom cursor sticks to image
+- [Slice Reveal](https://motion-bench.vercel.app/gallery/slice-reveal): Image split into sliding strips
+- [Ink Spread](https://motion-bench.vercel.app/gallery/ink-spread): SVG path morph reveal
+- [Perspective Rotate](https://motion-bench.vercel.app/gallery/perspective-rotate): Rotates in 3D space on hover
+- [Border Draw](https://motion-bench.vercel.app/gallery/border-draw): Line traces inside edge
+- [Duotone Gradient](https://motion-bench.vercel.app/gallery/duotone): Mix-blend-mode overlay
+- [Center Reveal](https://motion-bench.vercel.app/gallery/center-reveal): Circular mask expands
+- [Pixelate](https://motion-bench.vercel.app/gallery/pixelate): Steps down resolution (CSS filter)
+- [Slide Behind](https://motion-bench.vercel.app/gallery/slide-behind): Image slides to reveal text behind
+- [Flash Overlay](https://motion-bench.vercel.app/gallery/flash-overlay): Bright flash transition
+- [Pan on Hover](https://motion-bench.vercel.app/gallery/pan-hover): Large image pans within frame
+- [Turbulence Distort](https://motion-bench.vercel.app/gallery/turbulence): SVG Turbulence filter on hover
+- [Fold Reveal](https://motion-bench.vercel.app/gallery/fold-reveal): Unfolds from top like paper
+- [Circular Swap](https://motion-bench.vercel.app/gallery/circle-swap): Clip-path circle expands new image
+- [Directional Overlay](https://motion-bench.vercel.app/gallery/dir-overlay): Overlay follows mouse entry direction
+- [Block Glitch](https://motion-bench.vercel.app/gallery/block-glitch): Mosaic reveal/glitch effect
+- [Halftone Pattern](https://motion-bench.vercel.app/gallery/halftone): Dot pattern overlay on hover
+- [Expanding Card](https://motion-bench.vercel.app/gallery/expand-card): Content expands and pushes image
+- [Mirror Split](https://motion-bench.vercel.app/gallery/mirror-split): Splits and slides apart
+- [Video Hover](https://motion-bench.vercel.app/gallery/video-hover): Plays video on hover (replaces image)
+- [Ripple](https://motion-bench.vercel.app/gallery/ripple): Water ripple distortion (SVG filter)
+- [CRT Scanlines](https://motion-bench.vercel.app/gallery/crt-scanlines): Retro monitor effect with rolling sweep
+- [Chromatic Aberration](https://motion-bench.vercel.app/gallery/chroma-split): RGB channels split apart on hover
+- [Before / After](https://motion-bench.vercel.app/gallery/compare-slider): Drag to compare (grayscale vs color)
+
+## Cursor & Pointer Effects (22)
+
+Category page: https://motion-bench.vercel.app/cursor
+
+- [Magnetic Button](https://motion-bench.vercel.app/cursor/magnetic): Cursor snaps to button center
+- [Blend Mode](https://motion-bench.vercel.app/cursor/blend): Cursor inverts background colors
+- [Mask Reveal](https://motion-bench.vercel.app/cursor/mask): Cursor acts as a window
+- [Cursor Trail](https://motion-bench.vercel.app/cursor/trail): Dot trail follows movement
+- [Scale Interaction](https://motion-bench.vercel.app/cursor/scale): Cursor grows when hovering targets
+- [Text Cursor](https://motion-bench.vercel.app/cursor/text): Cursor becomes text label
+- [Spotlight](https://motion-bench.vercel.app/cursor/spotlight): Light reveals content in dark
+- [Sticky Cursor](https://motion-bench.vercel.app/cursor/sticky): Cursor sticks to element edge
+- [Glitch Cursor](https://motion-bench.vercel.app/cursor/glitch): Cursor distortion and offset
+- [Arrow Rotate](https://motion-bench.vercel.app/cursor/arrow): Arrow points in movement direction
+- [Image Trail](https://motion-bench.vercel.app/cursor/img-trail): Images spawn behind cursor
+- [Zoom Lens](https://motion-bench.vercel.app/cursor/zoom): Magnifying glass effect
+- [Emoji Cursor](https://motion-bench.vercel.app/cursor/emoji): Replaces cursor with emoji
+- [Ripple Click](https://motion-bench.vercel.app/cursor/ripple): Water ripple effect on click
+- [Elastic Line](https://motion-bench.vercel.app/cursor/elastic-line): Line stretches to cursor
+- [Noise Aura](https://motion-bench.vercel.app/cursor/noise): Grainy aura around cursor
+- [Video Cursor](https://motion-bench.vercel.app/cursor/video): Video plays inside cursor
+- [Perspective Tilt](https://motion-bench.vercel.app/cursor/perspective): Element tilts towards cursor
+- [Dot Grid Repel](https://motion-bench.vercel.app/cursor/dot-grid): Grid points flee from cursor
+- [Click Progress](https://motion-bench.vercel.app/cursor/progress): Cursor fills on mouse down
+- [Particle Sparks](https://motion-bench.vercel.app/cursor/sparks): Canvas particles burst from cursor
+- [Rope Trail](https://motion-bench.vercel.app/cursor/rope): Elastic rope of segments chases cursor
+
+## Reveal & Layout Patterns (23)
+
+Category page: https://motion-bench.vercel.app/layout
+
+- [Modal Scale](https://motion-bench.vercel.app/layout/modal): iOS-style spring scale
+- [Accordion](https://motion-bench.vercel.app/layout/accordion): Smooth height expansion
+- [Tabs Fade](https://motion-bench.vercel.app/layout/tabs): Crossfade with sliding indicator
+- [Card Flip](https://motion-bench.vercel.app/layout/card-flip): 3D rotation on click/hover
+- [Off-canvas](https://motion-bench.vercel.app/layout/offcanvas): Slide-in side panel
+- [Toast](https://motion-bench.vercel.app/layout/toast): Notification slide-in
+- [Grid to List](https://motion-bench.vercel.app/layout/grid-list): FLIP layout transition
+- [Expandable Card](https://motion-bench.vercel.app/layout/expand-card): Layout expansion
+- [Stagger Load](https://motion-bench.vercel.app/layout/stagger-load): Sequential item entry
+- [Dropdown](https://motion-bench.vercel.app/layout/dropdown): Scale/fade from origin
+- [Skeleton Load](https://motion-bench.vercel.app/layout/skeleton): Shimmer loading state
+- [FAB Expand](https://motion-bench.vercel.app/layout/fab): Floating button reveal
+- [Carousel Snap](https://motion-bench.vercel.app/layout/carousel): Horizontal snap scrolling
+- [Stepper](https://motion-bench.vercel.app/layout/stepper): Progress flow animation
+- [Toggle Switch](https://motion-bench.vercel.app/layout/toggle): Smooth state transition
+- [Floating Label](https://motion-bench.vercel.app/layout/float-label): Input focus interaction
+- [Search Expand](https://motion-bench.vercel.app/layout/search-expand): Width expansion on focus
+- [Delete Wipe](https://motion-bench.vercel.app/layout/delete-wipe): Collapse animation
+- [Tooltip](https://motion-bench.vercel.app/layout/tooltip): Scale/fade hint
+- [Notification Badge](https://motion-bench.vercel.app/layout/badge): Scale bounce on update
+- [Confetti Burst](https://motion-bench.vercel.app/layout/confetti): Physics-based confetti from button
+- [Odometer](https://motion-bench.vercel.app/layout/odometer): Digits roll like a slot machine
+- [Hamburger Morph](https://motion-bench.vercel.app/layout/hamburger-morph): Icon morphs to X on toggle
