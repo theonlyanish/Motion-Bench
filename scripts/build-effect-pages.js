@@ -248,7 +248,7 @@ function page(e, cat, snippet, siblings) {
     '  <footer class="home-footer">\n' +
     '    <div class="wrap">\n' +
     '      <p>Pure HTML · CSS · JavaScript — every effect includes copyable standalone code</p>\n' +
-    '      <p class="home-credit">Motion Bench by <a href="https://anishkapse.com/" target="_blank" rel="noopener noreferrer">Anish Kapse</a></p>\n' +
+    '      <p class="home-credit">Motion Bench by <a href="https://anishkapse.com/" target="_blank" rel="noopener noreferrer">Anish Kapse</a> · <a href="https://buymeacoffee.com/anishkapse" target="_blank" rel="noopener noreferrer">Buy me a coffee</a></p>\n' +
     '    </div>\n' +
     '  </footer>\n\n' +
     '  <script src="/a11y.js"></script>\n' +

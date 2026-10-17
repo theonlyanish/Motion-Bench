@@ -93,4 +93,4 @@ code-panel.js / .css             The "View code" panel
 
 ---
 
-Made by [Anish Kapse](https://anishkapse.com/). If you build something fun with it, I'd love to see it.
+Made by [Anish Kapse](https://anishkapse.com/). If you build something fun with it, I'd love to see it. If it saved you an afternoon, you can [buy me a coffee](https://buymeacoffee.com/anishkapse).
